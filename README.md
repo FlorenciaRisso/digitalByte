@@ -10,3 +10,5 @@ Variedad de productos: Ofrecemos una amplia gama de marcas y modelos para satisf
 Asesoramiento y guía: Proporcionamos información detallada sobre las características de los productos, comparativas y reseñas para ayudar a los clientes a tomar decisiones informadas.
 Promociones y ofertas especiales: Planeamos y organizamos ofertas especiales, descuentos y promociones para atraer a diferentes segmentos de nuestra audiencia.
 Atención al cliente: Ofrecemos un excelente servicio de atención al cliente para responder a preguntas, proporcionar asistencia y resolver problemas de manera rápida y eficiente.
+
+Integrantes
