@@ -17,11 +17,11 @@ Nuestra audiencia objetivo incluirá a jóvenes, adultos que buscan productos el
 - **Atención al cliente**: Ofrecemos un excelente servicio de atención al cliente para responder a preguntas, proporcionar asistencia y resolver problemas de manera rápida y eficiente.
 
 ## **Integrantes**
--Alsaad Ili
-*Quiroga Facundo
-+Risso Florencia
--Rodriguez Nahuel
-*Santillan Mara
+- Alsaad Ili
+* Quiroga Facundo
++ Risso Florencia
+- Rodriguez Nahuel
+* Santillan Mara
 
 
 ## Sitios de inspiracion
