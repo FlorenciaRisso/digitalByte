@@ -25,10 +25,10 @@ Nuestra audiencia objetivo incluirá a jóvenes, adultos que buscan productos el
 
 
 ## Sitios de inspiracion
--[Shop Samsung](https://shop.samsung.com/ar/)
-*[Tienda Personal](https://tienda.personal.com.ar/)
-+[Musimundo](https://www.musimundo.com/)
--[Mercado Libre](https://www.mercadolibre.com.ar/)
-*[Fravega](https://www.fravega.com/)
+- [Shop Samsung](https://shop.samsung.com/ar/)
+* [Tienda Personal](https://tienda.personal.com.ar/)
++ [Musimundo](https://www.musimundo.com/)
+- [Mercado Libre](https://www.mercadolibre.com.ar/)
+* [Fravega](https://www.fravega.com/)
 
 Los sitios que elegimos fue por la categoria de productos que ofrecen y las funcionalidades como mostrar los productos, su agrupacion y la opcion de un carrito de compras asociado a un perfil de usuario.
