@@ -16,19 +16,17 @@ Nuestra audiencia objetivo incluirá a jóvenes, adultos que buscan productos el
 + **Promociones y ofertas especiales**: Planeamos y organizamos ofertas especiales, descuentos y promociones para atraer a diferentes segmentos de nuestra audiencia.
 - **Atención al cliente**: Ofrecemos un excelente servicio de atención al cliente para responder a preguntas, proporcionar asistencia y resolver problemas de manera rápida y eficiente.
 
-## **Integrantes**
-- Alsaad Ili
-* Quiroga Facundo
-+ Risso Florencia
-- Rodriguez Nahuel
-* Santillan Mara
+## Integrantes del equipo
+- Ili Alsaad
+- Facundo Quiroga
+- Florencia Risso
+- Nahuel Rodriguez
+- Santillan Mara: 25 años, tecnica en programacion y analisis de sistemas. Conocimientos en desarrollo web con python (flask,django),php,html,css,js,bootstrap,mysql.
 
 
-## Sitios de inspiracion
-- [Shop Samsung](https://shop.samsung.com/ar/)
-* [Tienda Personal](https://tienda.personal.com.ar/)
-+ [Musimundo](https://www.musimundo.com/)
-- [Mercado Libre](https://www.mercadolibre.com.ar/)
-* [Fravega](https://www.fravega.com/)
-
-Los sitios que elegimos fue por la categoria de productos que ofrecen y las funcionalidades como mostrar los productos, su agrupacion y la opcion de un carrito de compras asociado a un perfil de usuario.
+## Sitios de Referencia
+- [Samsung Argentina](https://samsung.com/ar/)
+- [Personal Argentina](https://tienda.personal.com.ar/)
+- [Musimundo](https://www.musimundo.com/)
+- [Tienda Digit](https://tiendadiggit.com.ar/)
+- [Apple Latinoamerica](https://www.apple.com/la/)
