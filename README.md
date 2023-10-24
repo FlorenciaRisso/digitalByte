@@ -21,7 +21,7 @@ Nuestra audiencia objetivo incluirá a jóvenes, adultos que buscan productos el
 - Facundo Quiroga
 - Florencia Risso
 - Nahuel Rodriguez
-- Santillan Mara: 25 años, tecnica en programacion y analisis de sistemas. Conocimientos en desarrollo web con python (flask,django),php,html,css,js,bootstrap,mysql.
+- Santillan Mara
 
 
 ## Sitios de Referencia
