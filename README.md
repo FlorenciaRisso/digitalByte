@@ -30,3 +30,6 @@ Nuestra audiencia objetivo incluirá a jóvenes, adultos que buscan productos el
 - [Musimundo](https://www.musimundo.com/)
 - [Tienda Digit](https://tiendadiggit.com.ar/)
 - [Apple Latinoamerica](https://www.apple.com/la/)
+
+## Trello
+ - [Trello](https://trello.com/b/TyfSUuay/digitalbyte)
