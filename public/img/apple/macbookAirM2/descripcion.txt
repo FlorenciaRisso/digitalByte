@@ -1,0 +1,14 @@
+Titulo: Macbook Air M2
+Precio:$
+4.994.149
+Descripcion:MacBook Air 13 " Apple chip M2- 8 core CPU - 10 GPU - 512GB:Chip M2 de Apple.CPU de 8 núcleos con 4 núcleos de rendimiento y 4 de eficiencia. GPU de 10 núcleos. Neural Engine de 16 núcleos.100 GB/s de ancho de banda de memoria.
+Pantalla de 13.6 pulgadas (diagonal) retroiluminada por LED con tecnología IPS;1.
+Resolución nativa de 2560 x 1664 a 224 pixeles por pulgada compatible con 1,000 millones de colores.
+
+Caracteristicas:
+Tamaño:13"
+Memoria: 512GB
+Procesador:M2
+Nucleos:8
+Ram:8GB
+

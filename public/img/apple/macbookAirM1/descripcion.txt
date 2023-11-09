@@ -1,0 +1,11 @@
+Titulo:Macbook Air M1
+Precio:$1.234.999
+Descripcion:
+a notebook más delgada y ligera de Apple viene con los superpoderes del chip M1. Termina todos tus proyectos mucho más rápido con el CPU de 8 núcleos y disfruta como nunca antes de apps y juegos con gráficos avanzados gracias al GPU de hasta 8 núcleos.
+
+Caracteristicas:
+Tamaño:13.3"
+Memoria: 256GB
+Procesador:M1
+Nucleos:8
+Ram:16GB
