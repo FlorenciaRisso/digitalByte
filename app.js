@@ -21,7 +21,13 @@ app.get('/',(req,res)=>{
 app.get('/Carrito',(req,res)=>{ 
     res.sendFile(path.resolve(__dirname,'views/productCart.html')); 
 });
-app.get('/Detalle',(req,res){ 
+app.get('/Detalle',(req,res)=>{ 
     res.sendFile(path.join(__dirname,'views/productDetail.html')); 
+});
+app.get('/Registro',(req,res)=>{ 
+    res.sendFile(path.join(__dirname,'views/register.html')); 
+});
+app.get('/Login',(req,res)=>{ 
+    res.sendFile(path.join(__dirname,'views/login.html')); 
 });
 
