@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registro</title>
 
-    <link rel="stylesheet" href="/css/register-styles.css" />
+    <link rel="stylesheet" href="/css/styleRegistro.css" />
 
     <link
       rel="stylesheet"
@@ -20,37 +20,37 @@
     <div class="body">
       <div class="container">
         <div class="title-container">
-          <h2 class="title">Registro</h2>
+          <h2 class="title">Registrate</h2>
         </div>
-        <form class="register__form" action="/register" method="POST">
-          <div class="register__firstname-form">
-            <label for="">Nombre</label>
-            <input class="register__input-form" type="text" placeholder="Nombre" />
+        <form class="register__form" action="/registro" method="POST">
+          <div class="register__firstname-form block-input">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" class="register__input-form" type="text" placeholder="Nombre" />
           </div>
 
-          <div class="register__lastname-form">
-            <label for="">Apellido</label>
-            <input class="register__input-form" type="text" placeholder="Apellido" />
+          <div class="register__lastname-form block-input">
+            <label for="apellido">Apellido</label>
+            <input id="apellido" class="register__input-form" type="text" placeholder="Apellido" />
           </div>
 
-          <div class="register__email-form">
-            <label for="">Correo electronico</label>
-            <input class="register__input-form" type="email" placeholder="Correo electronico" />
+          <div class="register__email-form block-input">
+            <label for="correo">Correo electronico</label>
+            <input id="correo" class="register__input-form" type="email" placeholder="Correo electronico" />
           </div>
 
-          <div class="register__password-form">
-            <label for="">Contraseña</label>
-            <input class="register__input-form" type="password" placeholder="Contraseña" />
+          <div class="register__password-form block-input">
+            <label for="contrasenia">Contraseña</label>
+            <input id="contrasenia" class="register__input-form" type="password" placeholder="Contraseña" />
           </div>
 
-          <div class="register__password-form">
-            <label for="">Repetir contraseña</label>
-            <input class="register__input-form" type="password" placeholder="Repetir contraseña" />
+          <div class="register__password-form block-input">
+            <label for="confirmContra">Repetir contraseña</label>
+            <input id="confirmContra" class="register__input-form" type="password" placeholder="Repetir contraseña" />
           </div>
 
-          <div class="register__date-form">
-            <label for="">Fecha de nacimiento</label>
-            <input
+          <div class="register__date-form block-input">
+            <label for="fechaNac">Fecha de nacimiento</label>
+            <input id="fechaNac"
               class="register__input-date-form"
               type="date"
               placeholder="Fecha de nacimiento"
@@ -58,17 +58,18 @@
           </div>
 
           <div class="register__buttons">
-            <button class="register__button">Iniciar Sesión</button>
-            <button class="register__google-button">
-              <i class="fa-brands fa-google register__google-icon"></i>Inicia sesión con google
+            <button class="register__button btn ">Registrarme</button>
+            <button class="register__google-button btn">
+              <i class="fa-brands fa-google register__google-icon"></i> Inicia sesión con google
             </button>
+          </div>
+          <div class="footer">
+            <span>¿Ya tienes cuenta? </span>
+            <a href="/login" class="login__link">Iniciar sesión</a>
           </div>
         </form>
 
-        <div class="footer">
-          <span>¿Ya tienes cuenta?</span>
-          <a href="/login" class="login__link">Iniciar sesión</a>
-        </div>
+        
       </div>
     </div>
   </body>
