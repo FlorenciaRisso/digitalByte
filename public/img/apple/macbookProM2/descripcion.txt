@@ -1,0 +1,11 @@
+Titulo:Macbook Pro M2
+Precio: $5.142.248
+Descripcion:
+El chip M1 de Apple redefine al Macbook Pro de 13 pulgadas.(1) Viene con una CPU de 8 núcleos que permite un rendimiento óptimo en los flujos de trabajo más exigentes, como fotografía, programación y edición de video. La sorprendente GPU de 8 núcleos ofrece un rendimiento asombroso en procesos gráficos complejos y una experiencia de juego increíblemente fluida.
+
+Caracteristicas:
+Tamaño:13.3"
+Memoria: 512GB
+Procesador:M2
+Nucleos:8
+Ram:8GB
