@@ -11,10 +11,13 @@ const path=require('path');
 app.use(express.static('public'));
 
 //Levantando el servidor Puerto 3080
-app.listen(3080,()=>console.log("Exito")); 
+app.listen(3030,()=>console.log("Exito")); 
 
 //RUTAS
-
 app.get('/',(req,res)=>{ 
+    res.sendFile(path.resolve(__dirname,'views/index.html')); 
+});
+
+app.get('/Carrito',(req,res)=>{ 
     res.sendFile(path.resolve(__dirname,'views/productCart.html')); 
 });

@@ -1,0 +1,11 @@
+Titulo: Ipad 9na Generacion
+Precio: $649.999
+Descripcion:
+Diseñado para que hagas todo lo que te gusta, por menos de lo que imaginas.
+Lleno de potencia, muy fácil de usar y versátil. El iPad viene con una espectacular pantalla Retina de 10.2 pulgadas, el potente chip A13 Bionic y una cámara frontal ultra gran angular con Encuadre Centrado.
+
+Caracteristicas:
+Tamaño:10.2"
+Memoria: 256GB
+Camara Principal: 8Mpx
+Bateria:10h

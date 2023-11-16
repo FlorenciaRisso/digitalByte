@@ -1,0 +1,10 @@
+Titulo: Ipad 8va Generacion
+
+Precio:$532.580
+
+Descripcion: El nuevo iPad se transforma en lo que quieras: un cuaderno digital, una oficina móvil, un estudio fotográfico, una consola de juegos o una sala de cine. El chip A12 Bionic te ofrece la potencia que necesitas para usar las apps de todos los días y los juegos más inmersivos. Puedes editar un documento mientras buscas información en Internet y hablas con un compañero por FaceTime. Gracias al Apple Pencil, tomar notas en el iPad es supersencillo. ¿Tienes que preparar un informe? Conecta el Smart Keyboard de tamaño completo y escribe con total comodidad.
+Caracteristicas:
+Tamaño:10.2"
+Memoria: 32GB
+Camara Principal: 8Mpx
+Bateria:10h
