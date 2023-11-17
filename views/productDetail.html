@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/css/styleDetalle.css">
+    <link rel="stylesheet" href="/css/styleDetalle.css">
     <title>Detalle</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/f4d1904851.js" crossorigin="anonymous"></script>
@@ -16,15 +15,15 @@
 <body>
     <header class="main-header">
         <div class="logo-container">
-            <img class="img-logo" src="/public/img/logo-dbytee.png" alt="logoDigitalByte">
+            <img class="img-logo" src="/img/logo-dbytee.png" alt="logoDigitalByte">
         </div>
         <div class="bar-search">
             <input class="input-search" type="text" name="search" id="search" placeholder="¿Qué estas buscando?">
         </div>
         <div class="user-option">
-            <button class="btn btn-carrito" type="button">Carrito</button>
-            <button class="btn btn-registro" type="button">Registro</button>
-            <button class="btn btn-login" type="button">Login</button>
+            <button class="btn btn-carrito" type="button"><a href="/carrito">Carrito</a></button>
+            <button class="btn btn-registro" type="button"><a href="/registro">Registro</a></button>
+            <button class="btn btn-login" type="button"><a href="/login">Login</a></button>
         </div>
         <div class="secciones">
 
@@ -37,12 +36,12 @@
             </a>
         </div>
         <ul class="lista-secciones">
-            <li>Home</li>
-            <li>Smartphones</li>
-            <li>Notebooks</li>
-            <li>Tablets</li>
-            <li>Contacto</li>
-            <li>¿Quienes Somos?</li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/">Smartphones</a></li>
+            <li><a href="/">Notebooks</a></li>
+            <li><a href="/">Tablets</a></li>
+            <li><a href="/">Contacto</a></li>
+            <li><a href="/">¿Quienes Somos?</a></li>
         </ul>
     </nav>
     <main>
@@ -50,12 +49,12 @@
             <div class="imagenes-acciones">
                 <div class="imagenes-producto">
                     <div class="imagen-principal">
-                        <img src="/public/img/apple/iphone13/iphone13.png" alt="iphone13">
+                        <img src="/img/apple/iphone13/iphone13.png" alt="iphone13">
                     </div>
                     <div class="imagenes-secundarias">
-                        <div class="div-img"><img src="/public/img/apple/iphone13/iphone13-1.png" alt=""></div>
-                        <div class="div-img"><img src="/public/img/apple/iphone13/iphone13-2.png" alt=""></div>
-                        <div class="div-img"><img src="/public/img/apple/iphone13/iphone13-3.png" alt=""></div>
+                        <div class="div-img"><img src="/img/apple/iphone13/iphone13-1.png" alt=""></div>
+                        <div class="div-img"><img src="/img/apple/iphone13/iphone13-2.png" alt=""></div>
+                        <div class="div-img"><img src="/img/apple/iphone13/iphone13-3.png" alt=""></div>
                     </div>
                 </div>
 
@@ -63,19 +62,24 @@
 
             <div class="detalle-producto">
                 <div class="titulo-producto">
-                    <p>Iphone 13</p>
+                    <p>Iphone 13 Pro Max</p>
                 </div>
                 <div class="descripcion-producto">
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Expedita aliquam, consequuntur natus
-                        ullam culpa blanditiis ab nisi ipsa aperiam recusandae exercitationem atque rerum dolorum quos
-                        totam itaque, sunt fugiat ipsam.</p>
+                    <p>Pantalla Super Retina XDR de 6.7 pulgadas con ProMotion que brinda una respuesta más rápida y
+                        fluida.(2)
+                        Modo Cine con baja profundidad de campo y cambios de enfoque automáticos en tus videos.
+                        Nuevo sistema de cámaras Pro de 12 MP (teleobjetivo, gran angular y ultra gran angular), escáner
+                        LiDAR, rango de zoom óptico de 6x, fotografía macro, Estilos Fotográficos, video ProRes3, HDR
+                        Inteligente 4, modo Noche, Apple ProRAW y grabación de video 4K HDR en Dolby Vision.
+                        Cámara frontal TrueDepth de 12 MP con modo Noche y grabación de video 4K HDR en Dolby Vision.
+                    </p>
                 </div>
                 <div class="caracteristicas-producto">
                     <ul>
-                        <li>Caracteristica 1</li>
-                        <li>Caracteristica 2</li>
-                        <li>Caracteristica 3</li>
-                        <li>Caracteristica 4</li>
+                        <li>Tamaño:6.7"</li>
+                        <li>Memoria: 256GB</li>
+                        <li>Camara Principal: 12Mpx</li>
+                        <li>Desbloqueo: Reconocimiento Facial</li>
                     </ul>
                 </div>
                 <div class="color-precio">
@@ -89,9 +93,9 @@
                     </div>
                     <div class="precio-comprar">
                         <div class="precio">
-                            <p>$800.000</p>
+                            <p>$1.322.142</p>
                         </div>
-                        <div class=""><button class="btn-comprar">Comprar</button></div>
+                        <div class="div-btn-comprar"><button class="btn-comprar">Comprar</button></div>
                     </div>
                 </div>
             </div>
@@ -102,7 +106,7 @@
                 <div class="productos-relacionados">
                     <div class="producto producto1">
                         <div class="imagen-producto-relacionado">
-                            <img src="/public/img/apple/iphone14/iphone14.jpg" alt="">
+                            <img src="/img/apple/iphone14/iphone14.jpg" alt="">
                         </div>
                         <div class="descripcion-producto-relacionado">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga minus accusamus ea esse
@@ -115,7 +119,7 @@
                     </div>
                     <div class="producto producto2">
                         <div class="imagen-producto-relacionado">
-                            <img src="/public/img/apple/iphone14/iphone14.jpg" alt="">
+                            <img src="/img/apple/iphone14/iphone14.jpg" alt="">
                         </div>
                         <div class="descripcion-producto-relacionado">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga minus accusamus ea esse
@@ -128,7 +132,7 @@
                     </div>
                     <div class="producto producto3">
                         <div class="imagen-producto-relacionado">
-                            <img src="/public/img/apple/iphone14/iphone14.jpg" alt="">
+                            <img src="/img/apple/iphone14/iphone14.jpg" alt="">
                         </div>
                         <div class="descripcion-producto-relacionado">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga minus accusamus ea esse
@@ -141,7 +145,7 @@
                     </div>
                     <div class="producto producto4">
                         <div class="imagen-producto-relacionado">
-                            <img src="/public/img/apple/iphone14/iphone14.jpg" alt="">
+                            <img src="/img/apple/iphone14/iphone14.jpg" alt="">
                         </div>
                         <div class="descripcion-producto-relacionado">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga minus accusamus ea esse
@@ -154,7 +158,7 @@
                     </div>
                     <div class="producto producto5">
                         <div class="imagen-producto-relacionado">
-                            <img src="/public/img/apple/iphone14/iphone14.jpg" alt="">
+                            <img src="/img/apple/iphone14/iphone14.jpg" alt="">
                         </div>
                         <div class="descripcion-producto-relacionado">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga minus accusamus ea esse
@@ -167,7 +171,7 @@
                     </div>
                     <div class="producto producto6">
                         <div class="imagen-producto-relacionado">
-                            <img src="/public/img/apple/iphone14/iphone14.jpg" alt="">
+                            <img src="/img/apple/iphone14/iphone14.jpg" alt="">
                         </div>
                         <div class="descripcion-producto-relacionado">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga minus accusamus ea esse
@@ -183,8 +187,26 @@
 
         </section>
     </main>
-    <footer>
-        footer
+    <footer class="footer">
+        <div class="footer-social">
+            <a href="#"><span><i class="fab fa-facebook"></i> Facebook</span></a>
+            <a href="#"><span><i class="fab fa-twitter"></i> Twitter</span></a>
+            <a href="#"><span><i class="fab fa-instagram"></i> Instagram</span></a>
+        </div>
+        <div class="copyrigth">
+            <p class="digital-byte__p">© 2023 <span class="digital-byte__span">digitalByte</span></p>
+        </div>
+        <div class="footer-sections">
+            <ul class="footer__list">
+                <li class="footer__item">
+                    <a class="footer__anchor" href="">Contacto</a>
+                </li>
+                <li class="footer__item">
+                    <a class="footer__anchor" href="">¿Quiénes somos?</a>
+                </li>
+            </ul>
+        </div>
+
     </footer>
 </body>
 

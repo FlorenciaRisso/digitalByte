@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro</title>
+
+    <link rel="stylesheet" href="/css/styleRegistro.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body>
+    <div class="body">
+      <div class="container">
+        <div class="title-container">
+          <h2 class="title">Registrate</h2>
+        </div>
+        <form class="register__form" action="/registro" method="POST">
+          <div class="register__firstname-form block-input">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" class="register__input-form" type="text" placeholder="Nombre" />
+          </div>
+
+          <div class="register__lastname-form block-input">
+            <label for="apellido">Apellido</label>
+            <input id="apellido" class="register__input-form" type="text" placeholder="Apellido" />
+          </div>
+
+          <div class="register__email-form block-input">
+            <label for="correo">Correo electronico</label>
+            <input id="correo" class="register__input-form" type="email" placeholder="Correo electronico" />
+          </div>
+
+          <div class="register__password-form block-input">
+            <label for="contrasenia">Contraseña</label>
+            <input id="contrasenia" class="register__input-form" type="password" placeholder="Contraseña" />
+          </div>
+
+          <div class="register__password-form block-input">
+            <label for="confirmContra">Repetir contraseña</label>
+            <input id="confirmContra" class="register__input-form" type="password" placeholder="Repetir contraseña" />
+          </div>
+
+          <div class="register__date-form block-input">
+            <label for="fechaNac">Fecha de nacimiento</label>
+            <input id="fechaNac"
+              class="register__input-date-form"
+              type="date"
+              placeholder="Fecha de nacimiento"
+            />
+          </div>
+
+          <div class="register__buttons">
+            <button class="register__button btn ">Registrarme</button>
+            <button class="register__google-button btn">
+              <i class="fa-brands fa-google register__google-icon"></i> Inicia sesión con google
+            </button>
+          </div>
+          <div class="footer">
+            <span>¿Ya tienes cuenta? </span>
+            <a href="/login" class="login__link">Iniciar sesión</a>
+          </div>
+        </form>
+
+        
+      </div>
+    </div>
+  </body>
+</html>

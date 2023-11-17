@@ -5,6 +5,11 @@
     padding: 0;
 }
 
+a {
+    text-decoration: none;
+    color: rgb(44, 44, 44);
+}
+
 .green {
     background-color: rgb(53, 78, 53);
 }
@@ -140,9 +145,11 @@
     box-sizing: border-box;
 }
 
-.lista-secciones>li:hover {
-    list-style: none;
-    text-decoration: underline;
+.lista-secciones>li>a:hover {
+    color: #010101;
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+
 }
 
 
@@ -200,6 +207,24 @@ main {}
 .detalle-producto>div {
     margin-bottom: 10px;
     border-radius: 10px;
+    padding: 5px;
+}
+
+.precio-comprar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.precio>p {
+    font-weight: 600;
+    margin: 4px;
+    font-size: 20px;
+}
+
+.div-btn-comprar {
+    text-align: center;
+
 }
 
 .imagenes-acciones {
@@ -233,15 +258,18 @@ main {}
 .imagen-principal img {
     width: 90%;
 }
-.imagenes-secundarias{
+
+.imagenes-secundarias {
     display: flex;
     justify-content: space-around;
 }
-.div-img{
+
+.div-img {
     width: 30%;
 
 }
-.div-img img{
+
+.div-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -348,8 +376,43 @@ main {}
 
 /*footer*/
 
-footer {
-    background-color: chocolate;
+.footer {
+    width: 100%;
+    background-color: #906cbe;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+}
+.footer-social{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    
+}
+.copyrigth{
+    width: 30%;
+    text-align: center;
+}
+.footer-sections{
+    width: 30%;
+    text-align: right;
+}
+.footer__list {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+
+.footer__anchor {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-size: 0.8rem;
+}
+.footer__item:hover{
+    background-color:blueviolet;
+    border-radius: 10px;
+    padding: 5px;
 }
 
 @media (min-width:500px) {
@@ -470,10 +533,6 @@ footer {
 
     }
 
-    .detalle-producto>div {
-        margin-bottom: 10px;
-        border-radius: 10px;
-    }
 
     .imagenes-producto {
         display: flex;
@@ -496,7 +555,7 @@ footer {
 
     }
 
-    
+
 
     /*Relacionados*/
     .productos-relacionados {
@@ -519,5 +578,6 @@ footer {
         width: 20%;
         min-width: 30px;
     }
+    /*footer*/
 
 }

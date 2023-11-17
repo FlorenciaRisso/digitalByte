@@ -1,22 +1,2 @@
 # Dependencias de Node.js
-node_modules/
-package-lock.json
-package.json
-
-# Archivos de respaldo y registros
-*.log
-logs/
-*.seed
-*.pid
-*.seed
-*.pid
-.DS_Store
-
-# Configuración específica del sistema
-config/local.js
-
-# Variables de entorno
-.env
-
-# Archivos de caché
-.npm
+/node_modules
