@@ -7,6 +7,7 @@ const app=express();
 //Require path
 const path=require('path');
 
+const cartHtmlFile = path.join(__dirname, '/views/productCart.html');
 //Usando recursos estaticos
 app.use(express.static('public'));
 
@@ -26,5 +27,8 @@ app.get('/Registro',(req,res)=>{
 });
 app.get('/Login',(req,res)=>{ 
     res.sendFile(path.join(__dirname,'views/login.html')); 
+});
+app.get('/Carrito', (req, res) => {
+  res.sendFile(cartHtmlFile);
 });
 
