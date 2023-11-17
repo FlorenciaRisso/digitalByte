@@ -1,19 +1,30 @@
-const express = require('express');
-const path = require('path');
+//Require de express
+const express=require('express');
 
-const app = express();
-const port = 4000;
+//Ejecucion de express
+const app=express(); 
 
-const registerHtmlFile = path.join(__dirname, '/views/registro.html');
+//Require path
+const path=require('path');
 
+//Usando recursos estaticos
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
-  res.sendFile(registerHtmlFile);
+//Levantando el servidor Puerto 3080
+app.listen(3030,()=>console.log("Exito")); 
+
+//RUTAS
+app.get('/',(req,res)=>{ 
+    res.sendFile(path.resolve(__dirname,'views/index.html')); 
 });
 
-
-app.listen(port, () => {
-  console.log(`Servidor corriendo en el puerto: localhost:${port}`);
+app.get('/Detalle',(req,res)=>{ 
+    res.sendFile(path.join(__dirname,'views/productDetail.html')); 
+});
+app.get('/Registro',(req,res)=>{ 
+    res.sendFile(path.join(__dirname,'views/register.html')); 
+});
+app.get('/Login',(req,res)=>{ 
+    res.sendFile(path.join(__dirname,'views/login.html')); 
 });
 
