@@ -1,0 +1,12 @@
+Titulo:Ipad 10ma Generacion
+Precio:$
+765.809
+Descripcion:
+Capturá todos tus momentos al instante
+Gracias a sus cámaras, con resoluciones de 12 Mpx y 12 Mpx, podrás hacer videollamadas o sacarte fotos en cualquier momento y lugar, con una excelente calidad de imagen. Nitidez, brillo y colores vibrantes harán que tus experiencias se reflejen de manera óptima.
+
+Caracteristica:Tamaño:10.2"
+Memoria: 256GB
+Camara Principal: 12Mpx
+Bateria:10h
+

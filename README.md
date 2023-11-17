@@ -18,10 +18,10 @@ Nuestra audiencia objetivo incluirá a jóvenes, adultos que buscan productos el
 
 ## Integrantes del equipo
 - Ili Alsaad
-- Facundo Quiroga
+- Lautaro Capua
 - Florencia Risso
 - Nahuel Rodriguez
-- Santillan Mara
+- Mara Santillan
 
 
 ## Sitios de Referencia

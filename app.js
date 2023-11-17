@@ -1,37 +1,34 @@
-const express = require('express');
-const path = require('path');
+//Require de express
+const express=require('express');
 
-const app = express();
-const port = 4000;
+//Ejecucion de express
+const app=express(); 
 
-const homeHtmlFile = path.join(__dirname, '/views/index.html');
+//Require path
+const path=require('path');
+
 const cartHtmlFile = path.join(__dirname, '/views/productCart.html');
-const productDetailHtmlFile = path.join(__dirname, '/views/productDetail.html');
-const loginHtmlFile = path.join(__dirname, '/views/login.html');
-const registerHtmlFile = path.join(__dirname, '/views/register.html');
-
+//Usando recursos estaticos
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
-  res.sendFile(homeHtmlFile);
+//Levantando el servidor Puerto 3080
+app.listen(3030,()=>console.log("Exito")); 
+
+//RUTAS
+app.get('/',(req,res)=>{ 
+    res.sendFile(path.resolve(__dirname,'views/index.html')); 
 });
 
-app.get('/detail', (req, res) => {
-  res.sendFile(productDetailHtmlFile);
+app.get('/Detalle',(req,res)=>{ 
+    res.sendFile(path.join(__dirname,'views/productDetail.html')); 
 });
-
-app.get('/cart', (req, res) => {
+app.get('/Registro',(req,res)=>{ 
+    res.sendFile(path.join(__dirname,'views/register.html')); 
+});
+app.get('/Login',(req,res)=>{ 
+    res.sendFile(path.join(__dirname,'views/login.html')); 
+});
+app.get('/Carrito', (req, res) => {
   res.sendFile(cartHtmlFile);
 });
 
-app.get('/login', (req, res) => {
-  res.sendFile(loginHtmlFile);
-});
-
-app.get('/register', (req, res) => {
-  res.sendFile(registerHtmlFile);
-});
-
-app.listen(port, () => {
-  console.log(`Servidor corriendo en el puerto: localhost:${port}`);
-});
