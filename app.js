@@ -23,7 +23,7 @@ app.get('/Detalle',(req,res)=>{
     res.sendFile(path.join(__dirname,'views/productDetail.html')); 
 });
 app.get('/Registro',(req,res)=>{ 
-    res.sendFile(path.join(__dirname,'views/register.html')); 
+    res.sendFile(path.join(__dirname,'views/registro.html')); 
 });
 app.get('/Login',(req,res)=>{ 
     res.sendFile(path.join(__dirname,'views/login.html')); 
