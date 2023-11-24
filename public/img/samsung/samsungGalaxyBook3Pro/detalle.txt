@@ -1,0 +1,11 @@
+Titulo: Samsung Galaxy Book3 Pro
+Precio:$1.149.999
+
+Descripcion:
+Samsung Galaxy Book3 Pro 14 Intel Core I5 12 Núcleos 16gb Color Graphite te ofrece una experiencia de visualización cinematográfica sin interrupciones gracias a su nítida resolución 3K (2880 x 1800) y los 120 Hz supersuaves. Cada detalle cobra vida en la pantalla de 14 pulgadas. Además, cuenta con una emisión reducida de luz azul para un mayor cuidado de los ojos.
+
+Caracteristicas:
+Tamaño:14"
+Memoria: 1080GB
+Procesador:Core i5
+Ram:16GB

@@ -1,0 +1,13 @@
+Titulo:Redmi Pad 5
+
+Precio: $794.523
+
+Descripcion:
+Esta tablet es la combinación perfecta de rendimiento y versatilidad, ideal para acompañar cada una de tus actividades.
+Transferir, sincronizar y acceder a tus dispositivos las veces que quieras ahora es posible. Sus conexiones bluetooth, wi-fi, usb-c te permiten potenciar sus funciones al máximo.
+
+Caracteristicas:
+-Tamaño:11"
+-Memoria: 256GB
+-Camara Principal: 13Mpx
+-Ram:6GB
