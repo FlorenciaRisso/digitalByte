@@ -32,20 +32,3 @@ app.use('/', (req, res)=>{
 app.use('/productos', productRouter);
 app.use('/usuarios', userRouter);
 
-/*app.get('/',(req,res)=>{ 
-    res.sendFile(path.resolve(__dirname,'views/index.html')); 
-});
-
-app.get('/Detalle',(req,res)=>{ 
-    res.sendFile(path.join(__dirname,'views/productDetail.html')); 
-});
-app.get('/Registro',(req,res)=>{ 
-    res.sendFile(path.join(__dirname,'views/register.html')); 
-});
-app.get('/Login',(req,res)=>{ 
-    res.sendFile(path.join(__dirname,'views/login.html')); 
-});
-app.get('/Carrito', (req, res) => {
-  res.sendFile(cartHtmlFile);
-});*/
-
