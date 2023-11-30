@@ -2,7 +2,7 @@ const path = require('path');
 
 let productController = {
     index: (req, res)=>{
-        res.render('productCart')
+        res.render('index')
     }, 
 
     getOne: (req, res) => {
@@ -10,7 +10,10 @@ let productController = {
     },
 
     carrito: (req,res) => {
-        res.sendFile(path.resolve(__dirname, '../views/productCart.ejs'));
+        res.render('productCart')
+    },
+    detalle:(req,res) => {
+        res.render('productDetail')
     }
 }
 

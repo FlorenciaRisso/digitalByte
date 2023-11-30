@@ -1,8 +1,12 @@
 const path = require('path');
 
 let userController = {
-    index: (req, res)=>{
-        res.send("HOME DE USUARIOS");
+
+    login: (req, res)=>{
+        res.render('login');
+    }, 
+    registro: (req, res)=>{
+        res.render('registro');
     }, 
 
     getOne: (req, res) => {

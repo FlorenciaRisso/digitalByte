@@ -1,49 +1,6 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/styleDetalle.css">
-    <title>Detalle</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/f4d1904851.js" crossorigin="anonymous"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@200&display=swap" rel="stylesheet">
-</head>
-
+<%-include ('partials/head',{cssFile:'/css/styleDetalle.css'})%>
 <body>
-    <header class="main-header">
-        <div class="logo-container">
-            <img class="img-logo" src="/img/logo-dbytee.png" alt="logoDigitalByte">
-        </div>
-        <div class="bar-search">
-            <input class="input-search" type="text" name="search" id="search" placeholder="¿Qué estas buscando?">
-        </div>
-        <div class="user-option">
-            <button class="btn btn-carrito" type="button"><a href="/carrito">Carrito</a></button>
-            <button class="btn btn-registro" type="button"><a href="/registro">Registro</a></button>
-            <button class="btn btn-login" type="button"><a href="/login">Login</a></button>
-        </div>
-        <div class="secciones">
-
-        </div>
-    </header>
-    <nav class="main-nav">
-        <div class="menu">
-            <a class="hamburger-button">
-                <i class="fas fa-bars"></i>
-            </a>
-        </div>
-        <ul class="lista-secciones">
-            <li><a href="/">Home</a></li>
-            <li><a href="/">Smartphones</a></li>
-            <li><a href="/">Notebooks</a></li>
-            <li><a href="/">Tablets</a></li>
-            <li><a href="/">Contacto</a></li>
-            <li><a href="/">¿Quienes Somos?</a></li>
-        </ul>
-    </nav>
+    <%-include ('partials/headerYNav') %>
     <main>
         <section class="imagenes-and-detalle">
             <div class="imagenes-acciones">
@@ -186,28 +143,9 @@
             </div>
 
         </section>
+        
     </main>
-    <footer class="footer">
-        <div class="footer-social">
-            <a href="#"><span><i class="fab fa-facebook"></i> Facebook</span></a>
-            <a href="#"><span><i class="fab fa-twitter"></i> Twitter</span></a>
-            <a href="#"><span><i class="fab fa-instagram"></i> Instagram</span></a>
-        </div>
-        <div class="copyrigth">
-            <p class="digital-byte__p">© 2023 <span class="digital-byte__span">digitalByte</span></p>
-        </div>
-        <div class="footer-sections">
-            <ul class="footer__list">
-                <li class="footer__item">
-                    <a class="footer__anchor" href="">Contacto</a>
-                </li>
-                <li class="footer__item">
-                    <a class="footer__anchor" href="">¿Quiénes somos?</a>
-                </li>
-            </ul>
-        </div>
-
-    </footer>
+    <%- include ('partials/footer') %>
 </body>
 
 </html>

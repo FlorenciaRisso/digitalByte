@@ -4,8 +4,8 @@ const routerProductos = require('./productos.routes');
 const routerUsuarios = require('./usuarios.routes');
 const routerMain = require('./main.routes');
 
-router.use('/productos', routerProductos);
-router.use('/usuarios', routerUsuarios);
 router.use('/', routerMain);
+router.use('/Productos', routerProductos);
+router.use('/Usuarios', routerUsuarios);
 
 module.exports = router;
