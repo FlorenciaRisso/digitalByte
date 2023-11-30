@@ -5,7 +5,7 @@
   "name": "digitalbyte",
   "description": "Ofrecemos una amplia variedad de smartphones de diferentes marcas y modelos, incluyendo opciones de gama alta, gama media y económicas. \r Tablets de diversas marcas y tamaños, desde tablets Android hasta iPads de Apple. Y notebooks de diferentes especificaciones y tamaños, para abordar las necesidades de estudiantes, profesionales y usuarios en general.",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js"
