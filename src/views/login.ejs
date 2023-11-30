@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/login.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__container">
+        <a href="/">
+          <img class="header__logo" src="/img/logo-dbytee.png" alt="digitalByte logo" />
+
+        </a>
+
+        <div class="header__access">
+          <a href="/">Home</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="body">
+      <div class="container">
+        <div class="title-container">
+          <h2 class="title">Inicia sesión</h2>
+        </div>
+        <form class="login__form">
+          <div class="login__email-form">
+            <!-- <label for="">Correo electronico</label> -->
+            <input
+              class="login__input-form"
+              type="email"
+              placeholder="Correo electronico"
+              required
+            />
+          </div>
+
+          <div class="login__password-form">
+            <!-- <label for="">Contraseña</label> -->
+            <input class="login__input-form" type="password" placeholder="Contraseña" required />
+          </div>
+
+          
+
+          <div class="login__buttons">
+            <button class="login__button">Iniciar Sesión</button>
+            <button class="login__google-button">
+              <i class="fa-brands fa-google login__google-icon"></i>Inicia sesión con google
+            </button>
+          </div>
+        </form>
+
+        <div class="footer">
+          <a href="/register" class="register__link">Crear cuenta</a>
+          <a href="">Olvide mi contraseña</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
