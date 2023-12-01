@@ -1,38 +1,38 @@
 <%-include ('partials/head',{cssFile:'/css/styleRegistro.css'})%>
   <body>
+    <header class="header">
+      <div class="logo-container">
+        <a href="/"><img class="img-logo" src="/img/logo-dbytee.png" alt="logoDigitalByte"></a>
+      </div>
+    </header>
     <div class="body">
+      
       <div class="container">
         <div class="title-container">
           <h2 class="title">Registrate</h2>
         </div>
         <form class="register__form" action="/Usuarios/Registro" method="POST">
           <div class="register__firstname-form block-input">
-            <label for="nombre">Nombre</label>
             <input id="nombre" class="register__input-form" type="text" placeholder="Nombre" />
           </div>
 
           <div class="register__lastname-form block-input">
-            <label for="apellido">Apellido</label>
             <input id="apellido" class="register__input-form" type="text" placeholder="Apellido" />
           </div>
 
           <div class="register__email-form block-input">
-            <label for="correo">Correo electronico</label>
             <input id="correo" class="register__input-form" type="email" placeholder="Correo electronico" />
           </div>
 
           <div class="register__password-form block-input">
-            <label for="contrasenia">Contraseña</label>
             <input id="contrasenia" class="register__input-form" type="password" placeholder="Contraseña" />
           </div>
 
           <div class="register__password-form block-input">
-            <label for="confirmContra">Repetir contraseña</label>
             <input id="confirmContra" class="register__input-form" type="password" placeholder="Repetir contraseña" />
           </div>
 
           <div class="register__date-form block-input">
-            <label for="fechaNac">Fecha de nacimiento</label>
             <input id="fechaNac"
               class="register__input-date-form"
               type="date"

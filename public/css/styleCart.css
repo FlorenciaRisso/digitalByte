@@ -242,175 +242,6 @@ td {
   transform: scale(0.98);
 }
 
-/*BOTONES PROD RELACIONADOS*/
-
-/*BOTON VER*/
-
-.button-ver {
-  display: flex;
-  border-radius: 6px;
-  background-color: black;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 17px;
-  padding: 10px;
-  padding-left: 16px;
-  width: 60px;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 5px;
-}
-
-.button-ver span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-
-.button-ver span:after {
-  content: '»';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -15px;
-  transition: 0.5s;
-}
-
-.button-ver:hover span {
-  padding-right: 15px;
-}
-
-.button-ver:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-
-
-
-
-
-/*BOTON AGREGAR*/
-.button {
-  margin-top: 5px;
-  --width: 100px;
-  --height: 39px;
-
-  --tooltip-height: 35px;
-  --tooltip-width: 90px;
-  --gap-between-tooltip-to-button: 18px;
-  --button-color: #fff;
-  --tooltip-color: #222;
-  width: var(--width);
-  height: var(--height);
-  background: var(--button-color);
-  position: relative;
-  text-align: center;
-  border-radius: 0.45em;
-  font-family: "Arial";
-  transition: background 0.3s;
-}
-
-.button::before {
-  position: absolute;
-  content: attr(data-tooltip);
-  width: var(--tooltip-width);
-  height: var(--tooltip-height);
-  background-color: #555;
-  font-size: 0.9rem;
-  color: #000000;
-  border-radius: .25em;
-  line-height: var(--tooltip-height);
-  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) + 10px);
-  left: calc(50% - var(--tooltip-width) / 2);
-}
-
-.button::after {
-  position: absolute;
-  content: '';
-  width: 0;
-  height: 0;
-  border: 10px solid transparent;
-  border-top-color: #555;
-  left: calc(50% - 10px);
-  bottom: calc(100% + var(--gap-between-tooltip-to-button) - 10px);
-}
-
-.button::after,
-.button::before {
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.5s;
-}
-
-.text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.button-wrapper,
-.text,
-.icon {
-  overflow: hidden;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  color: #000000;
-}
-
-.text {
-  top: 0
-}
-
-.text,
-.icon {
-  transition: top 0.5s;
-}
-
-.icon {
-  color: #fff;
-  top: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.icon svg {
-  width: 24px;
-  height: 24px;
-}
-
-.button:hover {
-  background: #222;
-}
-
-.button:hover .text {
-  top: -100%;
-}
-
-.button:hover .icon {
-  top: 0;
-}
-
-.button:hover:before,
-.button:hover:after {
-  opacity: 1;
-  visibility: visible;
-}
-
-.button:hover:after {
-  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) - 20px);
-}
-
-.button:hover:before {
-  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
-}
-
-
-
 
 /*PRODUCTOS DESTACADOS*/
 
@@ -439,17 +270,6 @@ td {
   padding: 0px 30px;
 }
 
-.producto__img-1{
-  margin-bottom: 20px;
-}
-
-.producto__img-2{
-  margin-bottom: 15px;
-}
-.producto__img-3{
-  margin-bottom: 60px;
-}
-
 .tarjeta-producto__h4{
   display: block;
   text-align: center;
@@ -459,23 +279,6 @@ td {
   display: flex;
   justify-content: center;
 }
-
-
-.producto__img-1 {
-  width: 180px;
-  height: auto;
-}
-
-.producto__img-2 {
-  width: 200px;
-  height: auto;
-}
-
-.producto__img-3 {
-  width: 200px;
-  height: auto
-}
-
 
 
 
@@ -508,9 +311,6 @@ td {
     display: block;
   }
 
-  .main-nav {
-    background-color: #C1E2FF;
-  }
 
   .menu {
     display: none;
@@ -531,19 +331,6 @@ td {
   }
 
 
-  /*NAV BAR*/
-
-  .lista-secciones {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 10px;
-    width: 100%;
-  }
-
-  .lista-secciones li {
-    font-size: 12px;
-  }
 
   /*CARRITO*/
   .carrito {

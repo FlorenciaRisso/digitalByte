@@ -1,14 +1,9 @@
-<%-include ('partials/head',{cssFile:'/css/syleLogin.css'})%>
+<%-include ('partials/head',{cssFile:'/css/login.css'})%>
+
   <body>
     <header class="header">
-      <div class="header__container">
-        <a href="/">
-          <img class="header__logo" src="/img/logo-dbytee.png" alt="digitalByte logo" />
-        </a>
-
-        <div class="header__access">
-          <a href="/">Home</a>
-        </div>
+      <div class="logo-container">
+        <a href="/"><img class="img-logo" src="/img/logo-dbytee.png" alt="logoDigitalByte"></a>
       </div>
     </header>
 
@@ -19,21 +14,12 @@
         </div>
         <form class="login__form">
           <div class="login__email-form">
-            <!-- <label for="">Correo electronico</label> -->
-            <input
-              class="login__input-form"
-              type="email"
-              placeholder="Correo electronico"
-              required
-            />
+            <input class="login__input-form" type="email" placeholder="Correo electronico" required />
           </div>
 
           <div class="login__password-form">
-            <!-- <label for="">Contraseña</label> -->
             <input class="login__input-form" type="password" placeholder="Contraseña" required />
           </div>
-
-          
 
           <div class="login__buttons">
             <button class="login__button">Iniciar Sesión</button>
@@ -50,4 +36,5 @@
       </div>
     </div>
   </body>
-</html>
+
+  </html>
