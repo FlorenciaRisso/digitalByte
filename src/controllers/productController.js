@@ -10,10 +10,16 @@ let productController = {
     },
 
     carrito: (req,res) => {
-        res.render('productCart')
+        res.render('products/productCart')
     },
     detalle:(req,res) => {
-        res.render('productDetail')
+        res.render('products/productDetail')
+    },
+    altaProducto:(req,res) => {
+        res.render('products/altaProducto')
+    },
+    editProducto:(req,res) => {
+        res.render('products/editProducto')
     }
 }
 

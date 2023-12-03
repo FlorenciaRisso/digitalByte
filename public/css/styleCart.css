@@ -174,19 +174,14 @@ td {
 
 .btn-1 {
   padding: 1.2px 15px;
-  /* Se redujo el padding un 40% */
   margin: 6px 24px;
-  /* Se redujo el margen un 40% */
   height: 32px;
-  /* Se redujo la altura un 20% */
   border: 0;
   border-radius: 60px;
-  /* Ajustado para mantener proporciones */
   background-color: #2ba8fb;
   color: #ffffff;
   font-weight: bold;
   font-size: 70%;
-  /* Se redujo el tamaño de la fuente un 10% */
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
 }
@@ -194,7 +189,6 @@ td {
 .btn-1:hover {
   background-color: #6fc5ff;
   box-shadow: 0 0 12px #6fc5ff50;
-  /* Se redujo la sombra un 40% */
   transform: scale(1.1);
 }
 
@@ -210,19 +204,14 @@ td {
 
 .btn-2 {
   padding: 1.2px 18px;
-  /* Se redujo el padding un 40% */
   margin: 6px 24px;
-  /* Se redujo el margen un 40% */
   height: 32px;
-  /* Se redujo la altura un 20% */
   border: 0;
   border-radius: 60px;
-  /* Ajustado para mantener proporciones */
   background-color: #2ba8fb;
   color: #ffffff;
   font-weight: bold;
   font-size: 70%;
-  /* Se redujo el tamaño de la fuente un 10% */
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
 }
@@ -230,7 +219,6 @@ td {
 .btn-2:hover {
   background-color: #6fc5ff;
   box-shadow: 0 0 12px #6fc5ff50;
-  /* Se redujo la sombra un 40% */
   transform: scale(1.1);
 }
 
@@ -383,12 +371,12 @@ td {
 
   .det-prod__img1:hover {
     transform: scale(1.2);
-    transition: transform 0.3s ease;  /* Agrandar la imagen al 120% del tamaño original */
+    transition: transform 0.3s ease;  
   }
 
   .det-prod__img2:hover {
     transform: scale(1.2);
-    transition: transform 0.3s ease; /* Agrandar la imagen al 120% del tamaño original */
+    transition: transform 0.3s ease;
 }
 
 /*PRODUCTOS DESTACADOS*/

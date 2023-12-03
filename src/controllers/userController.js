@@ -3,10 +3,10 @@ const path = require('path');
 let userController = {
 
     login: (req, res)=>{
-        res.render('login');
+        res.render('users/login');
     }, 
     registro: (req, res)=>{
-        res.render('registro');
+        res.render('users/registro');
     }, 
 
     getOne: (req, res) => {
