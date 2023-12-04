@@ -1,10 +1,10 @@
 
-1. Comenzar a hacer: Hacer uso de herramientas como trello para dividir las tareas en el equipo e ir documentando los avances de cada uno.
+1. Comenzar a hacer: Dividir las partes de las paginas en plantillas, para una apariencia mas armoniosa del sitio.
 
-2. Hacer más: Realizar mas encuentros sincronicos con el grupo para aclarar dudas e implementar nuevas funcionalidades.
+2. Hacer más: Encuentros sincronicos, comunicar situaciones bloqueantes para el avance del proyecto.
 
-3. Continuar haciendo: Mantener el respositorio actualizado, y comunicar los avances del proyecto.
+3. Continuar haciendo: Mantener el respositorio actualizado, reuniones dos veces a la semana.
 
-4. Hacer menos: No comunicar con el grupo los problemas y dudas que se presenten.
+4. Hacer menos: No participar en las reuniones.
 
-5. Dejar de hacer: Comunicarse con el grupo a instancias de finalizar la presentación del proyecto.
+5. Dejar de hacer: Postergar la correccion de observaciones de los sprints anteriores.

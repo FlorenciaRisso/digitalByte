@@ -257,15 +257,17 @@
         flex-direction: row;
         margin-bottom: 10px;
         margin-right: 10px;
+        gap:20px;
     }
 
     .imagenes-acciones {
         display: flex;
         flex-direction: column;
-        width: 40%;
+        width: 60%;
         height: 100%;
         padding: 0px 10px;
         margin-bottom: 0px;
+        max-width: 647px;
     }
 
     .detalle-producto {

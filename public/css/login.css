@@ -18,6 +18,7 @@
   background-color: #bde3ff;
   border: none;
   border-radius: 5px;
+  height: 300px;
 }
 
 .login__form {
@@ -88,55 +89,13 @@
   gap: 10px;
 }
 
-.footer_login {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 5% 3% 2% 5%;
-}
-
 .register__link {
   text-decoration: none;
 }
 
-.header__container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1px 5px 1px 5px;
-}
-
-.header__logo {
-  width: 8vw;
-  margin: 5px 0px 10px 10px;
-}
-
-.header__access {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background-color: #bde3ff;
-  padding: 2px 20px;
-  border-radius: 5px;
-  height: 30px;
-  gap: 10px;
-}
 
 a {
   text-decoration: none;
-}
-
-.header__nav-list {
-  list-style: none;
-  display: flex;
-  justify-content: space-evenly;
-  background-color: #bde3ff;
-  border-radius: 5px;
-  width: 100vw;
-  padding: 0px;
-  margin: 0px;
 }
 
 .header__user-button {
@@ -147,7 +106,20 @@ a {
   padding: 6px;
   margin: 0 2px 0 2px;
 }
+.footer_login{
+  display: flex;
+  justify-content: center;
+  gap:20px;
+  font-family: sans-serif;
+}
 
+.container-login{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+}
 
 
 @media (min-width:500px ) {

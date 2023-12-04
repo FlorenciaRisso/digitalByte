@@ -7,10 +7,64 @@
     margin: 0px;
 }
 
-label,span,h2{
+label,
+span,
+h2 {
     display: block;
-    font-family:Arial, Helvetica, sans-serif ;
+    font-family: Arial, Helvetica, sans-serif;
     color: rgb(40, 40, 40);
+}
+
+td>img {
+    height: 90px;
+    border-radius: 50px;
+    margin: 5px;
+}
+.main{
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+}
+.main-alta{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.btn {
+    padding: 1.2px 15px;
+    margin: 6px 24px;
+    height: 32px;
+    border: 0;
+    border-radius: 60px;
+    background-color: #906CBE;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 70%;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+
+.section-listar {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    overflow-x: scroll;
+    width: 90%;
+}
+.table-responsive{
+    overflow-x: scroll;
+    overflow-y: scroll;
+    max-height: 300px;
+}
+.table-listar{
+    background-color: #cebae7;
+}
+.thead-listar{
+    background-color: #be9de9;
+    border-radius: 5px;
+}
+.btn a {
+    color: white;
 }
 
 .title-container {
@@ -19,7 +73,7 @@ label,span,h2{
     text-align: center;
 }
 
-.title{
+.title {
     margin: 0;
     padding: 5px;
     font-weight: 200;
@@ -80,7 +134,8 @@ label,span,h2{
 
 /*BOTON AGREGAR PRODUCTO*/
 
-.submit-button, .clean-button{
+.submit-button,
+.clean-button {
     font-family: monospace;
     background-color: #f3f7fe;
     color: #3b82f6;
@@ -89,23 +144,27 @@ label,span,h2{
     width: 100px;
     height: 45px;
     transition: .3s;
-  }
-  
+}
 
-  
+
+
 
 @media (min-width:500px) {
 
-    main{
-        display: flex;
-        justify-content: center;
-
+    .main-alta {
+        display: block;
     }
 
     .login__buttons {
         flex-direction: row;
     }
-
+    .table-responsive{
+        width: 70%;
+        min-width: 300px;
+        max-width: 1500px;
+        max-height: 1000px;
+    }
+    
     .container {
         width: 70%;
         min-width: 300px;
@@ -118,14 +177,20 @@ label,span,h2{
         max-width: 600px;
     }
 
-    .submit-button:hover{
+    .submit-button:hover {
         background-color: #915df1;
         box-shadow: 0 0 0 5px #3b83f65f;
         color: #fff;
-      }
+    }
 
-      .alta__buttons{
+    .alta__buttons {
         display: flex;
         justify-content: center;
-      }
+    }
+
+    .section-listar{
+        width: 100%;
+        align-items: center;
+        max-height: 1000px;
+    }
 }
