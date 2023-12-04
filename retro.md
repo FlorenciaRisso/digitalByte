@@ -5,6 +5,6 @@
 
 3. Continuar haciendo: Mantener el respositorio actualizado, reuniones dos veces a la semana.
 
-4. Hacer menos: No participar en las reuniones.
+4. Hacer menos: Repetir codigo en las vistar.
 
 5. Dejar de hacer: Postergar la correccion de observaciones de los sprints anteriores.
