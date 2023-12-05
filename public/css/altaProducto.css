@@ -48,7 +48,6 @@ td>img {
     display: flex;
     flex-direction: column;
     align-items: left;
-    overflow-x: scroll;
     width: 90%;
 }
 .table-responsive{
