@@ -1,0 +1,103 @@
+<%-include ('../partials/head',{cssFile:'/css/styleDetalle.css'})%>
+
+    <body>
+        <%-include ('../partials/headerYNav') %>
+            <main>
+                <section class="imagenes-and-detalle">
+                    <div class="imagenes-acciones">
+                        <div class="imagenes-producto">
+                            <div class="imagen-principal">
+                                <img src="/img/apple/iphone13/iphone13.png" alt="iphone13">
+                            </div>
+                            <div class="imagenes-secundarias">
+                                <div class="div-img"><img src="/img/apple/iphone13/iphone13-1.png" alt=""></div>
+                                <div class="div-img"><img src="/img/apple/iphone13/iphone13-2.png" alt=""></div>
+                                <div class="div-img"><img src="/img/apple/iphone13/iphone13-3.png" alt=""></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="detalle-producto">
+                        <div class="titulo-producto">
+                            <p>Iphone 13 Pro Max</p>
+                        </div>
+                        <div class="descripcion-producto">
+                            <p>Pantalla Super Retina XDR de 6.7 pulgadas con ProMotion que brinda una respuesta más
+                                rápida y
+                                fluida.(2)
+                                Modo Cine con baja profundidad de campo y cambios de enfoque automáticos en tus videos.
+                                Nuevo sistema de cámaras Pro de 12 MP (teleobjetivo, gran angular y ultra gran angular),
+                                escáner
+                                LiDAR, rango de zoom óptico de 6x, fotografía macro, Estilos Fotográficos, video
+                                ProRes3, HDR
+                                Inteligente 4, modo Noche, Apple ProRAW y grabación de video 4K HDR en Dolby Vision.
+                                Cámara frontal TrueDepth de 12 MP con modo Noche y grabación de video 4K HDR en Dolby
+                                Vision.
+                            </p>
+                        </div>
+                        <div class="caracteristicas-producto">
+                            <ul>
+                                <li>Tamaño:6.7"</li>
+                                <li>Memoria: 256GB</li>
+                                <li>Camara Principal: 12Mpx</li>
+                                <li>Desbloqueo: Reconocimiento Facial</li>
+                            </ul>
+                        </div>
+                        <div class="color-precio">
+                            <div class="colores">
+                                <div class="gama-colores">
+                                    <div class="color grey">.</div>
+                                    <div class="color green">.</div>
+                                    <div class="color pink">.</div>
+                                    <div class="color gold">.</div>
+                                </div>
+                            </div>
+                            <div class="precio-comprar">
+                                <div class="precio">
+                                    <p>$1.322.142</p>
+                                </div>
+                                <div class="div-btn-comprar"><button class="btn-comprar">Comprar</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="most-searched__section">
+                    <article class="most-searched__article">
+                        <h4 class="most-searched__title">Productos Relacionados</h4>
+                        <div class="div-responsive">
+                            <div class="most-searched__card-container">
+                                <%- include ('../partials/cardArticulo') %>
+                                <%- include ('../partials/cardArticulo') %>
+                                <%- include ('../partials/cardArticulo') %>
+                                <%- include ('../partials/cardArticulo') %>
+                                <%- include ('../partials/cardArticulo') %>
+                                <%- include ('../partials/cardArticulo') %>
+                                <%- include ('../partials/cardArticulo') %>
+                                <%- include ('../partials/cardArticulo') %>
+                                <%- include ('../partials/cardArticulo') %>
+                                <%- include ('../partials/cardArticulo') %>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+
+                </section>
+
+            </main>
+            <%- include ('../partials/footer') %>
+    </body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          const hamburguer = document.querySelector('.a-hamburguer');
+          const listaSecciones = document.querySelector('.lista-secciones');
+    
+          hamburguer.addEventListener('click', function(e) {
+          e.preventDefault();
+          listaSecciones.classList.toggle('mostrar');
+          });
+        });
+    
+      </script>
+
+    </html>

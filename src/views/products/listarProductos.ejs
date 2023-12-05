@@ -1,0 +1,55 @@
+<%- include ('../partials/head',{cssFile:'/css/altaProducto.css'}) %>
+
+<body>
+    <%- include ('../partials/headerYNav') %>
+
+    <main class="main-alta">
+        <div class="section-listar">
+            <button class="btn"><a href="/Productos/Crear-producto">Nuevo Producto</a></button>
+            <section class="table-responsive">
+                <table class="table-listar">
+                    <thead class="thead-listar">
+                        <tr>
+                            <th>Nombre del producto</th>
+                            <th>Descripción</th>
+                            <th>Imagen</th>
+                            <th>Categoría</th>
+                            <th>Colores</th>
+                            <th>Precio</th>
+                            <th colspan="2" style="text-align:center;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% productos.forEach(producto => { %>
+                            <tr>
+                                <td><%= producto.name %></td>
+                                <td><%= producto.description %></td>
+                                <td><img src="<%= producto.image %>" alt="Imagen del producto"></td>
+                                <td><%= producto.category %></td>
+                                <td><%= producto.colors.join(', ') %></td>
+                                <td>$<%= producto.price %></td>
+                                <td>
+                                    <a href="/Productos/Editar-producto" class="btn btn-editar-prod">Editar</a>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+
+    <%- include ('../partials/footer') %>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const hamburguer = document.querySelector('.a-hamburguer');
+      const listaSecciones = document.querySelector('.lista-secciones');
+
+      hamburguer.addEventListener('click', function(e) {
+      e.preventDefault();
+      listaSecciones.classList.toggle('mostrar');
+      });
+    });
+
+  </script>

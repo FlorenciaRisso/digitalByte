@@ -1,0 +1,11 @@
+Titulo: Samsung Galaxy Book3 Pro
+Precio:$532.999
+
+Descripcion:
+Terminá todos tus proyectos gracias a la batería de larga duración de 54 Wh (Nominal), que ofrece hasta 12 horas de autonomía. Tomate un café mientras recuperás hasta 5,2 horas de reproducción de video en solo 30 minutos, gracias al cargador ligero y compacto que funciona con todos tus dispositivos Samsung Galaxy.
+
+Caracteristicas:
+Tamaño:15.6"
+Memoria: 256GB
+Procesador:Core i3
+Ram:8GB

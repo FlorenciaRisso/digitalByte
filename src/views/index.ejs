@@ -1,0 +1,94 @@
+<%-include ('partials/head',{cssFile:'/css/styleGeneral.css'})%>
+
+  <body>
+    <%-include ('partials/headerYNav') %>
+      <main>
+        <div class="brand__container">
+          <section class="brand__section">
+            <article class="brand__article">
+              <h4 class="brand__title">Apple</h4>
+              <ul class="brand__list">
+                <li class="brand__item">iPhone 15 Pro</li>
+                <li class="brand__item">iPhone 13 Pro Max</li>
+                <li class="brand__item">iPhone SE</li>
+              </ul>
+            </article>
+
+            <article class="brand__article">
+              <h4 class="brand__title">Xiaomi</h4>
+              <ul class="brand__list">
+                <li class="brand__item">Redmi Note 11</li>
+                <li class="brand__item">Redmi 12C</li>
+                <li class="brand__item">Mi 13t</li>
+              </ul>
+            </article>
+
+            <article class="brand__article">
+              <h4 class="brand__title">Samsung</h4>
+              <ul class="brand__list">
+                <li class="brand__item">Galaxy S23</li>
+                <li class="brand__item">Galaxy A04</li>
+                <li class="brand__item">Galaxy Z Flip4</li>
+              </ul>
+            </article>
+          </section>
+        </div>
+
+        <section class="offer__section">
+          <article class="offer__article">
+            <div class="offer__container">
+              <h4 class="offer__title">💥🎊20% Off de la semana🎊💥</h4>
+              <div class="offer">
+                <div class="offer__image">
+                  <img class="offer__image-img" src="/img/apple/iphone13/iphone13.png" alt="" />
+                  <p class="p-white">Iphone 13 Pro Max</p>
+                </div>
+                <div class="offer__image">
+                  <img class="offer__image-img" src="/img/xiaomi/redmi10C/redmi10C.png" alt="" />
+                  <p class="p-white">Xiaomi Redmi 10c</p>
+                </div>
+                <div class="offer__image">
+                  <img class="offer__image-img" src="/img/samsung/samsungGalaxyA54/samsungA54.png" alt="" />
+                  <p class="p-white">Samsung Galaxy A54</p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="most-searched__section">
+          <article class="most-searched__article">
+            <h4 class="most-searched__title">Lo mas buscado</h4>
+            <div class="div-responsive">
+              <div class="most-searched__card-container">
+                <%- include ('partials/cardArticulo') %>
+                <%- include ('partials/cardArticulo') %>
+                <%- include ('partials/cardArticulo') %>
+                <%- include ('partials/cardArticulo') %>
+                <%- include ('partials/cardArticulo') %>
+                <%- include ('partials/cardArticulo') %>
+                <%- include ('partials/cardArticulo') %>
+                <%- include ('partials/cardArticulo') %>
+                <%- include ('partials/cardArticulo') %>
+                <%- include ('partials/cardArticulo') %>
+              </div>
+            </div>
+
+          </article>
+        </section>
+      </main>
+      <%- include ('partials/footer') %>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const hamburguer = document.querySelector('.a-hamburguer');
+      const listaSecciones = document.querySelector('.lista-secciones');
+
+      hamburguer.addEventListener('click', function(e) {
+      e.preventDefault();
+      listaSecciones.classList.toggle('mostrar');
+      });
+    });
+
+  </script>
+  </html>

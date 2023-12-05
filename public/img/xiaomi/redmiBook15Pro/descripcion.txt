@@ -1,0 +1,12 @@
+Titulo: Xiaomi Redmibook 15 Pro
+
+Precio: $388.618,14
+
+Descripcion:
+Portátil Xiaomi Redmibook 15 Pro (2023) con procesador Ryzen 5 o Ryzen 7 de hasta 5,1GHz, 16GB de RAM, gráfica integrada AMD Radeon, almacenamiento SSD de 512GB, con batería de 72Wh y pantalla LCD de 15,6″ con resolución 3.2K (3200×2000)
+
+Caracteristicas:
+-Procesador:  Ryzen 5
+-Ram:16GB
+-Almacenamiento:512GB
+-Pantalla:15.6" Full HD

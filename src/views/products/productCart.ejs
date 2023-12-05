@@ -1,0 +1,89 @@
+<%-include ('../partials/head',{cssFile:'/css/styleCart.css'})%>
+
+    <body>
+        <%-include ('../partials/headerYNav') %>
+
+            <main>
+                <div class="section">
+                    <section class="carrito">
+                        <table class="table">
+
+                            <tr class="main-productos">
+                                <th class="main-productos__prod">Producto</th>
+                                <th class="main-productos__cant">Cantidad</th>
+                                <th class="main-productos__nomb">Nombre</th>
+                                <th class="main-productos__precio">Precio</th>
+                                <th class="main-productos__subtot">Sub total</th>
+                            </tr>
+
+                            <tr class="detalle-producto">
+                                <td><img class="det-prod__img" src="/img/apple/iphone13/iphone13.png" alt=""></td>
+                                <td><input class="input-contador-prod" type="number" value="1" min="1"></td>
+                                <td>iPhone 13</td>
+                                <td>$1.322.142</td>
+                                <td>$1.322.142</td>
+                            </tr>
+
+                            <tr class="detalle-producto">
+                                <td> <img class="det-prod__img" src="/img/apple/iphone14/iphone14.png" alt="">
+                                </td>
+                                <td><input class="input-contador-prod" type="number" value="1" min="1"></td>
+                                <td>Iphone 14</td>
+                                <td>$1.544.999</td>
+                                <td>$1.544.999</td>
+                            </tr>
+                        </table>
+
+                        <div class="saldo-total">
+                            <span class="text-total">Total a pagar: </span>
+                            <h3 class="total">$2.867.141</h3>
+                        </div>
+
+                        <div class="botones-carrito">
+                            <button class="btn"> Actualizar carrito
+                            </button>
+                            <button class="btn"> Realizar compra
+                            </button>
+
+                        </div>
+                    </section> 
+                </div>
+                
+
+                <section class="most-searched__section">
+                    <article class="most-searched__article">
+                        <h4 class="most-searched__title">productos destacados</h4>
+                        <div class="div-responsive">
+                            <div class="most-searched__card-container">
+                                <%- include ('../partials/cardArticulo') %>
+                                <%- include ('../partials/cardArticulo') %>
+                                <%- include ('../partials/cardArticulo') %>
+                                <%- include ('../partials/cardArticulo') %>
+                                <%- include ('../partials/cardArticulo') %>
+                                <%- include ('../partials/cardArticulo') %>
+                                <%- include ('../partials/cardArticulo') %>
+                                <%- include ('../partials/cardArticulo') %>
+                                <%- include ('../partials/cardArticulo') %>
+                                <%- include ('../partials/cardArticulo') %>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+
+            </main>
+
+            <%- include ('../partials/footer') %>
+    </body><script>
+        document.addEventListener("DOMContentLoaded", function() {
+          const hamburguer = document.querySelector('.a-hamburguer');
+          const listaSecciones = document.querySelector('.lista-secciones');
+    
+          hamburguer.addEventListener('click', function(e) {
+          e.preventDefault();
+          listaSecciones.classList.toggle('mostrar');
+          });
+        });
+    
+      </script>
+
+    </html>

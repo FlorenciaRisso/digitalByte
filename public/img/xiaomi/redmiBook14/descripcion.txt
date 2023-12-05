@@ -1,0 +1,12 @@
+Titulo: Xiaomi Redmibook 14
+
+Precio: $369.167,42
+
+Descripcion:
+Portátil Xiaomi Redmibook 14 (2023) con procesador Intel i5 o Intel i7 de hasta 4,7GHz. 16 GB de RAM, gráficos Intel Iris Xe integrados, almacenamiento SSD de 512 GB. Batería para hasta 11 horas de uso y pantalla Super Retina de 14” y resolución 2.8K
+
+Caracteristicas:
+-Procesador: Intel Core i7-1165G7
+-Memoria RAM: 16GB
+-Almacenamiento: 512GB SSD
+-Pantalla: 14" Full HD IPS (1080p)
