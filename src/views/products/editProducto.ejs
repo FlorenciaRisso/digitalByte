@@ -16,12 +16,12 @@
 
             <div class="edit__descripcion-form block-input">
               <label for="descripcion">Descripción:</label>
-              <textarea name="descripcion" >Edita la descripción del producto</textarea>
+              <textarea class="edit_textarea" name="descripcion" placeholder="Edita la descripción del producto" ></textarea>
             </div>
 
             <div class="edit__imagen-form block-input">
               <label>Imagen:</label>
-              <input type="file" name="imagen" accept=".jpg" multiple>
+              <input class="edit__file" type="file" name="imagen" accept=".jpg" multiple>
             </div>
 
             <div class="edit__categ-form block-input">
@@ -34,7 +34,7 @@
             </div>
 
             <div class="edit__color-form block-input">
-              <label for="color">Color</label>
+              <label for="color">Color: </label>
               <select name="color" id="color">
                 <option value="Rojo">Rosa</option>
                 <option value="Verde">Verde</option>
@@ -49,8 +49,8 @@
             </div>
 
             <div class="edit__buttons">
-              <button class="submit-button" type="submit">Añadir producto</button>
-              <button class="clean-button" type="reset">Descartar formulario</button>
+              <button class="option__button" type="submit">Añadir producto</button>
+              <button class="option__button" type="reset">Descartar formulario</button>
               </button>
             </div>
           </form>

@@ -41,3 +41,15 @@
 
     <%- include ('../partials/footer') %>
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const hamburguer = document.querySelector('.a-hamburguer');
+      const listaSecciones = document.querySelector('.lista-secciones');
+
+      hamburguer.addEventListener('click', function(e) {
+      e.preventDefault();
+      listaSecciones.classList.toggle('mostrar');
+      });
+    });
+
+  </script>

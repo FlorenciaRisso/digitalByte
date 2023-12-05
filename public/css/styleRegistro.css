@@ -20,7 +20,7 @@ label,span,h2{
     align-items: center;
     margin-bottom: 1rem;
     padding-top: 10px;
-    background-color:#bde3ff;
+    background-color: rgb(185, 167, 250);
     border-radius: 10px;
 }
 .footer-register{
@@ -37,7 +37,7 @@ label,span,h2{
     padding: 5px;
 }
 .register__button{
-    background-color:#70b3e2;
+    background-color:#906CBE;
 }
 .block-input{
     margin-bottom: 1rem;
@@ -59,7 +59,7 @@ label,span,h2{
 }
 .title-container{
     font-family: 'Noto Sans';
-    background-color:#70b3e2;
+    background-color:#906CBE;
     border-radius: 10px;
     text-align: center;
 }
