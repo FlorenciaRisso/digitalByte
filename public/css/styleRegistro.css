@@ -10,20 +10,25 @@ label,span,h2{
     justify-content: center;
 }
 .container{
-    width: 50%;
+    width: 100%;
     max-width: 500px;
 }
-.title-container{
-    text-align: center;
-}
+
 .register__form{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 1rem;
     padding-top: 10px;
-    background-color:#bde3ff;
+    background-color: rgb(185, 167, 250);
     border-radius: 10px;
+}
+.footer-register{
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
 }
 .btn{
     border: 0;
@@ -32,7 +37,7 @@ label,span,h2{
     padding: 5px;
 }
 .register__button{
-    background-color:#70b3e2;
+    background-color:#906CBE;
 }
 .block-input{
     margin-bottom: 1rem;
@@ -54,30 +59,26 @@ label,span,h2{
 }
 .title-container{
     font-family: 'Noto Sans';
-    background-color:#70b3e2;
+    background-color:#906CBE;
     border-radius: 10px;
+    text-align: center;
 }
 .title{
     margin: 0;
     padding: 5px;
     font-weight: 200;
 }
-.footer{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 10px;
-    gap: 10px;
-}
+
 .login__link{
     color: #0089ff;
     text-decoration: none;
 }
 @media (min-width:500px ) {
-    .register__buttons{
-        flex-direction: row;
+
+    .container{
+        width: 70%;
     }
-    .footer{
+    .register__buttons{
         flex-direction: row;
     }
 

@@ -8,10 +8,7 @@ const app=express();
 const path=require('path');
 
 const indexRouter = require('./routes/index.routes');
-const productRouter = require('./routes/productos.routes');
-const userRouter = require('./routes/usuarios.routes');
 
-const cartHtmlFile = path.join(__dirname, '/views/productCart.html');
 
 //Usando recursos estaticos
 app.use(express.static('public'));
@@ -19,16 +16,10 @@ app.use(express.static('public'));
 //Levantando el servidor Puerto 3080
 app.listen(3030,()=>console.log("Exito")); 
 
+//Configuracion para plantillas ejs
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-
 //RUTAS
-
-app.use('/', (req, res)=>{
-    res.render('indexCart')
-});
-
-app.use('/productos', productRouter);
-app.use('/usuarios', userRouter);
+app.use('/',indexRouter);
 
