@@ -94,7 +94,9 @@
 
 .div-btn-comprar {
     text-align: center;
-
+}
+.btn-comprar:hover{
+    cursor: pointer;
 }
 
 .imagenes-acciones {

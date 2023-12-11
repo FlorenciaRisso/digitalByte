@@ -53,7 +53,7 @@ td>img {
 .table-responsive{
     overflow-x: scroll;
     overflow-y: scroll;
-    max-height: 300px;
+    max-height: 500px;
 }
 .table-listar{
     background-color: #cebae7;
@@ -85,7 +85,7 @@ td>img {
     background-color: rgb(204, 173, 253);
     border: rgb(98, 71, 143);
     border-radius: 5px;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .alta__form {
@@ -160,7 +160,7 @@ td>img {
         flex-direction: row;
     }
     .table-responsive{
-        width: 70%;
+        width: 90%;
         min-width: 300px;
         max-width: 1500px;
         max-height: 1000px;
