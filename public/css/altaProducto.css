@@ -56,18 +56,22 @@ td>img {
     max-height: 500px;
 }
 .table-listar{
+    padding: 10px;
+    border-radius: 10px;
     background-color: #cebae7;
 }
 .thead-listar{
-    background-color: #be9de9;
-    border-radius: 5px;
+    background-color: #906CBE;
 }
 .btn a {
     color: white;
 }
-
+th{
+    padding: 5px;
+    border-radius: 10px;
+    color:#ffffff;
+}
 .title-container {
-    background-color: #be9de9;
     border-radius: 10px;
     text-align: center;
 }

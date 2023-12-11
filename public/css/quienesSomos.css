@@ -1,0 +1,80 @@
+/* Estilos básicos para la página */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #b47dc4;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.about {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.about h2 {
+    color: #333;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.about h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.about ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.about li {
+    margin-bottom: 5px;
+}
+.integrantes{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap:10px;
+}
+.integrante{
+    display:flex;
+    flex-direction: column;
+    background-color: #f4f4f4;
+    width: 40%;
+    padding-top: 5px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.img-integrante{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.img-integrante>img{
+    width: 50%;
+    background-color: burlywood;
+    border-radius: 30px;
+    box-shadow: 1em 1em 20px 0px #796d91;
+    
+}
+.img-integrante>img:hover{
+    transform: scale(1.1);
+}
+.nombre-integrante{
+    width: 80%;
+    text-align: center;
+}
+.nombre-integrante>h4{
+    margin:5px;
+    color: rgb(47, 46, 46);
+}
