@@ -5,7 +5,7 @@
 
     <main class="main-alta">
         <div class="section-listar">
-            <button class="btn"><a href="/Productos/Crear-producto">Nuevo Producto</a></button>
+            <button class="btn"><a href="/productos/Crear">Nuevo Producto</a></button>
             <section class="table-responsive">
                 <table class="table-listar">
                     <thead class="thead-listar">
@@ -29,8 +29,8 @@
                                 <td><%= producto.colors.join(', ') %></td>
                                 <td>$<%= producto.price %></td>
                                 <td>
-                                    <a href="/Productos/Editar-producto" class="btn btn-editar-prod">Editar</a>
-                                    <a href="/Productos/Eliminar-producto" class="btn btn-editar-prod">Eliminar</a>
+                                    <a href="/productos/Editar" class="btn btn-editar-prod">Editar</a>
+                                    <a href="/productos/Eliminar" class="btn btn-editar-prod">Eliminar</a>
                                 </td>
                             </tr>
                         <% }) %>

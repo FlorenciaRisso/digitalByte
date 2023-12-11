@@ -4,7 +4,7 @@ const router = express.Router();
 const mainController = require('../controllers/mainController')
 
 router.get('/', mainController.index);
-router.get('/Contacto', mainController.contactos);
-router.get('/Quienes-Somos', mainController.quienesSomos);
+router.get('/contacto', mainController.contactos);
+router.get('/quienes-somos', mainController.quienesSomos);
 
 module.exports = router;

@@ -7,14 +7,18 @@ const app=express();
 //Require path
 const path=require('path');
 
-const indexRouter = require('./routes/index.routes');
+//define method 
+const methodOverride =  require('method-override');
 
+const indexRouter = require('./routes/index.routes');
 
 //Usando recursos estaticos
 app.use(express.static('public'));
+//Override
+app.use(methodOverride('_method'));
 
-//Levantando el servidor Puerto 3080
-app.listen(3030,()=>console.log("Exito")); 
+//Levantando el servidor Puerto 3030
+app.listen(3030,()=>console.log("Ejecutandose Exitosamente en puerto 3030")); 
 
 //Configuracion para plantillas ejs
 app.set('view engine', 'ejs');

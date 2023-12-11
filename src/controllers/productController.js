@@ -1,4 +1,4 @@
-const path = require('path');
+const path=require('path');
 
 let productController = {
     index: (req, res)=>{
@@ -19,7 +19,14 @@ let productController = {
         res.render('products/altaProducto')
     },
     editProducto:(req,res) => {
+
         res.render('products/editProducto')
+    },
+    update:(req,res) => {
+        res.redirect('/productos');
+    },
+    eliminarProducto:(req,res) => {
+        res.redirect('/productos');
     },
     listarProductos:(req,res) => {
         const productos = [
