@@ -373,6 +373,7 @@ a {
   justify-content: left;
   align-items: center;
   gap: 20px;
+  height: 100%;
 }
 
 .most-searched__card {
@@ -390,7 +391,7 @@ a {
 
 .card {
   min-width: 100px;
-  width: 50%;
+  width: 100%;
   border: 1px solid #ccc;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -879,6 +880,7 @@ a {
   .div-responsive {
     overflow-x: auto;
     white-space: nowrap;
+    height: 400px;
     /* Evitar el salto de línea */
     position: relative;
   }

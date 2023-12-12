@@ -13,6 +13,9 @@
                             <th>Nombre del producto</th>
                             <th>Descripción</th>
                             <th>Imagen</th>
+                            <th>Imagen 1</th>
+                            <th>Imagen 2</th>
+                            <th>Imagen 3</th>
                             <th>Categoría</th>
                             <th>Colores</th>
                             <th>Precio</th>
@@ -25,12 +28,15 @@
                                 <td><%= producto.name %></td>
                                 <td><%= producto.description %></td>
                                 <td><img src="<%= producto.image %>" alt="Imagen del producto"></td>
+                                <td><img src="<%= producto.image1 %>" alt="Imagen del producto-1"></td>
+                                <td><img src="<%= producto.image2 %>" alt="Imagen del producto-2"></td>
+                                <td><img src="<%= producto.image3 %>" alt="Imagen del producto-3"></td>
                                 <td><%= producto.category %></td>
                                 <td><%= producto.colors.join(', ') %></td>
                                 <td>$<%= producto.price %></td>
                                 <td>
-                                    <a href="/productos/Editar" class="btn btn-editar-prod">Editar</a>
-                                    <a href="/productos/Eliminar" class="btn btn-editar-prod">Eliminar</a>
+                                    <a href="/productos/editar/<%= producto.id%>_method=patch" class="btn btn-editar-prod">Editar</a>
+                                    <a href="/productos/eliminar" class="btn btn-editar-prod">Eliminar</a>
                                 </td>
                             </tr>
                         <% }) %>
