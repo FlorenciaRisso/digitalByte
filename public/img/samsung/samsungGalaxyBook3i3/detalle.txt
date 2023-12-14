@@ -1,4 +1,4 @@
-Titulo: Samsung Galaxy Book3 Pro
+Titulo: Samsung Galaxy Book3 i3
 Precio:$532.999
 
 Descripcion:
