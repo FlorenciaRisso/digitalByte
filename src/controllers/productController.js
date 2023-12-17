@@ -4,24 +4,27 @@ const productService = require('../data/productService');
 let productController = {
     index: (req, res)=>{
         res.render('index')
-    }, 
-
-    getOne: (req, res) => {
-        res.send("Estas en la pagina del producto " + req.params.id);
     },
 
     carrito: (req,res) => {
         res.render('products/productCart')
     },
-    detalle:(req,res) => {
-        
-        res.render('products/productDetail')
-    },
+	detail: (req, res) => {
+		res.render('detail', { productos: productService.getOne(req.params.id) })
+	},
     altaProducto:(req,res) => {
         res.render('products/altaProducto')
     },
+    create: (req, res) =>{
+        res.render('altaProducto')
+    },
+    store: (req, res) => {
+		req.body.image = req.file.filename;
+		productService.save(req.body, req.file)
+		res.redirect('/products/');
+	},
 
-    editProducto:(req,res) => {
+    edit:(req,res) => {
         let productId = req.params.id;
         let producto = productService.getOne(productId);
         res.render('products/editProducto', {producto: producto})

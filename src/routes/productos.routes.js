@@ -1,16 +1,23 @@
 const express = require('express');
 const path = require('path');
 const router = express.Router();
-const productController = require('../controllers/productController')
+const productController = require('../controllers/productController');
+const multer = require('multer')
 
 router.get('/', productController.index);
+
+router.get('/crear', productController.altaProducto);
+router.post('/crear', upload.single('imagen'), productController.store); 
+
 router.get('/carrito', productController.carrito);
 router.get('/listar', productController.listarProductos);
 
-router.get('/crear', productController.altaProducto);
-router.get('/detalle/:id', productController.detalle);
+
+router.get('/detalle/:id', productController.detail);
+
+
 //editar
-router.get('/editar/:id', productController.editProducto);
+router.get('/editar/:id', productController.edit);
 router.put('/:id', productController.update);
 
 //eliminar
