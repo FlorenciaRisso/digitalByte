@@ -1,0 +1,16 @@
+<%-include ('../partials/head',{cssFile:'/css/categoria.css'})%>
+
+    <body>
+        <%-include ('../partials/headerYNav') %>
+            <main>
+                <div class="container">
+                    <% productos.forEach(producto=>{%>
+                        <%- include ('../partials/cardArticulos',{producto:producto}) %>
+                    <%});%>
+                </div>
+            </main>
+            <%- include ('../partials/footer') %>
+    </body>
+    <%- include ('../partials/script-menu') %>
+
+</html>

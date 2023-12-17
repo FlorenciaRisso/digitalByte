@@ -1,0 +1,26 @@
+main{
+    display: flex;
+    justify-content: center;
+
+}
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 90%;
+}
+.most-searched__card{
+    width: 100%;
+    margin: 5px;
+}
+
+@media (min-width: 500px) {
+    .container{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .most-searched__card{
+        width: 20%; /* 4 cards per row */
+        margin: 5px;
+    }
+}

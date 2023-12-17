@@ -1,0 +1,11 @@
+
+<div class="most-searched__card">
+    <div class="card">
+        <img class="card__image" src="<%=producto.image%>" alt="" />
+    </div>
+
+    <div class="card__p">
+        <p class="p-titulo-card"><%=producto.name%></p>
+    </div>
+    <%- include('accionesProd',{producto:producto}) %>
+</div>
