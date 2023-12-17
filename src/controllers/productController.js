@@ -3,7 +3,8 @@ const productService = require('../data/productService');
 
 let productController = {
     index: (req, res) => {
-        res.render('index')
+        let productos=productService.products;
+        res.render('index',{productos:productos})
     },
     carrito: (req, res) => {
         let productos=productService.products;
