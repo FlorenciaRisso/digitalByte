@@ -7,6 +7,8 @@ router.get('/', productController.index);
 router.get('/carrito', productController.carrito);
 router.get('/listar', productController.listarProductos);
 
+router.get('/categoria/:id',productController.listarProductosPorCat);
+
 router.get('/crear', productController.altaProducto);
 router.get('/detalle/:id', productController.detalle);
 //editar

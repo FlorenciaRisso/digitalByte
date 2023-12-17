@@ -9,9 +9,13 @@ let productService={
         return this.products;
     },
     getOne:function(req,res){
-        let id=parseInt(req.params.id);
-        let producto=this.products.find((producto)=>{producto.id==id});
+        let producto=this.products.find((producto)=>{return producto.id==req.params.id});
         return producto;
+    },
+    getProdPorCat:function(req,res){
+        let categoria=req.params.id;
+        let productos=this.products.filter((producto)=>{return producto.category==req.params.id})
+        return productos;
     }
 
 }

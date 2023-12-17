@@ -1,39 +1,40 @@
-const path=require('path');
+const path = require('path');
 const productService = require('../data/productService');
 
 let productController = {
-    index: (req, res)=>{
+    index: (req, res) => {
         res.render('index')
-    }, 
-
-    getOne: (req, res) => {
-        res.send("Estas en la pagina del producto " + req.params.id);
     },
-
-    carrito: (req,res) => {
-        res.render('products/productCart')
+    carrito: (req, res) => {
+        let productos=productService.products;
+        res.render('products/productCart',{productos:productos});
     },
-    detalle:(req,res) => {
-        
-        res.render('products/productDetail')
+    listarProductosPorCat: (req, res) => {
+        let productos=productService.getProdPorCat(req);
+        res.render('products/categoria',{productos:productos});
     },
-    altaProducto:(req,res) => {
+    detalle: (req, res) => {
+        console.log(req.params.id);
+        let producto = productService.getOne(req);
+        let productos = productService.getAll();
+        res.render('products/productDetail', { producto: producto, productos: productos });
+    },
+    altaProducto: (req, res) => {
         res.render('products/altaProducto')
     },
-    editProducto:(req,res) => {
-        let producto=productService.getOne(req);
-        res.render('products/editProducto')
+    editProducto: (req, res) => {
+        let producto = productService.products;
+        res.render('products/editProducto', { producto: producto })
     },
-    update:(req,res) => {
+    update: (req, res) => {
         res.redirect('/productos');
     },
-    eliminarProducto:(req,res) => {
+    eliminarProducto: (req, res) => {
         res.redirect('/productos');
     },
-    listarProductos:(req,res) => {
+    listarProductos: (req, res) => {
         let productos = productService.products;
-        console.log(productos);
-        res.render('products/listarProductos',{productos:productos})
+        res.render('products/listarProductos', { productos: productos })
     }
 }
 
