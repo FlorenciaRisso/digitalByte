@@ -6,7 +6,7 @@
       "image1": "/img/apple/ipadGen8/ipad8va-1.png",
       "image2": "/img/apple/ipadGen8/ipad8va-2.png",
       "image3": "/img/apple/ipadGen8/ipad8va-3.png",
-      "category": "Tablets",
+      "category": 1,
       "colors": ["Plata", "Negro"],
       "price": 532.580,
       "descuento":20
@@ -18,7 +18,7 @@
       "image1": "/img/apple/ipadGen9/ipad9na-1.png",
       "image2": "/img/apple/ipadGen9/ipad9na-2.png",
       "image3": "/img/apple/ipadGen9/ipad9na-3.png",
-      "category": "Tablets",
+      "category": 2,
       "colors": ["Negro", "Blanco"],
       "price": 649.999,
       "descuento":20
@@ -30,7 +30,7 @@
       "image1": "/img/apple/ipadGen10/ipad10ma-1.png",
       "image2": "/img/apple/ipadGen10/ipad10ma-2.png",
       "image3": "/img/apple/ipadGen10/ipad10ma-3.png",
-      "category": "Tablets",
+      "category": 2,
       "colors": ["Azul", "Gris", "Negro"],
       "price": 765.809,
       "descuento":20

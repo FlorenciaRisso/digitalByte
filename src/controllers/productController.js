@@ -20,11 +20,19 @@ let productController = {
     altaProducto:(req,res) => {
         res.render('products/altaProducto')
     },
+
     editProducto:(req,res) => {
-        let producto=productService.getOne(req);
-        res.render('products/editProducto')
+        let productId = req.params.id;
+        let producto = productService.getOne(productId);
+        res.render('products/editProducto', {producto: producto})
     },
+
     update:(req,res) => {
+        let productId = req.params.id;
+        let updatedData = {
+            nombre: req.body.nombre
+        }
+        productService.update(productId, updatedData);
         res.redirect('/productos');
     },
     eliminarProducto:(req,res) => {
@@ -34,7 +42,13 @@ let productController = {
         let productos = productService.products;
         console.log(productos);
         res.render('products/listarProductos',{productos:productos})
-    }
+    },
+    listarPorCategoria:(req,res) => {
+        let productos = productService.listarPorCategoria(req);
+        console.log(productos)
+        res.render('products/listarPorCateg',{productos:productos});
+    },
+
 }
 
 module.exports = productController;

@@ -68,6 +68,7 @@ td {
 }
 
 .main-productos__subtot {
+  display: none;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
@@ -179,6 +180,7 @@ td {
 }
 
 
+
 @media (min-width:500px) {
 
   /*MAIN*/
@@ -224,5 +226,12 @@ td {
     transform: scale(1.5);
     transition: transform 0.3s ease;
   }
+
+  .main-productos__subtot {
+    display: contents;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  
 
 }
