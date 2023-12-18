@@ -3,7 +3,21 @@
     <body>
         <%-include ('../partials/headerYNav') %>
             <main>
+                <%let categoria="";
+                switch(productos[0].category){
+                    case 1:
+                        categoria="Smartphones";
+                        break;
+                    case 2:
+                        categoria="Tablets";
+                        break;
+                    case 3:
+                        categoria="Notebooks"
+                        break;
+                }%>
+                <h1 class='titulo-categoria'><%=categoria %></h1>
                 <div class="container">
+                    
                     <% productos.forEach(producto=>{%>
                         <%- include ('../partials/cardArticulos',{producto:producto}) %>
                     <%});%>
