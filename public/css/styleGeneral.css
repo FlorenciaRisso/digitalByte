@@ -57,7 +57,7 @@ a {
 
 /*header*/
 .main-header {
-  background-color: #a567d5;
+  background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -126,6 +126,7 @@ a {
   padding: 10px;
   border-radius: 20px;
   margin-right: 10px;
+  width: 150px;
 }
 
 .btn-login {
@@ -382,7 +383,6 @@ a {
   text-transform: uppercase;
   color: rgb(19, 19, 19);
   font-weight: 300;
-  font-size: 35px;
 }
 
 .div-responsive {
@@ -757,7 +757,7 @@ a {
 
   /*Header*/
   .main-header {
-    background-color: #906CBE;
+    background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: row;
     align-items: center;
