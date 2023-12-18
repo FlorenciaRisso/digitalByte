@@ -14,6 +14,7 @@
     ],
     "price": 532580,
     "discount": 20,
+    "plus":"Mas buscado",
     "marca": "Apple",
     "specifications": {
       "Tamaño": "6.7",
@@ -37,6 +38,7 @@
     ],
     "price": 649999,
     "discount": 20,
+    "plus":"Mas buscado",
     "marca": "Apple",
     "specifications": {
       "Tamaño": "6.7",
@@ -61,6 +63,7 @@
     ],
     "price": 765809,
     "discount": 20,
+    "plus":"Mas buscado",
     "marca": "Apple",
     "specifications": {
       "Tamaño": "6.7",
@@ -84,6 +87,7 @@
     ],
     "price": 1322142,
     "discount": 10,
+    "plus":"Mas buscado",
     "marca": "Apple",
     "specifications": {
       "Tamaño": "6.7",
@@ -107,6 +111,7 @@
     ],
     "price": 1544999,
     "discount": 10,
+    "plus":"Mas buscado",
     "marca": "Apple",
     "specifications": {
       "Tamaño": "6.7",
@@ -130,6 +135,7 @@
     ],
     "price": 1764532,
     "discount": 0,
+    "plus":"Destacado",
     "marca": "Apple",
     "specifications": {
       "Tamaño": "6.7",
@@ -154,6 +160,7 @@
     ],
     "price": 1234999,
     "discount": 0,
+    "plus":"Destacado",
     "marca": "Apple",
     "specifications": {
       "Tamaño": "13.3",
@@ -179,6 +186,7 @@
     ],
     "price": 4994149,
     "discount": 0,
+    "plus":"Destacado",
     "marca": "Apple",
     "specifications": {
       "Tamaño": "13",
@@ -203,6 +211,7 @@
     ],
     "price": 5142248,
     "discount": 0,
+    "plus":"Destacado",
     "marca": "Apple",
     "specifications": {
       "Tamaño": "13.3",
@@ -228,6 +237,7 @@
     ],
     "price": 336999,
     "discount": 0,
+    "plus":"Destacado",
     "marca": "Samsung",
     "specifications": {
       "Tamaño": "6.4",
@@ -252,6 +262,7 @@
     ],
     "price": 865999,
     "discount": 0,
+    "plus":"Destacado",
     "marca": "Samsung",
     "specifications": {
       "Tamaño": "6.8",
@@ -276,6 +287,7 @@
     ],
     "price": 659999,
     "discount": 0,
+    "plus":"Destacado",
     "marca": "Samsung",
     "specifications": {
       "Tamaño": "6.7",
@@ -300,6 +312,7 @@
     ],
     "price": 915396,
     "discount": 0,
+    "plus":"Destacado",
     "marca": "Samsung",
     "specifications": {
       "Tamaño": "15.6",
@@ -323,6 +336,7 @@
     ],
     "price": 532999,
     "discount": 0,
+    "plus":"Destacado",
     "marca": "Samsung",
     "specifications": {
       "Tamaño": "15.6",
@@ -347,6 +361,7 @@
     ],
     "price": 1149999,
     "discount": 0,
+    "plus":"Destacado",
     "marca": "Samsung",
     "specifications": {
       "Tamaño": "14",
@@ -371,6 +386,7 @@
     ],
     "price": 119999,
     "discount": 0,
+    "plus":"Destacado",
     "marca": "Xiaomi",
     "specifications": {
       "Tamaño": "6.71",
@@ -395,6 +411,7 @@
     ],
     "price": 144999,
     "discount": 0,
+    "plus":"Destacado",
     "marca": "Xiaomi",
     "specifications": {
       "Tamaño": "6.43",
@@ -419,6 +436,7 @@
     ],
     "price": 425425,
     "discount": 0,
+    "plus":"Destacado",
     "marca": "Xiaomi",
     "specifications": {
       "Tamaño": "6.67",
@@ -443,6 +461,7 @@
     ],
     "price": 369167.42,
     "discount": 0,
+    "plus":"Destacado",
     "marca": "Xiaomi",
     "specifications": {
       "Procesador": "Intel Core i7-1165G7",
@@ -467,6 +486,7 @@
     ],
     "price": 388618.14,
     "discount": 0,
+    "plus":"Destacado",
     "marca": "Xiaomi",
     "specifications": {
       "Procesador": "Ryzen 5",
@@ -491,6 +511,7 @@
     ],
     "price": 466417.46,
     "discount": 0,
+    "plus":"Destacado",
     "marca": "Xiaomi",
     "specifications": {
       "Procesador": "Qualcomm Snapdragon 855",
@@ -515,6 +536,7 @@
     ],
     "price": 794523,
     "discount": 0,
+    "plus":"Destacado",
     "marca": "Xiaomi",
     "specifications": {
       "Tamaño": "11",
@@ -539,6 +561,7 @@
     ],
     "price": 539240,
     "discount": 0,
+    "plus":"Destacado",
     "marca": "Redmi",
     "specifications": {
       "Tamaño": "11",
@@ -563,6 +586,7 @@
     ],
     "price": 349899,
     "discount": 0,
+    "plus":"Destacado",
     "marca": "Redmi",
     "specifications": {
       "Tamaño": "11",

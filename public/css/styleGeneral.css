@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
   font-family: sans-serif;
+  font-size: 16px;
 }
 ::-webkit-scrollbar {
   width: 10px; /* Para navegadores webkit (Chrome, Safari, etc.) */
@@ -38,7 +39,13 @@ a {
   text-decoration: none;
   color: rgb(19, 19, 19);
 }
-
+.p-price-offer{
+  font-size: 1.5rem;
+  background-color: #ba8bf7;
+  margin: 10px 0;
+  font-weight: 700;
+  color: #000000d6;
+}
 .header__container {
   width: 100vw;
   display: flex;
@@ -271,7 +278,7 @@ a {
 }
 
 .brand__item {
-  font-size: 0.5rem;
+  font-size: 1rem;
   padding-top: 1px;
   text-align: left;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -336,8 +343,27 @@ a {
   min-height: 178px;
   transition: transform 0.3s ease;
   background-color: #825ab5;
+  position: relative;
+}
+.discount-circle {
+  position: absolute;
+  top: 10px; 
+  right: 10px; 
+  width: 40px; 
+  height: 40px; 
+  background-color: #ff9900; 
+  border-radius: 50%; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.discount-value {
+  color: white;
+  font-size: 14px; /* Tamaño del texto del descuento */
+  margin: 0;
+  font-weight: bold;
+}
 .offer__image:hover {
   transform: translateY(-5px);
   box-shadow: 9px 5px 20px 0px rgba(0, 0, 0, 80%);
@@ -794,7 +820,6 @@ a {
     flex-direction: row;
     justify-content: space-around;
     width: 100%;
-    height: 30px;
     align-items: center;
     background-color: #EDEDED;
     margin: 0;
@@ -806,8 +831,6 @@ a {
     display: flex;
     justify-content: center;
     font-size: 12px;
-    width: 100%;
-    height: 100%;
     align-items: center;
     transition: all 0.8s;
     border-right: 2px solid rgb(191, 191, 191);
@@ -823,8 +846,9 @@ a {
     cursor: pointer;
   }
   .lista-secciones>li>a{
-    color: rgb(20, 20, 20);
+    color: rgb(47, 47, 47);
     text-align: center;
+    font-size: 1.2rem;
   }
   .lista-secciones>li>a:hover{
     background-color:transparent;
@@ -899,7 +923,6 @@ a {
   .div-responsive {
     overflow-x: auto;
     white-space: nowrap;
-    height: 400px;
     overflow-y: hidden;
     /* Evitar el salto de línea */
     position: relative;

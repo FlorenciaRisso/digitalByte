@@ -20,35 +20,53 @@
 
                     <div class="detalle-producto">
                         <div class="titulo-producto">
-                            <p><%=producto.name%></p>
-                        </div>
-                        <div class="descripcion-producto">
-                            <p><%=producto.description%>
+                            <p>
+                                <%=producto.name%>
                             </p>
                         </div>
-                        <div class="caracteristicas-producto">
-                            <ul>
-                                <% for (const key in producto.specifications) { %>
-                                    <li><strong><%= key %>:</strong> <%= producto.specifications[key] %></li>
-                                  <% } %>
-                            </ul>
-                        </div>
-                        <div class="color-precio">
-                            <div class="colores">
-                                <div class="gama-colores">
-                                    <div class="color grey">.</div>
-                                    <div class="color green">.</div>
-                                    <div class="color pink">.</div>
-                                    <div class="color gold">.</div>
-                                </div>
+                        <div class="descripcion-producto">
+                            <div class="descripcion-producto_titulo">
+                                <i class="fa-solid fa-bars fa-lg"></i>
+                                <p>General</p>
                             </div>
+                            <p>
+                                <%=producto.description%>
+                            </p>
+                        </div>
+                        <div class="caracteristicas-producto_table">
+                            <div class="caracteristicas-producto_titulo">
+                                <i class="fa-regular fa-clipboard"></i>
+                                <p>Caracteristicas</p>
+                            </div>
+                            <table>
+                                <tbody>
+                                    <% for (const key in producto.specifications) { %>
+                                        <tr>
+                                            <td class="caracteristicas-producto_first_td">
+                                                <%= key %>
+                                            </td>
+                                            <td class="caracteristicas-producto_second_td">
+                                                <%= producto.specifications[key] %>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="oferta-precio">
+                            <% if(producto.discount != 0){ %>
+                            <div class="oferta">
+                                <p class="p-off"><%= producto.discount %>%OFF 🎊</p>
+                            </div>
+                            <%}%>
                             <div class="precio-comprar">
                                 <div class="precio">
-                                    <p>$1.322.142</p>
+                                    <% let precioFinal=producto.price-(producto.price*(producto.discount/100))%>
+                                    <p>$<%=funcion.getPrecioFormateado(precioFinal)%></p>
                                 </div>
-                                <div class="div-btn-comprar">
-                                    <a href="/productos/addCarrito"><button class="btn-comprar">Comprar</button></a>
-                                </div>
+                                <a href="/productos/addCarrito" class="div-btn-comprar">
+                                    <button class="btn-comprar">Agregar al Carrito</button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -58,7 +76,8 @@
                         <h4 class="most-searched__title">Productos Relacionados</h4>
                         <div class="div-responsive">
                             <div class="most-searched__card-container">
-                                <%- include ('../partials/cardArticulosMasBuscados',{productos:productos}) %>
+                                <%- include
+                                    ('../partials/cardArticulosMasBuscados',{productos:productos,funcion:funcion}) %>
                             </div>
                         </div>
                     </article>
@@ -71,4 +90,4 @@
     </body>
     <%- include ('../partials/script-menu') %>
 
-    </html>
+        </html>

@@ -39,14 +39,21 @@
             <div class="offer__container">
               <h4 class="most-searched__title">💥🎊20% Off de la semana🎊💥</h4>
               <div class="offer">
-                <%productos.forEach(producto=>{%>
+                <%productos.forEach(producto=>{ if(producto.discount == 20){%>
                 <a href="/productos/detalle/<%=producto.id %>">
                   <div class="offer__image">
                     <img class="offer__image-img" src="<%=producto.image%>" alt="" />
+                    <% if(producto.discount != 0){ %>
+                      <div class="discount-circle">
+                        <p class="discount-value"><%= producto.discount %>%</p>
+                      </div>
+                    <% } %>
+                    <% let precioFinal=producto.price-(producto.price*(producto.discount/100))%>
+                    <p class="p-price-offer">$<%=funcion.getPrecioFormateado(precioFinal)%></p>
                     <p class="p-white"><%=producto.name%></p>
                   </div>
                 </a>
-                <%});%>
+                <%}});%>
               </div>
             </div>
           </article>
@@ -57,7 +64,7 @@
             <h4 class="most-searched__title">Lo mas buscado</h4>
             <div class="div-responsive">
               <div class="most-searched__card-container">
-                <%- include ('partials/cardArticulosMasBuscados',{productos:productos}) %>
+                <%- include ('partials/cardArticulosMasBuscados',{productos:productos,funcion:funcion}) %>
               </div>
             </div>
           </article>

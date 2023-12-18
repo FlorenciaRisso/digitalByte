@@ -6,13 +6,18 @@ body {
     line-height: 1.6;
 }
 
-header {
+.header-quienes-somos {
     background-color: #b47dc4;
     color: white;
     text-align: center;
     padding: 20px 0;
 }
-
+.header-quienes-somos>h1{
+    font-size: 2rem;
+}
+.header-quienes-somos>h2{
+    font-size: 1.5rem ;
+}
 .about {
     max-width: 800px;
     margin: 20px auto;

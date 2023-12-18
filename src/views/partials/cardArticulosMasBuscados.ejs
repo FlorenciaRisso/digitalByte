@@ -1,4 +1,4 @@
-<%productos.forEach(producto=>{%>
+<%productos.forEach(producto=>{if(producto.plus == "Mas buscado"){%>
 <div class="most-searched__card">
     
     <!-- (NEXT) enviar array con elementos para mostrar MAS BUSCADOS -->
@@ -9,6 +9,6 @@
     <div class="card__p">
         <p class="p-titulo-card"><%=producto.name%></p>
     </div>
-    <%- include('accionesProd',{producto:producto}) %>
+    <%- include('accionesProd',{producto:producto,funcion:funcion}) %>
 </div>
-<% }); %>
+<% }}); %>

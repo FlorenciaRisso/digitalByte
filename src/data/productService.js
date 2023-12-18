@@ -17,6 +17,5 @@ let productService={
         let productos=this.products.filter((producto)=>{return producto.category==req.params.id})
         return productos;
     }
-
 }
 module.exports=productService;

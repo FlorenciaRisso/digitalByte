@@ -2,7 +2,7 @@
 
     <body>
         <%-include ('../partials/headerYNav') %>
-            <main>
+            <main class="main-categoria">
                 <%let categoria="";
                 switch(productos[0].category){
                     case 1:
@@ -19,7 +19,7 @@
                 <div class="container">
                     
                     <% productos.forEach(producto=>{%>
-                        <%- include ('../partials/cardArticulos',{producto:producto}) %>
+                        <%- include ('../partials/cardArticulos',{producto:producto,funcion:funcion}) %>
                     <%});%>
                 </div>
             </main>
