@@ -5,7 +5,7 @@
 
     <main class="main-alta">
         <div class="section-listar">
-            <button class="btn"><a href="/productos/Crear">Nuevo Producto</a></button>
+            <button class="btn-nuevo-prod"><a href="/productos/crear">Nuevo Producto</a></button>
             <section class="table-responsive">
                 <table class="table-listar">
                     <thead class="thead-listar">
@@ -26,7 +26,7 @@
                         <% productos.forEach(producto => { %>
                             <tr>
                                 <td><%= producto.name %></td>
-                                <td><%= producto.description %></td>
+                                <td class="td-descripcion"><p class="p-descripcion"><%= producto.description %></p></td>
                                 <td><img src="<%= producto.image %>" alt="Imagen del producto"></td>
                                 <td><img src="<%= producto.image1 %>" alt="Imagen del producto-1"></td>
                                 <td><img src="<%= producto.image2 %>" alt="Imagen del producto-2"></td>
@@ -39,6 +39,7 @@
                                     <a href="/productos/eliminar" class="btn btn-editar-prod">Eliminar</a>
                                 </td>
                             </tr>
+                            
                         <% }) %>
                     </tbody>
                 </table>

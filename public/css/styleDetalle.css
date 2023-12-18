@@ -182,18 +182,18 @@ img {
 }
 
 .descripcion-producto {
-    background-color: #cbc0ff;
+    border: 1px solid grey;
 }
 
 .descripcion-producto p {
     padding: 5px;
+    font-family: system-ui;
 }
 
 .caracteristicas-producto {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    background-color: #C1E2FF;
+    align-items: left;
     border-radius: 5px;
 }
 
@@ -201,6 +201,9 @@ img {
     display: flex;
     padding-left: 20px;
     flex-direction: column;
+}
+.caracteristicas-producto>ul>li{
+    list-style: none;
 }
 
 /*Relacionados*/

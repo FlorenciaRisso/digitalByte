@@ -7,12 +7,12 @@
                     <div class="imagenes-acciones">
                         <div class="imagenes-producto">
                             <div class="imagen-principal">
-                                <img src="/img/apple/iphone13/iphone13.png" alt="iphone13">
+                                <img src="<%=producto.image%>" alt="<%=producto.name%>">
                             </div>
                             <div class="imagenes-secundarias">
-                                <div class="div-img"><img src="/img/apple/iphone13/iphone13-1.png" alt=""></div>
-                                <div class="div-img"><img src="/img/apple/iphone13/iphone13-2.png" alt=""></div>
-                                <div class="div-img"><img src="/img/apple/iphone13/iphone13-3.png" alt=""></div>
+                                <div class="div-img"><img src="<%=producto.image1%>" alt=""></div>
+                                <div class="div-img"><img src="<%=producto.image2%>" alt=""></div>
+                                <div class="div-img"><img src="<%=producto.image3%>" alt=""></div>
                             </div>
                         </div>
 
@@ -20,28 +20,17 @@
 
                     <div class="detalle-producto">
                         <div class="titulo-producto">
-                            <p>Iphone 13 Pro Max</p>
+                            <p><%=producto.name%></p>
                         </div>
                         <div class="descripcion-producto">
-                            <p>Pantalla Super Retina XDR de 6.7 pulgadas con ProMotion que brinda una respuesta más
-                                rápida y
-                                fluida.(2)
-                                Modo Cine con baja profundidad de campo y cambios de enfoque automáticos en tus videos.
-                                Nuevo sistema de cámaras Pro de 12 MP (teleobjetivo, gran angular y ultra gran angular),
-                                escáner
-                                LiDAR, rango de zoom óptico de 6x, fotografía macro, Estilos Fotográficos, video
-                                ProRes3, HDR
-                                Inteligente 4, modo Noche, Apple ProRAW y grabación de video 4K HDR en Dolby Vision.
-                                Cámara frontal TrueDepth de 12 MP con modo Noche y grabación de video 4K HDR en Dolby
-                                Vision.
+                            <p><%=producto.description%>
                             </p>
                         </div>
                         <div class="caracteristicas-producto">
                             <ul>
-                                <li>Tamaño:6.7"</li>
-                                <li>Memoria: 256GB</li>
-                                <li>Camara Principal: 12Mpx</li>
-                                <li>Desbloqueo: Reconocimiento Facial</li>
+                                <% for (const key in producto.specifications) { %>
+                                    <li><strong><%= key %>:</strong> <%= producto.specifications[key] %></li>
+                                  <% } %>
                             </ul>
                         </div>
                         <div class="color-precio">
@@ -69,16 +58,7 @@
                         <h4 class="most-searched__title">Productos Relacionados</h4>
                         <div class="div-responsive">
                             <div class="most-searched__card-container">
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
+                                <%- include ('../partials/cardArticulosMasBuscados',{productos:productos}) %>
                             </div>
                         </div>
                     </article>

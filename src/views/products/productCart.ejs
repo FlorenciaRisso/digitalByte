@@ -52,19 +52,10 @@
 
                 <section class="most-searched__section">
                     <article class="most-searched__article">
-                        <h4 class="most-searched__title">productos destacados</h4>
+                        <h4 class="most-searched__title">Productos mas buscados</h4>
                         <div class="div-responsive">
                             <div class="most-searched__card-container">
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
+                                <%- include ('../partials/cardArticulosMasBuscados',{productos:productos}) %>
                             </div>
                         </div>
                     </article>
