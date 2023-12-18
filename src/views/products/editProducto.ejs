@@ -11,43 +11,65 @@
           <form class="edit__form" action="" method="POST">
             <div class="edit__name-form block-input">
               <label for="producto">Nombre del producto: </label>
-              <input class="login__input-form" type="email" placeholder="Edita el nombre del producto" required />
+              <input class="login__input-form" type="text" placeholder="Edita el nombre del producto"
+                value="<%=producto.name%>" required />
             </div>
 
             <div class="edit__descripcion-form block-input">
               <label for="descripcion">Descripción:</label>
-              <textarea class="edit_textarea" name="descripcion" placeholder="Edita la descripción del producto" ></textarea>
+              <textarea class="edit_textarea" name="descripcion"
+                placeholder="Edita la descripción del producto"><%=producto.description%></textarea>
             </div>
 
             <div class="edit__categ-form block-input">
               <label for="categoria">Categoria:</label>
               <select name="category" id="category">
+                <option value="<%=producto.category%>" selected>
+                  <%=producto.category%>
+                </option>
                 <option value="Smartphone">Smartphone</option>
                 <option value="Ipad">Ipad</option>
                 <option value="Tablet">Tablet</option>
               </select>
             </div>
 
-            <div class="edit__color-form block-input">
-              <label for="color">Color: </label>
-              <select name="color" id="color">
-                <option value="Rojo">Rosa</option>
-                <option value="Verde">Verde</option>
-                <option value="Gris">Gris</option>
-                <option value="Amarillo">Amarillo</option>
-              </select>
-            </div>
-
             <div class="edit__precio-form block-input">
               <label for="precio">Precio:</label>
-              <input type="number" id="precio" name="precio" placeholder="Precio del producto">
+              <input type="number" id="precio" name="precio" placeholder="Precio del producto"
+                value="<%=producto.price%>">
             </div>
 
             <div class="alta__imagen-form block-input">
               <label for="imagen">Imagen:</label>
-              <input type="file" name="imagen" id="file" class="custom-file-input" accept=".jpg" multiple
-              id="imagen">
-          </div>
+              <input type="file" name="imagen" id="file" class="custom-file-input" accept=".jpg" multiple id="imagen"
+                value="<%=producto.image%>">
+              <img id="previewImage" src="<%=producto.image%>" alt="Vista previa de la imagen"
+                style="max-width: 40px; max-height: 40px;">
+            </div>
+
+            <div class="alta__imagen-form block-input">
+              <label for="imagen1">Imagen 1:</label>
+              <input type="file" name="imagen1" id="file" class="custom-file-input" accept=".jpg" multiple id="imagen1"
+                value="<%=producto.image1%>">
+              <img id="previewImage" src="<%=producto.image1%>" alt="Vista previa de la imagen"
+                style="max-width: 40px; max-height: 40px;">
+            </div>
+
+            <div class="alta__imagen-form block-input">
+              <label for="imagen2">Imagen 2:</label>
+              <input type="file" name="imagen2" id="file" class="custom-file-input" accept=".jpg" multiple id="imagen2"
+                value="<%=producto.image2%>">
+              <img id="previewImage" src="<%=producto.image2%>" alt="Vista previa de la imagen"
+                style="max-width: 40px; max-height: 40px;">
+            </div>
+
+            <div class="alta__imagen-form block-input">
+              <label for="imagen3">Imagen 3:</label>
+              <input type="file" name="imagen3" id="file" class="custom-file-input" accept=".jpg" multiple id="imagen3"
+                value="<%=producto.image3%>">
+              <img id="previewImage" src="<%=producto.image3%>" alt="Vista previa de la imagen"
+                style="max-width: 40px; max-height: 40px;">
+            </div>
 
             <div class="edit__buttons">
               <button class="option__button" type="submit">Añadir producto</button>
@@ -56,10 +78,25 @@
             </div>
           </form>
         </div>
-      </main> 
+      </main>
       <%- include ('../partials/footer') %>
   </body>
   <%- include ('../partials/script-menu') %>
-  </html>
+    <script>
+      document.getElementById('file').addEventListener('change', function () {
+        const preview = document.getElementById('previewImage');
+        const file = this.files[0];
+        const reader = new FileReader();
 
- 
+        reader.onload = function () {
+          preview.src = reader.result;
+          preview.style.display = 'block';
+        }
+
+        if (file) {
+          reader.readAsDataURL(file);
+        }
+      });
+    </script>
+
+    </html>

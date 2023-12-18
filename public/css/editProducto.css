@@ -102,6 +102,8 @@ select#category,select#color,#file[type=file]{
     border-radius: 10px;
     width: 100%;
     padding: 5px;
+    width: 326px;
+    height: 277px;
 }
 
 .edit__file{

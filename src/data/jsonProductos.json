@@ -1,17 +1,13 @@
 [
   {
     "id": 1,
-    "description": "El nuevo iPad se transforma en lo que quieras: un cuaderno digital, una oficina móvil, un estudio fotográfico, una consola de juegos o una sala de cine. El chip A12 Bionic te ofrece la potencia que necesitas para usar las apps de todos los días y los juegos más inmersivos. Puedes editar un documento mientras buscas información en Internet y hablas con un compañero por FaceTime. Gracias al Apple Pencil, tomar notas en el iPad es supersencillo. ¿Tienes que preparar un informe? Conecta el Smart Keyboard de tamaño completo y escribe con total comodidad.",
+    "description": "El nuevo iPad se transforma en lo que quieras: un cuaderno digital, una oficina móvil, un estudio fotográfico, una consola de juegos o una sala de cine. El chip A12 Bionic te ofrece la potencia que necesitas para usar las apps de todos los días y los juegos más inmersivos. Puedes editar un documento mientras buscas información en Internet y hablas con un compañero por FaceTime. Gracias al Apple Pencil, tomar notas en el iPad es supersencillo. ¿Tienes que preparar un informe? Conecta el Smartphonesrt Keyboard de tamaño completo y escribe con total comodidad.",
     "name": "Ipad 8va Generacion",
     "image": "/img/apple/ipadGen8/ipad8va.png",
     "image1": "/img/apple/ipadGen8/ipad8va-1.png",
     "image2": "/img/apple/ipadGen8/ipad8va-2.png",
     "image3": "/img/apple/ipadGen8/ipad8va-3.png",
-    "category": 2,
-    "colors": [
-      "Plata",
-      "Negro"
-    ],
+    "category": "Tablets",
     "price": 532580,
     "discount": 20,
     "plus":"Mas buscado",
@@ -31,11 +27,7 @@
     "image1": "/img/apple/ipadGen9/ipad9na-1.png",
     "image2": "/img/apple/ipadGen9/ipad9na-2.png",
     "image3": "/img/apple/ipadGen9/ipad9na-3.png",
-    "category": 2,
-    "colors": [
-      "Negro",
-      "Blanco"
-    ],
+    "category": "Tablets",
     "price": 649999,
     "discount": 20,
     "plus":"Mas buscado",
@@ -55,12 +47,7 @@
     "image1": "/img/apple/ipadGen10/ipad10ma-1.png",
     "image2": "/img/apple/ipadGen10/ipad10ma-2.png",
     "image3": "/img/apple/ipadGen10/ipad10ma-3.png",
-    "category": 2,
-    "colors": [
-      "Azul",
-      "Gris",
-      "Negro"
-    ],
+    "category": "Tablets",
     "price": 765809,
     "discount": 20,
     "plus":"Mas buscado",
@@ -80,11 +67,7 @@
     "image1": "/img/apple/iphone13/iphone13-1.png",
     "image2": "/img/apple/iphone13/iphone13-2.png",
     "image3": "/img/apple/iphone13/iphone13-3.png",
-    "category": 1,
-    "colors": [
-      "Gris",
-      "Negro"
-    ],
+    "category": "Smartphones",
     "price": 1322142,
     "discount": 10,
     "plus":"Mas buscado",
@@ -104,11 +87,7 @@
     "image1": "/img/apple/iphone14/iphone14-1.png",
     "image2": "/img/apple/iphone14/iphone14-2.png",
     "image3": "/img/apple/iphone14/iphone14-3.png",
-    "category": 1,
-    "colors": [
-      "Gold",
-      "Negro"
-    ],
+    "category": "Smartphones",
     "price": 1544999,
     "discount": 10,
     "plus":"Mas buscado",
@@ -128,11 +107,7 @@
     "image1": "/img/apple/iphone15/iphone15-1.png",
     "image2": "/img/apple/iphone15/iphone15-2.png",
     "image3": "/img/apple/iphone15/iphone15-3.png",
-    "category": 1,
-    "colors": [
-      "Titanio",
-      "Negro"
-    ],
+    "category": "Smartphones",
     "price": 1764532,
     "discount": 0,
     "plus":"Destacado",
@@ -152,12 +127,7 @@
     "image1": "/img/apple/macbookAirM1/macbookairm1-1.png",
     "image2": "/img/apple/macbookAirM1/macbookairm1-2.png",
     "image3": "/img/apple/macbookAirM1/macbookairm1-3.png",
-    "category": 3,
-    "colors": [
-      "Plata",
-      "Gris Espacial",
-      "Oro"
-    ],
+    "category": "Notebooks",
     "price": 1234999,
     "discount": 0,
     "plus":"Destacado",
@@ -178,12 +148,7 @@
     "image1": "/img/apple/macbookAirM2/macbookairm2-1.png",
     "image2": "/img/apple/macbookAirM2/macbookairm2-2.png",
     "image3": "/img/apple/macbookAirM2/macbookairm2-3.png",
-    "category": 3,
-    "colors": [
-      "Plata",
-      "Gris Espacial",
-      "Oro"
-    ],
+    "category": "Notebooks",
     "price": 4994149,
     "discount": 0,
     "plus":"Destacado",
@@ -204,11 +169,7 @@
     "image1": "/img/apple/macbookProM2/macbookprom2-1.png",
     "image2": "/img/apple/macbookProM2/macbookprom2-2.png",
     "image3": "/img/apple/macbookProM2/macbookprom2-3.png",
-    "category": 3,
-    "colors": [
-      "Plata",
-      "Gris Espacial"
-    ],
+    "category": "Notebooks",
     "price": 5142248,
     "discount": 0,
     "plus":"Destacado",
@@ -229,12 +190,7 @@
     "image1": "/img/samsung/samsungGalaxyA54/samsungA54-1.png",
     "image2": "/img/samsung/samsungGalaxyA54/samsungA54-2.png",
     "image3": "/img/samsung/samsungGalaxyA54/samsungA54-3.png",
-    "category": 1,
-    "colors": [
-      "Negro",
-      "Azul",
-      "Blanco"
-    ],
+    "category": "Smartphones",
     "price": 336999,
     "discount": 0,
     "plus":"Destacado",
@@ -254,12 +210,7 @@
     "image1": "/img/samsung/samsungGalaxyS23/samsungS23-1.png",
     "image2": "/img/samsung/samsungGalaxyS23/samsungS23-2.png",
     "image3": "/img/samsung/samsungGalaxyS23/samsungS23-3.png",
-    "category": 1,
-    "colors": [
-      "Negro",
-      "Plateado",
-      "Azul"
-    ],
+    "category": "Smartphones",
     "price": 865999,
     "discount": 0,
     "plus":"Destacado",
@@ -279,12 +230,7 @@
     "image1": "/img/samsung/samsungGalaxyZFlip5/galaxyZflip-1.png",
     "image2": "/img/samsung/samsungGalaxyZFlip5/galaxyZflip-2.png",
     "image3": "/img/samsung/samsungGalaxyZFlip5/galaxyZflip-3.png",
-    "category": 1,
-    "colors": [
-      "Negro",
-      "Morado",
-      "Dorado"
-    ],
+    "category": "Smartphones",
     "price": 659999,
     "discount": 0,
     "plus":"Destacado",
@@ -304,12 +250,7 @@
     "image1": "/img/samsung/samsungGalaxyBook3/galaxyBook3-1.png",
     "image2": "/img/samsung/samsungGalaxyBook3/galaxyBook3-2.png",
     "image3": "/img/samsung/samsungGalaxyBook3/galaxyBook3-3.png",
-    "category": 3,
-    "colors": [
-      "Plata",
-      "Gris",
-      "Negro"
-    ],
+    "category": "Notebooks",
     "price": 915396,
     "discount": 0,
     "plus":"Destacado",
@@ -329,11 +270,7 @@
     "image1": "/img/samsung/samsungGalaxyBook3i3/galaxybook3i3-1.png",
     "image2": "/img/samsung/samsungGalaxyBook3i3/galaxybook3i3-2.png",
     "image3": "/img/samsung/samsungGalaxyBook3i3/galaxybook3i3-3.png",
-    "category": 3,
-    "colors": [
-      "Gris",
-      "Negro"
-    ],
+    "category": "Notebooks",
     "price": 532999,
     "discount": 0,
     "plus":"Destacado",
@@ -353,12 +290,7 @@
     "image1": "/img/samsung/samsungGalaxyBook3Pro/galaxyBook3Pro-1.png",
     "image2": "/img/samsung/samsungGalaxyBook3Pro/galaxyBook3Pro-2.png",
     "image3": "/img/samsung/samsungGalaxyBook3Pro/galaxyBook3Pro-3.png",
-    "category": 3,
-    "colors": [
-      "Graphite",
-      "Negro",
-      "Plata"
-    ],
+    "category": "Notebooks",
     "price": 1149999,
     "discount": 0,
     "plus":"Destacado",
@@ -378,12 +310,7 @@
     "image1": "/img/xiaomi/redmi10C/redmi10C-1.png",
     "image2": "/img/xiaomi/redmi10C/redmi10C-2.png",
     "image3": "/img/xiaomi/redmi10C/redmi10C-3.png",
-    "category": 1,
-    "colors": [
-      "Negro",
-      "Azul",
-      "Verde"
-    ],
+    "category": "Smartphones",
     "price": 119999,
     "discount": 0,
     "plus":"Destacado",
@@ -403,12 +330,7 @@
     "image1": "/img/xiaomi/redmiNote11/redmiNote11-1.png",
     "image2": "/img/xiaomi/redmiNote11/redmiNote11-2.png",
     "image3": "/img/xiaomi/redmiNote11/redmiNote11-3.png",
-    "category": 1,
-    "colors": [
-      "Negro",
-      "Azul",
-      "Blanco"
-    ],
+    "category": "Smartphones",
     "price": 144999,
     "discount": 0,
     "plus":"Destacado",
@@ -428,12 +350,7 @@
     "image1": "/img/xiaomi/redmiNote12/redminote12-1.png",
     "image2": "/img/xiaomi/redmiNote12/redminote12-2.png",
     "image3": "/img/xiaomi/redmiNote12/redminote12-3.png",
-    "category": 1,
-    "colors": [
-      "Negro",
-      "Azul",
-      "Gris"
-    ],
+    "category": "Smartphones",
     "price": 425425,
     "discount": 0,
     "plus":"Destacado",
@@ -453,12 +370,7 @@
     "image1": "/img/xiaomi/redmiBook14/redmiBook14-1.png",
     "image2": "/img/xiaomi/redmiBook14/redmiBook14-2.png",
     "image3": "/img/xiaomi/redmiBook14/redmiBook14-3.png",
-    "category": 3,
-    "colors": [
-      "Negro",
-      "Azul",
-      "Gris"
-    ],
+    "category": "Notebooks",
     "price": 369167.42,
     "discount": 0,
     "plus":"Destacado",
@@ -478,12 +390,7 @@
     "image1": "/img/xiaomi/redmiBook15Pro/redmiBook15Pro-1.png",
     "image2": "/img/xiaomi/redmiBook15Pro/redmiBook15Pro-2.png",
     "image3": "/img/xiaomi/redmiBook15Pro/redmiBook15Pro-3.png",
-    "category": 3,
-    "colors": [
-      "Negro",
-      "Azul",
-      "Gris"
-    ],
+    "category": "Notebooks",
     "price": 388618.14,
     "discount": 0,
     "plus":"Destacado",
@@ -503,12 +410,7 @@
     "image1": "/img/xiaomi/redmiBook16Pro/redmiBook16Pro-1.png",
     "image2": "/img/xiaomi/redmiBook16Pro/redmiBook16Pro-2.png",
     "image3": "/img/xiaomi/redmiBook16Pro/redmiBook16Pro-3.png",
-    "category": 3,
-    "colors": [
-      "Negro",
-      "Azul",
-      "Gris"
-    ],
+    "category": "Notebooks",
     "price": 466417.46,
     "discount": 0,
     "plus":"Destacado",
@@ -528,12 +430,7 @@
     "image1": "/img/xiaomi/redmiPad5/redmiPad5-1.png",
     "image2": "/img/xiaomi/redmiPad5/redmiPad5-2.png",
     "image3": "/img/xiaomi/redmiPad5/redmiPad5-3.png",
-    "category": 2,
-    "colors": [
-      "Negro",
-      "Azul",
-      "Gris"
-    ],
+    "category": "Tablets",
     "price": 794523,
     "discount": 0,
     "plus":"Destacado",
@@ -553,12 +450,7 @@
     "image1": "/img/xiaomi/redmiPad6/redmiPad6-1.png",
     "image2": "/img/xiaomi/redmiPad6/redmiPad6-2.png",
     "image3": "/img/xiaomi/redmiPad6/redmiPad6-3.png",
-    "category": 2,
-    "colors": [
-      "Negro",
-      "Azul",
-      "Gris"
-    ],
+    "category": "Tablets",
     "price": 539240,
     "discount": 0,
     "plus":"Destacado",
@@ -578,12 +470,7 @@
     "image1": "/img/xiaomi/redmiPadSE/redmiPadSE-1.png",
     "image2": "/img/xiaomi/redmiPadSE/redmiPadSE-2.png",
     "image3": "/img/xiaomi/redmiPadSE/redmiPadSE-3.png",
-    "category": 2,
-    "colors": [
-      "Negro",
-      "Azul",
-      "Gris"
-    ],
+    "category": "Tablets",
     "price": 349899,
     "discount": 0,
     "plus":"Destacado",

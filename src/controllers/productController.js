@@ -32,7 +32,7 @@ let productController = {
     },
 
     edit: (req, res) => {
-        let producto = productService.products;
+        let producto = productService.getOne(req);
         res.render('products/editProducto', { producto: producto,funcion:funcion })
     },
 

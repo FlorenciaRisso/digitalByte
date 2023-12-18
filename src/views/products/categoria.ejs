@@ -5,14 +5,14 @@
             <main class="main-categoria">
                 <%let categoria="";
                 switch(productos[0].category){
-                    case 1:
+                    case "Smartphones":
                         categoria="Smartphones";
                         break;
-                    case 2:
+                    case "Tablets":
                         categoria="Tablets";
                         break;
-                    case 3:
-                        categoria="Notebooks"
+                    case "Notebooks":
+                        categoria="Notebooks";
                         break;
                 }%>
                 <h1 class='titulo-categoria'><%=categoria %></h1>

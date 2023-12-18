@@ -67,6 +67,8 @@ label,span,h2{
     margin: 0;
     padding: 5px;
     font-weight: 200;
+    font-size: 1.5rem;
+    color: aliceblue;
 }
 
 .login__link{
