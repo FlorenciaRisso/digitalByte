@@ -57,7 +57,7 @@ a {
 
 /*header*/
 .main-header {
-  background-color: rgb(255, 255, 255);
+  background-color: #a567d5;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -382,6 +382,7 @@ a {
   text-transform: uppercase;
   color: rgb(19, 19, 19);
   font-weight: 300;
+  font-size: 35px;
 }
 
 .div-responsive {
@@ -756,7 +757,7 @@ a {
 
   /*Header*/
   .main-header {
-    background-color: rgb(255, 255, 255);
+    background-color: #906CBE;
     display: flex;
     flex-direction: row;
     align-items: center;

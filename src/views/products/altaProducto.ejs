@@ -8,7 +8,7 @@
                     <div class="title-container">
                         <h2 class="title">Crear producto</h2>
                     </div>
-                    <form class="alta__form" action="" method="POST">
+                    <form class="alta__form" action="/products" method="POST">
                         <div class="alta__name-form block-input">
                             <label for="producto">Producto: </label>
                             <input class="name__input-form" type="text" id="producto" placeholder="Nombre del producto" required />
@@ -20,8 +20,9 @@
                         </div>
 
                         <div class="alta__imagen-form block-input">
-                            <label>Imagen:</label>
-                            <input type="file" name="imagen" accept=".jpg" multiple>
+                            <label for="imagen">Imagen:</label>
+                            <input type="file" name="imagen" accept=".jpg" multiple
+                            id="imagen">
                         </div>
 
                         <div class="alta__categ-form block-input">
@@ -50,7 +51,7 @@
 
                         <div class="alta__button">
                             <button class="option__button" type="submit">Añadir producto</button>
-                            <button class="option__button" type="reset">Descartar formulario</button>
+                            <button class="option__button" type="reset">Descartar producto</button>
                             </button>
                         </div>
                     </form>

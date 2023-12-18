@@ -23,10 +23,19 @@ let productController = {
     altaProducto: (req, res) => {
         res.render('products/altaProducto',{funcion:funcion})
     },
-    editProducto: (req, res) => {
+
+    store: (req, res) => {
+        req.body.image = req.file.filename;
+        productService.save(req.body, req.file);
+        res.send('producto agregado a la lista')
+        //res.redirect('/products');
+    },
+
+    edit: (req, res) => {
         let producto = productService.products;
         res.render('products/editProducto', { producto: producto,funcion:funcion })
     },
+
     update: (req, res) => {
         res.redirect('/productos');
     },
