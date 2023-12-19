@@ -59,7 +59,7 @@ th {
 }
 
 td {
-  font-size: 13px;
+  font-size: 1rem;
 }
 
 .main-productos__prod {
@@ -122,7 +122,7 @@ td {
   border-top-left-radius: 10px;
   align-items: center;
   padding: 2px 20px;
-  font-size: 10px;
+  font-size: 1rem;
   display: flex;
 }
 
@@ -168,6 +168,7 @@ td {
   background-color: #472d68;
   box-shadow: 0 0 12px #6fc5ff50;
   transform: scale(1.1);
+  cursor: pointer;
 }
 
 .btn:active {
@@ -205,12 +206,15 @@ td {
   .main-productos {
     height: 35px;
   }
+  .main-productos_th{
+    font-size: 1.1rem;
+  }
 
 
 
   .text-total {
     padding: 0px 40px 0px 40px;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 100;
   }
 

@@ -8,9 +8,12 @@
     <div class="user-option">
         <!-- Luego validar si el usuario tiene permisos de administrador -->
         <button class="user-btn btn-listProd" type="button"><a href="/productos/listar">Listar Productos</a></button>
-        <button class="user-btn btn-carrito" type="button"><a href="/productos/carrito">Carrito</a></button>
-        <button class="user-btn btn-registro" type="button"><a href="/usuarios/registro">Registro</a></button>
-        <button class="user-btn btn-login" type="button"><a href="/usuarios/login">Login</a></button>
+        <div class="user-option_div">
+            <button class="user-btn btn-carrito" type="button"><a href="/productos/carrito">Carrito</a></button>
+            <button class="user-btn btn-registro" type="button"><a href="/usuarios/registro">Registro</a></button>
+            <button class="user-btn btn-login" type="button"><a href="/usuarios/login">Login</a></button>
+        </div>
+
     </div>
     <div class="secciones">
 
@@ -26,10 +29,10 @@
     </div>
     <ul class="lista-secciones">
         <li><a href="/">Home</a></li>
-        <li><a href="/productos/categoria/1">Smartphones</a></li>
-        <li><a href="/productos/categoria/2">Tablets</a></li>
-        <li><a href="/productos/categoria/3">Notebooks</a></li>
-        <li><a href="/contacto">Contacto</a></li>
+        <li><a href="/productos">Todos</a></li>
+        <li><a href="/productos/categoria/?cat=Smartphones">Smartphones</a></li>
+        <li><a href="/productos/categoria/?cat=Tablets">Tablets</a></li>
+        <li><a href="/productos/categoria/?cat=Notebooks">Notebooks</a></li>
         <li><a href="/quienes-somos">¿Quienes Somos?</a></li>
     </ul>
 </nav>

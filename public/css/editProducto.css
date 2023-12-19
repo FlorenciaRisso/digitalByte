@@ -25,11 +25,13 @@ label,span,h2{
 select#category,select#color,#file[type=file]{
     border: 0;
     border-radius: 5px;
+    display: block;
 }
 .title{
     margin: 0;
     padding: 5px;
     font-weight: 200;
+    font-size: 1.5rem;
 }
 
 .container__form {
@@ -92,6 +94,7 @@ select#category,select#color,#file[type=file]{
 
 .edit__categ-form, .edit__color-form {
     display: flex;
+    flex-direction: column;
     gap: 10px;
 }
 
@@ -102,8 +105,7 @@ select#category,select#color,#file[type=file]{
     border-radius: 10px;
     width: 100%;
     padding: 5px;
-    width: 326px;
-    height: 277px;
+    width: 100%;
 }
 
 .edit__file{

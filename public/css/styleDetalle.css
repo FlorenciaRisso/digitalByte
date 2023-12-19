@@ -36,15 +36,6 @@
     text-align: center;
 }
 
-.colores {
-    display: flex;
-    width: 40%;
-    height: 30px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    box-shadow: 0 0 0 5px #5e5e5e5f;
-}
 
 .gama-colores {
     display: flex;
@@ -54,10 +45,6 @@
     justify-content: space-around;
 }
 
-.color {
-    border-radius: 50px;
-    width: 20px;
-}
 
 .oferta-precio {
     display: flex;

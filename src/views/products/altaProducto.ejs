@@ -8,45 +8,83 @@
                     <div class="title-container">
                         <h2 class="title">Crear producto</h2>
                     </div>
-                    <form class="alta__form" action="/products" method="POST">
+                    <form class="alta__form" action="/productos/create" method="post" enctype="multipart/form-data">
                         <div class="alta__name-form block-input">
-                            <label for="producto">Producto: </label>
-                            <input class="name__input-form" type="text" id="producto" placeholder="Nombre del producto" required />
+                            <label for="name">Producto: </label>
+                            <input class="name__input-form" type="text" name="name" id="name"
+                                placeholder="Nombre del producto" required />
                         </div>
 
                         <div class="alta__descripcion-form block-input">
-                            <label for="descripcion">Descripción:</label>
-                            <input class="descripcion__input-form" type="text" placeholder="Descripcion del producto" required />
+                            <label for="description">Descripción:</label>
+                            <input class="descripcion__input-form" type="text" name="description"
+                                placeholder="Descripcion del producto" required />
+                        </div>
+                        
+                        <!-- agregar checkbox para mas buscados -->
+
+                        <div class="alta__imagen-form block-input">
+                            <label for="image0">Imagen:</label>
+                            <input type="file" name="image0" id="file" class="custom-file-input" accept=".png" multiple
+                                id="imagen">
                         </div>
 
                         <div class="alta__imagen-form block-input">
-                            <label for="imagen">Imagen:</label>
-                            <input type="file" name="imagen" accept=".jpg" multiple
-                            id="imagen">
+                            <label for="image1">Imagen 1:</label>
+                            <input type="file" name="image1" id="file" class="custom-file-input" accept=".png" multiple
+                                id="image1">
+                        </div>
+
+                        <div class="alta__imagen-form block-input">
+                            <label for="image2">Imagen 2:</label>
+                            <input type="file" name="image2" id="file" class="custom-file-input" accept=".png" multiple
+                                id="image2">
+                        </div>
+
+                        <div class="alta__imagen-form block-input">
+                            <label for="image3">Imagen 3:</label>
+                            <input type="file" name="image3" id="file" class="custom-file-input" accept=".png" multiple
+                                id="image3">
                         </div>
 
                         <div class="alta__categ-form block-input">
-                            <label for="categoria">Categoria:</label>
+                            <label for="category">Categoria:</label>
                             <select name="category" id="category">
-                                <option value="Smartphone">Smartphone</option>
+                                <option value="Smartphone" selected>Smartphone</option>
                                 <option value="Ipad">Ipad</option>
                                 <option value="Tablet">Tablet</option>
                             </select>
                         </div>
+                        <div class="alta__categ-form block-input">
+                            <label for="tamanio">Tamaño:</label>
+                            <input type="text" id="tamanio" name="Tamanio"><br><br>
 
-                        <div class="alta__color-form block-input">
-                            <label for="color">Color</label>
-                            <select name="color" id="color">
-                                <option value="Rojo">Rosa</option>
-                                <option value="Verde">Verde</option>
-                                <option value="Gris">Gris</option>
-                                <option value="Amarillo">Amarillo</option>
+                            <label for="memoria">Memoria:</label>
+                            <input type="text" id="memoria" name="Memoria"><br><br>
+
+                            <label for="camara">Cámara Principal:</label>
+                            <input type="text" id="camara" name="CamaraPrincipal"><br><br>
+
+                            <label for="ram">RAM:</label>
+                            <input type="text" id="ram" name="Ram"><br><br>
+                        </div>
+                        <div class="alta__categ-form block-input">
+                            <label for="marca">Marca:</label>
+                            <select name="marca" id="marca">
+                                <option value="Apple" selected>Apple</option>
+                                <option value="Samsung">Samsung</option>
+                                <option value="Xiaomi">Xiaomi</option>
                             </select>
                         </div>
 
                         <div class="alta__precio-form block-input">
-                            <label for="precio">Precio:</label>
-                            <input type="number" id="precio" name="precio" placeholder="Precio del producto">
+                            <label for="price">Precio:</label>
+                            <input type="number" id="price" name="price" placeholder="Precio del producto">
+                        </div>
+
+                        <div class="alta__precio-form block-input">
+                            <label for="discount">Descuento:</label>
+                            <input type="number" id="discount" name="discount" placeholder="Descuento">
                         </div>
 
                         <div class="alta__button">
@@ -61,6 +99,5 @@
             <%- include ('../partials/footer') %>
     </body>
     <%- include ('../partials/script-menu') %>
-    </html>
-    
 
+        </html>

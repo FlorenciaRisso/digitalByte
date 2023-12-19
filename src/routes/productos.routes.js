@@ -1,29 +1,35 @@
 const express = require('express');
+const path = require('path');
 const router = express.Router();
-const productController = require('../controllers/productController');
+const uploadFile=require('../data/multer');
+const productController = require('../controllers/productController')
 
-
-router.get('/carrito', productController.carrito);
-router.get('/listar', productController.listarProductos);
-
-/*LISTADO POR CATEGORIA*/
-router.get('/categoria/:id',productController.listarProductosPorCat);
-
-/*LISTADO*/
 router.get('/', productController.index);
-
-/*CREACIÓN*/
-router.get('/crear', productController.altaProducto);
-router.post('/crear', productController.store); 
-
-/*DETALLE*/
+router.get('/carrito', productController.carrito);
+router.get('/listar', productController.listarProductos); //solo admin
+//listar
+router.get('/categoria',productController.listarProductosPorCat);
+//crear
+router.get('/create', productController.altaProducto);
+router.post('/create', uploadFile.fields([
+    { name: 'image0', maxCount: 1 },
+    { name: 'image1', maxCount: 1 },
+    { name: 'image2', maxCount: 1 },
+    { name: 'image3', maxCount: 1 }
+]),productController.save);
+//detalles
 router.get('/detalle/:id', productController.detalle);
+//editar
+router.get('/editar/:id', productController.editProducto);
+router.put('/editar/:id',uploadFile.fields([
+    { name: 'image0', maxCount: 1 },
+    { name: 'image1', maxCount: 1 },
+    { name: 'image2', maxCount: 1 },
+    { name: 'image3', maxCount: 1 }
+]), productController.update);
 
-/*EDICIÓN*/
-router.get('/editar/:id', productController.edit);
-router.put('/:id', productController.update);
-
-/*DELETE*/
+//eliminar
 router.delete('/delete/:id',productController.eliminarProducto);
+
 
 module.exports = router;

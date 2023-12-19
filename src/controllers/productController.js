@@ -5,7 +5,7 @@ const funcion=require('../data/funcion')
 let productController = {
     index: (req, res) => {
         let productos=productService.products;
-        res.render('index',{productos:productos,funcion:funcion})
+        res.render('products/index',{productos:productos,funcion:funcion})
     },
     carrito: (req, res) => {
         let productos=productService.products;
@@ -23,24 +23,21 @@ let productController = {
     altaProducto: (req, res) => {
         res.render('products/altaProducto',{funcion:funcion})
     },
-
-    store: (req, res) => {
-        req.body.image = req.file.filename;
-        productService.save(req.body, req.file);
-        res.send('producto agregado a la lista')
-        //res.redirect('/products');
+    save:(req,res)=>{
+        productService.save(req);
+        res.redirect('/productos');
     },
-
-    edit: (req, res) => {
+    editProducto: (req, res) => {
         let producto = productService.getOne(req);
         res.render('products/editProducto', { producto: producto,funcion:funcion })
     },
-
     update: (req, res) => {
+        productService.update(req);
         res.redirect('/productos');
     },
     eliminarProducto: (req, res) => {
-        res.redirect('/productos');
+        productService.delete(req);
+        res.redirect('/productos/listar');
     },
     listarProductos: (req, res) => {
         let productos = productService.products;
