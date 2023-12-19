@@ -30,7 +30,7 @@
                                 <td><img src="<%= producto.image1 %>" alt="Imagen del producto-1"></td>
                                 <td><img src="<%= producto.image2 %>" alt="Imagen del producto-2"></td>
                                 <td><img src="<%= producto.image3 %>" alt="Imagen del producto-3"></td>
-                                <td><%= producto.category %></td>
+                                <td><%= producto.category.name %></td>
                                 <td>$<%= funcion.getPrecioFormateado(producto.price) %></td>
                                 <td>
                                     <a href="/productos/editar/<%=producto.id%>"><i class="fa-solid fa-pen-to-square fa-lg"></i></a>

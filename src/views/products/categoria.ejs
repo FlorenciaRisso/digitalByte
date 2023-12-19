@@ -4,14 +4,14 @@
         <%-include ('../partials/headerYNav') %>
             <main class="main-categoria">
                 <%let categoria="";
-                switch(productos[0].category){
-                    case "Smartphones":
+                switch(productos[0].category.id){
+                    case 1:
                         categoria="Smartphones";
                         break;
-                    case "Tablets":
+                    case 2:
                         categoria="Tablets";
                         break;
-                    case "Notebooks":
+                    case 3:
                         categoria="Notebooks";
                         break;
                 }%>

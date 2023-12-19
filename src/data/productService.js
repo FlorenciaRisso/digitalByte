@@ -17,40 +17,40 @@ let productService = {
         return producto;
     },
     getProdPorCat: function (req, res) {
-        let productos = this.products.filter((producto) => { return producto.category == req.query.cat });
-
+        let productos = this.products.filter((producto) => { return producto.category.name == req.query.cat });
         return productos;
     },
     update: function (req) {
-
+        let categorias = [
+            { "id": "1", "name": "Smartphones" },
+            { "id": "2", "name": "Tablets" },
+            { "id": "3", "name": "Notebooks" }
+        ];
         let index = this.products.indexOf(this.getOne(req));
         this.products[index].name = req.body.name || this.products[index].name;
         this.products[index].description = req.body.description || this.products[index].description;
         this.products[index].price = req.body.price || this.products[index].price;
-        this.products[index].category = req.body.category || this.products[index].category;
+        //busca la categoria con el valor enviado por el campo category, que es el id de la categoria. 
+        //Luego asigna el objeto al campo category del producto a editar
+        let selectedCategory = categorias.find(cat => cat.id === req.body.category);
+        this.products.category = { "id": selectedCategory.id, "name": selectedCategory.name };
+        let image = "/img/default-image.png";
         this.products[index].discount = req.body.discount || this.products[index].discount;
-        this.products[index].specifications.Tamanio=req.body.Tamanio || this.products[index].specifications.Tamanio;
-        this.products[index].specifications.Memoria=req.body.Memoria || this.products[index].specifications.Memoria;
-        this.products[index].specifications.Ram=req.body.Ram || this.products[index].specifications.Ram;
-        this.products[index].specifications.CamaraPrincipal=req.body.CamaraPrincipal || this.products[index].specifications.CamaraPrincipal;
-        console.log(req.file)
+        this.products[index].specifications.Tamanio = req.body.Tamanio || this.products[index].specifications.Tamanio;
+        this.products[index].specifications.Memoria = req.body.Memoria || this.products[index].specifications.Memoria;
+        this.products[index].specifications.Ram = req.body.Ram || this.products[index].specifications.Ram;
+        this.products[index].specifications.CamaraPrincipal = req.body.CamaraPrincipal || this.products[index].specifications.CamaraPrincipal;
+
+        // Manejo cuando se han subido archivos
         for (let i = 0; i < 4; i++) {
-            const fileField = req.file[`image${i}`];
+            const fileField = req.files[`image${i}`];
             if (fileField && fileField.length > 0) {
-                product[`image${i}`] = '/img/'+fileField[0].filename;
+                this.products[index][`image${i}`] = '/img/' + fileField[0].filename;
             } else {
-                if (!product[`image${i}`]) {
-                    product[`image${i}`] = image;
+                if (!this.products[index][`image${i}`]) {
                 }
             }
-        };
-
-        /*if (req.file) {
-            this.products[index].image0 = '/img/'+fileField[0].filename || this.products[index].image0;
-            this.products[index].image1 = '/img/'+fileField[1].filename || this.products[index].image1;
-            this.products[index].image2 = '/img/'+fileField[2].filename || this.products[index].image2;
-            this.products[index].image3 = '/img/'+fileField[3].filename || this.products[index].image3;
-        }*/
+        }
         fs.writeFileSync(productsFilePath, JSON.stringify(this.products), 'utf-8')
     },
     delete: function (req) {
@@ -60,18 +60,24 @@ let productService = {
     },
     save: function (req) {
         let product = {};
+        let categorias = [
+            { "id": "1", "name": "Smartphones" },
+            { "id": "2", "name": "Tablets" },
+            { "id": "3", "name": "Notebooks" }
+        ];
         let lastProductId = this.products.length > 0 ? this.products[this.products.length - 1].id : 0;
         product.id = lastProductId + 1;
         product.name = req.body.name;
         product.description = req.body.description;
-        product.category = req.body.category;
+        let selectedCategory = categorias.find(cat => cat.id === req.body.category);
+        product.category = { "id": selectedCategory.id, "name": selectedCategory.name };
         product.price = req.body.price;
         product.discount = req.body.discount;
         product.plus = "";
         product.marca = req.body.marca;
         let image = "/img/default-image.png";
         let specifications = {
-            "Tamaño": req.body.Tamanio+'"' || '',
+            "Tamaño": req.body.Tamanio + '"' || '',
             "Memoria": req.body.Memoria + 'GB' || '',
             "CamaraPrincipal": req.body.CamaraPrincipal + 'Mpx' || '',
             "Ram": req.body.Ram + 'GB' || ''
@@ -89,7 +95,7 @@ let productService = {
             for (let i = 0; i < 4; i++) {
                 const fileField = req.files[`image${i}`];
                 if (fileField && fileField.length > 0) {
-                    product[`image${i}`] = '/img/'+fileField[0].filename;
+                    product[`image${i}`] = '/img/' + fileField[0].filename;
                 } else {
                     if (!product[`image${i}`]) {
                         product[`image${i}`] = image;
@@ -97,7 +103,7 @@ let productService = {
                 }
             }
         }
-        
+
         this.products.push(product);
         fs.writeFileSync(productsFilePath, JSON.stringify(this.products), 'utf-8');
     },
