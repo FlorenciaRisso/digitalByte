@@ -77,10 +77,10 @@ let productService = {
         product.marca = req.body.marca;
         let image = "/img/default-image.png";
         let specifications = {
-            "Tamaño": req.body.Tamanio + '"' || '',
-            "Memoria": req.body.Memoria + 'GB' || '',
-            "CamaraPrincipal": req.body.CamaraPrincipal + 'Mpx' || '',
-            "Ram": req.body.Ram + 'GB' || ''
+            "Tamaño": req.body.Tamanio || '',
+            "Memoria": req.body.Memoria || '',
+            "CamaraPrincipal": req.body.CamaraPrincipal|| '',
+            "Ram": req.body.Ram || ''
         };
         product.specifications = specifications;
         if (!req.files || Object.keys(req.files).length === 0) {

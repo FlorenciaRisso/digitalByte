@@ -67,7 +67,6 @@ select#category,select#color,#file[type=file]{
     width: 100%;
 }
 
-
 .edit__name-form {
     display: flex;
     flex-direction: column;
@@ -76,8 +75,6 @@ select#category,select#color,#file[type=file]{
     padding: 10px 0px 0px;
     margin: 10px;
 }
-
-
 .option__button {
     padding: 1.2px 15px;
     margin: 6px 24px;
@@ -97,8 +94,6 @@ select#category,select#color,#file[type=file]{
     flex-direction: column;
     gap: 10px;
 }
-
-
 
 .edit_textarea{
     border: 0;

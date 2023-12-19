@@ -29,7 +29,7 @@
         flex-wrap: wrap;
     }
     .most-searched__card{
-        width: 20%; /* 4 cards per row */
+        width: 20%; /* 4 cards por row */
         margin: 5px;
     }
 }

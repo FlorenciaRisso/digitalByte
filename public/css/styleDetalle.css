@@ -92,6 +92,7 @@
 
 .btn-comprar:hover {
     cursor: pointer;
+    background-color: #246ede;
 }
 
 .imagenes-acciones {
