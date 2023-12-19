@@ -18,27 +18,39 @@ let productService = {
     },
     getProdPorCat: function (req, res) {
         let productos = this.products.filter((producto) => { return producto.category == req.query.cat });
-        console.log(productos);
+
         return productos;
     },
     update: function (req) {
-        let index = this.products.indexOf(this.getOne(req.params.id));
+
+        let index = this.products.indexOf(this.getOne(req));
         this.products[index].name = req.body.name || this.products[index].name;
         this.products[index].description = req.body.description || this.products[index].description;
         this.products[index].price = req.body.price || this.products[index].price;
         this.products[index].category = req.body.category || this.products[index].category;
         this.products[index].discount = req.body.discount || this.products[index].discount;
-        this.product[index].specifications.Tamanio=req.body.Tamanio || this.product[index].specifications.Tamanio;
-        this.product[index].specifications.Memoria=req.body.Memoria || this.product[index].specifications.Memoria;
-        this.product[index].specifications.Ram=req.body.Ram || this.product[index].specifications.Ram;
-        this.product[index].specifications.CamaraPrincipal=req.body.CamaraPrincipal || this.product[index].specifications.CamaraPrincipal;
-       
-        if (req.file) {
+        this.products[index].specifications.Tamanio=req.body.Tamanio || this.products[index].specifications.Tamanio;
+        this.products[index].specifications.Memoria=req.body.Memoria || this.products[index].specifications.Memoria;
+        this.products[index].specifications.Ram=req.body.Ram || this.products[index].specifications.Ram;
+        this.products[index].specifications.CamaraPrincipal=req.body.CamaraPrincipal || this.products[index].specifications.CamaraPrincipal;
+        console.log(req.file)
+        for (let i = 0; i < 4; i++) {
+            const fileField = req.file[`image${i}`];
+            if (fileField && fileField.length > 0) {
+                product[`image${i}`] = '/img/'+fileField[0].filename;
+            } else {
+                if (!product[`image${i}`]) {
+                    product[`image${i}`] = image;
+                }
+            }
+        };
+
+        /*if (req.file) {
             this.products[index].image0 = '/img/'+fileField[0].filename || this.products[index].image0;
             this.products[index].image1 = '/img/'+fileField[1].filename || this.products[index].image1;
             this.products[index].image2 = '/img/'+fileField[2].filename || this.products[index].image2;
             this.products[index].image3 = '/img/'+fileField[3].filename || this.products[index].image3;
-        }
+        }*/
         fs.writeFileSync(productsFilePath, JSON.stringify(this.products), 'utf-8')
     },
     delete: function (req) {

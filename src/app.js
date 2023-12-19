@@ -7,11 +7,14 @@ const app=express();
 //Require path
 const path=require('path');
 
+const bodyParser = require('body-parser');
+
 //define method 
 const methodOverride =  require('method-override');
 
 const indexRouter = require('./routes/index.routes');
-
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 //Usando recursos estaticos
 app.use(express.static('public'));
 //Override
