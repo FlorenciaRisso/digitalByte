@@ -32,6 +32,19 @@
             <input id="confirmContra" class="register__input-form" type="password" placeholder="Repetir contraseña" />
           </div>
 
+          <div class="register__category-form block-input">
+            <label for="category">Selecciona un perfil de usuario:</label>
+            <select name="category" id="category" required>
+              <option value="vendedor">Vendedor</option>
+              <option value="cliente">Cliente</option>
+            </select>
+          </div>
+
+          <div class="register__image-form block-input">
+            <label for="image" class="form-label">Imagen de perfil:</label>
+						<input type="file" id="image" name="image" accept=".jpg, .png" required>
+          </div>
+
           <div class="register__date-form block-input">
             <input id="fechaNac"
               class="register__input-date-form"
