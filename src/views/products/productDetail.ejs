@@ -7,12 +7,12 @@
                     <div class="imagenes-acciones">
                         <div class="imagenes-producto">
                             <div class="imagen-principal">
-                                <img src="/img/apple/iphone13/iphone13.png" alt="iphone13">
+                                <img src="<%=producto.image0%>" alt="<%=producto.name%>">
                             </div>
                             <div class="imagenes-secundarias">
-                                <div class="div-img"><img src="/img/apple/iphone13/iphone13-1.png" alt=""></div>
-                                <div class="div-img"><img src="/img/apple/iphone13/iphone13-2.png" alt=""></div>
-                                <div class="div-img"><img src="/img/apple/iphone13/iphone13-3.png" alt=""></div>
+                                <div class="div-img"><img src="<%=producto.image1%>" alt=""></div>
+                                <div class="div-img"><img src="<%=producto.image2%>" alt=""></div>
+                                <div class="div-img"><img src="<%=producto.image3%>" alt=""></div>
                             </div>
                         </div>
 
@@ -20,44 +20,53 @@
 
                     <div class="detalle-producto">
                         <div class="titulo-producto">
-                            <p>Iphone 13 Pro Max</p>
-                        </div>
-                        <div class="descripcion-producto">
-                            <p>Pantalla Super Retina XDR de 6.7 pulgadas con ProMotion que brinda una respuesta más
-                                rápida y
-                                fluida.(2)
-                                Modo Cine con baja profundidad de campo y cambios de enfoque automáticos en tus videos.
-                                Nuevo sistema de cámaras Pro de 12 MP (teleobjetivo, gran angular y ultra gran angular),
-                                escáner
-                                LiDAR, rango de zoom óptico de 6x, fotografía macro, Estilos Fotográficos, video
-                                ProRes3, HDR
-                                Inteligente 4, modo Noche, Apple ProRAW y grabación de video 4K HDR en Dolby Vision.
-                                Cámara frontal TrueDepth de 12 MP con modo Noche y grabación de video 4K HDR en Dolby
-                                Vision.
+                            <p>
+                                <%=producto.name%>
                             </p>
                         </div>
-                        <div class="caracteristicas-producto">
-                            <ul>
-                                <li>Tamaño:6.7"</li>
-                                <li>Memoria: 256GB</li>
-                                <li>Camara Principal: 12Mpx</li>
-                                <li>Desbloqueo: Reconocimiento Facial</li>
-                            </ul>
-                        </div>
-                        <div class="color-precio">
-                            <div class="colores">
-                                <div class="gama-colores">
-                                    <div class="color grey">.</div>
-                                    <div class="color green">.</div>
-                                    <div class="color pink">.</div>
-                                    <div class="color gold">.</div>
-                                </div>
+                        <div class="descripcion-producto">
+                            <div class="descripcion-producto_titulo">
+                                <i class="fa-solid fa-bars fa-lg"></i>
+                                <p>General</p>
                             </div>
+                            <p>
+                                <%=producto.description%>
+                            </p>
+                        </div>
+                        <div class="caracteristicas-producto_table">
+                            <div class="caracteristicas-producto_titulo">
+                                <i class="fa-regular fa-clipboard"></i>
+                                <p>Caracteristicas</p>
+                            </div>
+                            <table>
+                                <tbody>
+                                    <% for (const key in producto.specifications) { %>
+                                        <tr>
+                                            <td class="caracteristicas-producto_first_td">
+                                                <%= key %>
+                                            </td>
+                                            <td class="caracteristicas-producto_second_td">
+                                                <%= producto.specifications[key] %>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="oferta-precio">
+                            <% if(producto.discount != 0){ %>
+                            <div class="oferta">
+                                <p class="p-off"><%= producto.discount %>%OFF 🎊</p>
+                            </div>
+                            <%}%>
                             <div class="precio-comprar">
                                 <div class="precio">
-                                    <p>$1.322.142</p>
+                                    <% let precioFinal=producto.price-(producto.price*(producto.discount/100))%>
+                                    <p>$<%=funcion.getPrecioFormateado(precioFinal)%></p>
                                 </div>
-                                <div class="div-btn-comprar"><button class="btn-comprar">Comprar</button></div>
+                                <a href="/productos/addCarrito" class="div-btn-comprar">
+                                    <button class="btn-comprar">Agregar al Carrito</button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -67,16 +76,8 @@
                         <h4 class="most-searched__title">Productos Relacionados</h4>
                         <div class="div-responsive">
                             <div class="most-searched__card-container">
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
+                                <%- include
+                                    ('../partials/cardArticulosMasBuscados',{productos:productos,funcion:funcion}) %>
                             </div>
                         </div>
                     </article>
@@ -87,17 +88,6 @@
             </main>
             <%- include ('../partials/footer') %>
     </body>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-          const hamburguer = document.querySelector('.a-hamburguer');
-          const listaSecciones = document.querySelector('.lista-secciones');
-    
-          hamburguer.addEventListener('click', function(e) {
-          e.preventDefault();
-          listaSecciones.classList.toggle('mostrar');
-          });
-        });
-    
-      </script>
+    <%- include ('../partials/script-menu') %>
 
-    </html>
+        </html>

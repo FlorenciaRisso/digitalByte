@@ -6,7 +6,11 @@
     padding: 0px;
     margin: 0px;
 }
-
+.main{
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+}
 label,span,h2{
     display: block;
     font-family:Arial, Helvetica, sans-serif ;
@@ -18,11 +22,16 @@ label,span,h2{
     border-radius: 10px;
     text-align: center;
 }
-
+select#category,select#color,#file[type=file]{
+    border: 0;
+    border-radius: 5px;
+    display: block;
+}
 .title{
     margin: 0;
     padding: 5px;
     font-weight: 200;
+    font-size: 1.5rem;
 }
 
 .container__form {
@@ -58,7 +67,6 @@ label,span,h2{
     width: 100%;
 }
 
-
 .edit__name-form {
     display: flex;
     flex-direction: column;
@@ -67,8 +75,6 @@ label,span,h2{
     padding: 10px 0px 0px;
     margin: 10px;
 }
-
-
 .option__button {
     padding: 1.2px 15px;
     margin: 6px 24px;
@@ -79,22 +85,22 @@ label,span,h2{
     color: #ffffff;
     font-weight: bold;
     font-size: 70%;
-    transition: all 0.5s;
-    -webkit-transition: all 0.5s;
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
 }
 
 .edit__categ-form, .edit__color-form {
     display: flex;
+    flex-direction: column;
     gap: 10px;
 }
-
-
 
 .edit_textarea{
     border: 0;
     border-radius: 10px;
     width: 100%;
     padding: 5px;
+    width: 100%;
 }
 
 .edit__file{
@@ -119,13 +125,6 @@ label,span,h2{
 
   
 @media (min-width:500px) {
-
-    main{
-        display: flex;
-        justify-content: center;
-
-    }
-
     .login__buttons {
         flex-direction: row;
     }
@@ -144,8 +143,9 @@ label,span,h2{
 
     .option__button:hover{
         background-color: #915df1;
-        box-shadow: 0 0 0 5px #3b83f65f;
         color: #fff;
+        cursor: pointer;
+        transform: scale(1.2);
       }
 
       .alta__buttons{

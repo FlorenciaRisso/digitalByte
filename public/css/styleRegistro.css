@@ -67,12 +67,41 @@ label,span,h2{
     margin: 0;
     padding: 5px;
     font-weight: 200;
+    font-size: 1.5rem;
+    color: aliceblue;
 }
 
 .login__link{
     color: #0089ff;
     text-decoration: none;
 }
+
+select {
+    width: 100%;
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    appearance: none;
+    background-color: #fff;
+}
+
+select:hover {
+    border-color: #888;
+}
+
+select:focus {
+    border-color: #555;
+    outline: none;
+}
+
+select option {
+    padding: 10px;
+}
+
+
+
 @media (min-width:500px ) {
 
     .container{

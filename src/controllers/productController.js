@@ -1,54 +1,49 @@
 const path = require('path');
+const productService = require('../data/productService');
+const funcion = require('../data/funcion')
 
 let productController = {
-    index: (req, res)=>{
-        res.render('index')
-    }, 
+    index: (req, res) => {
+        let productos = productService.products;
+        res.render('products/index', { productos: productos, funcion: funcion })
+    },
+    carrito: (req, res) => {
+        let productos = productService.products;
+        res.render('products/productCart', { productos: productos, funcion: funcion });
+    },
+    listarProductosPorCat: (req, res) => {
+        let productos = productService.getProdPorCat(req);
+        res.render('products/categoria', { productos: productos, funcion: funcion });
+    },
+    detalle: (req, res) => {
+        let producto = productService.getOne(req);
+        let productos = productService.getAll();
+        res.render('products/productDetail', { producto: producto, productos: productos, funcion: funcion });
+    },
+    altaProducto: (req, res) => {
+        res.render('products/altaProducto', { funcion: funcion })
+    },
+    save: (req, res) => {
+        productService.save(req);
+        res.redirect('/productos');
+    },
+    editProducto: (req, res) => {
+        let producto = productService.getOne(req);
+        res.render('products/editProducto', { producto: producto, funcion: funcion })
+    },
+    update: (req, res) => {
+        productService.update(req);
+        res.redirect('/productos');
+    },
+    eliminarProducto: (req, res) => {
+        productService.delete(req);
+        res.redirect('/productos/listar');
 
-    getOne: (req, res) => {
-        res.send("Estas en la pagina del producto " + req.params.id);
-    },
 
-    carrito: (req,res) => {
-        res.render('products/productCart')
     },
-    detalle:(req,res) => {
-        res.render('products/productDetail')
-    },
-    altaProducto:(req,res) => {
-        res.render('products/altaProducto')
-    },
-    editProducto:(req,res) => {
-        res.render('products/editProducto')
-    },
-    listarProductos:(req,res) => {
-        const productos = [
-            {
-              name: 'Ipad 8va Generacion',
-              description: 'El nuevo iPad se transforma en lo que quieras: un cuaderno digital, una oficina móvil, un estudio fotográfico, una consola de juegos o una sala de cine.',
-              image: '/img/apple/ipadGen8/ipad8va.png',
-              category: 'Tablets',
-              colors: ['Plata', 'Negro'],
-              price: 532.580
-            },
-            {
-              name: 'Ipad 9na Generacion',
-              description: 'Diseñado para que hagas todo lo que te gusta, por menos de lo que imaginas.',
-              image: '/img/apple/ipadGen9/ipad9na.png',
-              category: 'Tablets',
-              colors: ['Negro', 'Blanco'],
-              price: 649.999
-            },
-            {
-              name: 'Ipad 10ma Generacion',
-              description: 'Capturá todos tus momentos al instante gracias a sus cámaras, con resoluciones de 12 Mpx y 12 Mpx, podrás hacer videollamadas o sacarte fotos en cualquier momento y lugar, con una excelente calidad de imagen. Nitidez, brillo y colores vibrantes harán que tus experiencias se reflejen de manera óptima.',
-              image: '/img/apple/ipadGen10/ipad10ma.png',
-              category: 'Tablets',
-              colors: ['Azul', 'Gris', 'Negro'],
-              price: 765.809
-            }
-          ];
-        res.render('products/listarProductos',{productos:productos})
+    listarProductos: (req, res) => {
+        let productos = productService.products;
+        res.render('products/listarProductos', { productos: productos, funcion: funcion })
     }
 }
 

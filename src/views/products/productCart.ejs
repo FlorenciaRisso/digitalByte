@@ -9,11 +9,11 @@
                         <table class="table">
 
                             <tr class="main-productos">
-                                <th class="main-productos__prod">Producto</th>
-                                <th class="main-productos__cant">Cantidad</th>
-                                <th class="main-productos__nomb">Nombre</th>
-                                <th class="main-productos__precio">Precio</th>
-                                <th class="main-productos__subtot">Sub total</th>
+                                <th class="main-productos_th">Producto</th>
+                                <th class="main-productos_th">Cantidad</th>
+                                <th class="main-productos_th">Nombre</th>
+                                <th class="main-productos_th">Precio</th>
+                                <th class="main-productos_th">Sub total</th>
                             </tr>
 
                             <tr class="detalle-producto">
@@ -52,19 +52,10 @@
 
                 <section class="most-searched__section">
                     <article class="most-searched__article">
-                        <h4 class="most-searched__title">productos destacados</h4>
+                        <h4 class="most-searched__title">Productos mas buscados</h4>
                         <div class="div-responsive">
                             <div class="most-searched__card-container">
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
-                                <%- include ('../partials/cardArticulo') %>
+                                <%- include ('../partials/cardArticulosMasBuscados',{productos:productos,funcion:funcion}) %>
                             </div>
                         </div>
                     </article>
@@ -73,17 +64,7 @@
             </main>
 
             <%- include ('../partials/footer') %>
-    </body><script>
-        document.addEventListener("DOMContentLoaded", function() {
-          const hamburguer = document.querySelector('.a-hamburguer');
-          const listaSecciones = document.querySelector('.lista-secciones');
-    
-          hamburguer.addEventListener('click', function(e) {
-          e.preventDefault();
-          listaSecciones.classList.toggle('mostrar');
-          });
-        });
-    
-      </script>
+    </body>
+    <%- include ('../partials/script-menu') %>
 
     </html>

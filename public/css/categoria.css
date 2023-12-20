@@ -1,0 +1,35 @@
+.main-categoria{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.titulo-categoria{
+    width: 100%;
+    background-color: rgb(169, 120, 214);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.5rem;
+}
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 90%;
+}
+.most-searched__card{
+    width: 100%;
+    margin: 5px;
+}
+
+@media (min-width: 500px) {
+    .container{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .most-searched__card{
+        width: 20%; /* 4 cards por row */
+        margin: 5px;
+    }
+}

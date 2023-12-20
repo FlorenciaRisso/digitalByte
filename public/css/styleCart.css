@@ -21,12 +21,13 @@ p {
 }
 
 /*TABLA*/
-.section{
+.section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 .carrito {
   display: flex;
   flex-direction: column;
@@ -53,13 +54,23 @@ p {
   color: white;
 }
 
+.main-productos>th {
+  font-family: revert;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #906CBE;
+  font-size: 0.8rem;
+  border-radius: 5px;
+  padding: 5px;
+}
+
 th {
   font-size: 10px;
   border: 0px;
 }
 
 td {
-  font-size: 13px;
+  font-size: 1rem;
 }
 
 .main-productos__prod {
@@ -78,8 +89,8 @@ td {
 
 
 .det-prod__img {
-  width: 60px;
-  height: 60px;
+  width: 100px;
+  height: 100px;
 }
 
 
@@ -122,7 +133,7 @@ td {
   border-top-left-radius: 10px;
   align-items: center;
   padding: 2px 20px;
-  font-size: 10px;
+  font-size: 1rem;
   display: flex;
 }
 
@@ -160,14 +171,15 @@ td {
   color: #ffffff;
   font-weight: bold;
   font-size: 70%;
-  transition: all 0.5s;
-  -webkit-transition: all 0.5s;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
 }
 
 .btn:hover {
-  background-color: #472d68;
-  box-shadow: 0 0 12px #6fc5ff50;
-  transform: scale(1.1);
+  background-color: #915df1;
+  color: #fff;
+  cursor: pointer;
+  transform: scale(1.2);
 }
 
 .btn:active {
@@ -206,11 +218,15 @@ td {
     height: 35px;
   }
 
+  .main-productos_th {
+    font-size: 1.1rem;
+  }
+
 
 
   .text-total {
     padding: 0px 40px 0px 40px;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 100;
   }
 

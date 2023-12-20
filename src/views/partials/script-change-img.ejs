@@ -1,0 +1,22 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const inputs = document.querySelectorAll('input[type="file"]');
+
+        inputs.forEach(function (input) {
+            input.addEventListener('change', function (event) {
+                const file = event.target.files[0];
+                const reader = new FileReader();
+                const preview = event.target.nextElementSibling; // Obtenemos el elemento hermano siguiente (la imagen de vista previa)
+
+                reader.onload = function () {
+                    preview.src = reader.result;
+                    preview.classList.remove('none'); //quitamos la clase none para que se muestre la vista previa
+                }
+
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    });
+</script>

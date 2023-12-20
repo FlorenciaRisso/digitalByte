@@ -1,16 +1,19 @@
 const path = require('path');
+const productService = require('../data/productService');
+const funcion=require('../data/funcion')
 
 let mainController = {
     index: (req, res)=>{
-        res.render('index')
+        let productos=productService.getAll();
+        res.render('index',{productos:productos,funcion:funcion});
     }, 
 
     contactos: (req, res) => {
-        res.render('contacto')
+        res.render('contacto');
     },
 
     quienesSomos: (req,res) => {
-        res.render('quienes-somos')
+        res.render('quienesSomos');
     }
 }
 

@@ -1,5 +1,6 @@
 <div class="tarjeta-producto__buttons">
-    <div data-tooltip="$1.764.532" class="button">
+
+    <div data-tooltip="$<%=funcion.getPrecioFormateado(producto.price)%>" class="button">
         <div class="button-wrapper"><a href="/">
                 <div class="text">Agregar</div>
                 <span class="icon">
@@ -15,7 +16,7 @@
             </a>
         </div>
     </div>
-    <button class="button-ver">
-        <a href="/Productos/Detalle"><span>Ver</span></a>
-    </button>
+    <a href="/productos/detalle/<%=producto.id %>"><button class="button-ver">
+        <span>Ver</span>
+    </button></a>
 </div>
