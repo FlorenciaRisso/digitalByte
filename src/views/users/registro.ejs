@@ -1,0 +1,73 @@
+<%-include ('../partials/head',{cssFile:'/css/styleRegistro.css'})%>
+  <body>
+    <header class="header">
+      <div class="logo-container">
+        <a href="/"><img class="img-logo" src="/img/logo-dbytee.png" alt="logoDigitalByte"></a>
+      </div>
+    </header>
+    <div class="body">
+      
+      <div class="container">
+        <div class="title-container">
+          <h2 class="title">Registrate</h2>
+        </div>
+        <form class="register__form" action="/Usuarios/Registro" method="POST">
+          <div class="register__firstname-form block-input">
+            <input id="nombre" class="register__input-form" type="text" placeholder="Nombre" />
+          </div>
+
+          <div class="register__lastname-form block-input">
+            <input id="apellido" class="register__input-form" type="text" placeholder="Apellido" />
+          </div>
+
+          <div class="register__email-form block-input">
+            <input id="correo" class="register__input-form" type="email" placeholder="Correo electronico" />
+          </div>
+
+          <div class="register__password-form block-input">
+            <input id="contrasenia" class="register__input-form" type="password" placeholder="Contraseña" />
+          </div>
+
+          <div class="register__password-form block-input">
+            <input id="confirmContra" class="register__input-form" type="password" placeholder="Repetir contraseña" />
+          </div>
+
+          <div class="register__category-form block-input">
+            <label for="category">Selecciona un perfil de usuario:</label>
+            <select name="category" id="category" required>
+              <option value="vendedor">Vendedor</option>
+              <option value="cliente">Cliente</option>
+            </select>
+          </div>
+
+          <div class="register__image-form block-input">
+            <label for="image" class="form-label">Imagen de perfil:</label>
+						<input type="file" id="image" name="image" accept=".jpg, .png" required>
+          </div>
+
+          <div class="register__date-form block-input">
+            <label for="fechaNac" class="form-label">Fecha de Nacimiento:</label>
+            <input id="fechaNac"
+              class="register__input-date-form"
+              type="date"
+              placeholder="Fecha de nacimiento"
+            />
+          </div>
+
+          <div class="register__buttons">
+            <button class="register__button btn ">Registrarme</button>
+            <button class="register__google-button btn">
+              <i class="fa-brands fa-google register__google-icon"></i> Inicia sesión con google
+            </button>
+          </div>
+          <div class="footer-register">
+            <span>¿Ya tienes cuenta? </span>
+            <a href="/Usuarios/login" class="login__link">Iniciar sesión</a>
+          </div>
+        </form>
+
+        
+      </div>
+    </div>
+  </body>
+</html>

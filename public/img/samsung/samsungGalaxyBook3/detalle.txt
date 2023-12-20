@@ -1,0 +1,12 @@
+Titulo:Notebook Samsung Galaxy Book3
+
+Precio:$915.396
+
+Descripcion:
+La notebook Samsung Galaxy Book3 NP750XFG-KB2AR es una solución tanto para trabajar y estudiar como para entretenerte. Al ser portátil, el escritorio dejará de ser tu único espacio de uso para abrirte las puertas a otros ambientes ya sea en tu casa o en la oficina
+
+Caracteristicas:
+Tamaño:15.6"
+Memoria: 512GB
+Procesador:Core i5
+Ram:8GB

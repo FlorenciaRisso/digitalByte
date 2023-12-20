@@ -1,0 +1,13 @@
+Titulo:Xiaomi Redmi 10c
+
+Precio: $119.999
+
+Descripcion:
+Doble cámara y más detalles
+Sus 2 cámaras traseras de 50 Mpx/2 Mpx te permitirán tomar imágenes con más detalles y lograr efectos únicos como el famoso modo retrato de poca profundidad de campo.
+
+Caracteristicas:
+-Tamaño:6.71"
+-Memoria: 128GB
+-Camara Principal: 50Mpx
+-Ram:4GB

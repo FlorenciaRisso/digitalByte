@@ -1,0 +1,76 @@
+<%-include ('partials/head',{cssFile:'/css/styleGeneral.css'})%>
+
+  <body>
+    <%-include ('partials/headerYNav') %>
+      <main>
+        <div class="brand__container">
+          <section class="brand__section">
+            <article class="brand__article">
+              <h4 class="brand__title">Apple</h4>
+              <ul class="brand__list">
+                <li class="brand__item"><a href="/productos/detalle/4">iPhone 13</a></li>
+                <li class="brand__item"><a href="/productos/detalle/5">iPhone 14</a></li>
+                <li class="brand__item"><a href="/productos/detalle/6">iPhone 15</a></li>
+              </ul>
+            </article>
+
+            <article class="brand__article">
+              <h4 class="brand__title">Xiaomi</h4>
+              <ul class="brand__list">
+                <li class="brand__item"><a href="/productos/detalle/16">Redmi 10C</a></li>
+                <li class="brand__item"><a href="/productos/detalle/17">Redmi Note 11</a></li>
+                <li class="brand__item"><a href="/productos/detalle/18">Redmi Note 12</a></li>
+              </ul>
+            </article>
+
+            <article class="brand__article">
+              <h4 class="brand__title">Samsung</h4>
+              <ul class="brand__list">
+                <li class="brand__item"><a href="/productos/detalle/11">Galaxy S23</a></li>
+                <li class="brand__item"><a href="/productos/detalle/10">Galaxy A54</a></li>
+                <li class="brand__item"><a href="/productos/detalle/12">Galaxy Z Flip5</a></li>
+              </ul>
+            </article>
+          </section>
+        </div>
+
+        <section class="offer__section">
+          <article class="offer__article">
+            <div class="offer__container">
+              <h4 class="most-searched__title">💥🎊20% Off de la semana🎊💥</h4>
+              <div class="offer">
+                <%productos.forEach(producto=>{ if(producto.discount == 20){%>
+                <a href="/productos/detalle/<%=producto.id %>">
+                  <div class="offer__image">
+                    <img class="offer__image-img" src="<%=producto.image0%>" alt="" />
+                    <% if(producto.discount != 0){ %>
+                      <div class="discount-circle">
+                        <p class="discount-value"><%= producto.discount %>%</p>
+                      </div>
+                    <% } %>
+                    <% let precioFinal=producto.price-(producto.price*(producto.discount/100))%>
+                    <p class="p-price-offer">$<%=funcion.getPrecioFormateado(precioFinal)%></p>
+                    <p class="p-white"><%=producto.name%></p>
+                  </div>
+                </a>
+                <%}});%>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="most-searched__section">
+          <article class="most-searched__article">
+            <h4 class="most-searched__title">Lo mas buscado</h4>
+            <div class="div-responsive">
+              <div class="most-searched__card-container">
+                <%- include ('partials/cardArticulosMasBuscados',{productos:productos,funcion:funcion}) %>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+      <%- include ('partials/footer') %>
+  </body>
+  <%- include ('partials/script-menu') %>
+  </html>

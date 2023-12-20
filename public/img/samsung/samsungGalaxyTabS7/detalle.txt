@@ -1,0 +1,12 @@
+Titulo:samsung Galaxy Tab S7
+
+Precio:$599.999
+
+Descripcion:
+Esta tablet Samsung es la compañera ideal, con capacidad de sobra para cada una de tus actividades. El diseño delgado, compacto y portátil, con facilidad para sostener en una mano, lo convierte en una combinación perfecta de rendimiento y versatilidad.
+
+Caracteristicas:
+Tamaño:12.4"
+Memoria: 128GB
+Camara Principal:8Mpx
+Ram:6GB
