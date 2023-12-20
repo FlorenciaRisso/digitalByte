@@ -6,7 +6,9 @@
         "email": "lkaliszewski0@webnode.com",
         "password": "pM3<&4YC$n2D}}0",
         "rol": "Admin",
-        "perfil":""
+        "avatar":"/img/perfiles/perfil-1.png",
+        "birthDate":"01/02/1998"
+    
     },
     {
         "id": 2,
@@ -15,7 +17,8 @@
         "email": "bbrood1@de.vu",
         "password": "xR5_URi7*T%MP.0{",
         "rol": "Cliente",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 3,
@@ -24,7 +27,8 @@
         "email": "abollom2@pbs.org",
         "password": "lL8>$|k3%",
         "rol": "Admin",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 4,
@@ -33,7 +37,8 @@
         "email": "dberling3@cloudflare.com",
         "password": "rA1*4'NZ0DjA{*bK",
         "rol": "Cliente",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 5,
@@ -42,7 +47,8 @@
         "email": "cveschi4@odnoklassniki.ru",
         "password": "gL9$9DOI3I22Z|?n",
         "rol": "Vendedor",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 6,
@@ -51,7 +57,8 @@
         "email": "hjanusz5@ow.ly",
         "password": "fE4'3G%>7",
         "rol": "Vendedor",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 7,
@@ -60,7 +67,8 @@
         "email": "dbuncher6@wsj.com",
         "password": "uK4(7,S0pI}'|Eb{",
         "rol": "Cliente",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 8,
@@ -69,7 +77,8 @@
         "email": "bcrickmer7@loc.gov",
         "password": "sP3?lZ$7V51q|",
         "rol": "Cliente",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 9,
@@ -78,7 +87,8 @@
         "email": "fdran8@cbslocal.com",
         "password": "zM1/u1vtV",
         "rol": "Cliente",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 10,
@@ -87,7 +97,8 @@
         "email": "maggott9@hugedomains.com",
         "password": "tP0}}9Kqgp_E(5ge",
         "rol": "Admin",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 11,
@@ -96,7 +107,8 @@
         "email": "cschobera@blogspot.com",
         "password": "fW5#i>Jd`TM5\\",
         "rol": "Cliente",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 12,
@@ -105,7 +117,8 @@
         "email": "cbloyb@wufoo.com",
         "password": "cZ7?d!B7sHRu'W",
         "rol": "Vendedor",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 13,
@@ -114,7 +127,8 @@
         "email": "amalyanc@yale.edu",
         "password": "hM2}GK(w+oU",
         "rol": "Cliente",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 14,
@@ -123,7 +137,8 @@
         "email": "dlebretond@springer.com",
         "password": "tL1,)(X0N3e",
         "rol": "Vendedor",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 15,
@@ -132,7 +147,8 @@
         "email": "mgherardescie@buzzfeed.com",
         "password": "bH6.VG0E",
         "rol": "Vendedor",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 16,
@@ -141,7 +157,8 @@
         "email": "wkleintf@weather.com",
         "password": "nF0<dMs/.R+nX+a6",
         "rol": "Admin",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 17,
@@ -150,7 +167,8 @@
         "email": "ltreacherg@stumbleupon.com",
         "password": "uH0$.EkM4+Nq",
         "rol": "Admin",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 18,
@@ -159,7 +177,8 @@
         "email": "ndurandh@360.cn",
         "password": "yK3~(i$u#F)%qtF",
         "rol": "Cliente",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 19,
@@ -168,7 +187,8 @@
         "email": "tfruishi@jugem.jp",
         "password": "wP7|cJkchW1{J1y)",
         "rol": "Admin",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 20,
@@ -177,7 +197,8 @@
         "email": "vteapej@baidu.com",
         "password": "yC4>wg6khD4$h+b>",
         "rol": "Vendedor",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 21,
@@ -186,7 +207,8 @@
         "email": "cklemzk@abc.net.au",
         "password": "aW3)HtX*yk+VEb0M",
         "rol": "Vendedor",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 22,
@@ -195,7 +217,8 @@
         "email": "jorfordl@free.fr",
         "password": "yS5%fZ4v(",
         "rol": "Vendedor",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 23,
@@ -204,7 +227,8 @@
         "email": "mcockliem@weather.com",
         "password": "iX3/o4LTbh>",
         "rol": "Cliente",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 24,
@@ -213,7 +237,8 @@
         "email": "nburnagen@wordpress.org",
         "password": "kF0#ls_4`\"o+h|C",
         "rol": "Cliente",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 25,
@@ -222,7 +247,8 @@
         "email": "sfooteo@jugem.jp",
         "password": "oP8$B)`sFxS\\WA",
         "rol": "Cliente",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 26,
@@ -231,7 +257,8 @@
         "email": "asommertonp@bravesites.com",
         "password": "iE8(CO,1BaJq\\#<W",
         "rol": "Cliente",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 27,
@@ -240,7 +267,8 @@
         "email": "bgayeq@4shared.com",
         "password": "gL6'q~R#.uXf",
         "rol": "Admin",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 28,
@@ -249,7 +277,8 @@
         "email": "tmckewr@time.com",
         "password": "cS2*eXKjM_MH@l",
         "rol": "Admin",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 29,
@@ -258,7 +287,8 @@
         "email": "vmurkins@parallels.com",
         "password": "oO0(DF%97L",
         "rol": "Cliente",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     },
     {
         "id": 30,
@@ -267,6 +297,7 @@
         "email": "rgowriet@yolasite.com",
         "password": "eZ2!oA}\\WO",
         "rol": "Vendedor",
-        "perfil":""
+        "avatar":"",
+        "birthDate":"01/02/1998"
     }
 ]
