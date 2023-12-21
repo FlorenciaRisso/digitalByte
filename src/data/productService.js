@@ -36,7 +36,7 @@ let productService = {
         this.products.category = { "id": selectedCategory.id, "name": selectedCategory.name };
         let image = "/img/default-image.png";
         this.products[index].discount = req.body.discount || this.products[index].discount;
-        this.products[index].specifications.Tamanio = req.body.Tamanio || this.products[index].specifications.Tamanio;
+        this.products[index].specifications.Tamaño = req.body.Tamanio || this.products[index].specifications.Tamaño;
         this.products[index].specifications.Memoria = req.body.Memoria || this.products[index].specifications.Memoria;
         this.products[index].specifications.Ram = req.body.Ram || this.products[index].specifications.Ram;
         this.products[index].specifications.CamaraPrincipal = req.body.CamaraPrincipal || this.products[index].specifications.CamaraPrincipal;
@@ -48,6 +48,7 @@ let productService = {
                 this.products[index][`image${i}`] = '/img/' + fileField[0].filename;
             } else {
                 if (!this.products[index][`image${i}`]) {
+                    this.products[index][`image${i}`]=image;
                 }
             }
         }
