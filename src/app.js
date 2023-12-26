@@ -12,6 +12,9 @@ const bodyParser = require('body-parser');
 //define method 
 const methodOverride =  require('method-override');
 
+//session
+const session=require('express-session');
+
 const indexRouter = require('./routes/index.routes');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -24,6 +27,8 @@ app.use((req, res, next) => {
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     next();
 });
+
+app.use(session({secret:'Secreto'}));
 //Levantando el servidor Puerto 3030
 app.listen(3030,()=>console.log("Ejecutandose Exitosamente en puerto 3030")); 
 
