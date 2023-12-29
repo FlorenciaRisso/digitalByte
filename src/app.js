@@ -28,7 +28,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(session({secret:'Secreto'}));
+app.use(session({secret:'Secreto',resave: false,saveUninitialized: false}));
 //Levantando el servidor Puerto 3030
 app.listen(3030,()=>console.log("Ejecutandose Exitosamente en puerto 3030")); 
 

@@ -11,30 +11,30 @@
         <div class="title-container">
           <h2 class="title">Registrate</h2>
         </div>
-        <form class="register__form" action="/Usuarios/Registro" method="POST">
+        <form class="register__form" action="/Usuarios/" method="POST" enctype="multipart/form-data">
           <div class="register__firstname-form block-input">
-            <input id="nombre" class="register__input-form" type="text" placeholder="Nombre" />
+            <input id="nombre" name="nombre" class="register__input-form" type="text" placeholder="Nombre" />
           </div>
 
           <div class="register__lastname-form block-input">
-            <input id="apellido" class="register__input-form" type="text" placeholder="Apellido" />
+            <input id="apellido" name="apellido" class="register__input-form" type="text" placeholder="Apellido" />
           </div>
 
           <div class="register__email-form block-input">
-            <input id="correo" class="register__input-form" type="email" placeholder="Correo electronico" />
+            <input id="correo" name="correo" class="register__input-form" type="email" placeholder="Correo electronico" />
           </div>
 
           <div class="register__password-form block-input">
-            <input id="contrasenia" class="register__input-form" type="password" placeholder="Contraseña" />
+            <input id="contrasenia" name="contrasenia" class="register__input-form" type="password" placeholder="Contraseña" />
           </div>
 
           <div class="register__password-form block-input">
-            <input id="confirmContra" class="register__input-form" type="password" placeholder="Repetir contraseña" />
+            <input id="confirmContra" name="confirmContra" class="register__input-form" type="password" placeholder="Repetir contraseña" />
           </div>
 
           <div class="register__category-form block-input">
             <label for="category">Selecciona un perfil de usuario:</label>
-            <select name="category" id="category" required>
+            <select name="category" id="category" name="category" required>
               <option value="vendedor">Vendedor</option>
               <option value="cliente">Cliente</option>
             </select>
@@ -42,12 +42,12 @@
 
           <div class="register__image-form block-input">
             <label for="image" class="form-label">Imagen de perfil:</label>
-						<input type="file" id="image" name="image" accept=".jpg, .png" required>
+						<input type="file" id="image" name="image" name="image" accept=".jpg, .png" required>
           </div>
 
           <div class="register__date-form block-input">
             <label for="fechaNac" class="form-label">Fecha de Nacimiento:</label>
-            <input id="fechaNac"
+            <input id="fechaNac" name="fechaNac"
               class="register__input-date-form"
               type="date"
               placeholder="Fecha de nacimiento"
