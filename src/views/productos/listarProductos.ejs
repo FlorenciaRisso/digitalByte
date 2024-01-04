@@ -1,0 +1,65 @@
+<%- include ('../partials/head',{cssFile:'/css/altaProducto.css'}) %>
+
+    <body>
+        <%- include ('../partials/headerYNav') %>
+            <main class="main-alta">
+                <div class="section-listar">
+                    <button class="btn-nuevo-prod"><a href="/productos/create">Nuevo Producto</a></button>
+                    <section class="table-responsive">
+                        <table class="table-listar">
+                            <thead class="thead-listar">
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Descripción</th>
+                                    <th>Imagen</th>
+                                    <th>Imagen 1</th>
+                                    <th>Imagen 2</th>
+                                    <th>Imagen 3</th>
+                                    <th>Categoría</th>
+                                    <th>Precio</th>
+                                    <th colspan="2" style="text-align:center;">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% productos.forEach(producto=> { %>
+                                    <tr>
+                                        <td>
+                                            <%= producto.name %>
+                                        </td>
+                                        <td class="td-descripcion">
+                                            <p class="p-descripcion">
+                                                <%= producto.description %>
+                                            </p>
+                                        </td>
+                                        <td><img src="<%= producto.image0 %>" alt="Imagen del producto"></td>
+                                        <td><img src="<%= producto.image1 %>" alt="Imagen del producto-1"></td>
+                                        <td><img src="<%= producto.image2 %>" alt="Imagen del producto-2"></td>
+                                        <td><img src="<%= producto.image3 %>" alt="Imagen del producto-3"></td>
+                                        <td>
+                                            <%= producto.category.name %>
+                                        </td>
+                                        <td>$<%= funcion.getPrecioFormateado(producto.price) %>
+                                        </td>
+                                        <td>
+                                            <a href="/productos/editar/<%=producto.id%>"><i
+                                                    class="fa-solid fa-pen-to-square fa-lg"></i></a>
+                                            <form action="/productos/delete/<%=producto.id %>?_method=delete"
+                                                method="post" style="display: inline-flex">
+                                                <button type="submit" class="btn-delete"><i
+                                                        class="fa-solid fa-trash fa-lg"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+
+                                    <% }) %>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </main>
+
+            <%- include ('../partials/footer') %>
+    </body>
+    <%- include ('../partials/script-menu') %>
+
+        </html>
