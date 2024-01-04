@@ -1,4 +1,3 @@
-const path = require('path');
 const productService = require('../data/productService');
 const funcion=require('../data/funcion')
 

@@ -5,23 +5,23 @@ const funcion = require('../data/funcion')
 let productController = {
     index: (req, res) => {
         let productos = productService.products;
-        res.render('products/index', { productos: productos, funcion: funcion })
+        res.render('productos/index', { productos: productos, funcion: funcion })
     },
     carrito: (req, res) => {
         let productos = productService.products;
-        res.render('products/productCart', { productos: productos, funcion: funcion });
+        res.render('productos/productCart', { productos: productos, funcion: funcion });
     },
     listarProductosPorCat: (req, res) => {
         let productos = productService.getProdPorCat(req);
-        res.render('products/categoria', { productos: productos, funcion: funcion });
+        res.render('productos/categoria', { productos: productos, funcion: funcion });
     },
     detalle: (req, res) => {
         let producto = productService.getOne(req);
         let productos = productService.getAll();
-        res.render('products/productDetail', { producto: producto, productos: productos, funcion: funcion });
+        res.render('productos/productDetail', { producto: producto, productos: productos, funcion: funcion });
     },
     altaProducto: (req, res) => {
-        res.render('products/altaProducto', { funcion: funcion })
+        res.render('productos/altaProducto', { funcion: funcion })
     },
     save: (req, res) => {
         productService.save(req);
@@ -29,7 +29,7 @@ let productController = {
     },
     editProducto: (req, res) => {
         let producto = productService.getOne(req);
-        res.render('products/editProducto', { producto: producto, funcion: funcion })
+        res.render('productos/editProducto', { producto: producto, funcion: funcion })
     },
     update: (req, res) => {
         productService.update(req);
@@ -43,7 +43,7 @@ let productController = {
     },
     listarProductos: (req, res) => {
         let productos = productService.products;
-        res.render('products/listarProductos', { productos: productos, funcion: funcion })
+        res.render('productos/listarProductos', { productos: productos, funcion: funcion })
     }
 }
 
