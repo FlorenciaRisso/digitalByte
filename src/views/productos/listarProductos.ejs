@@ -44,8 +44,9 @@
                                             <a href="/productos/editar/<%=producto.id%>"><i
                                                     class="fa-solid fa-pen-to-square fa-lg"></i></a>
                                             <form action="/productos/delete/<%=producto.id %>?_method=delete"
-                                                method="post" style="display: inline-flex">
-                                                <button type="submit" class="btn-delete"><i
+                                                method="post" style="display: inline-flex" id="form_delete">
+                                                <button type="submit" class="btn-delete"
+                                                    data-product-id="<%=producto.id %>"><i
                                                         class="fa-solid fa-trash fa-lg"></i></button>
                                             </form>
                                         </td>
@@ -61,5 +62,32 @@
             <%- include ('../partials/footer') %>
     </body>
     <%- include ('../partials/script-menu') %>
+        <script>
+            $(document).ready(() => {
+                $('.btn-delete').click((e) => {
+                    e.preventDefault(); Swal.fire({
+                        title: "Estas seguro?",
+                        text: "No podras revertirlo!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Si, eliminar!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            const productId = $(e.currentTarget).data('product-id');
+                            const form = $(e.currentTarget).closest('#form_delete');
+                            form.attr('action', `/productos/delete/${productId}?_method=delete`);
+                            form.submit();
+                            Swal.fire({
+                                title: "Eliminado!",
+                                text: "El producto fue eliminado!.",
+                                icon: "success"
+                            });
+                        }
+                    });
+                });
+            });
+        </script>
 
         </html>
