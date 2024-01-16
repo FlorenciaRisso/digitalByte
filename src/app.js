@@ -9,10 +9,12 @@ const path=require('path');
 
 const bodyParser = require('body-parser');
 
-//define method 
+
 const methodOverride =  require('method-override');
+const session = require('express-session');
 
 const indexRouter = require('./routes/index.routes');
+app.use(session({secret: 'secret', resave: false, saveUninitialized: false}))
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 //Usando recursos estaticos

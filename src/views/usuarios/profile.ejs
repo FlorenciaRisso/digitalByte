@@ -1,0 +1,21 @@
+<%-include ('../partials/head',{cssFile:'/css/styleRegistro.css'})%>
+
+<body>
+    <%-include ('partials/headerYNav') %>
+
+
+    <div class="container" >
+        <div class="row">
+            <div class="col-md-3">
+                <h2>Hi <%= user.name %></h2>
+                <img src="/public/img/<%= user.avatar %>" alt="">
+                <br>
+                <br>
+                <div class="alert alert-success"><%= user.email %></div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+<%- include ('partials/footer') %>

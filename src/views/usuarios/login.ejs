@@ -15,11 +15,16 @@
         <div class="container-login">
           <form class="login__form">
             <div class="login__email-form">
-              <input class="login__input-form" type="email" placeholder="Correo electronico" required />
+              <input class="login__input-form" type="email" placeholder="Correo electronico">
+              <% if(locals.errors && errors. email){ %>
+                <div class="text-danger">
+                  <% errors.password.msg %>
+                </div>
+                <% } %>
             </div>
 
             <div class="login__password-form">
-              <input class="login__input-form" type="password" placeholder="Contraseña" required />
+              <input class="login__input-form" type="password" placeholder="Contraseña">
             </div>
 
             <div class="login__buttons">
@@ -30,7 +35,7 @@
             </div>
           </form>
           <div class="footer_login">
-            <a href="/productos/Registro" class="register__link">Crear cuenta</a>
+            <a href="/usuarios/registro" class="register__link">Crear cuenta</a>
             <a href="">Olvide mi contraseña</a>
           </div>
         </div>

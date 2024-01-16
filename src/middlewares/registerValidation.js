@@ -10,7 +10,6 @@ const registerValidation = [
     check('password').notEmpty().withMessage('El campo contraseña no puede estar vacío'),
     check('confirmPassword').notEmpty().withMessage('Repite la contraseña'),
     check('country').notEmpty().withMessage('Debes seleccionar tu pais de nacimiento'),
-    check('fechaNac').notEmpty().withMessage('Debes especificar tu fecha de nacimiento'),
     check('category').notEmpty().withMessage('Debes elegir una categoría de usuario'),
     check('image').custom((value, {req}) => {
         let file = req.file;

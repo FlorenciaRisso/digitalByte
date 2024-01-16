@@ -1,303 +1,308 @@
 [
-    {
-        "id": 1,
-        "firstName": "platea dictumst",
-        "lastName": "habitasse platea",
-        "email": "lkaliszewski0@webnode.com",
-        "password": "pM3<&4YC$n2D}}0",
-        "rol": "Admin",
-        "avatar":"/img/perfiles/perfil-1.png",
-        "birthDate":"01/02/1998"
-    
-    },
-    {
-        "id": 2,
-        "firstName": "odio",
-        "lastName": "id",
-        "email": "bbrood1@de.vu",
-        "password": "xR5_URi7*T%MP.0{",
-        "rol": "Cliente",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 3,
-        "firstName": "enim",
-        "lastName": "diam neque",
-        "email": "abollom2@pbs.org",
-        "password": "lL8>$|k3%",
-        "rol": "Admin",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 4,
-        "firstName": "morbi a",
-        "lastName": "sapien",
-        "email": "dberling3@cloudflare.com",
-        "password": "rA1*4'NZ0DjA{*bK",
-        "rol": "Cliente",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 5,
-        "firstName": "interdum mauris",
-        "lastName": "nulla suspendisse",
-        "email": "cveschi4@odnoklassniki.ru",
-        "password": "gL9$9DOI3I22Z|?n",
-        "rol": "Vendedor",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 6,
-        "firstName": "donec",
-        "lastName": "velit eu",
-        "email": "hjanusz5@ow.ly",
-        "password": "fE4'3G%>7",
-        "rol": "Vendedor",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 7,
-        "firstName": "mauris",
-        "lastName": "dolor",
-        "email": "dbuncher6@wsj.com",
-        "password": "uK4(7,S0pI}'|Eb{",
-        "rol": "Cliente",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 8,
-        "firstName": "nulla",
-        "lastName": "potenti",
-        "email": "bcrickmer7@loc.gov",
-        "password": "sP3?lZ$7V51q|",
-        "rol": "Cliente",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 9,
-        "firstName": "in",
-        "lastName": "nulla integer",
-        "email": "fdran8@cbslocal.com",
-        "password": "zM1/u1vtV",
-        "rol": "Cliente",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 10,
-        "firstName": "in eleifend",
-        "lastName": "dignissim vestibulum",
-        "email": "maggott9@hugedomains.com",
-        "password": "tP0}}9Kqgp_E(5ge",
-        "rol": "Admin",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 11,
-        "firstName": "justo morbi",
-        "lastName": "pellentesque eget",
-        "email": "cschobera@blogspot.com",
-        "password": "fW5#i>Jd`TM5\\",
-        "rol": "Cliente",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 12,
-        "firstName": "non velit",
-        "lastName": "tristique",
-        "email": "cbloyb@wufoo.com",
-        "password": "cZ7?d!B7sHRu'W",
-        "rol": "Vendedor",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 13,
-        "firstName": "at feugiat",
-        "lastName": "cursus urna",
-        "email": "amalyanc@yale.edu",
-        "password": "hM2}GK(w+oU",
-        "rol": "Cliente",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 14,
-        "firstName": "curabitur at",
-        "lastName": "vitae quam",
-        "email": "dlebretond@springer.com",
-        "password": "tL1,)(X0N3e",
-        "rol": "Vendedor",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 15,
-        "firstName": "turpis eget",
-        "lastName": "amet",
-        "email": "mgherardescie@buzzfeed.com",
-        "password": "bH6.VG0E",
-        "rol": "Vendedor",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 16,
-        "firstName": "felis",
-        "lastName": "dui nec",
-        "email": "wkleintf@weather.com",
-        "password": "nF0<dMs/.R+nX+a6",
-        "rol": "Admin",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 17,
-        "firstName": "vel",
-        "lastName": "orci mauris",
-        "email": "ltreacherg@stumbleupon.com",
-        "password": "uH0$.EkM4+Nq",
-        "rol": "Admin",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 18,
-        "firstName": "nec",
-        "lastName": "velit id",
-        "email": "ndurandh@360.cn",
-        "password": "yK3~(i$u#F)%qtF",
-        "rol": "Cliente",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 19,
-        "firstName": "sed interdum",
-        "lastName": "convallis",
-        "email": "tfruishi@jugem.jp",
-        "password": "wP7|cJkchW1{J1y)",
-        "rol": "Admin",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 20,
-        "firstName": "a libero",
-        "lastName": "in",
-        "email": "vteapej@baidu.com",
-        "password": "yC4>wg6khD4$h+b>",
-        "rol": "Vendedor",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 21,
-        "firstName": "felis sed",
-        "lastName": "etiam",
-        "email": "cklemzk@abc.net.au",
-        "password": "aW3)HtX*yk+VEb0M",
-        "rol": "Vendedor",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 22,
-        "firstName": "enim",
-        "lastName": "varius",
-        "email": "jorfordl@free.fr",
-        "password": "yS5%fZ4v(",
-        "rol": "Vendedor",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 23,
-        "firstName": "aliquet ultrices",
-        "lastName": "nunc",
-        "email": "mcockliem@weather.com",
-        "password": "iX3/o4LTbh>",
-        "rol": "Cliente",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 24,
-        "firstName": "volutpat",
-        "lastName": "nunc rhoncus",
-        "email": "nburnagen@wordpress.org",
-        "password": "kF0#ls_4`\"o+h|C",
-        "rol": "Cliente",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 25,
-        "firstName": "amet lobortis",
-        "lastName": "sit",
-        "email": "sfooteo@jugem.jp",
-        "password": "oP8$B)`sFxS\\WA",
-        "rol": "Cliente",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 26,
-        "firstName": "luctus ultricies",
-        "lastName": "duis",
-        "email": "asommertonp@bravesites.com",
-        "password": "iE8(CO,1BaJq\\#<W",
-        "rol": "Cliente",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 27,
-        "firstName": "amet",
-        "lastName": "erat nulla",
-        "email": "bgayeq@4shared.com",
-        "password": "gL6'q~R#.uXf",
-        "rol": "Admin",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 28,
-        "firstName": "est congue",
-        "lastName": "nulla",
-        "email": "tmckewr@time.com",
-        "password": "cS2*eXKjM_MH@l",
-        "rol": "Admin",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 29,
-        "firstName": "vestibulum",
-        "lastName": "a suscipit",
-        "email": "vmurkins@parallels.com",
-        "password": "oO0(DF%97L",
-        "rol": "Cliente",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    },
-    {
-        "id": 30,
-        "firstName": "orci",
-        "lastName": "potenti nullam",
-        "email": "rgowriet@yolasite.com",
-        "password": "eZ2!oA}\\WO",
-        "rol": "Vendedor",
-        "avatar":"",
-        "birthDate":"01/02/1998"
-    }
+ {
+  "id": 1,
+  "firstName": "platea dictumst",
+  "lastName": "habitasse platea",
+  "email": "lkaliszewski0@webnode.com",
+  "password": "pM3<&4YC$n2D}}0",
+  "rol": "Admin",
+  "avatar": "/img/perfiles/perfil-1.png",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 2,
+  "firstName": "odio",
+  "lastName": "id",
+  "email": "bbrood1@de.vu",
+  "password": "xR5_URi7*T%MP.0{",
+  "rol": "Cliente",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 3,
+  "firstName": "enim",
+  "lastName": "diam neque",
+  "email": "abollom2@pbs.org",
+  "password": "lL8>$|k3%",
+  "rol": "Admin",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 4,
+  "firstName": "morbi a",
+  "lastName": "sapien",
+  "email": "dberling3@cloudflare.com",
+  "password": "rA1*4'NZ0DjA{*bK",
+  "rol": "Cliente",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 5,
+  "firstName": "interdum mauris",
+  "lastName": "nulla suspendisse",
+  "email": "cveschi4@odnoklassniki.ru",
+  "password": "gL9$9DOI3I22Z|?n",
+  "rol": "Vendedor",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 6,
+  "firstName": "donec",
+  "lastName": "velit eu",
+  "email": "hjanusz5@ow.ly",
+  "password": "fE4'3G%>7",
+  "rol": "Vendedor",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 7,
+  "firstName": "mauris",
+  "lastName": "dolor",
+  "email": "dbuncher6@wsj.com",
+  "password": "uK4(7,S0pI}'|Eb{",
+  "rol": "Cliente",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 8,
+  "firstName": "nulla",
+  "lastName": "potenti",
+  "email": "bcrickmer7@loc.gov",
+  "password": "sP3?lZ$7V51q|",
+  "rol": "Cliente",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 9,
+  "firstName": "in",
+  "lastName": "nulla integer",
+  "email": "fdran8@cbslocal.com",
+  "password": "zM1/u1vtV",
+  "rol": "Cliente",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 10,
+  "firstName": "in eleifend",
+  "lastName": "dignissim vestibulum",
+  "email": "maggott9@hugedomains.com",
+  "password": "tP0}}9Kqgp_E(5ge",
+  "rol": "Admin",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 11,
+  "firstName": "justo morbi",
+  "lastName": "pellentesque eget",
+  "email": "cschobera@blogspot.com",
+  "password": "fW5#i>Jd`TM5\\",
+  "rol": "Cliente",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 12,
+  "firstName": "non velit",
+  "lastName": "tristique",
+  "email": "cbloyb@wufoo.com",
+  "password": "cZ7?d!B7sHRu'W",
+  "rol": "Vendedor",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 13,
+  "firstName": "at feugiat",
+  "lastName": "cursus urna",
+  "email": "amalyanc@yale.edu",
+  "password": "hM2}GK(w+oU",
+  "rol": "Cliente",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 14,
+  "firstName": "curabitur at",
+  "lastName": "vitae quam",
+  "email": "dlebretond@springer.com",
+  "password": "tL1,)(X0N3e",
+  "rol": "Vendedor",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 15,
+  "firstName": "turpis eget",
+  "lastName": "amet",
+  "email": "mgherardescie@buzzfeed.com",
+  "password": "bH6.VG0E",
+  "rol": "Vendedor",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 16,
+  "firstName": "felis",
+  "lastName": "dui nec",
+  "email": "wkleintf@weather.com",
+  "password": "nF0<dMs/.R+nX+a6",
+  "rol": "Admin",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 17,
+  "firstName": "vel",
+  "lastName": "orci mauris",
+  "email": "ltreacherg@stumbleupon.com",
+  "password": "uH0$.EkM4+Nq",
+  "rol": "Admin",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 18,
+  "firstName": "nec",
+  "lastName": "velit id",
+  "email": "ndurandh@360.cn",
+  "password": "yK3~(i$u#F)%qtF",
+  "rol": "Cliente",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 19,
+  "firstName": "sed interdum",
+  "lastName": "convallis",
+  "email": "tfruishi@jugem.jp",
+  "password": "wP7|cJkchW1{J1y)",
+  "rol": "Admin",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 20,
+  "firstName": "a libero",
+  "lastName": "in",
+  "email": "vteapej@baidu.com",
+  "password": "yC4>wg6khD4$h+b>",
+  "rol": "Vendedor",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 21,
+  "firstName": "felis sed",
+  "lastName": "etiam",
+  "email": "cklemzk@abc.net.au",
+  "password": "aW3)HtX*yk+VEb0M",
+  "rol": "Vendedor",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 22,
+  "firstName": "enim",
+  "lastName": "varius",
+  "email": "jorfordl@free.fr",
+  "password": "yS5%fZ4v(",
+  "rol": "Vendedor",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 23,
+  "firstName": "aliquet ultrices",
+  "lastName": "nunc",
+  "email": "mcockliem@weather.com",
+  "password": "iX3/o4LTbh>",
+  "rol": "Cliente",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 24,
+  "firstName": "volutpat",
+  "lastName": "nunc rhoncus",
+  "email": "nburnagen@wordpress.org",
+  "password": "kF0#ls_4`\"o+h|C",
+  "rol": "Cliente",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 25,
+  "firstName": "amet lobortis",
+  "lastName": "sit",
+  "email": "sfooteo@jugem.jp",
+  "password": "oP8$B)`sFxS\\WA",
+  "rol": "Cliente",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 26,
+  "firstName": "luctus ultricies",
+  "lastName": "duis",
+  "email": "asommertonp@bravesites.com",
+  "password": "iE8(CO,1BaJq\\#<W",
+  "rol": "Cliente",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 27,
+  "firstName": "amet",
+  "lastName": "erat nulla",
+  "email": "bgayeq@4shared.com",
+  "password": "gL6'q~R#.uXf",
+  "rol": "Admin",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 28,
+  "firstName": "est congue",
+  "lastName": "nulla",
+  "email": "tmckewr@time.com",
+  "password": "cS2*eXKjM_MH@l",
+  "rol": "Admin",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 29,
+  "firstName": "vestibulum",
+  "lastName": "a suscipit",
+  "email": "vmurkins@parallels.com",
+  "password": "oO0(DF%97L",
+  "rol": "Cliente",
+  "avatar": "",
+  "birthDate": "01/02/1998"
+ },
+ {
+  "id": 30,
+  "name": "asda",
+  "apellido": "asdas",
+  "email": "asd@gmail.com",
+  "password": "$2a$10$Fkqi.uCKNVLL4Dp7vEGiou6K7UEFJdabiOTnXrGZOG9Ig3vaUGV7W",
+  "avatar": "1705415438627_img_.png"
+ },
+ {
+  "id": 31,
+  "name": "Flor",
+  "apellido": "Risso",
+  "email": "flor@gmail.com",
+  "password": "$2a$10$jcO1z1uwkJhV606lFenII.DsffnvjPitKKjz2snFrWnVuzCve21vK",
+  "avatar": "1705415493473_img_.png"
+ }
 ]

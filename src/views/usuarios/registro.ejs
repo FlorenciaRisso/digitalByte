@@ -90,7 +90,7 @@
               <option value="">Elige una categoría</option>
               <% let categories=["Vendedor", "Cliente" ] %>
                 <% for (const oneCategory of categories) { %>
-                  <option value="<% oneCategory %>">
+                  <option value="<%= oneCategory %>">
                     <%= oneCategory %>
                   </option>
                   <% } %>
@@ -109,11 +109,12 @@
             <select 
             name="country"
             class="<%= locals.errors && errors.country ? 'is-invalid' : null %>" >
-              <option value="">Elegí un país</option>
+              <option value="">Elige un país</option>
               <% let countries=[ "Argentina" , "Bolivia" , "Chile" , "Uruguay" , "Paraguay" , "Colombia" , "Ecuador"
                 , "Perú" ]; %>
+                
                 <% for (const oneCountry of countries) { %>
-                  <option value="<% oneCountry %>"
+                  <option value="<%= oneCountry %>"
                     <%= locals.oldData && (oneCountry === oldData.country) ? 'selected' : null  %>
                     > <%= oneCountry %></option>
                   <% } %>
@@ -126,19 +127,7 @@
               <% } %>
           </div>
 
-
-          <div class="register__date-form block-input">
-            <label for="fechaNac" class="form-label"><b>Fecha de Nacimiento</b></label>
-            <input id="fechaNac" type="date" placeholder="Fecha de nacimiento"
-              class="register__input-date-form <%= locals.errors && errors.fechaNac ? 'is-invalid' : null %>">
-            <% if(locals.errors && errors.fechaNac) { %>
-              <div class="text-danger">
-                <%= errors.fechaNac.msg %>
-              </div>
-              <% } %>
-          </div>
-
-
+          
           <div class="register__image-form block-input">
             <label class="form-label"><b>Imagen de perfil:</b></label>
             <input type="file" name="image" accept=".jpg, .png">
