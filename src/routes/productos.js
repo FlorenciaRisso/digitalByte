@@ -6,11 +6,11 @@ const productController = require('../controllers/productController')
 
 router.get('/', productController.index);
 router.get('/carrito', productController.carrito);
-router.get('/listar', productController.listarProductos); //solo admin
+router.get('/lista', productController.lista); //solo admin
 //listar
-router.get('/categoria',productController.listarProductosPorCat);
+router.get('/categoria',productController.listaPorCat);
 //crear
-router.get('/create', productController.altaProducto);
+router.get('/create', productController.create);
 router.post('/create', uploadFile.fields([
     { name: 'image0', maxCount: 1 },
     { name: 'image1', maxCount: 1 },

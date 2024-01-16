@@ -7,11 +7,15 @@ let productController = {
         let productos = productService.products;
         res.render('productos/index', { productos: productos, funcion: funcion })
     },
+    lista: (req, res) => {
+        let productos = productService.products;
+        res.render('productos/lista', { productos: productos, funcion: funcion })
+    },
     carrito: (req, res) => {
         let productos = productService.products;
         res.render('productos/productCart', { productos: productos, funcion: funcion });
     },
-    listarProductosPorCat: (req, res) => {
+    listaPorCat: (req, res) => {
         let productos = productService.getProdPorCat(req);
         res.render('productos/categoria', { productos: productos, funcion: funcion });
     },
@@ -20,8 +24,8 @@ let productController = {
         let productos = productService.getAll();
         res.render('productos/productDetail', { producto: producto, productos: productos, funcion: funcion });
     },
-    altaProducto: (req, res) => {
-        res.render('productos/altaProducto', { funcion: funcion })
+    create: (req, res) => {
+        res.render('productos/create', { funcion: funcion })
     },
     save: (req, res) => {
         productService.save(req);
@@ -40,10 +44,7 @@ let productController = {
         productService.delete(req);
         res.redirect('/productos/listar');
     },
-    listarProductos: (req, res) => {
-        let productos = productService.products;
-        res.render('productos/listarProductos', { productos: productos, funcion: funcion })
-    }
+
 }
 
 module.exports = productController;

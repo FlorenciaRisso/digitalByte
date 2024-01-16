@@ -1,55 +1,101 @@
 const { json } = require('body-parser');
 const fs = require('fs');
 const path = require('path');
+const bcryptjs = require('bcryptjs');
 const userRouter = path.join(__dirname, '../data/jsonUsuarios.json');
-const usuarios = JSON.parse(fs.readFileSync(userRouter,'utf-8'));
+const usuariosArray = JSON.parse(fs.readFileSync(userRouter, 'utf-8'));
+const { validationResult } = require('express-validator');
 
-const users = {
-    allUser: usuarios,
+const userService = {
 
-    getData: function(){
-        return this.allUser;
+    users: usuariosArray,
+
+    getData: function () {
+        return this.users;
     },
 
-    findAll: function(){
+    findAll: function () {
         return this.getData()
     },
 
-    findByPk: function(id){
+    getOne: function (req, res) {
+        let user = this.users.find((user) => { return user.id == req.params.id });
+        return user;
+    },
+
+    findByPk: function (id) {
         let allUsers = this.findAll();
         let userFound = allUsers.find(oneUser => oneUser.id === id)
         return userFound;
     },
 
-    findByField: function(field, text){
+    findByField: function (field, text) {
         let allUsers = this.findAll();
         let userFound = allUsers.find(oneUser => oneUser[field] === text)
         return userFound;
     },
 
-    create: function(userData){
+    create: function (userData) {
         let allUsers = this.findAll();
-        newUser={
+        newUser = {
             id: this.generateId(),
             ...userData
         }
         allUsers.push(newUser);
-        fs.writeFileSync(userRouter, JSON.stringify(this.allUser, null, " "));
+        fs.writeFileSync(userRouter, JSON.stringify(this.users, null, " "));
         return newUser;
     },
 
-    generateId: function(){
-        let allUsers = this.allUser;
+    save: function (req, res) {
+        let errors = [];
+        errors = validationResult(req);
+        let userInDB = this.findByField('email', req.body.email);
+
+        if (userInDB) {
+            errors.errors.push({
+                type: 'field',
+                value: req.body,
+                msg: 'El email ya existe',
+                path: 'email',
+                location: 'body'
+            })
+            console.log(errors)
+        }
+
+
+
+        if (errors.errors.length > 0) {
+            return { errors: errors };
+        }
+
+        let userToCreate = {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            password: bcryptjs.hashSync(req.body.password, 10),
+            image: '/img/perfiles/' + req.file.filename
+        }
+
+        let userCreated = this.create(userToCreate);
+
+        return {
+            success: true,
+            userCreated: true
+        };
+    },
+
+    generateId: function () {
+        let allUsers = this.users;
         let lastUser = allUsers[allUsers.length - 1];
         return lastUser.id + 1;
     },
 
-    delete: function(id){
-        let allUsers = this.allUser;
+    delete: function (id) {
+        let allUsers = this.users;
         let finalUsers = allUsers.filter(oneUser => oneUser.id !== id);
-        fs.writeFileSync(this.allUser, JSON.stringify(finalUsers, null, " "));
-        return true
+        fs.writeFileSync(userRouter, JSON.stringify(finalUsers, null, " "));
+        return true;
     }
 
 }
-module.exports = users;
+module.exports = userService;

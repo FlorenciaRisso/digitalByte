@@ -1,18 +1,27 @@
 const path = require('path');
 const fs = require('fs');
 const bcrypt = require('bcrypt');
-const { validationResult } = require('express-validator');
+
 const users = require('../data/userService')
-const bcryptjs = require('bcryptjs');
+
+const userService = require('../data/userService');
 
 let userController = {
 
-    profile: (req, res) => {
-        res.render('usuarios/profile', {usuario: req.session.usuarioLogueado})
+    lista: (req, res) => {
+        let usuarios = userService.users;
+        res.render('usuarios/lista', { usuarios: usuarios })
     },
 
-    lista: (req, res) => {
-        res.render('usuarios/lista')
+    profile: (req, res) => {
+        console.log('Usuario en sesión:', req.session.usuarioLogueado);
+        res.render('usuarios/profile', { usuario: req.session.usuarioLogueado })
+    },
+
+    edit: (req, res) => {
+        let userId = req.params.id;
+        let usuario = userService.getOne(userId);
+        res.render('usuarios/editar', { usuario: usuario });
     },
 
     registro: (req, res) => {
@@ -20,41 +29,18 @@ let userController = {
     },
 
     processRegister: (req, res) => {
-        let errors = validationResult(req);
-
-
-        if (errors.errors.length > 0) {
-            return res.render('usuarios/registro', {
-                errors: errors.mapped(),
-                oldData: req.body
-            });
+        let resultado = userService.save(req);
+        if (resultado.success == true) {
+            res.redirect('/usuarios/login')
+        } else if (resultado.errors) {
+            res.render('usuarios/registro', {
+                errors: resultado.errors.mapped()
+            })
+        } else {
+            res.render('usuarios/registro',{
+                errors: resultado.errors.email
+            })
         }
-
-        let userInDB = users.findByField('email', req.body.email);
-        console.log(userInDB)
-
-        if (userInDB) {
-            return res.render('usuarios/registro', {
-                errors: {
-                    email: {
-                        msg: 'Este email ya está registrado'
-                    }
-                },
-                oldData: req.body
-            });
-        }
-
-        let userToCreate = {
-            name: req.body.name,
-            apellido: req.body.apellido,
-            email: req.body.email,
-            password: bcryptjs.hashSync(req.body.password, 10),
-            avatar: req.file.filename
-        }
-
-        let userCreated = users.create(userToCreate);
-
-        return res.redirect('/usuarios/login')
     },
 
 
@@ -64,19 +50,18 @@ let userController = {
     },
 
     processLogin: (req, res) => {
-        let userToLogin = users.findByField('email', req.body.email);
+        let userToLogin = users.findByField('email', req.body.email); // BUSQUEDA EMAIL EXISTENTE
 
         if (userToLogin) {
-            let correctPassword = bcryptjs.compareSync(req.body.password, userToLogin.password)
-            console.log('Correct Password:', correctPassword);
+            let correctPassword = bcrypt.compareSync(req.body.password, userToLogin.password) //VERIFICA CONTRASEÑA
 
-            if (correctPassword) {
+            if (correctPassword) { //SI LA CONTRASEÑA ES CORRECTA, REDIRECCIONA AL PERFIL DEL USUARIO
                 delete userToLogin.password
                 req.session.usuarioLogueado = userToLogin
-                return res.redirect('usuarios/profile');
+                return res.redirect('/usuarios/profile');
             }
-            console.log('Incorrect Password');
-            return res.render('usuarios/login', {
+
+            return res.render('usuarios/login', { //REDIRECCIONA A LA MISMA PAGINA Y MUESTRA LOS ERRORES
                 errors: {
                     email: {
                         msg: "Datos incorrectos"
@@ -86,7 +71,7 @@ let userController = {
         }
 
 
-        return res.render('login', {
+        return res.render('login', { //MUESTRA ERROR EMAIL INEXISTENTE
             errors: {
                 email: {
                     msg: "Email inexistente"

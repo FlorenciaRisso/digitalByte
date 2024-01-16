@@ -16,28 +16,28 @@
 
 
           <div class="register__firstname-form block-input">
-            <input type="text" name="name"
-              class="register__input-form <%= locals.errors && errors.name ? 'is-invalid' : null %>" 
+            <input type="text" name="firstName"
+              class="register__input-form <%= locals.errors && errors.firstName ? 'is-invalid' : null %>" 
               placeholder="Nombre" 
-              value="<%= locals.oldData ? oldData.name : null %>">
+              value="<%= locals.oldData ? oldData.firstName : null %>">
 
-            <% if(locals.errors && errors.name) {%>
+            <% if(locals.errors && errors.firstName) {%>
               <div class="text-danger">
-                <%= errors.name.msg %>
+                <%= errors.firstName.msg %>
               </div>
               <% } %>
           </div>
 
 
           <div class="register__lastname-form block-input">
-            <input type="text" name="apellido"
-              class="<%= locals.errors && errors.apellido ? 'is-invalid' : null %>" 
+            <input type="text" name="lastName"
+              class="<%= locals.errors && errors.lastName ? 'is-invalid' : null %>" 
               placeholder="Apellido" 
-              value="<%= locals.oldData ? oldData.apellido : null %>">
+              value="<%= locals.oldData ? oldData.lastName : null %>">
 
-            <% if(locals.errors && errors.apellido) {%>
+            <% if(locals.errors && errors.lastName) {%>
               <div class="text-danger">
-                <%= errors.apellido.msg %>
+                <%= errors.lastName.msg %>
               </div>
               <% } %>
           </div>

@@ -6,7 +6,7 @@
   "email": "lkaliszewski0@webnode.com",
   "password": "pM3<&4YC$n2D}}0",
   "rol": "Admin",
-  "avatar": "/img/perfiles/perfil-1.png",
+  "image": "/img/perfiles/perfil-1.png",
   "birthDate": "01/02/1998"
  },
  {
@@ -16,7 +16,7 @@
   "email": "bbrood1@de.vu",
   "password": "xR5_URi7*T%MP.0{",
   "rol": "Cliente",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -26,7 +26,7 @@
   "email": "abollom2@pbs.org",
   "password": "lL8>$|k3%",
   "rol": "Admin",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -36,7 +36,7 @@
   "email": "dberling3@cloudflare.com",
   "password": "rA1*4'NZ0DjA{*bK",
   "rol": "Cliente",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -46,7 +46,7 @@
   "email": "cveschi4@odnoklassniki.ru",
   "password": "gL9$9DOI3I22Z|?n",
   "rol": "Vendedor",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -56,7 +56,7 @@
   "email": "hjanusz5@ow.ly",
   "password": "fE4'3G%>7",
   "rol": "Vendedor",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -66,7 +66,7 @@
   "email": "dbuncher6@wsj.com",
   "password": "uK4(7,S0pI}'|Eb{",
   "rol": "Cliente",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -76,7 +76,7 @@
   "email": "bcrickmer7@loc.gov",
   "password": "sP3?lZ$7V51q|",
   "rol": "Cliente",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -86,7 +86,7 @@
   "email": "fdran8@cbslocal.com",
   "password": "zM1/u1vtV",
   "rol": "Cliente",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -96,7 +96,7 @@
   "email": "maggott9@hugedomains.com",
   "password": "tP0}}9Kqgp_E(5ge",
   "rol": "Admin",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -106,7 +106,7 @@
   "email": "cschobera@blogspot.com",
   "password": "fW5#i>Jd`TM5\\",
   "rol": "Cliente",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -116,7 +116,7 @@
   "email": "cbloyb@wufoo.com",
   "password": "cZ7?d!B7sHRu'W",
   "rol": "Vendedor",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -126,7 +126,7 @@
   "email": "amalyanc@yale.edu",
   "password": "hM2}GK(w+oU",
   "rol": "Cliente",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -136,7 +136,7 @@
   "email": "dlebretond@springer.com",
   "password": "tL1,)(X0N3e",
   "rol": "Vendedor",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -146,7 +146,7 @@
   "email": "mgherardescie@buzzfeed.com",
   "password": "bH6.VG0E",
   "rol": "Vendedor",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -156,7 +156,7 @@
   "email": "wkleintf@weather.com",
   "password": "nF0<dMs/.R+nX+a6",
   "rol": "Admin",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -166,7 +166,7 @@
   "email": "ltreacherg@stumbleupon.com",
   "password": "uH0$.EkM4+Nq",
   "rol": "Admin",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -176,7 +176,7 @@
   "email": "ndurandh@360.cn",
   "password": "yK3~(i$u#F)%qtF",
   "rol": "Cliente",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -186,7 +186,7 @@
   "email": "tfruishi@jugem.jp",
   "password": "wP7|cJkchW1{J1y)",
   "rol": "Admin",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -196,7 +196,7 @@
   "email": "vteapej@baidu.com",
   "password": "yC4>wg6khD4$h+b>",
   "rol": "Vendedor",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -206,7 +206,7 @@
   "email": "cklemzk@abc.net.au",
   "password": "aW3)HtX*yk+VEb0M",
   "rol": "Vendedor",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -216,7 +216,7 @@
   "email": "jorfordl@free.fr",
   "password": "yS5%fZ4v(",
   "rol": "Vendedor",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -226,7 +226,7 @@
   "email": "mcockliem@weather.com",
   "password": "iX3/o4LTbh>",
   "rol": "Cliente",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -236,7 +236,7 @@
   "email": "nburnagen@wordpress.org",
   "password": "kF0#ls_4`\"o+h|C",
   "rol": "Cliente",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -246,7 +246,7 @@
   "email": "sfooteo@jugem.jp",
   "password": "oP8$B)`sFxS\\WA",
   "rol": "Cliente",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -256,7 +256,7 @@
   "email": "asommertonp@bravesites.com",
   "password": "iE8(CO,1BaJq\\#<W",
   "rol": "Cliente",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -266,7 +266,7 @@
   "email": "bgayeq@4shared.com",
   "password": "gL6'q~R#.uXf",
   "rol": "Admin",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -276,7 +276,7 @@
   "email": "tmckewr@time.com",
   "password": "cS2*eXKjM_MH@l",
   "rol": "Admin",
-  "avatar": "",
+  "image": "",
   "birthDate": "01/02/1998"
  },
  {
@@ -286,23 +286,80 @@
   "email": "vmurkins@parallels.com",
   "password": "oO0(DF%97L",
   "rol": "Cliente",
-  "avatar": "",
+  "image": "1705423667722_img_.png",
   "birthDate": "01/02/1998"
  },
  {
   "id": 30,
-  "name": "asda",
-  "apellido": "asdas",
-  "email": "asd@gmail.com",
-  "password": "$2a$10$Fkqi.uCKNVLL4Dp7vEGiou6K7UEFJdabiOTnXrGZOG9Ig3vaUGV7W",
-  "avatar": "1705415438627_img_.png"
+  "firstName": "florencia",
+  "lastName": "risso",
+  "email": "florenciarisso@gmail.com",
+  "password": "$2a$10$SxTffyb6eBnISA5LCf59B.aNaU.y8zecM8bAWOnBAN/pse115I1de",
+  "image": "1705423856797_img_.png"
  },
  {
   "id": 31,
-  "name": "Flor",
-  "apellido": "Risso",
+  "firstName": "florr",
+  "lastName": "rissoo",
+  "email": "florr@gmail.com",
+  "password": "$2a$10$yKhVs93dnj.QKw0MhSwah.Y5e1V47b7cKEJl.k0klFg.p2SPqQ6v2",
+  "image": "uploads\\1705428312108_img_.png"
+ },
+ {
+  "id": 32,
+  "firstName": "asd",
+  "lastName": "asd",
+  "email": "asd@gmail.com",
+  "password": "$2a$10$OBLQm3qwLYplkY3AJjil2OLe8q/w1AgXfwJXTzH.uW7zRKR6KSUR2",
+  "image": "uploads\\1705428412182_img_.png"
+ },
+ {
+  "id": 33,
+  "firstName": "florencia",
+  "lastName": "risso",
   "email": "flor@gmail.com",
-  "password": "$2a$10$jcO1z1uwkJhV606lFenII.DsffnvjPitKKjz2snFrWnVuzCve21vK",
-  "avatar": "1705415493473_img_.png"
+  "password": "$2a$10$ufLcIfMNJqFTFIj8ebzvJuV/Y/.i9Rd6xbcrdTme23eo2R5UG0522",
+  "image": {
+   "fieldname": "image",
+   "originalname": "d3ln0y2-2c77d7ed-e281-4d78-8682-56ebce8d3ea7.png",
+   "encoding": "7bit",
+   "mimetype": "image/png",
+   "destination": "public/img",
+   "filename": "1705429865395_img_.png",
+   "path": "public\\img\\1705429865395_img_.png",
+   "size": 71566
+  }
+ },
+ {
+  "id": 34,
+  "firstName": "asdasd",
+  "lastName": "asdasd",
+  "email": "asdsa@gmail.com",
+  "password": "$2a$10$.IUUPZbLzbMF.KiTDYrGrO42L11s0UkP7ozy.aKApZH50fRpRAIH6",
+  "image": "1705430068115_img_.png"
+ },
+ {
+  "id": 35,
+  "firstName": "saa",
+  "lastName": "aaa",
+  "email": "aaa@gmail.com",
+  "password": "$2a$10$tv4mD1faZFXSYh.dVC.FheKh.CZXn4ZOjX/TYXgcRxqwmO1TuiUBm",
+  "image": "1705430454371_img_.png"
+ },
+ {
+  "id": 36,
+  "firstName": "aaa",
+  "lastName": "aaaaa",
+  "email": "aaaaa@gmail.com",
+  "password": "$2a$10$FIr/kGsCBkawUcVQRJkXP.M5YmMhDibukFxogBuZ.3fhO6h/PxJ6q",
+  "image": "image\\1705430847662_img_.png"
+ },
+ {
+  "id": 37,
+  "firstName": "aaaa",
+  "lastName": "bbbb",
+  "email": "aaaaaaaa@gmail.com",
+  "password": "$2a$10$Idvolnd7AR3LbaOWcCNXf.TzJBrqNsluSSxEcRe9qfxt35eHXIfrS",
+  "image": "/img/perfiles/1705442898161_img_.png"
  }
 ]
