@@ -5,6 +5,7 @@ const bcryptjs = require('bcryptjs');
 const userRouter = path.join(__dirname, '../data/jsonUsuarios.json');
 const usuariosArray = JSON.parse(fs.readFileSync(userRouter, 'utf-8'));
 const { validationResult } = require('express-validator');
+const bcrypt = require('bcrypt');
 
 const userService = {
 
@@ -73,7 +74,8 @@ const userService = {
             lastName: req.body.lastName,
             email: req.body.email,
             password: bcryptjs.hashSync(req.body.password, 10),
-            image:'/img/perfiles/'+req.file.filename
+            rol: req.body.category,
+            image: '/img/' + req.file.filename
         }
 
         let userCreated = this.create(userToCreate);
@@ -82,6 +84,20 @@ const userService = {
             success: true,
             userCreated: true
         };
+    },
+
+    validarUsuario: function (req) {
+        let validarEmail = this.findByField('email', req.body.email);
+        let validarContraseña = bcrypt.compareSync(req.body.password, validarEmail.password);
+
+
+        if (validarEmail && validarContraseña) {
+            delete validarEmail.password
+            req.session.usuarioLogueado = validarEmail
+            return true;
+        } else {
+            return false;
+        }
     },
 
     generateId: function () {

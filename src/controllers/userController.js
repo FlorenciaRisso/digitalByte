@@ -1,9 +1,5 @@
 const path = require('path');
 const fs = require('fs');
-const bcrypt = require('bcrypt');
-
-const users = require('../data/userService')
-
 const userService = require('../data/userService');
 
 let userController = {
@@ -37,7 +33,7 @@ let userController = {
                 errors: resultado.errors.mapped()
             })
         } else {
-            res.render('usuarios/registro',{
+            res.render('usuarios/registro', {
                 errors: resultado.errors.email
             })
         }
@@ -50,25 +46,20 @@ let userController = {
     },
 
     processLogin: (req, res) => {
-        let userToLogin = users.findByField('email', req.body.email); // BUSQUEDA EMAIL EXISTENTE
+        let usuarioValido = userService.validarUsuario(req);
+        let errors = [];
 
-        if (userToLogin) {
-            let correctPassword = bcrypt.compareSync(req.body.password, userToLogin.password) //VERIFICA CONTRASEÑA
-
-            if (correctPassword) { //SI LA CONTRASEÑA ES CORRECTA, REDIRECCIONA AL PERFIL DEL USUARIO
-                delete userToLogin.password
-                req.session.usuarioLogueado = userToLogin
-                return res.redirect('/usuarios/profile');
-            }
-
-            return res.render('usuarios/login', { //REDIRECCIONA A LA MISMA PAGINA Y MUESTRA LOS ERRORES
-                errors: {
-                    email: {
-                        msg: "Datos incorrectos"
-                    }
-                }
-            });
+        if (usuarioValido) {
+            res.redirect('/usuarios');
+        } else {
+            errors.errors.push({
+                type: 'field', value: req.body,
+                msg: 'Usuario incorrecto',
+                path: 'email', location: 'body'
+            })
         }
+        res.render('usuarios/login', {errors:errors.errors.mapped()});
+
 
 
         return res.render('login', { //MUESTRA ERROR EMAIL INEXISTENTE
@@ -79,6 +70,10 @@ let userController = {
             }
         });
     },
+
+    logout: (req, res) => {
+        req.session.logout();
+    }
 
 
 

@@ -16,6 +16,7 @@ router.get('/registro', userController.registro);
 router.post('/registro', uploadFile.single('image'), registerValidation, userController.processRegister)
 
 router.get('/editar/:id', userController.edit)
+router.get('/cerrarSesión', userController.logout)
 
 
 

@@ -13,22 +13,22 @@
           <h2 class="title">Inicia sesión</h2>
         </div>
         <div class="container-login">
-          <form class="login__form">
+          <form class="login__form" action="/usuarios/login" method="post">
             <div class="login__email-form">
-              <input class="login__input-form" type="email" placeholder="Correo electronico">
-              <% if(locals.errors && errors. email){ %>
+              <input class="login__input-form" name='email' type="email" placeholder="Correo electronico">
+              <% if(locals.errors && errors.errors.email){ %>
                 <div class="text-danger">
-                  <% errors.password.msg %>
+                  <% errors.email.msg %>
                 </div>
                 <% } %>
             </div>
 
             <div class="login__password-form">
-              <input class="login__input-form" type="password" placeholder="Contraseña">
+              <input class="login__input-form" name='password' type="password" placeholder="Contraseña">
             </div>
 
             <div class="login__buttons">
-              <button class="login__button">Iniciar Sesión</button>
+              <button class="login__button" type="submit">Iniciar Sesión</button>
               <button class="login__google-button">
                 <i class="fa-brands fa-google login__google-icon"></i>Inicia sesión con google
               </button>
