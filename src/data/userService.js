@@ -73,7 +73,7 @@ const userService = {
             lastName: req.body.lastName,
             email: req.body.email,
             password: bcryptjs.hashSync(req.body.password, 10),
-            image: '/img/perfiles/' + req.file.filename
+            image:'/img/perfiles/'+req.file.filename
         }
 
         let userCreated = this.create(userToCreate);

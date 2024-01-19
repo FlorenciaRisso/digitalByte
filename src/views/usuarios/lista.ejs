@@ -1,6 +1,6 @@
 <%-include ('../partials/head',{cssFile:'/css/stylesListaUsuarios.css'})%>
 <body>
-
+    <%-include ('../partials/headerYNav') %>
     <div class="container">
         <h1>Listado de Usuarios</h1>
         <% usuarios.forEach(usuario=> { %>
@@ -9,7 +9,8 @@
             <li>
                 <a href="/usuarios/<%=usuario.id %>">
                     <%= usuario.firstName %>
-                <img src= '/public/img/ <%=usuario.image %>' alt="image usuario">
+                <!-- la imagen se guarda con la ruta absoluta sin public, ejemplo: /img/nombre-image.png -->
+                <img src="<%=usuario.image%>" alt="image usuario"> 
                 <div class="user-info">
                     <h2></h2>
                     <p class="name-user"><%= usuario.firstName %></p>
