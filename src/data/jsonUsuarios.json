@@ -15,10 +15,10 @@
   "firstName": "Mara",
   "lastName": "Santillan",
   "email": "mara@gmail.com",
-  "password": "$2a$10$Fc6zwfd2C1UfVuq299Yf6enQpasc8.SMU3ezzku0QjyL4Y4Q8bpq.",
-  "rol": "Vendedor",
-  "country": "Argentina",
-  "image": "/img/1705798250516_img_.png"
+  "password": "mara",
+  "rol": "",
+  "country": "",
+  "image": "/img/1705864459431_img_.png"
  },
  {
   "id": 4,
@@ -32,12 +32,32 @@
  },
  {
   "id": 5,
-  "firstName": "aaa",
+  "firstName": "aaal",
   "lastName": "aaa",
-  "email": "aaa@fm.com",
-  "password": "$2a$10$1Hd./uviFvAd4ryQK6qYzOo5CIUMF0jn.EX1LUIRPGRLpgLsBqq6C",
+  "email": "aaaaa@fm.com",
+  "password": "",
+  "rol": "",
+  "country": "",
+  "image": "/img/1705863231942_img_.png"
+ },
+ {
+  "id": 6,
+  "firstName": "Flor",
+  "lastName": "Risso",
+  "email": "flor@gmail.com",
+  "password": "$2a$10$R0ribcU3YwAahjx8s4tCKupvKTvGY0WMejVOTqNhIDd02KgMqCDga",
+  "rol": "Cliente",
+  "country": "Argentina",
+  "image": "/img/1705865013485_img_.png"
+ },
+ {
+  "id": 7,
+  "firstName": "FLOR",
+  "lastName": "RISSO",
+  "email": "F@GMAIL.COM",
+  "password": "$2a$10$sCP4mkmXEklKgoBAXLCnM.361rU39Zw/zekh34dUy13quSjWi.tRW",
   "rol": "Vendedor",
   "country": "Argentina",
-  "image": "/img/1705805770243_img_.png"
+  "image": "/img/1705865773840_img_.png"
  }
 ]

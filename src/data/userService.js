@@ -20,8 +20,8 @@ const userService = {
     },
 
     getOne: function (userId) {
-       
-        let user = this.users.find((user) => user.id === userId );
+
+        let user = this.users.find((user) => user.id === userId);
         return user;
     },
 
@@ -99,6 +99,22 @@ const userService = {
             return true;
         } else {
             return false;
+        }
+    },
+
+    update: function (updatedUser) {
+        const userId = updatedUser.id;
+        const allUsers = this.findAll();
+
+        if (updatedUser.password) {
+            updatedUser.password = bcrypt.hashSync(updatedUser.password, 10);
+        }
+        
+        const userIndex = allUsers.findIndex(user => user.id === userId);
+
+        if (userIndex !== -1) {
+            allUsers[userIndex] = updatedUser;
+            fs.writeFileSync(userRouter, JSON.stringify(allUsers, null, ' '));
         }
     },
 

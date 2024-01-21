@@ -8,7 +8,7 @@
     <div class="container">
         <div class="profile-card">
             <div class="profile-header">
-                <h2 class="name-user">Hola <%= usuario.firstName %> <%= usuario.lastName %></h2>
+                <h2 class="name-user">Hola, <%= usuario.firstName %> <%= usuario.lastName %>!</h2>
             </div>
             <div class="profile-body">
                 <img src="<%= usuario.image %>" alt="" class="profile-image">
@@ -17,11 +17,9 @@
                     <p><strong>Rol:</strong> <%= usuario.rol %></p>
                     <p><strong>Email:</strong> <%= usuario.email %></p>
                 </div>
-                <div class="alert alert-success">¡<%= usuario.firstName %>, gracias por visitar tu perfil!</div>
             </div>
-            <!-- Botones de edición y eliminación (solo visible para el administrador) -->
             <div class="action-buttons">
-                <a href="/usuarios/editar/<%= usuario.id %>" class="btn btn-primary">Editar</a>
+                <a href="/usuarios/edit/<%= usuario.id %>" class="btn btn-primary">Editar</a>
                 <form action="/usuarios/eliminar/<%= usuario.id %>" method="post" onsubmit="return confirm('¿Estás seguro?');">
                     <button type="submit" class="btn btn-danger">Eliminar</button>
                 </form>

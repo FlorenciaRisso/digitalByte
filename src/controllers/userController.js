@@ -25,6 +25,28 @@ let userController = {
         res.render('usuarios/edit', { usuario: usuario });
     },
 
+    update: (req, res) => {
+        const userId = parseInt(req.params.id, 10);
+        const userData = req.body;
+
+        const usuarioExiste = userService.getOne(userId);
+        if (!usuarioExiste) {
+            return res.status(404).send('Usuario no encontrado');
+        }
+
+        usuarioExiste.firstName = userData.firstName;
+        usuarioExiste.lastName = userData.lastName;
+        usuarioExiste.email = userData.email;
+        usuarioExiste.password = userData.password;
+        usuarioExiste.rol = userData.category;
+        usuarioExiste.country = userData.country;
+        usuarioExiste.image = '/img/' + req.file.filename;
+
+        userService.update(usuarioExiste);
+
+        res.redirect('/usuarios/lista');
+    },
+
     registro: (req, res) => {
         res.render('usuarios/registro');
     },
