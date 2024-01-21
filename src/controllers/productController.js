@@ -40,7 +40,6 @@ let productController = {
         res.redirect('/productos');
     },
     eliminarProducto: (req, res) => {
-        console.log(req.params.id);
         productService.delete(req);
         res.redirect('/productos/listar');
     },

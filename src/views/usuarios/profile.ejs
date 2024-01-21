@@ -1,20 +1,34 @@
-<%-include ('../partials/head',{cssFile:'/css/styleRegistro.css'})%>
+<%-include ('../partials/head',{cssFile:'/css/stylesUsuarioProfile.css'})%>
 
 <body>
     <%-include ('../partials/headerYNav') %>
-
-    <div class="container" >
-        <div class="row">
-            <div class="col-md-3">
-                <h2>Hi <%= usuario.firstName %></h2>
-                <img src="/public/img/<%= usuario.image %>" alt="">
-                <br>
-                <br>
-                <div class="alert alert-success"><%= usuario.email %></div>
+    <div class="title-container">
+        <h1 class="title">PERFIL DE USUARIO</h1>
+    </div>
+    <div class="container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <h2 class="name-user">Hola <%= usuario.firstName %> <%= usuario.lastName %></h2>
+            </div>
+            <div class="profile-body">
+                <img src="<%= usuario.image %>" alt="" class="profile-image">
+                <div class="user-data">
+                    <p><strong>País:</strong> <%= usuario.country %></p>
+                    <p><strong>Rol:</strong> <%= usuario.rol %></p>
+                    <p><strong>Email:</strong> <%= usuario.email %></p>
+                </div>
+                <div class="alert alert-success">¡<%= usuario.firstName %>, gracias por visitar tu perfil!</div>
+            </div>
+            <!-- Botones de edición y eliminación (solo visible para el administrador) -->
+            <div class="action-buttons">
+                <a href="/usuarios/editar/<%= usuario.id %>" class="btn btn-primary">Editar</a>
+                <form action="/usuarios/eliminar/<%= usuario.id %>" method="post" onsubmit="return confirm('¿Estás seguro?');">
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
             </div>
         </div>
-
     </div>
-</body>
 
-<%- include ('partials/footer') %>
+    <%- include ('../partials/footer') %>
+</body>
+</html>

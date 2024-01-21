@@ -1,21 +1,43 @@
 [
  {
   "id": 1,
-  "firstName": "platea dictumst",
-  "lastName": "habitasse platea",
-  "email": "lkaliszewski0@webnode.com",
+  "firstName": "Digital",
+  "lastName": "House",
+  "email": "digitalhouse@dh.com",
   "password": "pM3<&4YC$n2D}}0",
   "rol": "Admin",
+  "country": "Argentina",
   "image": "/img/perfiles/perfil-1.png",
   "birthDate": "01/02/1998"
  },
  {
-  "id": 2,
-  "firstName": "mara",
-  "lastName": "santillan",
+  "id": 3,
+  "firstName": "Mara",
+  "lastName": "Santillan",
   "email": "mara@gmail.com",
-  "password": "$2a$10$MdA0NsgFt2ARt6cpZgqF2uoKufK8MNSanHAaB9aM330zuRwel4kMK",
+  "password": "$2a$10$Fc6zwfd2C1UfVuq299Yf6enQpasc8.SMU3ezzku0QjyL4Y4Q8bpq.",
   "rol": "Vendedor",
-  "image": "/img/1705705450873_img_.png"
+  "country": "Argentina",
+  "image": "/img/1705798250516_img_.png"
+ },
+ {
+  "id": 4,
+  "firstName": "Florencia",
+  "lastName": "Risso",
+  "email": "florencia@gmail.com",
+  "password": "$2a$10$4uQXtlJMzqbw/qW.Cb0g6enYXev5zzF/Xrn96Fqrm9gyYvtGZ0ttS",
+  "rol": "Vendedor",
+  "country": "Argentina",
+  "image": "/img/1705799421319_img_.png"
+ },
+ {
+  "id": 5,
+  "firstName": "aaa",
+  "lastName": "aaa",
+  "email": "aaa@fm.com",
+  "password": "$2a$10$1Hd./uviFvAd4ryQK6qYzOo5CIUMF0jn.EX1LUIRPGRLpgLsBqq6C",
+  "rol": "Vendedor",
+  "country": "Argentina",
+  "image": "/img/1705805770243_img_.png"
  }
 ]

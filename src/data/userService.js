@@ -19,8 +19,9 @@ const userService = {
         return this.getData()
     },
 
-    getOne: function (req, res) {
-        let user = this.users.find((user) => { return user.id == req.params.id });
+    getOne: function (userId) {
+       
+        let user = this.users.find((user) => user.id === userId );
         return user;
     },
 
@@ -75,6 +76,7 @@ const userService = {
             email: req.body.email,
             password: bcryptjs.hashSync(req.body.password, 10),
             rol: req.body.category,
+            country: req.body.country,
             image: '/img/' + req.file.filename
         }
 

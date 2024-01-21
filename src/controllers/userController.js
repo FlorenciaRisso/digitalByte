@@ -10,14 +10,19 @@ let userController = {
     },
 
     profile: (req, res) => {
-        console.log('Usuario en sesión:', req.session.usuarioLogueado);
-        res.render('usuarios/profile', { usuario: req.session.usuarioLogueado })
+        let userId = parseInt(req.params.id, 10);
+        const usuario = userService.getOne(userId);
+        if (usuario) {
+            res.render('usuarios/profile', { usuario: usuario });
+        } else {
+            res.status(404).send('Usuario no encontrado');
+        }
     },
 
     edit: (req, res) => {
-        let userId = req.params.id;
+        let userId = parseInt(req.params.id, 10);
         let usuario = userService.getOne(userId);
-        res.render('usuarios/editar', { usuario: usuario });
+        res.render('usuarios/edit', { usuario: usuario });
     },
 
     registro: (req, res) => {
@@ -73,8 +78,11 @@ let userController = {
 
     logout: (req, res) => {
         req.session.logout();
+    },
+    delete: (req, res) => {
+        userService.delete(req);
+        res.redirect('/usuarios/lista')
     }
-
 
 
 }
