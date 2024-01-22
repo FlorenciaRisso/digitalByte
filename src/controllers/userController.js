@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const userService = require('../data/userService');
+const bcrypt = require('bcrypt');
 
 let userController = {
 
@@ -17,6 +18,12 @@ let userController = {
         } else {
             res.status(404).send('Usuario no encontrado');
         }
+    },
+
+    userProfile: (req, res) => {
+        return res.render('userProfile', {
+            usuario: req.session.usuarioLogueado
+        })
     },
 
     edit: (req, res) => {
@@ -66,47 +73,80 @@ let userController = {
         }
     },
 
+    delete: (req, res) => {
+        userService.delete(req);
+        res.redirect('/usuarios/lista')
+    },
 
     login: (req, res) => {
         console.log(req.session)
         res.render('usuarios/login');
     },
 
+
+
+
+
     processLogin: (req, res) => {
-        let usuarioValido = userService.validarUsuario(req);
-        let errors = [];
+        let usuarioValido = userService.findByField('email', req.body.email);
 
         if (usuarioValido) {
-            res.redirect('/usuarios');
-        } else {
-            errors.errors.push({
-                type: 'field', value: req.body,
-                msg: 'Usuario incorrecto',
-                path: 'email', location: 'body'
+            let correctPassword = bcrypt.compareSync(req.body.password, usuarioValido.password);
+            if (correctPassword) {
+                delete usuarioValido.password;
+                req.session.usuarioLogueado = usuarioValido;
+                return res.redirect('/usuario/userProfile')
+            }
+            return res.render('usuario/login', {
+                errors: {
+                    email: {
+                        msg: 'Credenciales inválidas'
+                    }
+                }
             })
         }
-        res.render('usuarios/login', {errors:errors.errors.mapped()});
-
-
-
-        return res.render('login', { //MUESTRA ERROR EMAIL INEXISTENTE
+        return res.render('usuario/login', {
             errors: {
                 email: {
-                    msg: "Email inexistente"
+                    msg: 'Credenciales inválidas'
                 }
             }
-        });
+        })
+
     },
+
+
+
+    //     let usuarioValido = userService.validarUsuario(req);
+    //     let errors = [];
+
+    //     if (usuarioValido) {
+    //         res.redirect('/usuarios');
+    //     } else {
+    //         errors.errors.push({
+    //             type: 'field', value: req.body,
+    //             msg: 'Usuario incorrecto',
+    //             path: 'email', location: 'body'
+    //         })
+    //     }
+    //     res.render('usuarios/login', {errors:errors.errors.mapped()});
+
+
+
+    //     return res.render('login', { //MUESTRA ERROR EMAIL INEXISTENTE
+    //         errors: {
+    //             email: {
+    //                 msg: "Email inexistente"
+    //             }
+    //         }
+    //     });
+    // },
 
     logout: (req, res) => {
-        req.session.logout();
+        req.session.destroy();
+        return res.redirect('/')
     },
-    delete: (req, res) => {
-        userService.delete(req);
-        res.redirect('/usuarios/lista')
-    }
-
-
 }
+
 
 module.exports = userController;

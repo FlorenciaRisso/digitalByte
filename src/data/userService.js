@@ -88,19 +88,19 @@ const userService = {
         };
     },
 
-    validarUsuario: function (req) {
-        let validarEmail = this.findByField('email', req.body.email);
-        let validarContraseña = bcrypt.compareSync(req.body.password, validarEmail.password);
+    // validarUsuario: function (req) {
+    //     let validarEmail = this.findByField('email', req.body.email);
+    //     let validarContraseña = bcrypt.compareSync(req.body.password, validarEmail.password);
 
 
-        if (validarEmail && validarContraseña) {
-            delete validarEmail.password
-            req.session.usuarioLogueado = validarEmail
-            return true;
-        } else {
-            return false;
-        }
-    },
+    //     if (validarEmail && validarContraseña) {
+    //         delete validarEmail.password
+    //         req.session.usuarioLogueado = validarEmail
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // },
 
     update: function (updatedUser) {
         const userId = updatedUser.id;

@@ -41,16 +41,6 @@
   "image": "/img/1705863231942_img_.png"
  },
  {
-  "id": 6,
-  "firstName": "Flor",
-  "lastName": "Risso",
-  "email": "flor@gmail.com",
-  "password": "$2a$10$R0ribcU3YwAahjx8s4tCKupvKTvGY0WMejVOTqNhIDd02KgMqCDga",
-  "rol": "Cliente",
-  "country": "Argentina",
-  "image": "/img/1705865013485_img_.png"
- },
- {
   "id": 7,
   "firstName": "FLOR",
   "lastName": "RISSO",
@@ -59,5 +49,15 @@
   "rol": "Vendedor",
   "country": "Argentina",
   "image": "/img/1705865773840_img_.png"
+ },
+ {
+  "id": 8,
+  "firstName": "flor",
+  "lastName": "risso",
+  "email": "flor@gmail.com",
+  "password": "$2a$10$YZ6z/7.6RdwWEtyieatpveNAyEIPQaGqtHrNLGsE7qsjj6mCE9AqO",
+  "rol": "Vendedor",
+  "country": "Argentina",
+  "image": "/img/1705952970005_img_.png"
  }
 ]
