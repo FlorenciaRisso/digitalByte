@@ -1,4 +1,4 @@
-<%-include ('../partials/head',{cssFile:'/css/stylesUsuarioRegistroEdit.css'})%>
+<%-include ('../partials/head',{cssFile:'/css/styleRegistro.css'})%>
 
   <body>
     <header class="header">
@@ -60,7 +60,7 @@
           <div class="register__password-form block-input">
             <input type="password" name="password" 
             class="register__input-form <%= locals.errors && errors.password ? 'is-invalid' : null %>"
-              placeholder="Contraseña">
+              placeholder="Contraseña" value="<%= locals.oldData ? oldData.password : null %>">
 
             <% if(locals.errors && errors.password) {%>
               <div class="text-danger">
@@ -73,7 +73,7 @@
           <div class="register__password-form block-input">
             <input type="password" name="confirmPassword" 
             class="<%= locals.errors && errors.confirmPassword ? 'is-invalid' : null %>"
-               placeholder="Repetir contraseña">
+               placeholder="Repetir contraseña" value="<%= locals.oldData ? oldData.confirmPassword : null %>">
 
             <% if(locals.errors && errors.confirmPassword) {%>
               <div class="text-danger">
@@ -90,9 +90,9 @@
               <option value="">Elige una categoría</option>
               <% let categories=["Vendedor", "Cliente" ] %>
                 <% for (const oneCategory of categories) { %>
-                  <option value="<%= oneCategory %>">
-                    <%= oneCategory %>
-                  </option>
+                 <option value="<%= oneCategory %>"
+                    <%= locals.oldData && (oneCategory === oldData.category) ? 'selected' : null  %>
+                    > <%= oneCategory %></option>
                   <% } %>
             </select>
 

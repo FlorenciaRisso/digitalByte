@@ -2,8 +2,7 @@ const express = require('express');
 const path = require('path');
 const router = express.Router();
 const userController = require('../controllers/userController')
-const registerValidation = require('../middlewares/registerValidation')
-const editProductValidation = require('../middlewares/editProductValidation')
+const registerValidation = require('../middlewares/registerValidation');
 const multer = require('multer');
 const uploadFile = require('../data/multer');
 const guestMiddleware = require('../middlewares/guestMiddleware')
@@ -20,7 +19,7 @@ router.get('/registro', guestMiddleware, userController.registro);
 router.post('/registro', uploadFile.single('image'), registerValidation, userController.processRegister)
 
 router.get('/edit/:id', userController.edit)
-router.put('/edit/:id', uploadFile.single('image'), editProductValidation, userController.update)
+router.put('/edit/:id', uploadFile.single('image'), userController.update)
 
 router.get('/cerrarSesion', userController.logout);
 

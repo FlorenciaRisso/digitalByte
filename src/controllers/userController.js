@@ -60,15 +60,16 @@ let userController = {
 
     processRegister: (req, res) => {
         let resultado = userService.save(req);
+        let old=req.body;
         if (resultado.success == true) {
-            res.redirect('/usuarios/login')
+            res.redirect('/usuarios/lista')
         } else if (resultado.errors) {
             res.render('usuarios/registro', {
-                errors: resultado.errors.mapped()
+                errors: resultado.errors.mapped(),oldData:old
             })
         } else {
             res.render('usuarios/registro', {
-                errors: resultado.errors.email
+                errors: resultado.errors.email, oldData:old
             })
         }
     },
@@ -79,7 +80,6 @@ let userController = {
     },
 
     login: (req, res) => {
-        console.log(req.session)
         res.render('usuarios/login');
     },
 

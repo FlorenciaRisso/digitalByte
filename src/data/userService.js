@@ -52,7 +52,6 @@ const userService = {
         let errors = [];
         errors = validationResult(req);
         let userInDB = this.findByField('email', req.body.email);
-
         if (userInDB) {
             errors.errors.push({
                 type: 'field',
@@ -61,7 +60,6 @@ const userService = {
                 path: 'email',
                 location: 'body'
             })
-            console.log(errors)
         }
 
 
@@ -77,7 +75,7 @@ const userService = {
             password: bcryptjs.hashSync(req.body.password, 10),
             rol: req.body.category,
             country: req.body.country,
-            image: '/img/' + req.file.filename
+            image: '/img/' + req.file.filename || 'default-image.png"'
         }
 
         let userCreated = this.create(userToCreate);
