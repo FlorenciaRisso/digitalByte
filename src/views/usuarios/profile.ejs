@@ -1,7 +1,7 @@
-<%-include ('../partials/head',{cssFile:'/css/styleProfile.css'})%>
+<%-include ('../partials/head',{cssFile:'/css/stylesUsuarioProfile.css'})%>
 
 <body>
-    <%-include ('../partials/headerYNav') %>
+    <%-include ('../partials/headerYNav' ) %>
     <div class="title-container">
         <h1 class="title">PERFIL DE USUARIO</h1>
     </div>
@@ -20,7 +20,7 @@
             </div>
             <div class="action-buttons">
                 <a href="/usuarios/edit/<%= usuario.id %>" class="btn btn-primary">Editar</a>
-                <form action="/usuarios/eliminar/<%= usuario.id %>" method="post" onsubmit="return confirm('¿Estás seguro?');">
+                <form action="/usuarios/eliminar/<%= usuario.id %>?_method=delete" method="post" onsubmit="return confirm('¿Estás seguro?');">
                     <button type="submit" class="btn btn-danger">Eliminar</button>
                 </form>
             </div>

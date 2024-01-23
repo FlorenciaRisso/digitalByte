@@ -7,15 +7,24 @@
     </div>
     <div class="user-option">
         <!-- Luego validar si el usuario tiene permisos de administrador -->
-        <button class="user-btn btn-listProd" type="button"><a href="/productos/lista">Listar Productos</a></button>
-        <button><a href="/usuarios/logout">Logout</a></button>
+        <% if(usuarioLogeado){ %>
+            
+            <div class="user-option_div">
+                <button class="user-btn btn-listProd" type="button"><a href="/productos/lista">Listar Productos</a></button>
+                <button class="user-btn btn-registro" type="button"><a href="/usuarios/lista">Usuarios</a></button>
+                <button class="user-btn btn-login" type="button"><a href="/usuarios/userProfile">Perfil</a></button>
+                <button class="user-btn btn-carrito" type="button"><a href="/productos/carrito">Carrito</a></button>
+                <button class="user-btn btn-logout"><a href="/usuarios/cerrarSesion">Logout</a></button>
+            </div>
+        
+        <%}else{%>
         <div class="user-option_div">
-            <button class="user-btn btn-carrito" type="button"><a href="/productos/carrito">Carrito</a></button>
-            <button class="user-btn btn-registro" type="button"><a href="/usuarios/registro">Registro</a></button>
-            <button class="user-btn btn-registro" type="button"><a href="/usuarios/login">Login</a></button>
-            <button class="user-btn btn-registro" type="button"><a href="/usuarios/lista">Usuarios</a></button>
-            <button class="user-btn btn-login" type="button"><a href="/usuarios/profile/:id">Perfil</a></button>
+            
+            <button class="user-btn btn-listProd" type="button"><a href="/usuarios/registro">Registro</a></button>
+            <button class="user-btn btn-carrito" type="button"><a href="/usuarios/login">Login</a></button>
+            
         </div>
+        <%}%>
 
     </div>
     <div class="secciones">

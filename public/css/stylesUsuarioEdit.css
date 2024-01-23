@@ -15,7 +15,9 @@ body {
     align-items: center;
     height: 100vh;
 }
-
+.div-img img{
+    width: 20%;
+}
 .container {
     width: 100%;
     max-width: 500px;

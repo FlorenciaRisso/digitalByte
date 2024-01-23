@@ -1,7 +1,7 @@
 <%-include ('../partials/head',{cssFile:'/css/styleListaUsuarios.css'})%>
 
     <body>
-        <%-include ('../partials/headerYNav') %>
+        <%-include ('../partials/headerYNav' ) %>
             <h1 class="title">Listado de Usuarios</h1>
             <div class="container">
 
@@ -19,7 +19,7 @@
                             </a>    
                                 <div class="botones-acciones">
                                     <td>
-                                        <a href="/usuarios/editar/<%=usuario.id%>"><i
+                                        <a href="/usuarios/edit/<%=usuario.id%>"><i
                                                 class="fa-solid fa-pen-to-square fa-lg"></i></a>
                                     </td>
                                 </div>

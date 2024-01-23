@@ -23,6 +23,7 @@ app.use(express.static('public'));
 app.use(methodOverride('_method'));
 //config utf-8
 app.use((req, res, next) => {
+    res.locals.usuarioLogeado = req.session.usuarioLogeado || null;
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     next();
 });

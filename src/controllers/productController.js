@@ -9,7 +9,7 @@ let productController = {
     },
     lista: (req, res) => {
         let productos = productService.products;
-        res.render('productos/lista', { productos: productos, funcion: funcion })
+        res.render('productos/lista', { productos: productos, funcion: funcion})
     },
     carrito: (req, res) => {
         let productos = productService.products;

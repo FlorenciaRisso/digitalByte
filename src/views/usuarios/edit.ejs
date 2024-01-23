@@ -1,9 +1,9 @@
-<%- include ('../partials/head',{cssFile:'/css/styleUsuarioEdit.css'})%>
+<%- include ('../partials/head',{cssFile:'/css/stylesUsuarioEdit.css'})%>
 
   <body>
-    <%-include ('../partials/headerYNav') %>
+    <%-include ('../partials/headerYNav' ) %>
 
-    <div class="body">
+    <div class="">
       <div class="container">
         <div class="title-container">
           <h2 class="title">Editar Usuario</h2>
@@ -79,7 +79,7 @@
               <% let categories=["Vendedor", "Cliente" ] %>
 
                 <% for (const oneCategory of categories) { %>
-                  <option value="<%= oneCategory %>" <%=locals.oldData && (oneCategory===oldData.category) ? 'selected'
+                  <option value="<%= oneCategory %>" <%=locals.oldData && (oneCategory===oldData.category || usuario.rol) ? 'selected'
                     : null %>
                     > <%= oneCategory %>
                   </option>
@@ -92,6 +92,7 @@
               </div>
               <% } %>
           </div>
+          
 
           <div class="edit-user__category-form block-input">
             <label for="country"><b>País de nacimiento</b></label>
@@ -121,7 +122,9 @@
             <input type="file" name="image" accept=".jpg, .png">
 
             <% if (locals.oldData && oldData.image) { %>
-              <img src="<%= oldData.image %>" alt="Imagen actual">
+              <div class="div-img">
+                <img src="<%= oldData.image %>" alt="Imagen actual">
+              </div>
               <input type="hidden" name="oldImage" value="<%= oldData.image %>">
           <% } %>
 

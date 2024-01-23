@@ -2,15 +2,16 @@ const express = require('express');
 const path = require('path');
 const router = express.Router();
 const uploadFile=require('../data/multer');
-const productController = require('../controllers/productController')
+const productController = require('../controllers/productController');
+const authMiddleware = require('../middlewares/authMiddleware');
 
 router.get('/', productController.index);
-router.get('/carrito', productController.carrito);
-router.get('/lista', productController.lista); //solo admin
+router.get('/carrito',authMiddleware, productController.carrito);
+router.get('/lista',authMiddleware, productController.lista); //solo admin
 //listar
 router.get('/categoria',productController.listaPorCat);
 //crear
-router.get('/create', productController.create);
+router.get('/create',authMiddleware, productController.create);
 router.post('/create', uploadFile.fields([
     { name: 'image0', maxCount: 1 },
     { name: 'image1', maxCount: 1 },
@@ -20,7 +21,7 @@ router.post('/create', uploadFile.fields([
 //detalles
 router.get('/detalle/:id', productController.detalle);
 //editar
-router.get('/editar/:id', productController.editProducto);
+router.get('/editar/:id',authMiddleware, productController.editProducto);
 router.put('/editar/:id',uploadFile.fields([
     { name: 'image0', maxCount: 1 },
     { name: 'image1', maxCount: 1 },

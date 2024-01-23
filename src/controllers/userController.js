@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const userService = require('../data/userService');
 const bcrypt = require('bcrypt');
+const { log } = require('console');
 
 let userController = {
 
@@ -21,15 +22,17 @@ let userController = {
     },
 
     userProfile: (req, res) => {
-        return res.render('userProfile', {
-            usuario: req.session.usuarioLogueado
+        let usuario=userService.getOne(req.session.usuarioLogeado);
+        console.log(usuario);
+        return res.render('usuarios/userProfile', {
+            usuario: usuario
         })
     },
 
     edit: (req, res) => {
         let userId = parseInt(req.params.id, 10);
         let usuario = userService.getOne(userId);
-        res.render('usuarios/edit', { usuario: usuario });
+        res.render('usuarios/edit', { usuario: usuario,oldData:usuario });
     },
 
     update: (req, res) => {
@@ -62,7 +65,7 @@ let userController = {
         let resultado = userService.save(req);
         let old=req.body;
         if (resultado.success == true) {
-            res.redirect('/usuarios/lista')
+            res.redirect('/usuarios/login')
         } else if (resultado.errors) {
             res.render('usuarios/registro', {
                 errors: resultado.errors.mapped(),oldData:old
@@ -83,29 +86,18 @@ let userController = {
         res.render('usuarios/login');
     },
 
-
-
-
-
     processLogin: (req, res) => {
         let usuarioValido = userService.findByField('email', req.body.email);
-
+        console.log(usuarioValido);
         if (usuarioValido) {
             let correctPassword = bcrypt.compareSync(req.body.password, usuarioValido.password);
+            console.log(correctPassword);
             if (correctPassword) {
-                delete usuarioValido.password;
-                req.session.usuarioLogueado = usuarioValido;
-                return res.redirect('/usuario/userProfile')
+                req.session.usuarioLogeado = usuarioValido.id;
+                return res.redirect('/')
             }
-            return res.render('usuario/login', {
-                errors: {
-                    email: {
-                        msg: 'Credenciales inválidas'
-                    }
-                }
-            })
         }
-        return res.render('usuario/login', {
+        return res.render('usuarios/login', {
             errors: {
                 email: {
                     msg: 'Credenciales inválidas'
@@ -143,8 +135,9 @@ let userController = {
     // },
 
     logout: (req, res) => {
+        console.log(req.session);
         req.session.destroy();
-        return res.redirect('/')
+        return res.redirect('/usuarios/login')
     },
 }
 

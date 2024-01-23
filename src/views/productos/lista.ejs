@@ -1,7 +1,7 @@
 <%- include ('../partials/head',{cssFile:'/css/stylesProductCreate.css'}) %>
 
     <body>
-        <%- include ('../partials/headerYNav') %>
+        <%- include ('../partials/headerYNav',{usuarioLogeado:usuarioLogeado}) %>
             <main class="main-alta">
                 <div class="section-listar">
                     <button class="btn-nuevo-prod"><a href="/productos/create">Nuevo Producto</a></button>

@@ -39,5 +39,35 @@
   "rol": "Vendedor",
   "country": "Argentina",
   "image": "/img/1705964107247_img_.png"
+ },
+ {
+  "id": 5,
+  "firstName": "Mara",
+  "lastName": "Santillan",
+  "email": "asdsda_98@gmail.com",
+  "password": "$2a$10$yTOdpQy9pbASL3dKpa/SouKbqmNG1KDvzp6KGxKYGIdLRgiktW2NO",
+  "rol": "Cliente",
+  "country": "Argentina",
+  "image": "/img/1705965889349_img_.png"
+ },
+ {
+  "id": 6,
+  "firstName": "Ximena",
+  "lastName": "Marcos",
+  "email": "mjsnn98@gmail.com",
+  "password": "$2a$10$uqmrgyi4TWsKWGcPLVVd0um20vsEkZnco4BkIyTgGj0dnrt.3.6rW",
+  "rol": "Cliente",
+  "country": "Argentina",
+  "image": "/img/1705975364462_img_.jpg"
+ },
+ {
+  "id": 7,
+  "firstName": "Mara",
+  "lastName": "Marcos",
+  "email": "mrsntllnn98@gmail.com",
+  "password": "$2a$10$CeTSe3xyfAOclKudyYKJMepAC/Mwfnejrg4NcUTck6IrlCeqOZeAu",
+  "rol": "Cliente",
+  "country": "Argentina",
+  "image": "/img/1705977061704_img_.png"
  }
 ]
