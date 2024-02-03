@@ -4,13 +4,13 @@ const userService = require('../data/userService');
 const bcrypt = require('bcrypt');
 const { log } = require('console');
 
+
 let userController = {
 
     lista: (req, res) => {
         let usuarios = userService.users;
         res.render('usuarios/lista', { usuarios: usuarios })
     },
-
     profile: (req, res) => {
         let userId = parseInt(req.params.id, 10);
         const usuario = userService.getOne(userId);

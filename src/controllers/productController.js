@@ -1,12 +1,23 @@
 const path = require('path');
 const productService = require('../data/productService');
-const funcion = require('../data/funcion')
+const funcion = require('../data/funcion');
+const db = require('../model/database/models')
 
 let productController = {
     index: (req, res) => {
         let productos = productService.products;
         res.render('productos/index', { productos: productos, funcion: funcion })
     },
+    listado:
+     async function(req, res){
+        try {            
+            let respuesta = await db.Productos.findAll();
+            res.json(respuesta)
+        } catch (error) {
+           console.log(error);
+        }
+    },
+
     lista: (req, res) => {
         let productos = productService.products;
         res.render('productos/lista', { productos: productos, funcion: funcion})

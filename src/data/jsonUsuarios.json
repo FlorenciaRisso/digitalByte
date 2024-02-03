@@ -69,5 +69,15 @@
   "rol": "Cliente",
   "country": "Argentina",
   "image": "/img/1705977061704_img_.png"
+ },
+ {
+  "id": 8,
+  "firstName": "florencia",
+  "lastName": "risso",
+  "email": "florencia@gmail.com",
+  "password": "$2a$10$BSbVL3RiJ9hrpR0hm94ZjuIwg0.GxMKMmEGGGFBL013Izda4TuXSe",
+  "rol": "Vendedor",
+  "country": "Argentina",
+  "image": "/img/1706815749544_img_.png"
  }
 ]

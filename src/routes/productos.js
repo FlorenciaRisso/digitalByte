@@ -5,7 +5,10 @@ const uploadFile=require('../data/multer');
 const productController = require('../controllers/productController');
 const authMiddleware = require('../middlewares/authMiddleware');
 
+
+
 router.get('/', productController.index);
+router.get('/listaproductos', productController.listado);
 router.get('/carrito',authMiddleware, productController.carrito);
 router.get('/lista',authMiddleware, productController.lista); //solo admin
 //listar
