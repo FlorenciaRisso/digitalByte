@@ -27,6 +27,7 @@ app.use((req, res, next) => {
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     next();
 });
+require('dotenv')
 //Levantando el servidor Puerto 3030
 app.listen(3030,()=>console.log("Ejecutandose Exitosamente en puerto 3030")); 
 
