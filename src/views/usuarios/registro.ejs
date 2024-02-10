@@ -1,0 +1,159 @@
+<%-include ('../partials/head',{cssFile:'/css/styleRegistro.css'})%>
+
+  <body>
+    <header class="header">
+      <div class="logo-container">
+        <a href="/"><img class="img-logo" src="/img/logo-dbytee.png" alt="logoDigitalByte"></a>
+      </div>
+    </header>
+    <div class="body">
+
+      <div class="container">
+        <div class="title-container">
+          <h2 class="title">Registrate</h2>
+        </div>
+        <form class="register__form" action="/usuarios/registro" method="POST" enctype="multipart/form-data">
+
+
+          <div class="register__firstname-form block-input">
+            <input type="text" name="firstName"
+              class="register__input-form <%= locals.errors && errors.firstName ? 'is-invalid' : null %>" 
+              placeholder="Nombre" 
+              value="<%= locals.oldData ? oldData.firstName : null %>">
+
+            <% if(locals.errors && errors.firstName) {%>
+              <div class="text-danger">
+                <%= errors.firstName.msg %>
+              </div>
+              <% } %>
+          </div>
+
+
+          <div class="register__lastname-form block-input">
+            <input type="text" name="lastName"
+              class="<%= locals.errors && errors.lastName ? 'is-invalid' : null %>" 
+              placeholder="Apellido" 
+              value="<%= locals.oldData ? oldData.lastName : null %>">
+
+            <% if(locals.errors && errors.lastName) {%>
+              <div class="text-danger">
+                <%= errors.lastName.msg %>
+              </div>
+              <% } %>
+          </div>
+
+
+          <div class="register__email-form block-input">
+            <input type="email" name="email"
+              class="register__input-form <%= locals.errors && errors.email ? 'is-invalid' : null %>"
+              placeholder="Email" 
+              value="<%= locals.oldData ? oldData.email : null %>">
+
+            <% if(locals.errors && errors.email) {%>
+              <div class="text-danger">
+                <%= errors.email.msg %>
+              </div>
+              <% } %>
+          </div>
+
+
+          <div class="register__password-form block-input">
+            <input type="password" name="password" 
+            class="register__input-form <%= locals.errors && errors.password ? 'is-invalid' : null %>"
+              placeholder="Contraseña" value="<%= locals.oldData ? oldData.password : null %>">
+
+            <% if(locals.errors && errors.password) {%>
+              <div class="text-danger">
+                <%= errors.password.msg %>
+              </div>
+              <% } %>
+          </div>
+
+
+          <div class="register__password-form block-input">
+            <input type="password" name="confirmPassword" 
+            class="<%= locals.errors && errors.confirmPassword ? 'is-invalid' : null %>"
+               placeholder="Repetir contraseña" value="<%= locals.oldData ? oldData.confirmPassword : null %>">
+
+            <% if(locals.errors && errors.confirmPassword) {%>
+              <div class="text-danger">
+                <%= errors.confirmPassword.msg %>
+              </div>
+              <% } %>
+          </div>
+
+
+          <div class="register__category-form block-input ">
+            <label for="category"><b>Selecciona un perfil de usuario:</b></label>
+            <select name="category" id="category" 
+            class="<%= locals.errors && errors.category ? 'is-invalid' : '' %>">
+              <option value="">Elige una categoría</option>
+              <% let categories=["Vendedor", "Cliente" ] %>
+                <% for (const oneCategory of categories) { %>
+                 <option value="<%= oneCategory %>"
+                    <%= locals.oldData && (oneCategory === oldData.category) ? 'selected' : null  %>
+                    > <%= oneCategory %></option>
+                  <% } %>
+            </select>
+
+            <% if(locals.errors && errors.category) {%>
+              <div class="text-danger">
+                <%= errors.category.msg %>
+              </div>
+              <% } %>
+          </div>
+
+
+          <div class="register__category-form block-input">
+            <label for="country"><b>País de nacimiento</b></label>
+            <select 
+            name="country"
+            class="<%= locals.errors && errors.country ? 'is-invalid' : null %>" >
+              <option value="">Elige un país</option>
+              <% let countries=[ "Argentina" , "Bolivia" , "Chile" , "Uruguay" , "Paraguay" , "Colombia" , "Ecuador"
+                , "Perú" ]; %>
+                
+                <% for (const oneCountry of countries) { %>
+                  <option value="<%= oneCountry %>"
+                    <%= locals.oldData && (oneCountry === oldData.country) ? 'selected' : null  %>
+                    > <%= oneCountry %></option>
+                  <% } %>
+            </select>
+
+            <% if(locals.errors && errors.country) { %>
+              <div class="text-danger">
+                <%= errors.country.msg %>
+              </div>
+              <% } %>
+          </div>
+
+          
+          <div class="register__image-form block-input">
+            <label class="form-label"><b>Imagen de perfil:</b></label>
+            <input type="file" name="image" accept=".jpg, .png">
+            <% if(locals.errors && errors.image) {%>
+              <div class="text-danger">
+                <%= errors.image.msg %>
+              </div>
+              <% } %>
+          </div>
+
+
+          <div class="register__buttons">
+            <button class="register__button btn ">Registrarme</button>
+            <button class="register__google-button btn">
+              <i class="fa-brands fa-google register__google-icon"></i> Inicia sesión con google
+            </button>
+          </div>
+          <div class="footer-register">
+            <span>¿Ya tienes cuenta? </span>
+            <a href="/usuarios/login" class="login__link">Iniciar sesión</a>
+          </div>
+        </form>
+
+
+      </div>
+    </div>
+  </body>
+
+  </html>

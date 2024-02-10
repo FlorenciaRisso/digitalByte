@@ -2,10 +2,10 @@
 
 const path = require('path');
 const fs = require('fs');
-const productsFilePath = path.join(__dirname, '../data/jsonProductos.json');
-const productsArray = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+const productRouter = path.join(__dirname, '../data/jsonProductos.json');
+const productsArray = JSON.parse(fs.readFileSync(productRouter, 'utf-8'));
 
-let productService = {
+const productService = {
 
     products: productsArray,
 
@@ -36,7 +36,7 @@ let productService = {
         this.products.category = { "id": selectedCategory.id, "name": selectedCategory.name };
         let image = "/img/default-image.png";
         this.products[index].discount = req.body.discount || this.products[index].discount;
-        this.products[index].specifications.Tamanio = req.body.Tamanio || this.products[index].specifications.Tamanio;
+        this.products[index].specifications.Tamaño = req.body.Tamanio || this.products[index].specifications.Tamaño;
         this.products[index].specifications.Memoria = req.body.Memoria || this.products[index].specifications.Memoria;
         this.products[index].specifications.Ram = req.body.Ram || this.products[index].specifications.Ram;
         this.products[index].specifications.CamaraPrincipal = req.body.CamaraPrincipal || this.products[index].specifications.CamaraPrincipal;
@@ -48,15 +48,16 @@ let productService = {
                 this.products[index][`image${i}`] = '/img/' + fileField[0].filename;
             } else {
                 if (!this.products[index][`image${i}`]) {
+                    this.products[index][`image${i}`]=image;
                 }
             }
         }
-        fs.writeFileSync(productsFilePath, JSON.stringify(this.products), 'utf-8')
+        fs.writeFileSync(productRouter, JSON.stringify(this.products), 'utf-8')
     },
     delete: function (req) {
         let index = this.products.indexOf(this.getOne(req));
         this.products.splice(index, 1);//splice elimina 1 elemento desde el indice indicado, en este caso el elemento buscado
-        fs.writeFileSync(productsFilePath, JSON.stringify(this.products), 'utf-8');
+        fs.writeFileSync(productRouter, JSON.stringify(this.products), 'utf-8');
     },
     save: function (req) {
         let product = {};
@@ -105,7 +106,7 @@ let productService = {
         }
 
         this.products.push(product);
-        fs.writeFileSync(productsFilePath, JSON.stringify(this.products), 'utf-8');
+        fs.writeFileSync(productRouter, JSON.stringify(this.products), 'utf-8');
     },
 }
 

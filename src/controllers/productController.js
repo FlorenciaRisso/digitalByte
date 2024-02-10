@@ -1,27 +1,42 @@
 const path = require('path');
 const productService = require('../data/productService');
-const funcion = require('../data/funcion')
+const funcion = require('../data/funcion');
+const db = require('../model/database/models')
 
 let productController = {
     index: (req, res) => {
         let productos = productService.products;
-        res.render('products/index', { productos: productos, funcion: funcion })
+        res.render('productos/index', { productos: productos, funcion: funcion })
+    },
+    listado:
+     async function(req, res){
+        try {            
+            let respuesta = await db.Productos.findAll();
+            res.json(respuesta)
+        } catch (error) {
+           console.log(error);
+        }
+    },
+
+    lista: (req, res) => {
+        let productos = productService.products;
+        res.render('productos/lista', { productos: productos, funcion: funcion})
     },
     carrito: (req, res) => {
         let productos = productService.products;
-        res.render('products/productCart', { productos: productos, funcion: funcion });
+        res.render('productos/productCart', { productos: productos, funcion: funcion });
     },
-    listarProductosPorCat: (req, res) => {
+    listaPorCat: (req, res) => {
         let productos = productService.getProdPorCat(req);
-        res.render('products/categoria', { productos: productos, funcion: funcion });
+        res.render('productos/categoria', { productos: productos, funcion: funcion });
     },
     detalle: (req, res) => {
         let producto = productService.getOne(req);
         let productos = productService.getAll();
-        res.render('products/productDetail', { producto: producto, productos: productos, funcion: funcion });
+        res.render('productos/productDetail', { producto: producto, productos: productos, funcion: funcion });
     },
-    altaProducto: (req, res) => {
-        res.render('products/altaProducto', { funcion: funcion })
+    create: (req, res) => {
+        res.render('productos/create', { funcion: funcion })
     },
     save: (req, res) => {
         productService.save(req);
@@ -29,7 +44,7 @@ let productController = {
     },
     editProducto: (req, res) => {
         let producto = productService.getOne(req);
-        res.render('products/editProducto', { producto: producto, funcion: funcion })
+        res.render('productos/editProducto', { producto: producto, funcion: funcion })
     },
     update: (req, res) => {
         productService.update(req);
@@ -38,13 +53,8 @@ let productController = {
     eliminarProducto: (req, res) => {
         productService.delete(req);
         res.redirect('/productos/listar');
-
-
     },
-    listarProductos: (req, res) => {
-        let productos = productService.products;
-        res.render('products/listarProductos', { productos: productos, funcion: funcion })
-    }
+
 }
 
 module.exports = productController;

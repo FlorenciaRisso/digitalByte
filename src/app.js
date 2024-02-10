@@ -9,13 +9,14 @@ const path=require('path');
 
 const bodyParser = require('body-parser');
 
-//define method 
+
 const methodOverride =  require('method-override');
 
 //session
 const session=require('express-session');
 
-const indexRouter = require('./routes/index.routes');
+const indexRouter = require('./routes/index');
+app.use(session({secret: 'secret', resave: false, saveUninitialized: false}))
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 //Usando recursos estaticos
@@ -24,11 +25,13 @@ app.use(express.static('public'));
 app.use(methodOverride('_method'));
 //config utf-8
 app.use((req, res, next) => {
+    res.locals.usuarioLogeado = req.session.usuarioLogeado || null;
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     next();
 });
 
 app.use(session({secret:'Secreto',resave: false,saveUninitialized: false}));
+require('dotenv')
 //Levantando el servidor Puerto 3030
 app.listen(3030,()=>console.log("Ejecutandose Exitosamente en puerto 3030")); 
 

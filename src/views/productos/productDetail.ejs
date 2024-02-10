@@ -1,0 +1,93 @@
+<%-include ('../partials/head',{cssFile:'/css/styleDetalle.css'})%>
+
+    <body>
+        <%-include ('../partials/headerYNav' ) %>
+            <main>
+                <section class="imagenes-and-detalle">
+                    <div class="imagenes-acciones">
+                        <div class="imagenes-producto">
+                            <div class="imagen-principal">
+                                <img src="<%=producto.image0%>" alt="<%=producto.name%>">
+                            </div>
+                            <div class="imagenes-secundarias">
+                                <div class="div-img"><img src="<%=producto.image1%>" alt=""></div>
+                                <div class="div-img"><img src="<%=producto.image2%>" alt=""></div>
+                                <div class="div-img"><img src="<%=producto.image3%>" alt=""></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="detalle-producto">
+                        <div class="titulo-producto">
+                            <p>
+                                <%=producto.name%>
+                            </p>
+                        </div>
+                        <div class="descripcion-producto">
+                            <div class="descripcion-producto_titulo">
+                                <i class="fa-solid fa-bars fa-lg"></i>
+                                <p>General</p>
+                            </div>
+                            <p>
+                                <%=producto.description%>
+                            </p>
+                        </div>
+                        <div class="caracteristicas-producto_table">
+                            <div class="caracteristicas-producto_titulo">
+                                <i class="fa-regular fa-clipboard"></i>
+                                <p>Caracteristicas</p>
+                            </div>
+                            <table>
+                                <tbody>
+                                    <% for (const key in producto.specifications) { %>
+                                        <tr>
+                                            <td class="caracteristicas-producto_first_td">
+                                                <%= key %>
+                                            </td>
+                                            <td class="caracteristicas-producto_second_td">
+                                                <%= producto.specifications[key] %>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="oferta-precio">
+                            <% if(producto.discount != 0){ %>
+                            <div class="oferta">
+                                <p class="p-off"><%= producto.discount %>%OFF 🎊</p>
+                            </div>
+                            <%}%>
+                            <div class="precio-comprar">
+                                <div class="precio">
+                                    <% let precioFinal=producto.price-(producto.price*(producto.discount/100))%>
+                                    <p>$<%=funcion.getPrecioFormateado(precioFinal)%></p>
+                                </div>
+                                <a href="/productos/addCarrito" class="div-btn-comprar">
+                                    <button class="btn-comprar">Agregar al Carrito</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="most-searched__section">
+                    <article class="most-searched__article">
+                        <h4 class="most-searched__title">Productos Relacionados</h4>
+                        <div class="div-responsive">
+                            <div class="most-searched__card-container">
+                                <%- include
+                                    ('../partials/cardArticulosMasBuscados',{productos:productos,funcion:funcion}) %>
+                            </div>
+                        </div>
+                    </article>
+                </section>
+
+                </section>
+
+            </main>
+            <%- include ('../partials/footer') %>
+    </body>
+    <%- include ('../partials/script-menu') %>
+
+        </html>

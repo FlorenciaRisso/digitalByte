@@ -1,0 +1,37 @@
+<%-include ('../partials/head',{cssFile:'/css/styleListaUsuarios.css'})%>
+
+    <body>
+        <%-include ('../partials/headerYNav' ) %>
+            <h1 class="title">Listado de Usuarios</h1>
+            <div class="container">
+
+                <% usuarios.forEach(usuario=> { %>
+                    <ul class="user-list">
+                        <li class="card">
+                            <a href="/usuarios/perfil/<%=usuario.id %>">
+                                <h3 class="user-name">
+                                    <%= usuario.firstName %>
+                                        <%= usuario.lastName %>
+                                </h3>
+                                <!-- la imagen se guarda con la ruta absoluta sin public, ejemplo: /img/nombre-image.png -->
+                                <img src="<%=usuario.image%>" alt="image usuario">
+                                <h1 class="info"> <%= usuario.email %> </h1>
+                            </a>    
+                                <div class="botones-acciones">
+                                    <td>
+                                        <a href="/usuarios/edit/<%=usuario.id%>"><i
+                                                class="fa-solid fa-pen-to-square fa-lg"></i></a>
+                                    </td>
+                                </div>
+                            
+
+                        </li>
+                    </ul>
+
+                    <% }) %>
+            </div>
+
+    </body>
+    <%- include ('../partials/footer') %>
+
+        </html>

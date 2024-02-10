@@ -1,0 +1,93 @@
+<%- include ('../partials/head',{cssFile:'/css/stylesProductCreate.css'}) %>
+
+    <body>
+        <%- include ('../partials/headerYNav',{usuarioLogeado:usuarioLogeado}) %>
+            <main class="main-alta">
+                <div class="section-listar">
+                    <button class="btn-nuevo-prod"><a href="/productos/create">Nuevo Producto</a></button>
+                    <section class="table-responsive">
+                        <table class="table-listar">
+                            <thead class="thead-listar">
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Descripción</th>
+                                    <th>Imagen 1</th>
+                                    <th>Imagen 2</th>
+                                    <th>Imagen 3</th>
+                                    <th>Imagen 4</th>
+                                    <th>Categoría</th>
+                                    <th>Precio</th>
+                                    <th colspan="2" style="text-align:center;">Actualizar/Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% productos.forEach(producto=> { %>
+                                    <tr>
+                                        <td>
+                                            <%= producto.name %>
+                                        </td>
+                                        <td class="td-descripcion">
+                                            <p class="p-descripcion">
+                                                <%= producto.description %>
+                                            </p>
+                                        </td>
+                                        <td><img src="<%= producto.image0 %>" alt="Imagen del producto"></td>
+                                        <td><img src="<%= producto.image1 %>" alt="Imagen del producto-1"></td>
+                                        <td><img src="<%= producto.image2 %>" alt="Imagen del producto-2"></td>
+                                        <td><img src="<%= producto.image3 %>" alt="Imagen del producto-3"></td>
+                                        <td>
+                                            <%= producto.category.name %>
+                                        </td>
+                                        <td>$<%= funcion.getPrecioFormateado(producto.price) %>
+                                        </td>
+                                        <td>
+                                            <a href="/productos/editar/<%=producto.id%>"><i
+                                                    class="fa-solid fa-pen-to-square fa-lg"></i></a>
+                                            <form action="/productos/delete/<%=producto.id %>?_method=delete"
+                                                method="post" style="display: inline-flex" id="form_delete">
+                                                <button type="submit" class="btn-delete"
+                                                    data-product-id="<%=producto.id %>"><i
+                                                        class="fa-solid fa-trash fa-lg"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+
+                                    <% }) %>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </main>
+
+            <%- include ('../partials/footer') %>
+    </body>
+    <%- include ('../partials/script-menu') %>
+        <script>
+            $(document).ready(() => {
+                $('.btn-delete').click((e) => {
+                    e.preventDefault(); Swal.fire({
+                        title: "Estas seguro?",
+                        text: "No podras revertirlo!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Si, eliminar!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            const productId = $(e.currentTarget).data('product-id');
+                            const form = $(e.currentTarget).closest('#form_delete');
+                            form.attr('action', `/productos/delete/${productId}?_method=delete`);
+                            form.submit();
+                            Swal.fire({
+                                title: "Eliminado!",
+                                text: "El producto fue eliminado!.",
+                                icon: "success"
+                            });
+                        }
+                    });
+                });
+            });
+        </script>
+
+        </html>
