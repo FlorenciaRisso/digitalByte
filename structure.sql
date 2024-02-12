@@ -21,11 +21,11 @@ CREATE TABLE IF NOT EXISTS `productos` (
   `Descripcion` text DEFAULT NULL,
   `Precio` decimal(10,2) DEFAULT NULL,
   `Stock` int(11) DEFAULT NULL,
-  `Categoria_id` int(11) DEFAULT NULL,
+  `ID_Categoria` int(11) DEFAULT NULL,
   `Marca` varchar(50) DEFAULT NULL,
   `Descuento` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`ID_Producto`),
-  KEY `Categoria_id` (`Categoria_id`),
+  KEY `ID_Categoria` (`ID_Categoria`),
   CONSTRAINT `productos_ibfk_1`)
 
 CREATE TABLE IF NOT EXISTS `caracteristicas` (

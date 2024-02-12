@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    let alias = 'Carrito';
+    let alias = 'Carritos';
     let columns = {
         ID_Carrito: {
             type: DataTypes.INTEGER,
@@ -20,5 +20,17 @@ module.exports = (sequelize, DataTypes) => {
 
     let Carrito = sequelize.define(alias, columns, config);
 
+    Carrito.associate = function (models) {
+        Carrito.belongsTo(models.Usuarios, {
+            as: 'Usuarios',
+            foreignKey: 'ID_Usuario'
+        });
+
+        Carrito.hasMany(models.Productos, {
+            as: 'Productos',
+
+            foreignKey: 'ID_Producto'
+        });
+    }
     return Carrito;
 };

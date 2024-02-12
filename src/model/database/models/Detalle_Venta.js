@@ -25,6 +25,18 @@ module.exports = (sequelize, DataTypes) => {
     };
 
     let DetalleVenta = sequelize.define(alias, columns, config);
+    
+    DetalleVenta.associate = function (models) {
+        DetalleVenta.belongsTo(models.Ventas, {
+            as: 'Venta',
+            foreignKey: 'ID_Detalle_Venta'
+        });
+        
+        DetalleVenta.hasOne(models.Productos, {
+            as: 'Producto',
+            foreignKey: 'ID_Producto'
+        });
 
+    }
     return DetalleVenta;
 };

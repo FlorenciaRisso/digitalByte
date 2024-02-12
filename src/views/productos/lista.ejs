@@ -24,21 +24,15 @@
                                 <% productos.forEach(producto=> { %>
                                     <tr>
                                         <td>
-                                            <%= producto.name %>
+                                            <%= producto.Nombre %>
                                         </td>
                                         <td class="td-descripcion">
                                             <p class="p-descripcion">
-                                                <%= producto.description %>
+                                                <%= producto.Descripcion %>
                                             </p>
                                         </td>
-                                        <td><img src="<%= producto.image0 %>" alt="Imagen del producto"></td>
-                                        <td><img src="<%= producto.image1 %>" alt="Imagen del producto-1"></td>
-                                        <td><img src="<%= producto.image2 %>" alt="Imagen del producto-2"></td>
-                                        <td><img src="<%= producto.image3 %>" alt="Imagen del producto-3"></td>
-                                        <td>
-                                            <%= producto.category.name %>
-                                        </td>
-                                        <td>$<%= funcion.getPrecioFormateado(producto.price) %>
+
+                                        <td>$<%= funcion.getPrecioFormateado(producto.Precio) %>
                                         </td>
                                         <td>
                                             <a href="/productos/editar/<%=producto.id%>"><i

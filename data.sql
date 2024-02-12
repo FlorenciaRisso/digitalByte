@@ -4,7 +4,7 @@ INSERT INTO digitalbyte.categorias(id,nombre) VALUES
  (2,"Smartphone"),
  (3,"Tablet");
 -- Carga tabla productos
-INSERT INTO digitalbyte.productos (ID_Producto,Nombre,Descripcion,Precio,Stock,Categoria_id,Marca,Descuento) VALUES 
+INSERT INTO digitalbyte.productos (ID_Producto,Nombre,Descripcion,Precio,Stock,ID_Categoria,Marca,Descuento) VALUES 
 (1,"Ipad 8va Generacion","El nuevo iPad se transforma en lo que quieras: un cuaderno digital, una oficina movil, un estudio fotografico, una consola de juegos o una sala de cine. El chip A12 Bionic te ofrece la potencia que necesitas para usar las apps de todos los dias y los juegos mas inmersivos. Puedes editar un documento mientras buscas informacion en Internet y hablas con un companiero por FaceTime. Gracias al Apple Pencil, tomar notas en el iPad es supersencillo. Si tienes que preparar un informe? Conecta el Smart Keyboard de tamanio completo y escribe con total comodidad.",532580.0,10,3,"Apple",0.0),
  (2,"Ipad 9na Generacion","Diseniado para que hagas todo lo que te gusta, por menos de lo que imaginas.",649999.0,30,3,"Apple",0.0),
  (3,"Ipad 10ma Generacion","Captura todos tus momentos al instante gracias a sus camaras, con resoluciones de 12 Mpx y 12 Mpx.",765809.0,20,3,"Apple",0.0),

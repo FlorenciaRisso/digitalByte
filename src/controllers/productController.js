@@ -1,26 +1,28 @@
 const path = require('path');
 const productService = require('../data/productService');
 const funcion = require('../data/funcion');
-const db = require('../model/database/models')
+const db = require('../model/database/models');
+const { error } = require('console');
 
 let productController = {
     index: (req, res) => {
         let productos = productService.products;
         res.render('productos/index', { productos: productos, funcion: funcion })
     },
+    lista: async function (req, res) {
+        try {
+            let productos = await productService.getAll();
+            res.render('productos/lista', { productos: productos, funcion: funcion })
+        } catch(error) {console.log(error.message)}
+    },
     listado:
      async function(req, res){
-        try {            
-            let respuesta = await db.Productos.findAll();
+        try {
+            let respuesta = await db.Productos.findAll({include:[{association:'Caracteristica'}]});
             res.json(respuesta)
         } catch (error) {
            console.log(error);
         }
-    },
-
-    lista: (req, res) => {
-        let productos = productService.products;
-        res.render('productos/lista', { productos: productos, funcion: funcion})
     },
     carrito: (req, res) => {
         let productos = productService.products;
