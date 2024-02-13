@@ -9,7 +9,7 @@ const authMiddleware = require('../middlewares/authMiddleware');
 
 router.get('/', productController.index);
 router.get('/carrito',authMiddleware, productController.carrito);
-router.get('/lista', productController.lista); //solo admin
+router.get('/lista', authMiddleware, productController.lista); //solo admin
 //listar
 router.get('/listaproductos',authMiddleware, productController.listado);
 router.get('/categoria',productController.listaPorCat);

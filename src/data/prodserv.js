@@ -1,7 +1,4 @@
-/*getOne: function (req, res) {
-    let producto = this.products.find((producto) => { return producto.id == req.params.id });
-    return producto;
-},
+/*
 getProdPorCat: function (req, res) {
     let productos = this.products.filter((producto) => { return producto.category.name == req.query.cat });
     return productos;
@@ -94,11 +91,3 @@ save: function (req) {
     this.products.push(product);
     fs.writeFileSync(productRouter, JSON.stringify(this.products), 'utf-8');
 }*/
-
-/*<!-- <td><img src="<%= producto.ImagenesProducto %>" alt="Imagen del producto"></td>
-<td><img src="<%= producto.ImagenesProducto %>" alt="Imagen del producto-1"></td>
-<td><img src="<%= producto.ImagenesProducto %>" alt="Imagen del producto-2"></td>
-<td><img src="<%= producto.ImagenesProducto %>" alt="Imagen del producto-3"></td>
-<td> -->
-    <!-- <%= producto.categorias.nombre %>
-</td> -->*/
