@@ -11,7 +11,7 @@ router.get('/', productController.index);
 router.get('/carrito',authMiddleware, productController.carrito);
 router.get('/lista', productController.lista); //solo admin
 //listar
-router.get('/listaproductos', productController.listado);
+router.get('/listaproductos',authMiddleware, productController.listado);
 router.get('/categoria',productController.listaPorCat);
 //crear
 router.get('/create',authMiddleware, productController.create);

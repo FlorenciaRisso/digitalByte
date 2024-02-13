@@ -5,20 +5,20 @@ const db = require('../model/database/models');
 const { error } = require('console');
 
 let productController = {
-    index: (req, res) => {
-        let productos = productService.products;
-        res.render('productos/index', { productos: productos, funcion: funcion })
+    index: function (req, res){
+            productService.getAll().
+            then(data=>{res.render('productos/index', { productos: data, funcion: funcion })}).
+            catch(error=>{console.log(error)})
     },
     lista: async function (req, res) {
-        try {
-            let productos = await productService.getAll();
-            res.render('productos/lista', { productos: productos, funcion: funcion })
-        } catch(error) {console.log(error.message)}
+        productService.getAll().
+            then(data=>{res.render('productos/lista', { productos: data, funcion: funcion })}).
+            catch(error=>{console.log(error)})
     },
     listado:
      async function(req, res){
         try {
-            let respuesta = await db.Productos.findAll({include:[{association:'Caracteristica'}]});
+            let respuesta = await db.Productos.findAll({include:[{association:'Caracteristica'},{association:'Categoria'},{association:'ImagenesProductos'}]});
             res.json(respuesta)
         } catch (error) {
            console.log(error);
@@ -32,9 +32,9 @@ let productController = {
         let productos = productService.getProdPorCat(req);
         res.render('productos/categoria', { productos: productos, funcion: funcion });
     },
-    detalle: (req, res) => {
-        let producto = productService.getOne(req);
-        let productos = productService.getAll();
+    detalle: async (req, res) => {
+        let producto = await productService.getOne(req);
+        let productos = await productService.getAll();
         res.render('productos/productDetail', { producto: producto, productos: productos, funcion: funcion });
     },
     create: (req, res) => {

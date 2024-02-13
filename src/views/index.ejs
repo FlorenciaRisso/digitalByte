@@ -39,18 +39,18 @@
             <div class="offer__container">
               <h4 class="most-searched__title">💥🎊20% Off de la semana🎊💥</h4>
               <div class="offer">
-                <%productos.forEach(producto=>{ if(producto.discount == 20){%>
-                <a href="/productos/detalle/<%=producto.id %>">
+                <% productos.forEach(producto=>{ if(producto.Descuento == 20){%>
+                <a href="/productos/detalle/<%=producto.ID_Producto%>">
                   <div class="offer__image">
-                    <img class="offer__image-img" src="<%=producto.image0%>" alt="" />
-                    <% if(producto.discount != 0){ %>
+                    <img class="offer__image-img" src="<%=producto.ImagenesProductos[0].ruta%>" alt="" />
+                    <% if(producto.Descuento != 0){ %>
                       <div class="discount-circle">
-                        <p class="discount-value"><%= producto.discount %>%</p>
+                        <p class="discount-value"><%= producto.Descuento %>%</p>
                       </div>
                     <% } %>
-                    <% let precioFinal=producto.price-(producto.price*(producto.discount/100))%>
+                    <% let precioFinal=producto.Precio-(producto.Precio*(producto.Descuento/100))%>
                     <p class="p-price-offer">$<%=funcion.getPrecioFormateado(precioFinal)%></p>
-                    <p class="p-white"><%=producto.name%></p>
+                    <p class="p-white"><%=producto.Nombre%></p>
                   </div>
                 </a>
                 <%}});%>

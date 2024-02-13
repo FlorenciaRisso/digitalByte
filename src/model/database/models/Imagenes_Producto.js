@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        producto_id: {
+        ID_Producto: {
             type: DataTypes.INTEGER
         },
         ruta: {

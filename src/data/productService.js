@@ -13,8 +13,24 @@ const productService = {
 
     getAll: async function (req, res) {
         try {
-            return await db.Productos.findAll({include:[{association:'Caracteristica'}]});
+            return await db.Productos.findAll({include:[
+                {association:'Caracteristica'},
+            {association:'ImagenesProductos'},
+            {association:'Categoria'}
+        ]});
         } catch (error) {
+            console.log(error);
+            return [];
+        }
+    },
+    getOne:async function (req,res){
+        try{
+            return await db.Productos.findByPk(req.params.id,{include:[
+                {association:'Caracteristica'},
+            {association:'ImagenesProductos'},
+            {association:'Categoria'}
+        ]});
+        } catch{
             console.log(error);
             return [];
         }

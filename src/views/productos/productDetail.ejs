@@ -7,12 +7,12 @@
                     <div class="imagenes-acciones">
                         <div class="imagenes-producto">
                             <div class="imagen-principal">
-                                <img src="<%=producto.image0%>" alt="<%=producto.name%>">
+                                <img src="<%=producto.ImagenesProductos[0].ruta%>" alt="<%=producto.Nombre%>">
                             </div>
                             <div class="imagenes-secundarias">
-                                <div class="div-img"><img src="<%=producto.image1%>" alt=""></div>
-                                <div class="div-img"><img src="<%=producto.image2%>" alt=""></div>
-                                <div class="div-img"><img src="<%=producto.image3%>" alt=""></div>
+                                <div class="div-img"><img src="<%=producto..ImagenesProductos[1].ruta%>" alt=""></div>
+                                <div class="div-img"><img src="<%=producto..ImagenesProductos[2].ruta%>" alt=""></div>
+                                <div class="div-img"><img src="<%=producto..ImagenesProductos[3].ruta%>" alt=""></div>
                             </div>
                         </div>
 
@@ -21,7 +21,7 @@
                     <div class="detalle-producto">
                         <div class="titulo-producto">
                             <p>
-                                <%=producto.name%>
+                                <%=producto.Nombre%>
                             </p>
                         </div>
                         <div class="descripcion-producto">
@@ -30,7 +30,7 @@
                                 <p>General</p>
                             </div>
                             <p>
-                                <%=producto.description%>
+                                <%=producto.Descripcion%>
                             </p>
                         </div>
                         <div class="caracteristicas-producto_table">
@@ -40,34 +40,39 @@
                             </div>
                             <table>
                                 <tbody>
-                                    <% for (const key in producto.specifications) { %>
-                                        <tr>
-                                            <td class="caracteristicas-producto_first_td">
-                                                <%= key %>
-                                            </td>
-                                            <td class="caracteristicas-producto_second_td">
-                                                <%= producto.specifications[key] %>
-                                            </td>
-                                        </tr>
+                                    <% if(producto.Caracteristica){%>
+                                        <% for (const key in producto.Caracteristica) { %>
+                                            <tr>
+                                                <td class="caracteristicas-producto_first_td">
+                                                    <%= key %>
+                                                </td>
+                                                <td class="caracteristicas-producto_second_td">
+                                                    <%= producto.Caracteristica[key] %>
+                                                </td>
+                                            </tr>
                                         <% } %>
+                                    <%}%>
                                 </tbody>
                             </table>
                         </div>
                         <div class="oferta-precio">
-                            <% if(producto.discount != 0){ %>
-                            <div class="oferta">
-                                <p class="p-off"><%= producto.discount %>%OFF 🎊</p>
-                            </div>
-                            <%}%>
-                            <div class="precio-comprar">
-                                <div class="precio">
-                                    <% let precioFinal=producto.price-(producto.price*(producto.discount/100))%>
-                                    <p>$<%=funcion.getPrecioFormateado(precioFinal)%></p>
+                            <% if(producto.Descuento !=0){ %>
+                                <div class="oferta">
+                                    <p class="p-off">
+                                        <%= producto.Descuento %>%OFF 🎊
+                                    </p>
                                 </div>
-                                <a href="/productos/addCarrito" class="div-btn-comprar">
-                                    <button class="btn-comprar">Agregar al Carrito</button>
-                                </a>
-                            </div>
+                                <%}%>
+                                    <div class="precio-comprar">
+                                        <div class="precio">
+                                            <% let precioFinal=producto.Precio-(producto.Precio*(producto.Descuento/100))%>
+                                                <p>$<%=funcion.getPrecioFormateado(precioFinal)%>
+                                                </p>
+                                        </div>
+                                        <a href="/productos/addCarrito" class="div-btn-comprar">
+                                            <button class="btn-comprar">Agregar al Carrito</button>
+                                        </a>
+                                    </div>
                         </div>
                     </div>
                 </section>
