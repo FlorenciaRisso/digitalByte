@@ -23,7 +23,7 @@ const productService = {
             return [];
         }
     },
-    getOne:async function (req,res){
+    getOne:async function (req){
         try{
             return await db.Productos.findByPk(req.params.id,{include:[
                 {association:'Caracteristica'},
