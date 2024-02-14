@@ -15,29 +15,29 @@
         <form class="register__form" action="/usuarios/registro" method="POST" enctype="multipart/form-data">
 
 
-          <div class="register__firstname-form block-input">
-            <input type="text" name="firstName"
-              class="register__input-form <%= locals.errors && errors.firstName ? 'is-invalid' : null %>" 
+          <div class="register__nombre-form block-input">
+            <input type="text" name="nombre"
+              class="register__input-form <%= locals.errors && errors.nombre ? 'is-invalid' : null %>" 
               placeholder="Nombre" 
-              value="<%= locals.oldData ? oldData.firstName : null %>">
+              value="<%= locals.oldData ? oldData.nombre : null %>">
 
-            <% if(locals.errors && errors.firstName) {%>
+            <% if(locals.errors && errors.nombre) {%>
               <div class="text-danger">
-                <%= errors.firstName.msg %>
+                <%= errors.nombre.msg %>
               </div>
               <% } %>
           </div>
 
 
-          <div class="register__lastname-form block-input">
-            <input type="text" name="lastName"
-              class="<%= locals.errors && errors.lastName ? 'is-invalid' : null %>" 
+          <div class="register__apellido-form block-input">
+            <input type="text" name="apellido"
+              class="<%= locals.errors && errors.apellido ? 'is-invalid' : null %>" 
               placeholder="Apellido" 
-              value="<%= locals.oldData ? oldData.lastName : null %>">
+              value="<%= locals.oldData ? oldData.apellido : null %>">
 
-            <% if(locals.errors && errors.lastName) {%>
+            <% if(locals.errors && errors.apellido) {%>
               <div class="text-danger">
-                <%= errors.lastName.msg %>
+                <%= errors.apellido.msg %>
               </div>
               <% } %>
           </div>
@@ -59,70 +59,70 @@
 
           <div class="register__password-form block-input">
             <input type="password" name="password" 
-            class="register__input-form <%= locals.errors && errors.password ? 'is-invalid' : null %>"
-              placeholder="Contraseña" value="<%= locals.oldData ? oldData.password : null %>">
+            class="register__input-form <%= locals.errors && errors.contraseña ? 'is-invalid' : null %>"
+              placeholder="Contraseña" value="<%= locals.oldData ? oldData.contraseña : null %>">
 
-            <% if(locals.errors && errors.password) {%>
+            <% if(locals.errors && errors.contraseña) {%>
               <div class="text-danger">
-                <%= errors.password.msg %>
+                <%= errors.contraseña.msg %>
               </div>
               <% } %>
           </div>
 
 
           <div class="register__password-form block-input">
-            <input type="password" name="confirmPassword" 
-            class="<%= locals.errors && errors.confirmPassword ? 'is-invalid' : null %>"
-               placeholder="Repetir contraseña" value="<%= locals.oldData ? oldData.confirmPassword : null %>">
+            <input type="password" name="confirmContraseña" 
+            class="<%= locals.errors && errors.confirmContraseña ? 'is-invalid' : null %>"
+               placeholder="Repetir contraseña" value="<%= locals.oldData ? oldData.confirmContraseña : null %>">
 
-            <% if(locals.errors && errors.confirmPassword) {%>
+            <% if(locals.errors && errors.confirmContraseña) {%>
               <div class="text-danger">
-                <%= errors.confirmPassword.msg %>
+                <%= errors.confirmContraseña.msg %>
               </div>
               <% } %>
           </div>
 
 
           <div class="register__category-form block-input ">
-            <label for="category"><b>Selecciona un perfil de usuario:</b></label>
-            <select name="category" id="category" 
-            class="<%= locals.errors && errors.category ? 'is-invalid' : '' %>">
+            <label for="rol"><b>Selecciona un perfil de usuario:</b></label>
+            <select name="rol" id="rol" 
+            class="<%= locals.errors && errors.rol ? 'is-invalid' : '' %>">
               <option value="">Elige una categoría</option>
-              <% let categories=["Vendedor", "Cliente" ] %>
+              <% let categories=["Vendedor", "Administrador" ] %>
                 <% for (const oneCategory of categories) { %>
                  <option value="<%= oneCategory %>"
-                    <%= locals.oldData && (oneCategory === oldData.category) ? 'selected' : null  %>
+                    <%= locals.oldData && (oneCategory === oldData.rol) ? 'selected' : null  %>
                     > <%= oneCategory %></option>
                   <% } %>
             </select>
 
-            <% if(locals.errors && errors.category) {%>
+            <% if(locals.errors && errors.rol) {%>
               <div class="text-danger">
-                <%= errors.category.msg %>
+                <%= errors.rol.msg %>
               </div>
               <% } %>
           </div>
 
 
           <div class="register__category-form block-input">
-            <label for="country"><b>País de nacimiento</b></label>
+            <label for="nacinoalidad"><b>País de nacimiento</b></label>
             <select 
-            name="country"
-            class="<%= locals.errors && errors.country ? 'is-invalid' : null %>" >
+            name="nacionalidad"
+            class="<%= locals.errors && errors.nacionalidad ? 'is-invalid' : null %>" >
               <option value="">Elige un país</option>
               <% let countries=[ "Argentina" , "Bolivia" , "Chile" , "Uruguay" , "Paraguay" , "Colombia" , "Ecuador"
                 , "Perú" ]; %>
                 
                 <% for (const oneCountry of countries) { %>
                   <option value="<%= oneCountry %>"
-                    <%= locals.oldData && (oneCountry === oldData.country) ? 'selected' : null  %>
+                    <%= locals.oldData && (oneCountry === oldData.nacionalidad) ? 'selected' : null  %>
                     > <%= oneCountry %></option>
                   <% } %>
             </select>
 
-            <% if(locals.errors && errors.country) { %>
+            <% if(locals.errors && errors.nacionalidad) { %>
               <div class="text-danger">
-                <%= errors.country.msg %>
+                <%= errors.nacionalidad.msg %>
               </div>
               <% } %>
           </div>
@@ -130,10 +130,10 @@
           
           <div class="register__image-form block-input">
             <label class="form-label"><b>Imagen de perfil:</b></label>
-            <input type="file" name="image" accept=".jpg, .png">
-            <% if(locals.errors && errors.image) {%>
+            <input type="file" name="avatar" accept=".jpg, .png">
+            <% if(locals.errors && errors.avatar) {%>
               <div class="text-danger">
-                <%= errors.image.msg %>
+                <%= errors.avatar.msg %>
               </div>
               <% } %>
           </div>

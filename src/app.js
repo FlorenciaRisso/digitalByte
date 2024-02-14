@@ -13,6 +13,7 @@ const bodyParser = require('body-parser');
 const methodOverride =  require('method-override');
 const session = require('express-session');
 
+
 const indexRouter = require('./routes/index');
 app.use(session({secret: 'secret', resave: false, saveUninitialized: false}))
 app.use(bodyParser.urlencoded({extended: true}));

@@ -4,14 +4,14 @@ USE digitalbyte;
 
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(100) NOT NULL,
-  `last_name` varchar(100) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `apellido` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `nacionalidad` varchar(100) NOT NULL,
   `rol` varchar(50) NOT NULL,
-  `Contraseña` varchar(100) DEFAULT NULL,
-  `Direccion` varchar(255) DEFAULT NULL,
-  `Telefono` varchar(20) DEFAULT NULL,
+  `contraseña` varchar(100) DEFAULT NULL,
+  `direccion` varchar(255) DEFAULT NULL,
+  `telefono` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 )
 
