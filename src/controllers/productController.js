@@ -29,8 +29,10 @@ let productController = {
         res.render('productos/productCart', { productos: productos, funcion: funcion });
     },
     listaPorCat: (req, res) => {
-        let productos = productService.getProdPorCat(req);
-        res.render('productos/categoria', { productos: productos, funcion: funcion });
+        productService.getProdPorCat(req).
+        then(data=> {res.render('productos/categoria', { productos: data, funcion: funcion })}).
+        catch(error=>console.log(error));
+        
     },
     detalle: async (req, res) => {
         let producto = await productService.getOne(req);

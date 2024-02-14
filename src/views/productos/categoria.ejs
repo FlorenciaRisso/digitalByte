@@ -4,23 +4,23 @@
         <%-include ('../partials/headerYNav' ) %>
             <main class="main-categoria">
                 <%let categoria="";
-                switch(productos[0].category.id){
+                
+                switch(productos[0].ID_Categoria){
                     case 1:
-                        categoria="Smartphones";
+                        categoria="Notebooks";
                         break;
                     case 2:
-                        categoria="Tablets";
+                        categoria="Smartphones";
                         break;
                     case 3:
-                        categoria="Notebooks";
+                        categoria="Tablets";
                         break;
                 }%>
                 <h1 class='titulo-categoria'><%=categoria %></h1>
                 <div class="container">
-                    
-                    <% productos.forEach(producto=>{%>
-                        <%- include ('../partials/cardArticulos',{producto:producto,funcion:funcion}) %>
-                    <%});%>
+                <% productos.forEach(producto=>{%>
+                    <%- include ('../partials/cardArticulos',{producto:producto,funcion:funcion}) %>
+                <%});%>
                 </div>
             </main>
             <%- include ('../partials/footer') %>
