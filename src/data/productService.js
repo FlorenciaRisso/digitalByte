@@ -9,9 +9,7 @@ const productsArray = JSON.parse(fs.readFileSync(productRouter, 'utf-8'));
 
 const productService = {
 
-    products: productsArray,
-
-    getAll: async function (req, res) {
+    getAll: async function () {
         try {
             return await db.Productos.findAll({include:[
                 {association:'Caracteristica'},
@@ -35,51 +33,41 @@ const productService = {
             return [];
         }
     },
-    save: function (req) {
-        let product = {};
-        let categorias = [
-            { "id": "1", "name": "Smartphones" },
-            { "id": "2", "name": "Tablets" },
-            { "id": "3", "name": "Notebooks" }
-        ];
-        let lastProductId = this.products.length > 0 ? this.products[this.products.length - 1].id : 0;
-        product.id = lastProductId + 1;
-        product.name = req.body.name;
-        product.description = req.body.description;
-        let selectedCategory = categorias.find(cat => cat.id === req.body.category);
-        product.category = { "id": selectedCategory.id, "name": selectedCategory.name };
-        product.price = req.body.price;
-        product.discount = req.body.discount;
-        product.plus = "";
-        product.marca = req.body.marca;
-        let image = "/img/default-image.png";
-        let specifications = {
-            "Tamaño": req.body.Tamanio || '',
-            "Memoria": req.body.Memoria || '',
-            "CamaraPrincipal": req.body.CamaraPrincipal || '',
-            "Ram": req.body.Ram || ''
-        };
-        product.specifications = specifications;
-        if (!req.files || Object.keys(req.files).length === 0) {
-            // Manejo cuando no se han subido archivos
-            for (let i = 0; i < 4; i++) {
-                if (!product[`image${i}`]) {
-                    product[`image${i}`] = image;
-                }
-            }
-        } else {
-            // Manejo cuando se han subido archivos
+    save: async function (req) {
+        try {
+            const nuevoProducto = await db.Productos.create({
+                Nombre: req.body.name,
+                Descripcion: req.body.description,
+                ID_Categoria: req.body.category,
+                Precio: req.body.price,
+                Stock:req.body.stock,
+                Descuento: req.body.discount,
+                Marca: req.body.marca
+                // ID_Vendedor:req.body.id  AGREGAR ID DEL VENDEDOR OBTENIENDO EN LA TABLA usUaRIos
+            });
+    
+            // Agregar las imágenes del producto
             for (let i = 0; i < 4; i++) {
                 const fileField = req.files[`image${i}`];
-                if (fileField && fileField.length > 0) {
-                    product[`image${i}`] = '/img/' + fileField[0].filename;
-                } else {
-                    if (!product[`image${i}`]) {
-                        product[`image${i}`] = image;
-                    }
-                }
+                const imagePath = fileField ? '/img/' + fileField[0].filename : "/img/default-image.png";
+                await db.ImagenesProductos.create({ ID_Producto: nuevoProducto.ID_Producto, ruta: imagePath });
             }
+    
+            // Agregar las características del producto
+            // Suponiendo que tienes una variable `caracteristicas` con las características del producto
+            await db.Caracteristicas.create({ ID_Producto: nuevoProducto.ID_Producto, 
+                tamaño:req.body.tamanio,
+                memoria:req.body.memoria,
+                camara:req.body.camara,
+                ram:req.body.ram });
+    
+            console.log("Producto creado:", nuevoProducto.toJSON());
+            return nuevoProducto;
+        } catch (error) {
+            console.error("Error al guardar el producto:", error);
+            throw error;
         }
+    
     },
     //1.notebook,2.smartphone,3.tablet
     getProdPorCat: async function (req, res) {

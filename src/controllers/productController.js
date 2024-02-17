@@ -7,7 +7,7 @@ const { error } = require('console');
 let productController = {
     index: function (req, res){
             productService.getAll().
-            then(data=>{res.render('productos/index', { productos: data, funcion: funcion })}).
+            then(data=>{console.log(data);res.render('productos/index', { productos: data, funcion: funcion })}).
             catch(error=>{console.log(error)})
     },
     lista: async function (req, res) {
@@ -43,12 +43,11 @@ let productController = {
         res.render('productos/create', { funcion: funcion })
     },
     save: (req, res) => {
-        productService.save(req);
-        res.redirect('/productos');
+        productService.save(req).then(data=>res.redirect('/productos')).catch(error=>console.log(error))
     },
     editProducto: (req, res) => {
-        let producto = productService.getOne(req);
-        res.render('productos/editProducto', { producto: producto, funcion: funcion })
+        productService.getOne(req).then(data=>res.render('productos/editProducto', { producto: data, funcion: funcion })).catch(error=>console.log(error))
+        
     },
     update: (req, res) => {
         productService.update(req);
