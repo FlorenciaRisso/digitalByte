@@ -2,11 +2,11 @@ const {check} = require ('express-validator');
 const path = require('path')
 
 const editProductValidation = [
-    check('password').notEmpty().withMessage('El campo contraseña no puede estar vacío'),
-    check('confirmPassword').notEmpty().withMessage('Repite la contraseña'),
+    check('contraseña').notEmpty().withMessage('El campo contraseña no puede estar vacío'),
+    check('confirmContraseña').notEmpty().withMessage('Repite la contraseña'),
     check('nacionalidad').notEmpty().withMessage('Debes seleccionar un país'),
-    check('category').notEmpty().withMessage('Debes elegir una categoría de usuario'),
-    check('image').custom((value, {req}) => {
+    check('rol').notEmpty().withMessage('Debes elegir una categoría de usuario'),
+    check('avatar').custom((value, {req}) => {
         let file = req.file;
         let acceptedExtensions = ['.jpg', '.png', '.gif']
         if(!file){

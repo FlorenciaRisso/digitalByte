@@ -48,7 +48,7 @@
           </div>
 
           <div class="edit-user__password-form block-input">
-            <input type="password" name="password"
+            <input type="password" name="contraseña"
               class="edit-user__input-form <%= locals.errors && errors.contraseña ? 'is-invalid' : null %>"
               placeholder="Contraseña">
 
@@ -60,7 +60,7 @@
           </div>
 
           <div class="edit-user__password-form block-input">
-            <input type="password" name="confirmPassword"
+            <input type="password" name="confirmContraseña"
               class="edit-user__input-form <%= locals.errors && errors.confirmContraseña ? 'is-invalid' : null %>"
               placeholder="Repetir contraseña">
 
@@ -72,8 +72,8 @@
           </div>
 
           <div class="edit-user__category-form block-input ">
-            <label for="category"><b>Selecciona un perfil de usuario:</b></label>
-            <select name="category" id="category"
+            <label for="rol"><b>Selecciona un perfil de usuario:</b></label>
+            <select name="rol" id="rol"
               class="edit-user__input-form <%= locals.errors && errors.rol ? 'is-invalid' : '' %>">
               <option value="">Elige una categoría</option>
               <% let categories=["Vendedor", "Administrador" ] %>

@@ -3,8 +3,12 @@
         <a href="/"><img class="img-logo" src="/img/logo-dbytee.png" alt="logoDigitalByte"></a>
     </div>
     <div class="bar-search">
-        <input class="input-search" type="text" name="search" id="search" placeholder="¿Qué estas buscando?" autocomplete="off">
+    <form action="/products/search" method="GET"  id="search-form">
+        <input type="text" name="q" class="input-search" id="search-input" placeholder="Buscar productos...">
+        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
     </div>
+
     <div class="user-option">
         <!-- Luego validar si el usuario tiene permisos de administrador -->
         <% if(usuarioLogeado){ %>
@@ -26,11 +30,20 @@
         </div>
         <%}%>
 
-    </div>
+</div>
     <div class="secciones">
 
     </div>
 </header>
+<div> 
+    <ul class="box-search" id="box-search">
+        <li> <a href="#"> <i class="fas fa-search"></i>a</a></li>
+        <li> <a href="#"> <i class="fas fa-search"></i>b</a></li>
+        <li> <a href="#"> <i class="fas fa-search"></i>c</a></li>
+    </ul> <!-- Lista de sugerencias -->
+    </div> 
+
+
 <nav class="main-nav">
     <div class="menu">
         <a class="a-hamburguer" href="/">
@@ -48,3 +61,4 @@
         <li><a href="/quienes-somos">¿Quienes Somos?</a></li>
     </ul>
 </nav>
+

@@ -21,6 +21,14 @@ const userService = {
             return null;
         }
     },
+    findByField: async function (field, value) {
+        try {
+            return await Usuarios.findOne({ where: { [field]: value } });
+        } catch (error) {
+            console.error('Error al buscar el usuario por campo:', error);
+            return null;
+        }
+    },
     save: async function (req, res) {
         try {
             const errors = validationResult(req);

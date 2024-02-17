@@ -15,7 +15,14 @@ const session = require('express-session');
 
 
 const indexRouter = require('./routes/index');
-app.use(session({secret: 'secret', resave: false, saveUninitialized: false}))
+app.use(session({secret: 'secret',
+ resave: false, 
+ saveUninitialized: false,
+ cookie: {
+    maxAge: 60000,
+    httpOnly: true,
+    path: '/'
+}}))
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 //Usando recursos estaticos

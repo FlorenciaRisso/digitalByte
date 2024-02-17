@@ -107,6 +107,10 @@ a {
   border: solid 1px rgb(155, 61, 232);
 }
 
+.fa-solid {
+  padding: 5px;
+}
+
 .user-option {
   display: flex;
   align-items: center;
@@ -160,6 +164,7 @@ a {
   background-color: #fbfbfb;
   margin-bottom: 15px;
   flex-direction: column;
+
 }
 
 .hamburger-button {
@@ -800,7 +805,6 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
   }
 
   .input-search {
@@ -809,8 +813,47 @@ a {
     border: 1px solid rgb(155, 155, 155);
     border-radius: 10px;
     color: black;
-    width: 60%;
+    width: 80%;
   }
+
+  .box-search {
+    display: none;
+    position: fixed;
+    top: 58px;
+    left: 50%;
+    width: 43%;
+    transform: translate(-50%);
+    z-index: 8;
+    background-color: #fff;
+    overflow: hidden;
+    border-radius: 5px;
+    list-style: none;
+  }
+
+  .box-search li a {
+    display: block;
+    color: #777777;
+    padding: 5px 0;
+  }
+
+  .box-search li a i {
+    margin-right: 10px;
+    color: #777777;
+  }
+
+  .box-search li a:hover {
+    background-color: #f3f3f3;
+  }
+
+  .cover-search {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
 
   .input-search:focus {
     border: solid 1px rgb(150, 59, 224);

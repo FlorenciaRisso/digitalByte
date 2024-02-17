@@ -9,19 +9,20 @@ const { log } = require('console');
 let userController = {
 
     lista: async function (req, res) {
-            try {
-                const usuarios = await userService.getAll();
-                res.render('usuarios/lista', { usuarios: usuarios });
-            } catch (error) {
-                console.error('Error al obtener usuarios:', error);
-                res.status(500).send('Error al obtener usuarios');
-            }
-        },
+        try {
+            const usuarios = await userService.getAll();
+            res.render('usuarios/lista', { usuarios: usuarios });
+        } catch (error) {
+            console.error('Error al obtener usuarios:', error);
+            res.status(500).send('Error al obtener usuarios');
+        }
+    },
 
     profile: (req, res) => {
         let userId = parseInt(req.params.id, 10);
         const usuario = userService.getOne(userId);
         if (usuario) {
+
             res.render('usuarios/profile', { usuario: usuario });
         } else {
             res.status(404).send('Usuario no encontrado');
@@ -29,7 +30,7 @@ let userController = {
     },
 
     userProfile: (req, res) => {
-        let usuario=userService.getOne(req.session.usuarioLogeado);
+        let usuario = userService.getOne(req.session.usuarioLogeado);
         return res.render('usuarios/userProfile', {
             usuario: usuario
         })
@@ -38,7 +39,7 @@ let userController = {
     edit: (req, res) => {
         let userId = parseInt(req.params.id, 10);
         let usuario = userService.getOne(userId);
-        res.render('usuarios/edit', { usuario: usuario, oldData:usuario });
+        res.render('usuarios/edit', { usuario: usuario, oldData: usuario });
     },
 
     update: (req, res) => {
@@ -69,16 +70,16 @@ let userController = {
 
     processRegister: (req, res) => {
         let resultado = userService.save(req);
-        let old=req.body;
+        let old = req.body;
         if (resultado.success == true) {
             res.redirect('/usuarios/login')
         } else if (resultado.errors) {
             res.render('usuarios/registro', {
-                errors: resultado.errors.mapped(),oldData:old
+                errors: resultado.errors.mapped(), oldData: old
             })
         } else {
             res.render('usuarios/registro', {
-                errors: resultado.errors.email, oldData:old
+                errors: resultado.errors.email, oldData: old
             })
         }
     },
@@ -92,24 +93,30 @@ let userController = {
         res.render('usuarios/login');
     },
 
-    processLogin: (req, res) => {
-        let usuarioValido = userService.findByField('email', req.body.email);
-        console.log(usuarioValido);
-        if (usuarioValido) {
-            let correctPassword = bcrypt.compareSync(req.body.password, usuarioValido.password);
-            console.log(correctPassword);
-            if (correctPassword) {
-                req.session.usuarioLogeado = usuarioValido.id;
-                return res.redirect('/')
-            }
-        }
-        return res.render('usuarios/login', {
-            errors: {
-                email: {
-                    msg: 'Credenciales inválidas'
+    processLogin: async (req, res) => {
+        try {
+            let usuarioValido = await userService.findByField('email', req.body.email);
+
+            if (usuarioValido) {
+                let correctContraseña = bcrypt.compareSync(req.body.contraseña, usuarioValido.contraseña);
+
+                if (correctContraseña) {
+                    req.session.usuarioLogeado = usuarioValido.id;
+                    return res.redirect('/');
                 }
             }
-        })
+            return res.render('usuarios/login', {
+                errors: {
+                    email: {
+                        msg: 'Credenciales inválidas'
+                    }
+                }
+            });
+
+        } catch (error) {
+            console.error('Error al procesar el inicio de sesión:', error);
+            return res.status(500).send('Error al procesar el inicio de sesión');
+        }
 
     },
 
