@@ -1,15 +1,15 @@
-<%productos.forEach(producto=>{if(producto.plus == "Mas buscado"){%>
-    <a href="/productos/detalle/<%=producto.id %>">
+<%productos.forEach(producto=>{if(producto.Stock >= 20){%>
+    <a href="/productos/detalle/<%=producto.ID_Producto %>">
         <div class="most-searched__card">
 
             <!-- (NEXT) enviar array con elementos para mostrar MAS BUSCADOS -->
             <div class="card">
-                <img class="card__image" src="<%=producto.image0%>" alt="" />
+                <img class="card__image" src="<%=producto.ImagenesProductos[0].ruta%>" alt="" />
             </div>
 
             <div class="card__p">
                 <p class="p-titulo-card">
-                    <%=producto.name%>
+                    <%=producto.Nombre%>
                 </p>
             </div>
             <%- include('accionesProd',{producto:producto,funcion:funcion}) %>

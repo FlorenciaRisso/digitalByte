@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         camara: {
             type: DataTypes.STRING(50)
         },
-        desbloqueo: {
+        ram: {
             type: DataTypes.STRING(50)
         }
     };
