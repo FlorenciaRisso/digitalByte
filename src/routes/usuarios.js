@@ -10,7 +10,7 @@ const authMiddleware = require('../middlewares/authMiddleware')
 
 router.get('/perfil/:id',authMiddleware, userController.profile);
 router.get('/userProfile', authMiddleware , userController.userProfile)
-router.get('/lista',authMiddleware, userController.lista);
+router.get('/lista',/*authMiddleware,*/ userController.lista);
 
 router.get('/login', guestMiddleware, userController.login);
 router.post('/login', userController.processLogin);

@@ -2,15 +2,22 @@ const path = require('path');
 const fs = require('fs');
 const userService = require('../data/userService');
 const bcrypt = require('bcrypt');
+const db = require('../model/database/models');
 const { log } = require('console');
 
 
 let userController = {
 
-    lista: (req, res) => {
-        let usuarios = userService.users;
-        res.render('usuarios/lista', { usuarios: usuarios })
-    },
+    lista: async function (req, res) {
+            try {
+                const usuarios = await userService.getAll();
+                res.render('usuarios/lista', { usuarios: usuarios });
+            } catch (error) {
+                console.error('Error al obtener usuarios:', error);
+                res.status(500).send('Error al obtener usuarios');
+            }
+        },
+
     profile: (req, res) => {
         let userId = parseInt(req.params.id, 10);
         const usuario = userService.getOne(userId);
@@ -23,7 +30,6 @@ let userController = {
 
     userProfile: (req, res) => {
         let usuario=userService.getOne(req.session.usuarioLogeado);
-        console.log(usuario);
         return res.render('usuarios/userProfile', {
             usuario: usuario
         })
@@ -32,7 +38,7 @@ let userController = {
     edit: (req, res) => {
         let userId = parseInt(req.params.id, 10);
         let usuario = userService.getOne(userId);
-        res.render('usuarios/edit', { usuario: usuario,oldData:usuario });
+        res.render('usuarios/edit', { usuario: usuario, oldData:usuario });
     },
 
     update: (req, res) => {
@@ -44,13 +50,13 @@ let userController = {
             return res.status(404).send('Usuario no encontrado');
         }
 
-        usuarioExiste.firstName = userData.firstName;
-        usuarioExiste.lastName = userData.lastName;
+        usuarioExiste.nombre = userData.nombre;
+        usuarioExiste.apellido = userData.apellido;
         usuarioExiste.email = userData.email;
-        usuarioExiste.password = userData.password;
-        usuarioExiste.rol = userData.category;
-        usuarioExiste.country = userData.country;
-        usuarioExiste.image = '/img/' + req.file.filename;
+        usuarioExiste.contraseña = userData.contraseña;
+        usuarioExiste.rol = userData.ro;
+        usuarioExiste.nacionalidad = userData.nacionalidad;
+        usuarioExiste.avatar = '/img/' + req.file.filename;
 
         userService.update(usuarioExiste);
 

@@ -1,132 +1,89 @@
-const { json } = require('body-parser');
-const fs = require('fs');
+const { validationResult } = require('express-validator');
 const path = require('path');
 const bcryptjs = require('bcryptjs');
-const userRouter = path.join(__dirname, '../data/jsonUsuarios.json');
-const usuariosArray = JSON.parse(fs.readFileSync(userRouter, 'utf-8'));
-const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
+const { Usuarios } = require('../model/database/models');
 
 const userService = {
-
-    users: usuariosArray,
-
-    getData: function () {
-        return this.users;
-    },
-
-    findAll: function () {
-        return this.getData()
-    },
-
-    getOne: function (userId) {
-
-        let user = this.users.find((user) => user.id === userId);
-        return user;
-    },
-
-    findByPk: function (id) {
-        let allUsers = this.findAll();
-        let userFound = allUsers.find(oneUser => oneUser.id === id)
-        return userFound;
-    },
-
-    findByField: function (field, text) {
-        let allUsers = this.findAll();
-        let userFound = allUsers.find(oneUser => oneUser[field] === text)
-        return userFound;
-    },
-
-    create: function (userData) {
-        let allUsers = this.findAll();
-        newUser = {
-            id: this.generateId(),
-            ...userData
-        }
-        allUsers.push(newUser);
-        fs.writeFileSync(userRouter, JSON.stringify(this.users, null, " "));
-        return newUser;
-    },
-
-    save: function (req, res) {
-        let errors = [];
-        errors = validationResult(req);
-        let userInDB = this.findByField('email', req.body.email);
-        if (userInDB) {
-            errors.errors.push({
-                type: 'field',
-                value: req.body,
-                msg: 'El email ya existe',
-                path: 'email',
-                location: 'body'
-            })
-        }
-
-
-
-        if (errors.errors.length > 0) {
-            return { errors: errors };
-        }
-
-        let userToCreate = {
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            password: bcryptjs.hashSync(req.body.password, 10),
-            rol: req.body.category,
-            country: req.body.country,
-            image: '/img/' + req.file.filename || 'default-image.png"'
-        }
-
-        let userCreated = this.create(userToCreate);
-
-        return {
-            success: true,
-            userCreated: true
-        };
-    },
-
-    // validarUsuario: function (req) {
-    //     let validarEmail = this.findByField('email', req.body.email);
-    //     let validarContraseña = bcrypt.compareSync(req.body.password, validarEmail.password);
-
-
-    //     if (validarEmail && validarContraseña) {
-    //         delete validarEmail.password
-    //         req.session.usuarioLogueado = validarEmail
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // },
-
-    update: function (updatedUser) {
-        const userId = updatedUser.id;
-        const allUsers = this.findAll();
-
-        if (updatedUser.password) {
-            updatedUser.password = bcrypt.hashSync(updatedUser.password, 10);
-        }
-        
-        const userIndex = allUsers.findIndex(user => user.id === userId);
-
-        if (userIndex !== -1) {
-            allUsers[userIndex] = updatedUser;
-            fs.writeFileSync(userRouter, JSON.stringify(allUsers, null, ' '));
+    getAll: async function () {
+        try {
+            return await User.findAll();
+        } catch (error) {
+            console.error('Error al obtener todos los usuarios:', error);
+            return [];
         }
     },
-
-    generateId: function () {
-        let allUsers = this.users;
-        let lastUser = allUsers[allUsers.length - 1];
-        return lastUser.id + 1;
+    getOne: async function (userId) {
+        try {
+            return await User.findByPk(userId);
+        } catch (error) {
+            console.error('Error al obtener el usuario:', error);
+            return null;
+        }
     },
+    save: async function (req, res) {
+        try {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return { errors: errors.array() };
+            }
 
-    delete: function (id) {
-        let allUsers = this.users;
-        let finalUsers = allUsers.filter(oneUser => oneUser.id !== id);
-        fs.writeFileSync(userRouter, JSON.stringify(finalUsers, null, " "));
-        return true;
+            let userInDB = await db.Usuarios.findOne({ where: { email: req.body.email } });
+            if (userInDB) {
+                return {
+                    errors: [{
+                        type: 'field',
+                        value: req.body,
+                        msg: 'El email ya existe',
+                        param: 'email',
+                        location: 'body'
+                    }]
+                };
+            }
+
+            const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
+            let userCreated = await db.Usuarios.create({
+                nombre: req.body.nombre,
+                apellido: req.body.apellido,
+                email: req.body.email,
+                contraseña: hashedPassword,
+                rol: req.body.category,
+                nacionalidad: req.body.nacionalidad,
+                avatar: '/img/' + (req.file ? req.file.filename : 'default-image.png')
+            });
+
+            return {
+                success: true,
+                userCreated: userCreated
+            };
+        } catch (error) {
+            console.error('Error al guardar el usuario:', error);
+            return {
+                errors: [{
+                    msg: 'Hubo un error al guardar el usuario'
+                }]
+            };
+        }
+    },
+    update: async function (updatedUser) {
+        try {
+            const userId = updatedUser.id;
+            await User.update(updatedUser, { where: { id: userId } });
+            return true;
+        } catch (error) {
+            console.error('Error al actualizar el usuario:', error);
+            return false;
+        }
+    },
+    delete: async function (id) {
+        try {
+            await User.destroy({ where: { id: id } });
+            return true;
+        } catch (error) {
+            console.error('Error al eliminar el usuario:', error);
+            return false;
+        }
     }
 
 }
