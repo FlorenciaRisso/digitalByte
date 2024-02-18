@@ -33,8 +33,8 @@ let userController = {
         userService.getOne(req.session.usuarioLogeado.id).
 
             then(data => {
-                console.log(data); res.render('usuarios/userProfile', {
-                    usuario: data
+                res.render('usuarios/userProfile', {
+                usuario: data
                 })
             })
             .catch(e => console.log(e))
@@ -87,19 +87,25 @@ let userController = {
 
 
     processRegister: (req, res) => {
-        let resultado = userService.save(req);
         let old = req.body;
-        if (resultado.success == true) {
-            res.redirect('/usuarios/login')
-        } else if (resultado.errors) {
-            res.render('usuarios/registro', {
-                errors: resultado.errors.mapped(), oldData: old
-            })
-        } else {
-            res.render('usuarios/registro', {
-                errors: resultado.errors.email, oldData: old
-            })
-        }
+        userService.save(req).then(resultado=>{
+            console.log(resultado.errors);
+            if (resultado.success) {
+                res.redirect('/usuarios/login')
+            } else if (resultado.errors) {
+                res.render('usuarios/registro', {
+                    errors: resultado.errors, oldData: old
+                })
+            } 
+            // else {
+            //     res.render('usuarios/registro', {
+            //         errors: resultado.errors.email, oldData: old
+            //     })
+            // }
+        }).catch(error=>{
+            console.log(error);
+        })
+        
     },
 
     delete: (req, res) => {

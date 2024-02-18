@@ -17,7 +17,7 @@ router.get('/login', guestMiddleware, userController.login);
 router.post('/login', userController.processLogin);
 
 router.get('/registro', guestMiddleware, userController.registro);
-router.post('/registro', uploadFile.single('image'), registerValidation, userController.processRegister)
+router.post('/registro', uploadFile.single('avatar'),registerValidation, userController.processRegister)
 
 router.get('/edit/:id', esAdmin, userController.edit)
 router.put('/edit/:id', uploadFile.single('image'), userController.update)

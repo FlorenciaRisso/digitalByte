@@ -59,44 +59,46 @@
 
           <div class="register__password-form block-input">
             <input type="password" name="password" 
-            class="register__input-form <%= locals.errors && errors.contraseña ? 'is-invalid' : null %>"
-              placeholder="Contraseña" value="<%= locals.oldData ? oldData.contraseña : null %>">
+            class="register__input-form <%= locals.errors && errors.password ? 'is-invalid' : null %>"
+              placeholder="Contraseña" value="<%= locals.oldData ? oldData.password : null %>">
 
-            <% if(locals.errors && errors.contraseña) {%>
+            <% if(locals.errors && errors.password) {%>
               <div class="text-danger">
-                <%= errors.contraseña.msg %>
+                <%= errors.password.msg %>
               </div>
               <% } %>
           </div>
 
 
           <div class="register__password-form block-input">
-            <input type="password" name="confirmContraseña" 
-            class="<%= locals.errors && errors.confirmContraseña ? 'is-invalid' : null %>"
-               placeholder="Repetir contraseña" value="<%= locals.oldData ? oldData.confirmContraseña : null %>">
+            <input type="password" name="confirmPassword" 
+            class="<%= locals.errors && errors.confirmPassword ? 'is-invalid' : null %>"
+               placeholder="Repetir contraseña" value="<%= locals.oldData ? oldData.confirmPassword : null %>">
 
-            <% if(locals.errors && errors.confirmContraseña) {%>
+            <% if(locals.errors && errors.confirmPassword) {%>
               <div class="text-danger">
-                <%= errors.confirmContraseña.msg %>
+                <%= errors.confirmPassword.msg %>
               </div>
               <% } %>
           </div>
 
 
-          <div class="register__category-form block-input ">
-            <label for="rol"><b>Selecciona un perfil de usuario:</b></label>
-            <select name="rol" id="rol" 
-            class="<%= locals.errors && errors.rol ? 'is-invalid' : '' %>">
-              <option value="">Elige una categoría</option>
-              <% let categories=["Cliente", "Vendedor" ] %>
-                <% for (const oneCategory of categories) { %>
-                 <option value="<%= oneCategory %>"
-                    <%= locals.oldData && (oneCategory === oldData.rol) ? 'selected' : null  %>
-                    > <%= oneCategory %></option>
+          <div class="register__category-form block-input">
+            <label for="rol"><b>País de nacimiento</b></label>
+            <select 
+            name="rol"
+            class="<%= locals.errors && errors.rol ? 'is-invalid' : null %>" >
+              <option value="">Elige un país</option>
+              <% let rols=[ "Vendedor" , "Cliente" ]; %>
+                
+                <% for (const rol of rols) { %>
+                  <option value="<%= rol %>"
+                    <%= locals.oldData && (rol === oldData.rol) ? 'selected' : null  %>
+                    > <%= rol %></option>
                   <% } %>
             </select>
 
-            <% if(locals.errors && errors.rol) {%>
+            <% if(locals.errors && errors.rol) { %>
               <div class="text-danger">
                 <%= errors.rol.msg %>
               </div>

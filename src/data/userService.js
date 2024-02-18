@@ -3,6 +3,8 @@ const path = require('path');
 const bcryptjs = require('bcryptjs');
 const bcrypt = require('bcrypt');
 const { Usuarios } = require('../model/database/models');
+const fs = require('fs');
+
 
 const userService = {
     getAll: async function () {
@@ -32,26 +34,39 @@ const userService = {
     save: async function (req, res) {
         try {
             const errors = validationResult(req);
+            
             if (!errors.isEmpty()) {
-                return { errors: errors.array() };
+                if (req.file) { // Si hay una sola imagen
+                    if (req.file.path) {
+                        fs.unlink(req.file.path, err => {
+                            if (err) {
+                                console.error("Error al eliminar la imagen:", err);
+                            }
+                        });
+                    }
+                } else if (req.files) { // Si hay múltiples imágenes
+                    Object.values(req.files).forEach(files => {
+                        if (Array.isArray(files)) {
+                            files.forEach(file => {
+                                if (file && file.path) {
+                                    fs.unlink(file.path, err => {
+                                        if (err) {
+                                            console.error("Error al eliminar la imagen:", err);
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+                return { errors: errors.mapped() };
             }
 
-            let userInDB = await db.Usuarios.findOne({ where: { email: req.body.email } });
-            if (userInDB) {
-                return {
-                    errors: [{
-                        type: 'field',
-                        value: req.body,
-                        msg: 'El email ya existe',
-                        param: 'email',
-                        location: 'body'
-                    }]
-                };
-            }
+
 
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-            let userCreated = await db.Usuarios.create({
+            let userCreated = await Usuarios.create({
                 nombre: req.body.nombre,
                 apellido: req.body.apellido,
                 email: req.body.email,
@@ -85,17 +100,18 @@ const userService = {
         }
     },
     validarContraseña: async function (req) {
-        try{
-        let usuario = await Usuarios.findByPk(req.params.id);
-        if (usuario) {
-            if (bcrypt.compareSync(req.body.contraseñaVieja, usuario.Contraseña)) {
-                if (req.body.contraseña === req.body.confirmContraseña) {
-                    usuario.Contraseña = bcrypt.hashSync(req.body.contraseña, 10)
-                    return usuario.save();
+        try {
+            let usuario = await Usuarios.findByPk(req.params.id);
+            if (usuario) {
+                if (bcrypt.compareSync(req.body.contraseñaVieja, usuario.Contraseña)) {
+                    if (req.body.contraseña === req.body.confirmContraseña) {
+                        usuario.Contraseña = bcrypt.hashSync(req.body.contraseña, 10)
+                        return usuario.save();
+                    }
                 }
-            }
 
-        }} catch (error) {
+            }
+        } catch (error) {
             return {
                 errors: [{
                     type: 'field',
@@ -106,7 +122,7 @@ const userService = {
                 }]
             }
         }
-        
+
 
     },
 

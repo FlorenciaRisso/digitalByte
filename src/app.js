@@ -15,14 +15,9 @@ const session = require('express-session');
 
 
 const indexRouter = require('./routes/index');
-app.use(session({secret: 'secret',
- resave: false, 
- saveUninitialized: false,
- cookie: {
-    maxAge: false,
-    httpOnly: true,
-    path: '/'
-}}))
+app.use(session({ secret: 'secreto', // Secreto para firmar la cookie de sesión
+resave: false,
+saveUninitialized: true}))
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
