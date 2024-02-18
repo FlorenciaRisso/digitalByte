@@ -7,7 +7,7 @@ const { Usuarios } = require('../model/database/models');
 const userService = {
     getAll: async function () {
         try {
-            return await User.findAll();
+            return await Usuarios.findAll();
         } catch (error) {
             console.error('Error al obtener todos los usuarios:', error);
             return [];
@@ -15,7 +15,7 @@ const userService = {
     },
     getOne: async function (userId) {
         try {
-            return await User.findByPk(userId);
+            return await Usuarios.findByPk(userId);
         } catch (error) {
             console.error('Error al obtener el usuario:', error);
             return null;
@@ -77,13 +77,39 @@ const userService = {
     update: async function (updatedUser) {
         try {
             const userId = updatedUser.id;
-            await User.update(updatedUser, { where: { id: userId } });
+            await Usuarios.update(updatedUser, { where: { id: userId } });
             return true;
         } catch (error) {
             console.error('Error al actualizar el usuario:', error);
             return false;
         }
     },
+    validarContraseña: async function (req) {
+        try{
+        let usuario = await Usuarios.findByPk(req.params.id);
+        if (usuario) {
+            if (bcrypt.compareSync(req.body.contraseñaVieja, usuario.Contraseña)) {
+                if (req.body.contraseña === req.body.confirmContraseña) {
+                    usuario.Contraseña = bcrypt.hashSync(req.body.contraseña, 10)
+                    return usuario.save();
+                }
+            }
+
+        }} catch (error) {
+            return {
+                errors: [{
+                    type: 'field',
+                    value: req.body,
+                    msg: 'El email ya existe',
+                    param: 'email',
+                    location: 'body'
+                }]
+            }
+        }
+        
+
+    },
+
     delete: async function (id) {
         try {
             await User.destroy({ where: { id: id } });

@@ -30,16 +30,20 @@ let userController = {
     },
 
     userProfile: (req, res) => {
-        let usuario = userService.getOne(req.session.usuarioLogeado);
-        return res.render('usuarios/userProfile', {
-            usuario: usuario
-        })
+        userService.getOne(req.session.usuarioLogeado.id).
+
+            then(data => {
+                console.log(data); res.render('usuarios/userProfile', {
+                    usuario: data
+                })
+            })
+            .catch(e => console.log(e))
     },
 
     edit: (req, res) => {
         let userId = parseInt(req.params.id, 10);
-        let usuario = userService.getOne(userId);
-        res.render('usuarios/edit', { usuario: usuario, oldData: usuario });
+        userService.getOne(userId).
+            then(data => res.render('usuarios/edit', { usuario: data, oldData: data }))
     },
 
     update: (req, res) => {
@@ -64,9 +68,23 @@ let userController = {
         res.redirect('/usuarios/lista');
     },
 
+    cambiarContraseña: (req, res) => {
+        res.render('usuarios/cambiarContraseña', {
+            usuarioId: req.params.id
+        })
+    },
+
+    updateContraseña: (req, res) => {
+        userService.validarContraseña(req).
+        then(data => res.redirect('/usuarios/userProfile')).
+        catch(error => console.log(error))
+    },
+
     registro: (req, res) => {
         res.render('usuarios/registro');
     },
+
+
 
     processRegister: (req, res) => {
         let resultado = userService.save(req);
@@ -101,7 +119,7 @@ let userController = {
                 let correctContraseña = bcrypt.compareSync(req.body.contraseña, usuarioValido.contraseña);
 
                 if (correctContraseña) {
-                    req.session.usuarioLogeado = usuarioValido.id;
+                    req.session.usuarioLogeado = usuarioValido;
                     return res.redirect('/');
                 }
             }

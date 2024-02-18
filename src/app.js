@@ -19,10 +19,11 @@ app.use(session({secret: 'secret',
  resave: false, 
  saveUninitialized: false,
  cookie: {
-    maxAge: 60000,
+    maxAge: false,
     httpOnly: true,
     path: '/'
 }}))
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 //Usando recursos estaticos

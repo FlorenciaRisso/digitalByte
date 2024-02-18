@@ -1,0 +1,61 @@
+<%- include ('../partials/head',{cssFile:'/css/stylesUsuarioEdit.css'})%>
+
+    <body>
+        <%-include ('../partials/headerYNav' ) %>
+
+            <div class="">
+                <div class="container">
+                    <div class="title-container">
+                        <h2 class="title">Editar Contraseña</h2>
+                    </div>
+                    <form class="edit-user__form" action="/usuarios/cambiarContrasenia/<%= usuarioId %>?_method=put"
+                        method="POST" enctype="multipart/form-data">
+
+                                <div class="edit-user__password-form block-input">
+                                    <input type="password" name="contraseñaVieja"
+                                        class="edit-user__input-form <%= locals.errors && errors.contraseñaVieja ? 'is-invalid' : null %>"
+                                        placeholder="Contraseña Actual">
+
+                                    <% if(locals.errors && errors.contraseñaVieja) {%>
+                                        <div class="text-danger">
+                                            <%= errors.contraseñaVieja.msg %>
+                                        </div>
+                                        <% } %>
+                                </div>
+
+                                <div class="edit-user__password-form block-input">
+                                    <input type="password" name="contraseña"
+                                        class="edit-user__input-form <%= locals.errors && errors.contraseña ? 'is-invalid' : null %>"
+                                        placeholder="Nueva Contraseña">
+
+                                    <% if(locals.errors && errors.contraseña) {%>
+                                        <div class="text-danger">
+                                            <%= errors.contraseña.msg %>
+                                        </div>
+                                        <% } %>
+                                </div>
+
+                                <div class="edit-user__password-form block-input">
+                                    <input type="password" name="confirmContraseña"
+                                        class="edit-user__input-form <%= locals.errors && errors.confirmContraseña ? 'is-invalid' : null %>"
+                                        placeholder="Repetir contraseña">
+
+                                    <% if(locals.errors && errors.confirmContraseña) {%>
+                                        <div class="text-danger">
+                                            <%= errors.confirmContraseña.msg %>
+                                        </div>
+                                        <% } %>
+                                </div>
+
+                                <div class="edit-user__buttons">
+                                    <button class="edit-user__button btn ">Guardar cambios</button>
+                                </div>
+                    </form>
+
+                </div>
+            </div>
+
+    </body>
+    <%- include ('../partials/footer') %>
+
+        </html>

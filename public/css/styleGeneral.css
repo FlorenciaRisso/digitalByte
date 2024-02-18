@@ -808,6 +808,7 @@ a {
   }
 
   .input-search {
+
     padding: 10px;
     background-color: rgb(237, 237, 237);
     border: 1px solid rgb(155, 155, 155);
@@ -859,9 +860,9 @@ a {
     border: solid 1px rgb(150, 59, 224);
   }
 
-  .btn-carrito {
+  /* .btn-carrito {
     border-radius: 0 20px 20px 0;
-  }
+  } */
 
   .btn-logout {
     border-radius: 20px;
@@ -869,14 +870,14 @@ a {
     border: 0;
     padding: 10px;
   }
-
+/* 
   .btn-carrito,
   .btn-registro,
   .btn-login {
     background-color: #dbdbdb;
     border: 0;
     padding: 10px;
-  }
+  } */
 
   .user-option {
     display: flex;

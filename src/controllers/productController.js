@@ -3,6 +3,7 @@ const productService = require('../data/productService');
 const funcion = require('../data/funcion');
 const db = require('../model/database/models');
 const { error } = require('console');
+const Sequelize = require('sequelize')
 
 let productController = {
     index: function (req, res) {
@@ -43,11 +44,11 @@ let productController = {
         res.render('productos/create', { funcion: funcion })
     },
     save: (req, res) => {
-        productService.save(req).then(data=>res.redirect('/productos')).catch(error=>console.log(error))
+        productService.save(req).then(data => res.redirect('/productos')).catch(error => console.log(error))
     },
     editProducto: (req, res) => {
-        productService.getOne(req).then(data=>res.render('productos/editProducto', { producto: data, funcion: funcion })).catch(error=>console.log(error))
-        
+        productService.getOne(req).then(data => res.render('productos/editProducto', { producto: data, funcion: funcion })).catch(error => console.log(error))
+
     },
     update: (req, res) => {
         productService.update(req);
@@ -60,25 +61,20 @@ let productController = {
 
     search: async (req, res) => {
         try {
-            const productos = await db.Productos.findAll();
-            res.render('headerYNav', { productos });
-        } catch (error) {
-            console.error('Error al obtener productos:', error);
-            res.status(500).json({ error: 'Error interno del servidor' });
-        }
-    },
-
-    search: async (req, res) => {
-        try {
-            const searchTerm = req.query.q;
-            const results = await Product.findAll({
+            const searchTerm = req.body.busqueda;
+            const results = await db.Productos.findAll({
+                include: [
+                    { association: 'Caracteristica' },
+                    { association: 'ImagenesProductos' },
+                    { association: 'Categoria' }
+                ],
                 where: {
-                    name: {
+                    Nombre: {
                         [Sequelize.Op.like]: `%${searchTerm}%`
                     }
                 }
             });
-            res.render('search_results', { results }); // Renderiza una vista con los resultados
+            res.render('productos/resultados', { productos: results, funcion: funcion }); // Renderiza una vista con los resultados
         } catch (error) {
             console.error('Error searching products:', error);
             res.status(500).json({ error: 'Internal server error' });

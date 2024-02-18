@@ -88,7 +88,7 @@
             <select name="rol" id="rol" 
             class="<%= locals.errors && errors.rol ? 'is-invalid' : '' %>">
               <option value="">Elige una categoría</option>
-              <% let categories=["Vendedor", "Administrador" ] %>
+              <% let categories=["Cliente", "Vendedor" ] %>
                 <% for (const oneCategory of categories) { %>
                  <option value="<%= oneCategory %>"
                     <%= locals.oldData && (oneCategory === oldData.rol) ? 'selected' : null  %>

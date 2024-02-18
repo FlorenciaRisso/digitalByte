@@ -47,30 +47,6 @@
               <% } %>
           </div>
 
-          <div class="edit-user__password-form block-input">
-            <input type="password" name="contraseña"
-              class="edit-user__input-form <%= locals.errors && errors.contraseña ? 'is-invalid' : null %>"
-              placeholder="Contraseña">
-
-            <% if(locals.errors && errors.contraseña) {%>
-              <div class="text-danger">
-                <%= errors.contraseña.msg %>
-              </div>
-              <% } %>
-          </div>
-
-          <div class="edit-user__password-form block-input">
-            <input type="password" name="confirmContraseña"
-              class="edit-user__input-form <%= locals.errors && errors.confirmContraseña ? 'is-invalid' : null %>"
-              placeholder="Repetir contraseña">
-
-            <% if(locals.errors && errors.confirmContraseña) {%>
-              <div class="text-danger">
-                <%= errors.confirmContraseña.msg %>
-              </div>
-              <% } %>
-          </div>
-
           <div class="edit-user__category-form block-input ">
             <label for="rol"><b>Selecciona un perfil de usuario:</b></label>
             <select name="rol" id="rol"

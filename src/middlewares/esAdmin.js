@@ -1,18 +1,11 @@
-const storeUserMiddleware = (req, res, next) => {
-    // Supongamos que obtienes los datos del usuario de la sesión
-    const usuario = req.session.usuario; // Esto depende de cómo esté configurada tu aplicación de sesión
+const esAdmin = (req, res, next) => {
 
-    // Verificar si el usuario tiene el rol de administrador
-    const esAdmin = usuario && usuario.rol === 'administrador';
+    const usuario = req.session.usuarioLogeado;
 
-    // Adjuntar los datos del usuario, incluido el rol de administrador, al objeto de solicitud
-    req.usuario = {
-        ...usuario,
-        esAdmin: esAdmin
-    };
-
-    // Continuar con el siguiente middleware o la siguiente ruta
-    next();
+    const esAdmin = usuario && usuario.rol === 'Administrador';
+    if(!esAdmin){
+        return res.redirect('/')
+    } next();
 };
 
-module.exports = storeUserMiddleware;
+module.exports = esAdmin;

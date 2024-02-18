@@ -4,13 +4,14 @@ const router = express.Router();
 const uploadFile=require('../data/multer');
 const productController = require('../controllers/productController');
 const authMiddleware = require('../middlewares/authMiddleware');
+const esAdmin = require('../middlewares/esAdmin')
 
 
 
 router.get('/', productController.index);
-router.get('/search', productController.search);
+router.post('/search', productController.search);
 router.get('/carrito',authMiddleware, productController.carrito);
-router.get('/lista', productController.lista); //solo admin
+router.get('/lista', esAdmin, productController.lista); //solo admin
 //listar
 router.get('/listaproductos',authMiddleware, productController.listado);
 router.get('/categoria',productController.listaPorCat);
