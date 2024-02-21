@@ -19,20 +19,19 @@ let userController = {
     },
 
     profile: (req, res) => {
-        let userId = parseInt(req.params.id, 10);
-        const usuario = userService.getOne(userId);
-        if (usuario) {
-
-            res.render('usuarios/profile', { usuario: usuario });
-        } else {
-            res.status(404).send('Usuario no encontrado');
-        }
+        let userId = req.params.id;
+        userService.getOne(userId).
+        then(data=>res.render('usuarios/userProfile', {
+            usuario: data
+            })).
+        catch(error=>res.status(404).send('Usuario no encontrado'))
     },
 
     userProfile: (req, res) => {
         userService.getOne(req.session.usuarioLogeado.id).
 
             then(data => {
+                console.log(data);
                 res.render('usuarios/userProfile', {
                 usuario: data
                 })

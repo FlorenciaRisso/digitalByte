@@ -26,11 +26,16 @@
             <button class="user-btn btn-login" type="button"><a href="/usuarios/userProfile">Perfil</a></button>
             <button class="user-btn btn-logout"><a href="/usuarios/cerrarSesion">Logout</a></button>
         </div>
+        <%}else if(usuarioLogeado && usuarioLogeado.rol === 'Comprador'){%>
+            <div class="user-option_div">
+                <button class="user-btn btn-carrito" type="button"><a href="/productos/carrito">Carrito</a></button>            
+                <button class="user-btn btn-login" type="button"><a href="/usuarios/userProfile">Perfil</a></button>
+                <button class="user-btn btn-logout"><a href="/usuarios/cerrarSesion">Logout</a></button>
+            </div>
         <%}else{%>
             <button class="user-btn btn-listProd" type="button"><a href="/usuarios/registro">Registro</a></button>
             <button class="user-btn btn-carrito" type="button"><a href="/usuarios/login">Login</a></button>
-            <button class="user-btn btn-logout"><a href="/usuarios/cerrarSesion">Logout</a></button>
-            <% } %>
+        <% } %>
 
 </div>
     <div class="secciones">
