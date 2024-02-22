@@ -3,10 +3,13 @@
         <a href="/"><img class="img-logo" src="/img/logo-dbytee.png" alt="logoDigitalByte"></a>
     </div>
     <div class="bar-search">
-    <form action="/productos/search" method="POST"  id="search-form">
-        <input type="text" name="busqueda" class="input-search" id="search-input" placeholder="Buscar productos...">
-        <button><i class="fa-solid fa-magnifying-glass"></i></button>
-    </form>
+        <form action="/productos/search" method="POST"  id="search-form" class="search-form">
+            <div class="search-container">
+                <input type="text" name="busqueda" class="search-input" id="search-input" placeholder="Buscar productos...">
+                <button type="submit" class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </form>
+        
     </div>
 
     <div class="user-option">
@@ -15,27 +18,35 @@
         <% if(usuarioLogeado && usuarioLogeado.rol === 'Administrador'){ %>
             <div class="user-option_div">
                 <button class="user-btn btn-listProd" type="button"><a href="/productos/lista">Listar Productos</a></button>
-                 <button class="user-btn btn-login" type="button"><a href="/usuarios/userProfile">Perfil</a></button>               
-                <button class="user-btn btn-registro" type="button"><a href="/usuarios/lista">Usuarios</a></button>
-                <button class="user-btn btn-logout"><a href="/usuarios/cerrarSesion">Logout</a></button>
+                <button class="user-btn btn-usuarios" type="button"><a href="/usuarios/lista">Usuarios</a></button>
+                <button class="user-btn btn-perfil" type="button"><a href="/usuarios/userProfile">Perfil</a></button>              
+                <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i class="fa-solid fa-right-from-bracket"></i></a></button>
             </div>
         
         <%}else if(usuarioLogeado && usuarioLogeado.rol === 'Vendedor'){%>
         <div class="user-option_div">
             <button class="user-btn btn-carrito" type="button"><a href="/productos/carrito">Carrito</a></button>            
-            <button class="user-btn btn-login" type="button"><a href="/usuarios/userProfile">Perfil</a></button>
-            <button class="user-btn btn-logout"><a href="/usuarios/cerrarSesion">Logout</a></button>
+            <button class="user-btn btn-perfil" type="button"><a href="/usuarios/userProfile">Perfil</a></button>
+            <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i class="fa-solid fa-right-from-bracket"></i></a></button>
         </div>
         <%}else if(usuarioLogeado && usuarioLogeado.rol === 'Comprador'){%>
             <div class="user-option_div">
-                <button class="user-btn btn-carrito" type="button"><a href="/productos/carrito">Carrito</a></button>            
-                <button class="user-btn btn-login" type="button"><a href="/usuarios/userProfile">Perfil</a></button>
-                <button class="user-btn btn-logout"><a href="/usuarios/cerrarSesion">Logout</a></button>
+                <button class="user-btn btn-carrito" type="button"><a href="/productos/carrito">Carrito</a></button>
+                <button class="user-btn btn-carrito" type="button"><a href="/productos/carrito">Mis productos</a></button>
+                <button class="user-btn btn-perfil" type="button"><a href="/usuarios/userProfile">Perfil</a></button>
+                <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i class="fa-solid fa-right-from-bracket"></i></a></button>
             </div>
-        <%}else{%>
-            <button class="user-btn btn-listProd" type="button"><a href="/usuarios/registro">Registro</a></button>
-            <button class="user-btn btn-carrito" type="button"><a href="/usuarios/login">Login</a></button>
-        <% } %>
+        <%}else if(usuarioLogeado){%>
+            <div class="user-option_div">
+                <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i class="fa-solid fa-right-from-bracket"></i></a></button>
+            </div>
+            
+        <% }else{ %>
+            <div class="user-option_div">
+                <button class="user-btn btn-registro" type="button"><a href="/usuarios/registro">Registro</a></button>
+                <button class="user-btn btn-login" type="button"><a href="/usuarios/login">Login</a></button>
+            </div>
+        <% }%>    
 
 </div>
     <div class="secciones">

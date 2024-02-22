@@ -34,7 +34,7 @@ const userService = {
     save: async function (req, res) {
         try {
             const errors = validationResult(req);
-            
+
             if (!errors.isEmpty()) {
                 if (req.file) { // Si hay una sola imagen
                     if (req.file.path) {
@@ -101,29 +101,19 @@ const userService = {
     },
     validarContraseña: async function (req) {
         try {
-            let usuario = await Usuarios.findByPk(req.params.id);
-            if (usuario) {
-                if (bcrypt.compareSync(req.body.contraseñaVieja, usuario.Contraseña)) {
-                    if (req.body.contraseña === req.body.confirmContraseña) {
-                        usuario.Contraseña = bcrypt.hashSync(req.body.contraseña, 10)
-                        return usuario.save();
-                    }
-                }
-
+            let errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return { errors: errors.mapped() };
+            } else {
+                let usuario = await Usuarios.findByPk(req.params.id);
+                usuario.contraseña = await bcrypt.hash(req.body.contrasenia, 10);
+                let user= await usuario.save(); 
+                return {success:true,user:user};
             }
         } catch (error) {
-            return {
-                errors: [{
-                    type: 'field',
-                    value: req.body,
-                    msg: 'El email ya existe',
-                    param: 'email',
-                    location: 'body'
-                }]
-            }
+            console.log(error);
+            return [];
         }
-
-
     },
 
     delete: async function (id) {

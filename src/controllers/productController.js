@@ -26,8 +26,10 @@ let productController = {
             }
         },
     carrito: (req, res) => {
-        let productos = productService.products;
-        res.render('productos/productCart', { productos: productos, funcion: funcion });
+        productService.getAll().
+        then(data=>res.render('productos/productCart', { productos: data, funcion: funcion })).
+        catch(error=>console.log(error));
+        
     },
     listaPorCat: (req, res) => {
         productService.getProdPorCat(req).

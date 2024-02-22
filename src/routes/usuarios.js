@@ -5,9 +5,10 @@ const userController = require('../controllers/userController')
 const registerValidation = require('../middlewares/registerValidation');
 const multer = require('multer');
 const uploadFile = require('../data/multer');
-const guestMiddleware = require('../middlewares/guestMiddleware')
-const authMiddleware = require('../middlewares/authMiddleware')
-const esAdmin = require('../middlewares/esAdmin')
+const guestMiddleware = require('../middlewares/guestMiddleware');
+const authMiddleware = require('../middlewares/authMiddleware');
+const changePasswordValidation = require('../middlewares/changePasswordValidation')
+const esAdmin = require('../middlewares/esAdmin');
 
 router.get('/perfil/:id',authMiddleware, userController.profile);
 router.get('/userProfile', authMiddleware, userController.userProfile)
@@ -23,7 +24,7 @@ router.get('/edit/:id', esAdmin, userController.edit)
 router.put('/edit/:id', uploadFile.single('image'), userController.update)
 
 router.get('/cambiarContrasenia/:id', userController.cambiarContraseña)
-router.put('/cambiarContrasenia/:id', userController.updateContraseña)
+router.put('/cambiarContrasenia/:id', changePasswordValidation,userController.updateContraseña)
 
 router.get('/cerrarSesion',authMiddleware, userController.logout);
 

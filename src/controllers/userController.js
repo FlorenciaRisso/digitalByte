@@ -21,19 +21,18 @@ let userController = {
     profile: (req, res) => {
         let userId = req.params.id;
         userService.getOne(userId).
-        then(data=>res.render('usuarios/userProfile', {
-            usuario: data
+            then(data => res.render('usuarios/userProfile', {
+                usuario: data
             })).
-        catch(error=>res.status(404).send('Usuario no encontrado'))
+            catch(error => res.status(404).send('Usuario no encontrado'))
     },
 
     userProfile: (req, res) => {
         userService.getOne(req.session.usuarioLogeado.id).
 
             then(data => {
-                console.log(data);
                 res.render('usuarios/userProfile', {
-                usuario: data
+                    usuario: data
                 })
             })
             .catch(e => console.log(e))
@@ -75,8 +74,17 @@ let userController = {
 
     updateContraseña: (req, res) => {
         userService.validarContraseña(req).
-        then(data => res.redirect('/usuarios/userProfile')).
-        catch(error => console.log(error))
+            then(resultado => {
+                console.log(resultado);
+                if (resultado.success) {
+                    res.redirect('/usuarios/userProfile')
+                } else if (resultado.errors) {
+                    res.render('usuarios/cambiarContraseña', {
+                        errors: resultado.errors,usuarioId:req.params.id
+                    })
+                }
+            }).
+            catch(error => console.log(error))
     },
 
     registro: (req, res) => {
@@ -87,7 +95,7 @@ let userController = {
 
     processRegister: (req, res) => {
         let old = req.body;
-        userService.save(req).then(resultado=>{
+        userService.save(req).then(resultado => {
             console.log(resultado.errors);
             if (resultado.success) {
                 res.redirect('/usuarios/login')
@@ -95,16 +103,16 @@ let userController = {
                 res.render('usuarios/registro', {
                     errors: resultado.errors, oldData: old
                 })
-            } 
+            }
             // else {
             //     res.render('usuarios/registro', {
             //         errors: resultado.errors.email, oldData: old
             //     })
             // }
-        }).catch(error=>{
+        }).catch(error => {
             console.log(error);
         })
-        
+
     },
 
     delete: (req, res) => {
@@ -171,7 +179,6 @@ let userController = {
     // },
 
     logout: (req, res) => {
-        console.log(req.session);
         req.session.destroy();
         return res.redirect('/usuarios/login')
     },

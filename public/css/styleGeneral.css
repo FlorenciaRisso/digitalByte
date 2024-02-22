@@ -93,7 +93,43 @@ a {
   align-items: center;
   width: 100%;
 }
+/* //busqueda */
+.search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.search-container {
+  position: relative;
+  width: 300px; /* Ajusta el ancho según tu diseño */
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.search-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 7px;
+  background-color: #cccccc00;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+/* Estilos adicionales para el icono */
+.search-button i {
+  font-size: 18px;
+  color: #202020;
+}
+/* fin busqueda */
 .input-search {
   padding: 10px;
   background-color: rgb(237, 237, 237);
@@ -125,17 +161,23 @@ a {
 
 
 .btn-carrito {
-  border-radius: 0 20px 20px 0;
+  border-radius: 20px 0 0 20px;
 }
-
 .btn-carrito,
 .btn-registro,
-.btn-login {
+.btn-login,
+.btn-perfil,
+.btn-usuarios {
   background-color: #dbdbdb;
   border: 0;
   padding: 10px;
 }
-
+.btn-registro{
+  border-radius: 20px 0 0 20px;
+}
+.btn-login,.btn-perfil{
+  border-radius: 0 20px 20px 0;
+}
 .btn-listProd {
   border-radius: 20px 0 0 20px;
   background-color: #dbdbdb;
@@ -143,7 +185,19 @@ a {
   padding: 10px;
 
 }
-
+.btn-logout{
+  background-color: transparent;
+  border: none;
+}
+.btn-logout a{
+  border-radius: 20px;
+  background-color: #ee8f8f;
+  border: 0;
+  padding: 10px;
+}
+.btn-logout a:hover{
+  background-color: #f35757;
+}
 .btn-header {
   background: transparent;
   border: 0;
@@ -788,7 +842,34 @@ a {
   background-color: blueviolet;
   border-radius: 10px;
 }
+.box-search {
+  display: none;
+  position: fixed;
+  top: 58px;
+  left: 50%;
+  width: 43%;
+  transform: translate(-50%);
+  z-index: 8;
+  background-color: #fff;
+  overflow: hidden;
+  border-radius: 5px;
+  list-style: none;
+}
 
+.box-search li a {
+  display: block;
+  color: #777777;
+  padding: 5px 0;
+}
+
+.box-search li a i {
+  margin-right: 10px;
+  color: #777777;
+}
+
+.box-search li a:hover {
+  background-color: #f3f3f3;
+}
 @media (min-width: 500px) {
 
   /*Header*/
@@ -817,34 +898,6 @@ a {
     width: 80%;
   }
 
-  .box-search {
-    display: none;
-    position: fixed;
-    top: 58px;
-    left: 50%;
-    width: 43%;
-    transform: translate(-50%);
-    z-index: 8;
-    background-color: #fff;
-    overflow: hidden;
-    border-radius: 5px;
-    list-style: none;
-  }
-
-  .box-search li a {
-    display: block;
-    color: #777777;
-    padding: 5px 0;
-  }
-
-  .box-search li a i {
-    margin-right: 10px;
-    color: #777777;
-  }
-
-  .box-search li a:hover {
-    background-color: #f3f3f3;
-  }
 
   .cover-search {
     display: none;
@@ -864,12 +917,12 @@ a {
     border-radius: 0 20px 20px 0;
   } */
 
-  .btn-logout {
-    border-radius: 20px;
-    background-color: #ee8f8f;
-    border: 0;
-    padding: 10px;
+  .btn-logout a {
+    border-radius: 100%;
+    width:  40px;
+    height: 40px;
   }
+
 /* 
   .btn-carrito,
   .btn-registro,
