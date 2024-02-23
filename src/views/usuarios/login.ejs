@@ -13,13 +13,13 @@
           <h2 class="title">Inicia sesión</h2>
         </div>
         <div class="container-login">
-          
-              <form class="login__form" action="/usuarios/login" method="post">
-                <% if(locals.errors && errors.email){ %>
-                  <div class="text-danger">
-                    <%=errors.email.msg %>
-                  </div>
-                  <% } %>
+
+          <form class="login__form" action="/usuarios/login" method="post">
+            <% if(locals.errors && errors.email){ %>
+              <div class="text-danger">
+                <%=errors.email.msg %>
+              </div>
+              <% } %>
                 <div class="login__email-form">
                   <input class="login__input-form" name='email' type="email" placeholder="Correo electronico">
                 </div>
@@ -27,18 +27,22 @@
                 <div class="login__password-form">
                   <input class="login__input-form" name='contraseña' type="password" placeholder="Contraseña">
                 </div>
-
+                <div class="recordame">
+                  <input  type="checkbox" id="recordarme" name="recordarme">
+                  <label for="recordarme">Recuérdame</label>
+                </div>
                 <div class="login__buttons">
                   <button class="login__button" type="submit">Iniciar Sesión</button>
                   <button class="login__google-button">
                     <i class="fa-brands fa-google login__google-icon"></i>Inicia sesión con google
                   </button>
                 </div>
-              </form>
-              <div class="footer_login">
-                <a href="/usuarios/registro" class="register__link">Crear cuenta</a>
-                <a href="">Olvide mi contraseña</a>
-              </div>
+
+          </form>
+          <div class="footer_login">
+            <a href="/usuarios/registro" class="register__link">Crear cuenta</a>
+            <a href="">Olvide mi contraseña</a>
+          </div>
         </div>
       </div>
     </div>

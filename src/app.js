@@ -8,6 +8,7 @@ const app=express();
 const path=require('path');
 
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser')
 
 
 const methodOverride =  require('method-override');
@@ -19,8 +20,12 @@ app.use(session({ secret: 'secreto', // Secreto para firmar la cookie de sesión
 resave: false,
 saveUninitialized: true}))
 
+const recordameMiddleware = require('./middlewares/recordameMiddleware')
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(cookieParser())
+app.use(recordameMiddleware)
 //Usando recursos estaticos
 app.use(express.static('public'));
 //Override

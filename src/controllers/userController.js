@@ -1,9 +1,5 @@
-const path = require('path');
-const fs = require('fs');
 const userService = require('../data/userService');
 const bcrypt = require('bcrypt');
-const db = require('../model/database/models');
-const { log } = require('console');
 
 
 let userController = {
@@ -57,7 +53,7 @@ let userController = {
         usuarioExiste.apellido = userData.apellido;
         usuarioExiste.email = userData.email;
         usuarioExiste.contraseña = userData.contraseña;
-        usuarioExiste.rol = userData.ro;
+        usuarioExiste.rol = userData.rol;
         usuarioExiste.nacionalidad = userData.nacionalidad;
         usuarioExiste.avatar = '/img/' + req.file.filename;
 
@@ -93,27 +89,33 @@ let userController = {
 
 
 
-    processRegister: (req, res) => {
-        let old = req.body;
-        userService.save(req).then(resultado => {
-            console.log(resultado.errors);
-            if (resultado.success) {
-                res.redirect('/usuarios/login')
-            } else if (resultado.errors) {
-                res.render('usuarios/registro', {
-                    errors: resultado.errors, oldData: old
-                })
-            }
-            // else {
-            //     res.render('usuarios/registro', {
-            //         errors: resultado.errors.email, oldData: old
-            //     })
-            // }
-        }).catch(error => {
-            console.log(error);
-        })
+processRegister: (req, res) => {
+    let old = req.body;
+    userService.save(req).then(async resultado => {
+        if (resultado.success) {
+            // Iniciar sesión automáticamente después del registro
+            try {
+                // Obtener el usuario recién registrado
+                const usuarioRegistrado = await userService.findByField('email', req.body.email);
 
-    },
+                // Almacenar el usuario en la sesión
+                req.session.usuarioLogeado = usuarioRegistrado;
+
+                // Redirigir al usuario a la página principal o a donde desees
+                res.redirect('/');
+            } catch (error) {
+                console.error('Error al iniciar sesión automáticamente después del registro:', error);
+                res.status(500).send('Error al iniciar sesión automáticamente después del registro');
+            }
+        } else if (resultado.errors) {
+            res.render('usuarios/registro', {
+                errors: resultado.errors, oldData: old
+            })
+        }
+    }).catch(error => {
+        console.log(error);
+    });
+},
 
     delete: (req, res) => {
         userService.delete(req);
@@ -127,15 +129,21 @@ let userController = {
     processLogin: async (req, res) => {
         try {
             let usuarioValido = await userService.findByField('email', req.body.email);
-
+    
             if (usuarioValido) {
                 let correctContraseña = bcrypt.compareSync(req.body.contraseña, usuarioValido.contraseña);
-
+    
                 if (correctContraseña) {
                     req.session.usuarioLogeado = usuarioValido;
+                    if(req.body.recordame != undefined){
+                        res.cookie('recordame', usuarioValido.email, {
+                            maxAge: 3000000000
+                        });
+                    }
                     return res.redirect('/');
                 }
             }
+    
             return res.render('usuarios/login', {
                 errors: {
                     email: {
@@ -143,40 +151,12 @@ let userController = {
                     }
                 }
             });
-
+    
         } catch (error) {
             console.error('Error al procesar el inicio de sesión:', error);
             return res.status(500).send('Error al procesar el inicio de sesión');
         }
-
     },
-
-
-
-    //     let usuarioValido = userService.validarUsuario(req);
-    //     let errors = [];
-
-    //     if (usuarioValido) {
-    //         res.redirect('/usuarios');
-    //     } else {
-    //         errors.errors.push({
-    //             type: 'field', value: req.body,
-    //             msg: 'Usuario incorrecto',
-    //             path: 'email', location: 'body'
-    //         })
-    //     }
-    //     res.render('usuarios/login', {errors:errors.errors.mapped()});
-
-
-
-    //     return res.render('login', { //MUESTRA ERROR EMAIL INEXISTENTE
-    //         errors: {
-    //             email: {
-    //                 msg: "Email inexistente"
-    //             }
-    //         }
-    //     });
-    // },
 
     logout: (req, res) => {
         req.session.destroy();

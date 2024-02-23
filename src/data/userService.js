@@ -1,6 +1,4 @@
 const { validationResult } = require('express-validator');
-const path = require('path');
-const bcryptjs = require('bcryptjs');
 const bcrypt = require('bcrypt');
 const { Usuarios } = require('../model/database/models');
 const fs = require('fs');
@@ -71,7 +69,7 @@ const userService = {
                 apellido: req.body.apellido,
                 email: req.body.email,
                 contraseña: hashedPassword,
-                rol: req.body.category,
+                rol: req.body.rol,
                 nacionalidad: req.body.nacionalidad,
                 avatar: '/img/' + (req.file ? req.file.filename : 'default-image.png')
             });
@@ -111,7 +109,7 @@ const userService = {
                 return {success:true,user:user};
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
             return [];
         }
     },

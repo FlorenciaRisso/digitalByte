@@ -84,11 +84,11 @@
 
 
           <div class="register__category-form block-input">
-            <label for="rol"><b>País de nacimiento</b></label>
+            <label for="rol"><b>Elige una categoría</b></label>
             <select 
             name="rol"
             class="<%= locals.errors && errors.rol ? 'is-invalid' : null %>" >
-              <option value="">Elige un Rol</option>
+              <option value="">Categorías</option>
               <% let rols=[ "Vendedor" , "Cliente" ]; %>
                 
                 <% for (const rol of rols) { %>

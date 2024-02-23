@@ -1,8 +1,6 @@
-const path = require('path');
 const productService = require('../data/productService');
 const funcion = require('../data/funcion');
 const db = require('../model/database/models');
-const { error } = require('console');
 const Sequelize = require('sequelize')
 
 let productController = {

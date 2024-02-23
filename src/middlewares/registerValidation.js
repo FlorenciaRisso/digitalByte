@@ -1,5 +1,6 @@
 const { check } = require('express-validator');
 const {Usuarios} = require('../model/database/models'); // Suponiendo que tienes un modelo de usuario
+const path = require('path');
 
 const registerValidation = [
     check('nombre').notEmpty().withMessage('El campo nombre no puede estar vacío'),
@@ -9,7 +10,7 @@ const registerValidation = [
         .isEmail().withMessage('Debes ingresar un email válido').bail()
         .custom(async (value, { req }) => {
             // Verificar si el email ya está registrado en la base de datos
-            const existingUser = await Usuarios.findOne({ email: value });
+            const existingUser = await Usuarios.findOne({ where: { email: value } });
             if (existingUser) {
                 throw new Error('El email ya está registrado');
             }
