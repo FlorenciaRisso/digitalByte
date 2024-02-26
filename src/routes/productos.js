@@ -35,7 +35,7 @@ router.put('/editar/:id',uploadFile.fields([
 ]), productController.update);
 
 //eliminar
-router.delete('/delete/:id',productController.eliminarProducto);
+router.delete('/delete/:id',productController.delete);
 
 
 module.exports = router;

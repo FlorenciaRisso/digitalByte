@@ -54,9 +54,15 @@ let productController = {
         productService.update(req);
         res.redirect('/productos');
     },
-    eliminarProducto: (req, res) => {
-        productService.delete(req);
-        res.redirect('/productos/listar');
+    delete: (req, res) => {
+        productService.delete(req).then(resultado=>{
+            if(resultado.status == 'success'){
+                res.redirect('/productos/lista');
+            } else {
+                res.redirect('/productos/lista');
+            }
+        })
+        
     },
 
     search: async (req, res) => {
@@ -80,6 +86,8 @@ let productController = {
             res.status(500).json({ error: 'Internal server error' });
         }
     }
+
+
 
 }
 

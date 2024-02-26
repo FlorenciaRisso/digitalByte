@@ -91,8 +91,83 @@ const productService = {
             console.log(error);
             return []; // Manejo de errores, retorna un array vacío en caso de error
         }
+    },
+    update: async function (req, res) {
+        try {
+            const productId = req.params.id;
+    
+            // Actualizar la información básica del producto
+            await db.Productos.update(
+                {
+                    Nombre: req.body.name,
+                    Descripcion: req.body.description,
+                    Precio: req.body.price,
+                    Descuento: req.body.discount,
+                    Stock: req.body.stock,
+                    ID_Categoria: req.body.category,
+                    Marca: req.body.marca,
+                    ID_Vendedor: req.session.usuarioLogeado.id
+                },
+                { where: { ID_Producto: productId } }
+            );
+    
+            // Actualizar las imágenes del producto
+            const imagesToUpdate = [];
+            for (let i = 0; i < 4; i++) {
+                const imageKey = `image${i}`;
+                if (req.files[imageKey]) {
+                    imagesToUpdate.push({
+                        ID_Producto: productId,
+                        ruta: req.files[imageKey][0].filename
+                    });
+                }
+            }
+    
+            await db.ImagenesProductos.bulkCreate(imagesToUpdate, { updateOnDuplicate: ['ruta'] });
+    
+            // Actualizar las características del producto
+            await db.Caracteristicas.update(
+                {
+                    tamaño: req.body.Tamanio,
+                    memoria: req.body.Memoria,
+                    camara: req.body.CamaraPrincipal,
+                    ram: req.body.Ram
+                    // Agrega otras características que necesites actualizar...
+                },
+                { where: { ID_Producto: productId } }
+            );
+    
+            return { status: success, message: 'Product updated successfully' };
+        } catch(error) {
+            return { error: error.message };
+        }
+    },
+
+    delete: async function (req) {
+        try {
+            const productId = req.params.id;
+    
+            // Eliminar las características del producto
+            await db.Caracteristicas.destroy({ where: { ID_Producto: productId } });
+    
+            // Eliminar las imágenes del producto
+            await db.ImagenesProductos.destroy({ where: { ID_Producto: productId } });
+    
+            // Eliminar el producto de la base de datos
+            const deletedProduct = await db.Productos.destroy({ where: { ID_Producto: productId } });
+    
+            if (deletedProduct === 1) {
+                console.log('Producto y sus relaciones eliminadas correctamente');
+                return { status: 'success', message: 'Product and its relationships deleted successfully' };
+            } else {
+                console.log('No se encontró el producto para eliminar');
+                return { status: 'error', message: 'Product not found or already deleted' };
+            }
+        } catch (error) {
+            console.error('Error al eliminar el producto:', error);
+            return { status: 'error', message: error.message };
+        }
     }
 }
-
 
 module.exports = productService;
