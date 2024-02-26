@@ -118,12 +118,18 @@ processRegister: (req, res) => {
 },
 
     delete: (req, res) => {
-        userService.delete(req);
-        res.redirect('/usuarios/lista')
+        userService.delete(req).then(resultado=>{
+            if(req.session.usuarioLogeado.id==req.params.id){
+                this.logout(req,res);
+            }else{
+                res.redirect('/usuarios/lista')
+            }
+        }).catch(error=>console.log(error));
+        
     },
 
     login: (req, res) => {
-        res.render('usuarios/login');
+        res.render('usuarios/login',{cookie: req.cookies.recordarme || ''});
     },
 
     processLogin: async (req, res) => {
@@ -135,16 +141,15 @@ processRegister: (req, res) => {
     
                 if (correctContraseña) {
                     req.session.usuarioLogeado = usuarioValido;
-                    if(req.body.recordame != undefined){
-                        res.cookie('recordame', usuarioValido.email, {
-                            maxAge: 3000000000
-                        });
+                    if(req.body.recordarme == 'on'){
+                        res.cookie('recordarme',usuarioValido.email, { maxAge: 604800000 });
+                        console.log('Cookie "recordame" establecida');
                     }
                     return res.redirect('/');
                 }
             }
     
-            return res.render('usuarios/login', {
+            return res.render('usuarios/login', {cookie:req.cookies.recordarme || '',
                 errors: {
                     email: {
                         msg: 'Credenciales inválidas'

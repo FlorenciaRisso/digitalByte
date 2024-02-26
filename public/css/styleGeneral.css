@@ -188,14 +188,20 @@ a {
   border: 0;
   padding: 0px 10px;
 }
-.btn-registro{
+
+.rounder{
+  border-radius: 20px;
+}
+.left-rounder{
   border-radius: 20px 0 0 20px;
 }
-.btn-login,.btn-perfil{
+.rigth-rounder{
   border-radius: 0 20px 20px 0;
 }
+.no-rounder{
+  border-radius: 0;
+}
 .btn-listProd {
-  border-radius: 20px 0 0 20px;
   background-color: #dbdbdb;
   border: 0;
   padding: 0px 10px;

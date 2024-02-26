@@ -4,20 +4,22 @@ const router = express.Router();
 const uploadFile=require('../data/multer');
 const productController = require('../controllers/productController');
 const authMiddleware = require('../middlewares/authMiddleware');
-const esAdmin = require('../middlewares/esAdmin')
+const esAdmin = require('../middlewares/esAdmin');
+const esCliente = require('../middlewares/esCliente');
+const esVendedor = require('../middlewares/esVendedor');
 
 
 
 router.get('/', productController.index);
 router.post('/search', productController.search);
-router.get('/carrito',authMiddleware, productController.carrito);
-router.get('/lista', esAdmin, productController.lista); //solo admin
+router.get('/carrito',authMiddleware,esCliente, productController.carrito);//solo cliente
+router.get('/lista',authMiddleware, esAdmin, productController.lista); //solo admin
 //listar
-router.get('/listaproductos',authMiddleware, productController.listado);
+router.get('/listaproductos',authMiddleware,esVendedor, productController.listado);
 router.get('/categoria',productController.listaPorCat);
 //crear
-router.get('/create', productController.create);
-router.post('/create', uploadFile.fields([
+router.get('/create',authMiddleware,esVendedor, productController.create);
+router.post('/create',authMiddleware,esVendedor, uploadFile.fields([
     { name: 'image0', maxCount: 1 },
     { name: 'image1', maxCount: 1 },
     { name: 'image2', maxCount: 1 },
@@ -26,8 +28,8 @@ router.post('/create', uploadFile.fields([
 //detalles
 router.get('/detalle/:id', productController.detalle);
 //editar
-router.get('/editar/:id', productController.editProducto);
-router.put('/editar/:id',uploadFile.fields([
+router.get('/editar/:id',authMiddleware,esVendedor, productController.editProducto);
+router.put('/editar/:id',authMiddleware,esVendedor,uploadFile.fields([
     { name: 'image0', maxCount: 1 },
     { name: 'image1', maxCount: 1 },
     { name: 'image2', maxCount: 1 },
@@ -35,7 +37,7 @@ router.put('/editar/:id',uploadFile.fields([
 ]), productController.update);
 
 //eliminar
-router.delete('/delete/:id',productController.delete);
+router.delete('/delete/:id',authMiddleware,esVendedor,productController.delete);
 
 
 module.exports = router;

@@ -57,10 +57,10 @@ const productService = {
             // Suponiendo que tienes una variable `caracteristicas` con las características del producto
             await db.Caracteristicas.create({
                 ID_Producto: nuevoProducto.ID_Producto,
-                tamaño: req.body.tamanio,
-                memoria: req.body.memoria,
-                camara: req.body.camara,
-                ram: req.body.ram
+                tamaño: req.body.Tamanio,
+                memoria: req.body.Memoria,
+                camara: req.body.CamaraPrincipal,
+                ram: req.body.Ram
             });
 
             console.log("Producto creado:", nuevoProducto.toJSON());

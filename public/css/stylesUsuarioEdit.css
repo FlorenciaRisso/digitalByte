@@ -18,6 +18,9 @@ body {
     align-items: center;
     height: 100vh;
 }
+.div-img{
+    width: 30%;
+}
 .div-img img{
     width: 20%;
 }

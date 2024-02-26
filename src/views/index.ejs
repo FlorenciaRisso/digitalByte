@@ -43,7 +43,7 @@
                 <% productos.forEach(producto=>{ if(producto.Descuento == 20){%>
                 <a href="/productos/detalle/<%=producto.ID_Producto%>">
                   <div class="offer__image">
-                    <img class="offer__image-img" src="<%=producto.ImagenesProductos[0].ruta%>" alt="" />
+                    <img class="offer__image-img" src="<%= producto.ImagenesProductos[0] ? producto.ImagenesProductos[0].ruta : 'img/default-image.png' %>" alt="" />
                     <% if(producto.Descuento != 0){ %>
                       <div class="discount-circle">
                         <p class="discount-value"><%= producto.Descuento %>%</p>

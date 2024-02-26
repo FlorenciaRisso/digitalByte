@@ -116,7 +116,7 @@ const userService = {
 
     delete: async function (id) {
         try {
-            await User.destroy({ where: { id: id } });
+            await Usuarios.destroy({ where: { id: id } });
             return true;
         } catch (error) {
             console.error('Error al eliminar el usuario:', error);
