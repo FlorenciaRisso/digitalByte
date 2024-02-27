@@ -41,25 +41,9 @@ let userController = {
             then(data => res.render('usuarios/edit', { usuario: data, oldData: data }))
     },
 
-    update: (req, res) => {
-        const userId = parseInt(req.params.id, 10);
-        const userData = req.body;
-
-        const usuarioExiste = userService.getOne(userId);
-        if (!usuarioExiste) {
-            return res.status(404).send('Usuario no encontrado');
-        }
-        usuarioExiste.id = userId;
-        usuarioExiste.nombre = userData.nombre;
-        usuarioExiste.apellido = userData.apellido;
-        usuarioExiste.email = userData.email;
-        usuarioExiste.contraseña = userData.contraseña;
-        usuarioExiste.rol = userData.rol;
-        usuarioExiste.nacionalidad = userData.nacionalidad;
-        usuarioExiste.avatar = '/img/' + req.file.filename;
-
-        userService.update(usuarioExiste);
-
+    update: async (req, res) => {
+        
+        await userService.update(req);
         res.redirect('/usuarios/lista');
     },
 

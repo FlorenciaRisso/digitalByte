@@ -88,10 +88,20 @@ const userService = {
             };
         }
     },
-    update: async function (updatedUser) {
+    update: async function (req) {
         try {
-            const userId = updatedUser.id;
-            return await Usuarios.update(updatedUser, { where: { id: userId } });
+            let usuario={
+                nombre: req.body.firstName,
+                apellido: req.body.lastName,
+                nacionalidad:req.body.country,
+                rol:req.body.rol
+            }
+            console.log(usuario);
+            if(req.file){
+                usuario.avatar="/img/"+req.file.filename;
+            }
+            let puede=await Usuarios.update(usuario, { where: { id: req.params.id } });
+            return puede;
         } catch (error) {
             console.error('Error al actualizar el usuario:', error);
             return false;
