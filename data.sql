@@ -131,13 +131,13 @@ INSERT INTO digitalbyte.imagenes_productos(id,producto_id,ruta) VALUES
 
 -- Carga tabla usuarios
  INSERT INTO usuarios (id, nombre, apellido, email, contraseña, rol, nacionalidad, avatar, direccion, telefono) VALUES
-(1, 'Mara', 'Santillan', 'mjsn98@gmail.com', '$2a$10$aYH8I1lxXN8i64SfFk3IMuQgM67y2Fdvp6cuDkq9PvbX6mBAu2aUq', 'Administrador', 'Argentina', '/img/1705963399945_img_.png', '123 Calle Principal', '011-2345-6789'),
-(2, 'Flor', 'Risso', 'flor@gmail.com', '$2a$10$TYl58Ehs95mg4Hr/0xpCj.Q9mNF18OnlguBGa3Abn5pN0W26Duaja', 'Vendedor', 'Argentina', '/img/1705964039666_img_.png', '456 Avenida del Sol', '011-3456-7890'),
-(3, 'Ximena', 'Marcos', 'asdfasf@gmail.com', '$2a$10$gDyWndoFE9l0R2Srq11zqOA2SsjLMAuVpQn7ADzvGxLHgxDuMR15G', 'Administrador', 'Argentina', '/img/1705964107247_img_.png', '789 Calle de la Luna', '011-9012-3456'),
-(4, 'Mara', 'Santillan', 'asdsda_98@gmail.com', '$2a$10$yTOdpQy9pbASL3dKpa/SouKbqmNG1KDvzp6KGxKYGIdLRgiktW2NO', 'Vendedor', 'Argentina', '/img/1705965889349_img_.png', '321 Avenida de las Flores', '011-4567-8901'),
-(5, 'Ximena', 'Marcos', 'mjsnn98@gmail.com', '$2a$10$uqmrgyi4TWsKWGcPLVVd0um20vsEkZnco4BkIyTgGj0dnrt.3.6rW', 'Administrador', 'Argentina', '/img/1705975364462_img_.jpg', '654 Calle del Bosque', '011-5678-9012'),
-(6, 'Mara', 'Marcos', 'mrsntllnn98@gmail.com', '$2a$10$CeTSe3xyfAOclKudyYKJMepAC/Mwfnejrg4NcUTck6IrlCeqOZeAu', 'Vendedor', 'Argentina', '/img/1705977061704_img_.png', '987 Avenida del Mar', '011-6789-0123'),
-(7, 'Florencia', 'Risso', 'florencia@gmail.com', '$2b$10$IIk3V2PC6thslyFZHYE0SOkfYIFhqlHKFA/b0w8Pz74aAy3HZ6qDa', 'Administrador', 'Argentina', '/img/1707867557920_img_.jpg', '543 Avenida del Rio', '011-7890-1234'),
-(8, 'Sophia', 'Martinez', 'sophia.martinez@example.com', '$2a$10$3DSm1a6wpHLS/KdNDz6vuO5qAsTI80tt1LUAr6OBpEiut./p/d3Kq', 'Vendedor', 'Argentina', '/img/1707866998679_img_.jpg', '210 Calle de la Montaña', '011-8901-2345'),
-(9, 'Alexander', 'Perez', 'alexander.perez@example.com', '$2a$10$fAQN4cosIQPTgbqoYUKiFOOU9QoRC5YclVTqbIW0G3.hjjFNhaVpq', 'Vendedor', 'Argentina', '/img/1707867119155_img_.jpg', '876 Calle de la Playa', '011-9876-5432'),
-(10, 'Benjamin', 'Rodriguez', 'benjamin.rodriguez@example.com', '$2a$10$V3k9O9/eeu9/HBadIjLJu.GAst/ybTnE9RyTPqD4ygy2.Txm6ldQa', 'Administrador', 'Argentina', '/img/1707867168488_img_.jpg', '109 Avenida de las Estrellas', '011-0123-4567');
+(1, 'Mara', 'Santillan', 'mjsn98@gmail.com', '$2a$10$aYH8I1lxXN8i64SfFk3IMuQgM67y2Fdvp6cuDkq9PvbX6mBAu2aUq', 'Administrador', 'Argentina', '/img/avatar.png', '123 Calle Principal', '011-2345-6789'),
+(2, 'Flor', 'Risso', 'flor@gmail.com', '$2a$10$TYl58Ehs95mg4Hr/0xpCj.Q9mNF18OnlguBGa3Abn5pN0W26Duaja', 'Vendedor', 'Argentina', '/img/avatar.png', '456 Avenida del Sol', '011-3456-7890'),
+(3, 'Ximena', 'Marcos', 'asdfasf@gmail.com', '$2a$10$gDyWndoFE9l0R2Srq11zqOA2SsjLMAuVpQn7ADzvGxLHgxDuMR15G', 'Administrador', 'Argentina', '/img/avatar.png', '789 Calle de la Luna', '011-9012-3456'),
+(4, 'Mara', 'Santillan', 'asdsda_98@gmail.com', '$2a$10$yTOdpQy9pbASL3dKpa/SouKbqmNG1KDvzp6KGxKYGIdLRgiktW2NO', 'Vendedor', 'Argentina', '/img/avatar.png', '321 Avenida de las Flores', '011-4567-8901'),
+(5, 'Ximena', 'Marcos', 'mjsnn98@gmail.com', '$2a$10$uqmrgyi4TWsKWGcPLVVd0um20vsEkZnco4BkIyTgGj0dnrt.3.6rW', 'Administrador', 'Argentina', '/img/avatar.jpg', '654 Calle del Bosque', '011-5678-9012'),
+(6, 'Mara', 'Marcos', 'mrsntllnn98@gmail.com', '$2a$10$CeTSe3xyfAOclKudyYKJMepAC/Mwfnejrg4NcUTck6IrlCeqOZeAu', 'Vendedor', 'Argentina', '/img/avatar.png', '987 Avenida del Mar', '011-6789-0123'),
+(7, 'Florencia', 'Risso', 'florencia@gmail.com', '$2b$10$IIk3V2PC6thslyFZHYE0SOkfYIFhqlHKFA/b0w8Pz74aAy3HZ6qDa', 'Administrador', 'Argentina', '/img/avatar.jpg', '543 Avenida del Rio', '011-7890-1234'),
+(8, 'Sophia', 'Martinez', 'sophia.martinez@example.com', '$2a$10$3DSm1a6wpHLS/KdNDz6vuO5qAsTI80tt1LUAr6OBpEiut./p/d3Kq', 'Vendedor', 'Argentina', '/img/avatar.jpg', '210 Calle de la Montaña', '011-8901-2345'),
+(9, 'Alexander', 'Perez', 'alexander.perez@example.com', '$2a$10$fAQN4cosIQPTgbqoYUKiFOOU9QoRC5YclVTqbIW0G3.hjjFNhaVpq', 'Vendedor', 'Argentina', '/img/avatar.jpg', '876 Calle de la Playa', '011-9876-5432'),
+(10, 'Benjamin', 'Rodriguez', 'benjamin.rodriguez@example.com', '$2a$10$V3k9O9/eeu9/HBadIjLJu.GAst/ybTnE9RyTPqD4ygy2.Txm6ldQa', 'Administrador', 'Argentina', '/img/avatar.jpg', '109 Avenida de las Estrellas', '011-0123-4567');
