@@ -26,3 +26,19 @@ Implementar CRUD de productos: Mantener el desarrollo de las funcionalidades CRU
 Depender exclusivamente de Mockaroo: Reducir progresivamente la dependencia de Mockaroo, fomentando la generación manual de datos para una mayor personalización y realismo en los escenarios de pruebas.
 5. Dejar de hacer:
 Postergar la actualización del tablero de trabajo: Evitar retrasar la actualización del tablero, ya que esto puede dificultar la visibilidad y coordinación del equipo.
+
+
+## **Retro Sprint 6**
+1. Comenzar a hacer:
+- Implementar daily/weekly standups: Iniciar reuniones cortas semanales para compartir progresos, impedimentos y planes de trabajo entre el equipo.
+- Crear documentación detallada de procedimientos: Empezar a generar documentación clara sobre los procesos y procedimientos a seguir para el desarrollo, incluyendo la estructura del JSON.
+2. Hacer más:
+- Actualizar la retro.
+- Ver documentación y material extra.
+3. Continuar haciendo:
+- Mantener actualizado el tablero de trabajo para reflejar los avances, pendientes y asignaciones de tareas.
+- Dividir tareas entre los miembros del equipo para mantener organización en los avances.
+4. Hacer menos:
+- 
+5. Dejar de hacer:
+- No aclarar dudas y bloqueantes entre los miembros del equipo.

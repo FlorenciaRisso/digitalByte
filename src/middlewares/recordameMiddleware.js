@@ -1,9 +1,11 @@
+const { Usuarios } = require('../model/database/models');
+
 function recordame(req, res, next) {
 
 if (req.cookies.recordame != undefined && req.session.usuarioLogeado == undefined) {
-    Usuario.findOne({
+    Usuarios.findOne({
         where: {
-            correo: req.cookies.correo
+            email: req.cookies.recordame
         }
     }).then(usuario => {
         if (usuario) {
