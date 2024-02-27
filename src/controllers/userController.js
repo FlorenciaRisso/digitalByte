@@ -1,5 +1,6 @@
 const userService = require('../data/userService');
 const bcrypt = require('bcrypt');
+const { Usuarios } = require('../model/database/models');
 
 
 let userController = {
@@ -165,6 +166,7 @@ let userController = {
     },
 
     logout: (req, res) => {
+        res.clearCookie('recordame')
         req.session.destroy();
         return res.redirect('/usuarios/login')
     },

@@ -2,6 +2,7 @@ const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const { Usuarios } = require('../model/database/models');
 const fs = require('fs');
+const { Productos } = require('../model/database/models')
 
 
 const userService = {
@@ -114,9 +115,11 @@ const userService = {
         }
     },
 
-    delete: async function (id) {
+    delete: async function (userId) {
         try {
-            await Usuarios.destroy({ where: { id: id } });
+            await Productos.destroy({ where: { ID_Vendedor: userId } });
+
+            await Usuarios.destroy({ where: { id: userId } });
             return true;
         } catch (error) {
             console.error('Error al eliminar el usuario:', error);
