@@ -101,6 +101,7 @@ const userService = {
                 usuario.avatar = "/img/" + req.file.filename;
             }
             let puede = await Usuarios.update(usuario, { where: { id: req.params.id } });
+
             return puede;
         } catch (error) {
             console.error('Error al actualizar el usuario:', error);

@@ -44,6 +44,7 @@ let userController = {
     update: async (req, res) => { 
         await userService.update(req); res.redirect('/usuarios/lista'); },
 
+
     cambiarContraseña: (req, res) => {
         res.render('usuarios/cambiarContraseña', {
             usuarioId: req.params.id
