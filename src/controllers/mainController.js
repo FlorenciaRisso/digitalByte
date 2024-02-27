@@ -4,7 +4,7 @@ const funcion = require('../data/funcion')
 let mainController = {
     index: (req, res) => {
         productService.getAll(req).
-            then(data => { console.log(data);res.render('index', { productos: data, funcion: funcion }) }).
+            then(data => {res.render('index', { productos: data, funcion: funcion }) }).
             catch(error => { console.log(error) })
     },
 

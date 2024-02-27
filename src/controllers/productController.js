@@ -51,8 +51,8 @@ let productController = {
 
     },
     update: (req, res) => {
-        productService.update(req);
-        res.redirect('/productos');
+        productService.update(req).then(data=>{console.log("producto actualizado"+data);res.redirect('/productos')}).catch(error=>console.log(error));
+        
     },
     delete: (req, res) => {
         productService.delete(req).then(resultado=>{

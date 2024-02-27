@@ -76,7 +76,7 @@ let userController = {
                     res.redirect('/usuarios/userProfile')
                 } else if (resultado.errors) {
                     res.render('usuarios/cambiarContraseña', {
-                        errors: resultado.errors,usuarioId:req.params.id
+                        errors: resultado.errors, usuarioId: req.params.id
                     })
                 }
             }).
@@ -89,74 +89,75 @@ let userController = {
 
 
 
-processRegister: (req, res) => {
-    let old = req.body;
-    userService.save(req).then(async resultado => {
-        if (resultado.success) {
-            // Iniciar sesión automáticamente después del registro
-            try {
-                // Obtener el usuario recién registrado
-                const usuarioRegistrado = await userService.findByField('email', req.body.email);
+    processRegister: (req, res) => {
+        let old = req.body;
+        userService.save(req).then(async resultado => {
+            if (resultado.success) {
+                // Iniciar sesión automáticamente después del registro
+                try {
+                    // Obtener el usuario recién registrado
+                    const usuarioRegistrado = await userService.findByField('email', req.body.email);
 
-                // Almacenar el usuario en la sesión
-                req.session.usuarioLogeado = usuarioRegistrado;
+                    // Almacenar el usuario en la sesión
+                    req.session.usuarioLogeado = usuarioRegistrado;
 
-                // Redirigir al usuario a la página principal o a donde desees
-                res.redirect('/');
-            } catch (error) {
-                console.error('Error al iniciar sesión automáticamente después del registro:', error);
-                res.status(500).send('Error al iniciar sesión automáticamente después del registro');
+                    // Redirigir al usuario a la página principal o a donde desees
+                    res.redirect('/');
+                } catch (error) {
+                    console.error('Error al iniciar sesión automáticamente después del registro:', error);
+                    res.status(500).send('Error al iniciar sesión automáticamente después del registro');
+                }
+            } else if (resultado.errors) {
+                res.render('usuarios/registro', {
+                    errors: resultado.errors, oldData: old
+                })
             }
-        } else if (resultado.errors) {
-            res.render('usuarios/registro', {
-                errors: resultado.errors, oldData: old
-            })
-        }
-    }).catch(error => {
-        console.log(error);
-    });
-},
+        }).catch(error => {
+            console.log(error);
+        });
+    },
 
     delete: (req, res) => {
-        userService.delete(req).then(resultado=>{
-            if(req.session.usuarioLogeado.id==req.params.id){
-                this.logout(req,res);
-            }else{
+        userService.delete(req).then(resultado => {
+            if (req.session.usuarioLogeado.id == req.params.id) {
+                this.logout(req, res);
+            } else {
                 res.redirect('/usuarios/lista')
             }
-        }).catch(error=>console.log(error));
-        
+        }).catch(error => console.log(error));
+
     },
 
     login: (req, res) => {
-        res.render('usuarios/login',{cookie: req.cookies.recordarme || ''});
+        res.render('usuarios/login', { cookie: req.cookies.recordarme || '' });
     },
 
     processLogin: async (req, res) => {
         try {
             let usuarioValido = await userService.findByField('email', req.body.email);
-    
+
             if (usuarioValido) {
                 let correctContraseña = bcrypt.compareSync(req.body.contraseña, usuarioValido.contraseña);
-    
+
                 if (correctContraseña) {
                     req.session.usuarioLogeado = usuarioValido;
-                    if(req.body.recordarme == 'on'){
-                        res.cookie('recordarme',usuarioValido.email, { maxAge: 604800000 });
+                    if (req.body.recordarme == 'on') {
+                        res.cookie('recordarme', usuarioValido.email, { maxAge: 604800000 });
                         console.log('Cookie "recordame" establecida');
                     }
                     return res.redirect('/');
                 }
             }
-    
-            return res.render('usuarios/login', {cookie:req.cookies.recordarme || '',
+
+            return res.render('usuarios/login', {
+                cookie: req.cookies.recordarme || '',
                 errors: {
                     email: {
                         msg: 'Credenciales inválidas'
                     }
                 }
             });
-    
+
         } catch (error) {
             console.error('Error al procesar el inicio de sesión:', error);
             return res.status(500).send('Error al procesar el inicio de sesión');

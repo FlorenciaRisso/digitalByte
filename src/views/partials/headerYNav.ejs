@@ -18,7 +18,7 @@
     <div class="user-info-responsive">
         <% if (usuarioLogeado) { %>
             <a href="/usuarios/userProfile">
-                <img class="img-user" src="<%= usuarioLogeado.avatar?usuarioLogeado.avatar:'img/default-image.png' %>"
+                <img class="img-user" src="<%= usuarioLogeado.avatar?usuarioLogeado.avatar:'/img/default-image.png' %>"
                     alt="Foto de perfil">
                 <span>
                     <%= usuarioLogeado.nombre %>/<%=usuarioLogeado.rol %>
@@ -69,7 +69,7 @@
                                     <div class="user-info">
                                         <% if (usuarioLogeado) { %>
                                             <a href="/usuarios/userProfile">
-                                                <img class="img-user" src="<%= usuarioLogeado.avatar ? usuarioLogeado.avatar  :'img/default-image.png' %>"
+                                                <img class="img-user" src="<%= usuarioLogeado.avatar ? usuarioLogeado.avatar  :'/img/default-image.png' %>"
                                                     alt="Foto de perfil">
                                                 <span>
                                                     <%= usuarioLogeado.nombre %>/<%=usuarioLogeado.rol %>

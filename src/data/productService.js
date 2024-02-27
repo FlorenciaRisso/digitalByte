@@ -92,12 +92,12 @@ const productService = {
             return []; // Manejo de errores, retorna un array vacío en caso de error
         }
     },
-    update: async function (req, res) {
+    update: async function (req) {
         try {
             const productId = req.params.id;
-    
+
             // Actualizar la información básica del producto
-            await db.Productos.update(
+            let productoActualizado = await db.Productos.update(
                 {
                     Nombre: req.body.name,
                     Descripcion: req.body.description,
@@ -110,21 +110,56 @@ const productService = {
                 },
                 { where: { ID_Producto: productId } }
             );
-    
             // Actualizar las imágenes del producto
             const imagesToUpdate = [];
+            let productImages = await db.ImagenesProductos.findAll({
+                attributes: ['id'],
+                where: { ID_Producto: productId }
+            });
+            let ids = productImages.map(image => image.id);
             for (let i = 0; i < 4; i++) {
                 const imageKey = `image${i}`;
+                console.log(req.files[imageKey]);
                 if (req.files[imageKey]) {
+                    const file = req.files[imageKey][0];
                     imagesToUpdate.push({
+                        id: i,
                         ID_Producto: productId,
-                        ruta: req.files[imageKey][0].filename
+                        ruta: '/img/' + file.filename
+                    });
+                } else {
+                    imagesToUpdate.push({
+                        id: i,
+                        ID_Producto: productId,
+                        ruta: null
                     });
                 }
             }
-    
-            await db.ImagenesProductos.bulkCreate(imagesToUpdate, { updateOnDuplicate: ['ruta'] });
-    
+            if (imagesToUpdate.length > 0) {
+                let idParaNuevaRuta=null;
+                let nuevaRuta=null;
+                for (let i = 0; i < imagesToUpdate.length; i++) {
+                    console.log("recorre");
+                    if (imagesToUpdate[i].ruta != null) {
+                        idParaNuevaRuta = ids[i];
+                        nuevaRuta = imagesToUpdate[i].ruta;
+                    }else{
+                        idParaNuevaRuta=null;
+                        nuevaRuta=null;
+                    }
+                    if(idParaNuevaRuta){
+                        let nuevosDatosImagen = {
+                            ruta: nuevaRuta
+                        }
+                        await db.ImagenesProductos.update(nuevosDatosImagen, {
+                            where: { id: idParaNuevaRuta }
+                        });
+                    }
+                }
+
+
+            }
+
             // Actualizar las características del producto
             await db.Caracteristicas.update(
                 {
@@ -132,13 +167,12 @@ const productService = {
                     memoria: req.body.Memoria,
                     camara: req.body.CamaraPrincipal,
                     ram: req.body.Ram
-                    // Agrega otras características que necesites actualizar...
                 },
                 { where: { ID_Producto: productId } }
             );
-    
-            return { status: success, message: 'Product updated successfully' };
-        } catch(error) {
+
+            return { status: success, message: 'Producto actualizado exitosamente' };
+        } catch (error) {
             return { error: error.message };
         }
     },
@@ -146,16 +180,16 @@ const productService = {
     delete: async function (req) {
         try {
             const productId = req.params.id;
-    
+
             // Eliminar las características del producto
             await db.Caracteristicas.destroy({ where: { ID_Producto: productId } });
-    
+
             // Eliminar las imágenes del producto
             await db.ImagenesProductos.destroy({ where: { ID_Producto: productId } });
-    
+
             // Eliminar el producto de la base de datos
             const deletedProduct = await db.Productos.destroy({ where: { ID_Producto: productId } });
-    
+
             if (deletedProduct === 1) {
                 console.log('Producto y sus relaciones eliminadas correctamente');
                 return { status: 'success', message: 'Product and its relationships deleted successfully' };
