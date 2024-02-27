@@ -90,17 +90,18 @@ const userService = {
     },
     update: async function (req) {
         try {
-            let usuario={
+            let usuario = {
                 nombre: req.body.firstName,
                 apellido: req.body.lastName,
-                nacionalidad:req.body.country,
-                rol:req.body.rol
+                nacionalidad: req.body.country,
+                rol: req.body.rol
             }
             console.log(usuario);
-            if(req.file){
-                usuario.avatar="/img/"+req.file.filename;
+            if (req.file) {
+                usuario.avatar = "/img/" + req.file.filename;
             }
-            let puede=await Usuarios.update(usuario, { where: { id: req.params.id } });
+            let puede = await Usuarios.update(usuario, { where: { id: req.params.id } });
+
             return puede;
         } catch (error) {
             console.error('Error al actualizar el usuario:', error);
@@ -115,8 +116,8 @@ const userService = {
             } else {
                 let usuario = await Usuarios.findByPk(req.params.id);
                 usuario.contraseña = await bcrypt.hash(req.body.contrasenia, 10);
-                let user= await usuario.save(); 
-                return {success:true,user:user};
+                let user = await usuario.save();
+                return { success: true, user: user };
             }
         } catch (error) {
             console.error(error);

@@ -41,11 +41,9 @@ let userController = {
             then(data => res.render('usuarios/edit', { usuario: data, oldData: data }))
     },
 
-    update: async (req, res) => {
-        
-        await userService.update(req);
-        res.redirect('/usuarios/lista');
-    },
+    update: async (req, res) => { 
+        await userService.update(req); res.redirect('/usuarios/lista'); },
+
 
     cambiarContraseña: (req, res) => {
         res.render('usuarios/cambiarContraseña', {
@@ -103,8 +101,9 @@ let userController = {
     },
 
     delete: (req, res) => {
-        userService.delete(req).then(resultado => {
-            if (req.session.usuarioLogeado.id == req.params.id) {
+        const userId = req.params.id;
+        userService.delete(userId).then(resultado => {
+            if (req.session.usuarioLogeado.id == userId) {
                 this.logout(req, res);
             } else {
                 res.redirect('/usuarios/lista')
