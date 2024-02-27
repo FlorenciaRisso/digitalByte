@@ -101,6 +101,7 @@ h1 {
 .info {
     margin: 5px 0;
     color: #888;
+    overflow: hidden;
 }
 
 /* Estilo para los botones de acciones */

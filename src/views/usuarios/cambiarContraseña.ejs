@@ -1,0 +1,68 @@
+<%- include ('../partials/head',{cssFile:'/css/stylesUsuarioEdit.css'})%>
+
+    <body>
+        <%-include ('../partials/headerYNav' ) %>
+
+            <div class="">
+                <div class="container">
+                    <div class="title-container">
+                        <h2 class="title">Editar Contraseña</h2>
+                    </div>
+                    <form class="edit-user__form" action="/usuarios/cambiarContrasenia/<%= usuarioId%>?_method=put"
+                        method="POST" enctype="application/x-www-form-urlencoded">
+                        <div>
+                            <% if(locals.errors && errors.contraseniaVieja) {%>
+                                <div class="text-danger">
+                                    <%= errors.contraseniaVieja.msg %>
+                                </div>
+                                <% } %>
+                        </div>
+                        <div>
+                            <% if(locals.errors && errors.contrasenia) {%>
+                                <div class="text-danger">
+                                    <%= errors.contrasenia.msg %>
+                                </div>
+                                <% } %>
+                        </div>
+                        <div>
+                            <% if(locals.errors && errors.confirmContrasenia) {%>
+                                <div class="text-danger">
+                                    <%= errors.confirmContrasenia.msg %>
+                                </div>
+                                <% } %>
+                        </div>
+                        <div class="edit-user__password-form block-input">
+
+                            <input type="password" name="contraseniaVieja"
+                                class="edit-user__input-form <%= locals.errors && errors.contraseniaVieja ? 'is-invalid' : null %>"
+                                placeholder="Contraseña Actual">
+                        </div>
+
+                        <div class="edit-user__password-form block-input">
+
+                            <input type="password" name="contrasenia"
+                                class="edit-user__input-form <%= locals.errors && errors.contrasenia ? 'is-invalid' : null %>"
+                                placeholder="Nueva Contraseña">
+
+                        </div>
+
+                        <div class="edit-user__password-form block-input">
+
+                            <input type="password" name="confirmContrasenia"
+                                class="edit-user__input-form <%= locals.errors && errors.confirmContrasenia ? 'is-invalid' : null %>"
+                                placeholder="Repetir contraseña">
+
+                        </div>
+
+                        <div class="edit-user__buttons">
+                            <button class="edit-user__button btn ">Guardar cambios</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+    </body>
+    <%- include ('../partials/footer') %>
+
+        </html>

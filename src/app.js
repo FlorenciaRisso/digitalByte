@@ -8,15 +8,24 @@ const app=express();
 const path=require('path');
 
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser')
 
 
 const methodOverride =  require('method-override');
 const session = require('express-session');
 
+
 const indexRouter = require('./routes/index');
-app.use(session({secret: 'secret', resave: false, saveUninitialized: false}))
+app.use(session({ secret: 'secreto', // Secreto para firmar la cookie de sesión
+resave: false,
+saveUninitialized: true}))
+
+const recordameMiddleware = require('./middlewares/recordameMiddleware')
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(cookieParser())
+app.use(recordameMiddleware)
 //Usando recursos estaticos
 app.use(express.static('public'));
 //Override
@@ -27,6 +36,7 @@ app.use((req, res, next) => {
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     next();
 });
+require('dotenv')
 //Levantando el servidor Puerto 3030
 app.listen(3030,()=>console.log("Ejecutandose Exitosamente en puerto 3030")); 
 

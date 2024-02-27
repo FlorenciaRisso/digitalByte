@@ -8,12 +8,12 @@
     <div class="container">
         <div class="profile-card">
             <div class="profile-header">
-                <h2 class="name-user">Hola, <%= usuario.firstName %> <%= usuario.lastName %>!</h2>
+                <h2 class="name-user">Hola, <%= usuario.nombre %> <%= usuario.apellido %>!</h2>
             </div>
             <div class="profile-body">
-                <img src="<%= usuario.image %>" alt="" class="profile-image">
+                <img src="<%= usuario.avatar %>" alt="" class="profile-image">
                 <div class="user-data">
-                    <p><strong>País:</strong> <%= usuario.country %></p>
+                    <p><strong>País:</strong> <%= usuario.nacionalidad %></p>
                     <p><strong>Rol:</strong> <%= usuario.rol %></p>
                     <p><strong>Email:</strong> <%= usuario.email %></p>
                 </div>

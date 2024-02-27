@@ -1,132 +1,129 @@
-const { json } = require('body-parser');
-const fs = require('fs');
-const path = require('path');
-const bcryptjs = require('bcryptjs');
-const userRouter = path.join(__dirname, '../data/jsonUsuarios.json');
-const usuariosArray = JSON.parse(fs.readFileSync(userRouter, 'utf-8'));
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
+const { Usuarios } = require('../model/database/models');
+const fs = require('fs');
+const { Productos } = require('../model/database/models')
+
 
 const userService = {
-
-    users: usuariosArray,
-
-    getData: function () {
-        return this.users;
-    },
-
-    findAll: function () {
-        return this.getData()
-    },
-
-    getOne: function (userId) {
-
-        let user = this.users.find((user) => user.id === userId);
-        return user;
-    },
-
-    findByPk: function (id) {
-        let allUsers = this.findAll();
-        let userFound = allUsers.find(oneUser => oneUser.id === id)
-        return userFound;
-    },
-
-    findByField: function (field, text) {
-        let allUsers = this.findAll();
-        let userFound = allUsers.find(oneUser => oneUser[field] === text)
-        return userFound;
-    },
-
-    create: function (userData) {
-        let allUsers = this.findAll();
-        newUser = {
-            id: this.generateId(),
-            ...userData
-        }
-        allUsers.push(newUser);
-        fs.writeFileSync(userRouter, JSON.stringify(this.users, null, " "));
-        return newUser;
-    },
-
-    save: function (req, res) {
-        let errors = [];
-        errors = validationResult(req);
-        let userInDB = this.findByField('email', req.body.email);
-        if (userInDB) {
-            errors.errors.push({
-                type: 'field',
-                value: req.body,
-                msg: 'El email ya existe',
-                path: 'email',
-                location: 'body'
-            })
-        }
-
-
-
-        if (errors.errors.length > 0) {
-            return { errors: errors };
-        }
-
-        let userToCreate = {
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            password: bcryptjs.hashSync(req.body.password, 10),
-            rol: req.body.category,
-            country: req.body.country,
-            image: '/img/' + req.file.filename || 'default-image.png"'
-        }
-
-        let userCreated = this.create(userToCreate);
-
-        return {
-            success: true,
-            userCreated: true
-        };
-    },
-
-    // validarUsuario: function (req) {
-    //     let validarEmail = this.findByField('email', req.body.email);
-    //     let validarContraseña = bcrypt.compareSync(req.body.password, validarEmail.password);
-
-
-    //     if (validarEmail && validarContraseña) {
-    //         delete validarEmail.password
-    //         req.session.usuarioLogueado = validarEmail
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // },
-
-    update: function (updatedUser) {
-        const userId = updatedUser.id;
-        const allUsers = this.findAll();
-
-        if (updatedUser.password) {
-            updatedUser.password = bcrypt.hashSync(updatedUser.password, 10);
-        }
-        
-        const userIndex = allUsers.findIndex(user => user.id === userId);
-
-        if (userIndex !== -1) {
-            allUsers[userIndex] = updatedUser;
-            fs.writeFileSync(userRouter, JSON.stringify(allUsers, null, ' '));
+    getAll: async function () {
+        try {
+            return await Usuarios.findAll();
+        } catch (error) {
+            console.error('Error al obtener todos los usuarios:', error);
+            return [];
         }
     },
+    getOne: async function (userId) {
+        try {
+            return await Usuarios.findByPk(userId);
+        } catch (error) {
+            console.error('Error al obtener el usuario:', error);
+            return null;
+        }
+    },
+    findByField: async function (field, value) {
+        try {
+            return await Usuarios.findOne({ where: { [field]: value } });
+        } catch (error) {
+            console.error('Error al buscar el usuario por campo:', error);
+            return null;
+        }
+    },
+    save: async function (req, res) {
+        try {
+            const errors = validationResult(req);
 
-    generateId: function () {
-        let allUsers = this.users;
-        let lastUser = allUsers[allUsers.length - 1];
-        return lastUser.id + 1;
+            if (!errors.isEmpty()) {
+                if (req.file) { // Si hay una sola imagen
+                    if (req.file.path) {
+                        fs.unlink(req.file.path, err => {
+                            if (err) {
+                                console.error("Error al eliminar la imagen:", err);
+                            }
+                        });
+                    }
+                } else if (req.files) { // Si hay múltiples imágenes
+                    Object.values(req.files).forEach(files => {
+                        if (Array.isArray(files)) {
+                            files.forEach(file => {
+                                if (file && file.path) {
+                                    fs.unlink(file.path, err => {
+                                        if (err) {
+                                            console.error("Error al eliminar la imagen:", err);
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+                return { errors: errors.mapped() };
+            }
+
+
+
+            const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
+            let userCreated = await Usuarios.create({
+                nombre: req.body.nombre,
+                apellido: req.body.apellido,
+                email: req.body.email,
+                contraseña: hashedPassword,
+                rol: req.body.rol,
+                nacionalidad: req.body.nacionalidad,
+                avatar: '/img/' + (req.file ? req.file.filename : 'default-image.png')
+            });
+
+            return {
+                success: true,
+                userCreated: userCreated
+            };
+        } catch (error) {
+            console.error('Error al guardar el usuario:', error);
+            return {
+                errors: [{
+                    msg: 'Hubo un error al guardar el usuario'
+                }]
+            };
+        }
+    },
+    update: async function (updatedUser) {
+        try {
+            const userId = updatedUser.id;
+            return await Usuarios.update(updatedUser, { where: { id: userId } });
+        } catch (error) {
+            console.error('Error al actualizar el usuario:', error);
+            return false;
+        }
+    },
+    validarContraseña: async function (req) {
+        try {
+            let errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return { errors: errors.mapped() };
+            } else {
+                let usuario = await Usuarios.findByPk(req.params.id);
+                usuario.contraseña = await bcrypt.hash(req.body.contrasenia, 10);
+                let user= await usuario.save(); 
+                return {success:true,user:user};
+            }
+        } catch (error) {
+            console.error(error);
+            return [];
+        }
     },
 
-    delete: function (id) {
-        let allUsers = this.users;
-        let finalUsers = allUsers.filter(oneUser => oneUser.id !== id);
-        fs.writeFileSync(userRouter, JSON.stringify(finalUsers, null, " "));
-        return true;
+    delete: async function (userId) {
+        try {
+            await Productos.destroy({ where: { ID_Vendedor: userId } });
+
+            await Usuarios.destroy({ where: { id: userId } });
+            return true;
+        } catch (error) {
+            console.error('Error al eliminar el usuario:', error);
+            return false;
+        }
     }
 
 }

@@ -1,17 +1,18 @@
 const productService = require('../data/productService');
-const funcion=require('../data/funcion')
+const funcion = require('../data/funcion')
 
 let mainController = {
-    index: (req, res)=>{
-        let productos=productService.getAll();
-        res.render('index',{productos:productos,funcion:funcion});
-    }, 
+    index: (req, res) => {
+        productService.getAll(req).
+            then(data => {res.render('index', { productos: data, funcion: funcion }) }).
+            catch(error => { console.log(error) })
+    },
 
     contactos: (req, res) => {
         res.render('contacto');
     },
 
-    quienesSomos: (req,res) => {
+    quienesSomos: (req, res) => {
         res.render('quienesSomos');
     }
 }

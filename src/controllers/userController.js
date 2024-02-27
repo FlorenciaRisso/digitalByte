@@ -1,38 +1,44 @@
-const path = require('path');
-const fs = require('fs');
 const userService = require('../data/userService');
 const bcrypt = require('bcrypt');
-const { log } = require('console');
+const { Usuarios } = require('../model/database/models');
+
 
 let userController = {
 
-    lista: (req, res) => {
-        let usuarios = userService.users;
-        res.render('usuarios/lista', { usuarios: usuarios })
-    },
-
-    profile: (req, res) => {
-        let userId = parseInt(req.params.id, 10);
-        const usuario = userService.getOne(userId);
-        if (usuario) {
-            res.render('usuarios/profile', { usuario: usuario });
-        } else {
-            res.status(404).send('Usuario no encontrado');
+    lista: async function (req, res) {
+        try {
+            const usuarios = await userService.getAll();
+            res.render('usuarios/lista', { usuarios: usuarios });
+        } catch (error) {
+            console.error('Error al obtener usuarios:', error);
+            res.status(500).send('Error al obtener usuarios');
         }
     },
 
+    profile: (req, res) => {
+        let userId = req.params.id;
+        userService.getOne(userId).
+            then(data => res.render('usuarios/userProfile', {
+                usuario: data
+            })).
+            catch(error => res.status(404).send('Usuario no encontrado'))
+    },
+
     userProfile: (req, res) => {
-        let usuario=userService.getOne(req.session.usuarioLogeado);
-        console.log(usuario);
-        return res.render('usuarios/userProfile', {
-            usuario: usuario
-        })
+        userService.getOne(req.session.usuarioLogeado.id).
+
+            then(data => {
+                res.render('usuarios/userProfile', {
+                    usuario: data
+                })
+            })
+            .catch(e => console.log(e))
     },
 
     edit: (req, res) => {
         let userId = parseInt(req.params.id, 10);
-        let usuario = userService.getOne(userId);
-        res.render('usuarios/edit', { usuario: usuario,oldData:usuario });
+        userService.getOne(userId).
+            then(data => res.render('usuarios/edit', { usuario: data, oldData: data }))
     },
 
     update: (req, res) => {
@@ -43,99 +49,125 @@ let userController = {
         if (!usuarioExiste) {
             return res.status(404).send('Usuario no encontrado');
         }
-
-        usuarioExiste.firstName = userData.firstName;
-        usuarioExiste.lastName = userData.lastName;
+        usuarioExiste.id = userId;
+        usuarioExiste.nombre = userData.nombre;
+        usuarioExiste.apellido = userData.apellido;
         usuarioExiste.email = userData.email;
-        usuarioExiste.password = userData.password;
-        usuarioExiste.rol = userData.category;
-        usuarioExiste.country = userData.country;
-        usuarioExiste.image = '/img/' + req.file.filename;
+        usuarioExiste.contraseña = userData.contraseña;
+        usuarioExiste.rol = userData.rol;
+        usuarioExiste.nacionalidad = userData.nacionalidad;
+        usuarioExiste.avatar = '/img/' + req.file.filename;
 
         userService.update(usuarioExiste);
 
         res.redirect('/usuarios/lista');
     },
 
+    cambiarContraseña: (req, res) => {
+        res.render('usuarios/cambiarContraseña', {
+            usuarioId: req.params.id
+        })
+    },
+
+    updateContraseña: (req, res) => {
+        userService.validarContraseña(req).
+            then(resultado => {
+                console.log(resultado);
+                if (resultado.success) {
+                    res.redirect('/usuarios/userProfile')
+                } else if (resultado.errors) {
+                    res.render('usuarios/cambiarContraseña', {
+                        errors: resultado.errors, usuarioId: req.params.id
+                    })
+                }
+            }).
+            catch(error => console.log(error))
+    },
+
     registro: (req, res) => {
         res.render('usuarios/registro');
     },
 
+
+
     processRegister: (req, res) => {
-        let resultado = userService.save(req);
-        let old=req.body;
-        if (resultado.success == true) {
-            res.redirect('/usuarios/login')
-        } else if (resultado.errors) {
-            res.render('usuarios/registro', {
-                errors: resultado.errors.mapped(),oldData:old
-            })
-        } else {
-            res.render('usuarios/registro', {
-                errors: resultado.errors.email, oldData:old
-            })
-        }
+        let old = req.body;
+        userService.save(req).then(async resultado => {
+            if (resultado.success) {
+                // Iniciar sesión automáticamente después del registro
+                try {
+                    // Obtener el usuario recién registrado
+                    const usuarioRegistrado = await userService.findByField('email', req.body.email);
+
+                    // Almacenar el usuario en la sesión
+                    req.session.usuarioLogeado = usuarioRegistrado;
+
+                    // Redirigir al usuario a la página principal o a donde desees
+                    res.redirect('/');
+                } catch (error) {
+                    console.error('Error al iniciar sesión automáticamente después del registro:', error);
+                    res.status(500).send('Error al iniciar sesión automáticamente después del registro');
+                }
+            } else if (resultado.errors) {
+                res.render('usuarios/registro', {
+                    errors: resultado.errors, oldData: old
+                })
+            }
+        }).catch(error => {
+            console.log(error);
+        });
     },
 
     delete: (req, res) => {
-        userService.delete(req);
-        res.redirect('/usuarios/lista')
+        userService.delete(req).then(resultado => {
+            if (req.session.usuarioLogeado.id == req.params.id) {
+                this.logout(req, res);
+            } else {
+                res.redirect('/usuarios/lista')
+            }
+        }).catch(error => console.log(error));
+
     },
 
     login: (req, res) => {
-        res.render('usuarios/login');
+        res.render('usuarios/login', { cookie: req.cookies.recordarEmail || '' });
     },
 
-    processLogin: (req, res) => {
-        let usuarioValido = userService.findByField('email', req.body.email);
-        console.log(usuarioValido);
-        if (usuarioValido) {
-            let correctPassword = bcrypt.compareSync(req.body.password, usuarioValido.password);
-            console.log(correctPassword);
-            if (correctPassword) {
-                req.session.usuarioLogeado = usuarioValido.id;
-                return res.redirect('/')
-            }
-        }
-        return res.render('usuarios/login', {
-            errors: {
-                email: {
-                    msg: 'Credenciales inválidas'
+    processLogin: async (req, res) => {
+        try {
+            let usuarioValido = await userService.findByField('email', req.body.email);
+
+            if (usuarioValido) {
+                let correctContraseña = bcrypt.compareSync(req.body.contraseña, usuarioValido.contraseña);
+
+                if (correctContraseña) {
+                    req.session.usuarioLogeado = usuarioValido;
+                    if (req.body.recordame == 'on') {
+                        res.cookie('recordame', usuarioValido.email, { maxAge: 604800000 });
+                        res.cookie('recordarEmail', usuarioValido.email, { maxAge: 604800000 });
+                        console.log('Cookie "recordame" establecida');
+                    }
+                    return res.redirect('/');
                 }
             }
-        })
 
+            return res.render('usuarios/login', {
+                cookie: req.cookies.recordarEmail || '',
+                errors: {
+                    email: {
+                        msg: 'Credenciales inválidas'
+                    }
+                }
+            });
+
+        } catch (error) {
+            console.error('Error al procesar el inicio de sesión:', error);
+            return res.status(500).send('Error al procesar el inicio de sesión');
+        }
     },
 
-
-
-    //     let usuarioValido = userService.validarUsuario(req);
-    //     let errors = [];
-
-    //     if (usuarioValido) {
-    //         res.redirect('/usuarios');
-    //     } else {
-    //         errors.errors.push({
-    //             type: 'field', value: req.body,
-    //             msg: 'Usuario incorrecto',
-    //             path: 'email', location: 'body'
-    //         })
-    //     }
-    //     res.render('usuarios/login', {errors:errors.errors.mapped()});
-
-
-
-    //     return res.render('login', { //MUESTRA ERROR EMAIL INEXISTENTE
-    //         errors: {
-    //             email: {
-    //                 msg: "Email inexistente"
-    //             }
-    //         }
-    //     });
-    // },
-
     logout: (req, res) => {
-        console.log(req.session);
+        res.clearCookie('recordame')
         req.session.destroy();
         return res.redirect('/usuarios/login')
     },

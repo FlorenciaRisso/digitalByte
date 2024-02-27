@@ -1,113 +1,207 @@
 // 1 SMARTPHONE, 2 TABLET, 3 NOTEBOOK
 
-const path = require('path');
 const fs = require('fs');
-const productRouter = path.join(__dirname, '../data/jsonProductos.json');
-const productsArray = JSON.parse(fs.readFileSync(productRouter, 'utf-8'));
+const db = require('../model/database/models')
+
 
 const productService = {
 
-    products: productsArray,
-
-    getAll: function (req, res) {
-        return this.products;
-    },
-    getOne: function (req, res) {
-        let producto = this.products.find((producto) => { return producto.id == req.params.id });
-        return producto;
-    },
-    getProdPorCat: function (req, res) {
-        let productos = this.products.filter((producto) => { return producto.category.name == req.query.cat });
-        return productos;
-    },
-    update: function (req) {
-        let categorias = [
-            { "id": "1", "name": "Smartphones" },
-            { "id": "2", "name": "Tablets" },
-            { "id": "3", "name": "Notebooks" }
-        ];
-        let index = this.products.indexOf(this.getOne(req));
-        this.products[index].name = req.body.name || this.products[index].name;
-        this.products[index].description = req.body.description || this.products[index].description;
-        this.products[index].price = req.body.price || this.products[index].price;
-        //busca la categoria con el valor enviado por el campo category, que es el id de la categoria. 
-        //Luego asigna el objeto al campo category del producto a editar
-        let selectedCategory = categorias.find(cat => cat.id === req.body.category);
-        this.products.category = { "id": selectedCategory.id, "name": selectedCategory.name };
-        let image = "/img/default-image.png";
-        this.products[index].discount = req.body.discount || this.products[index].discount;
-        this.products[index].specifications.Tamaño = req.body.Tamanio || this.products[index].specifications.Tamaño;
-        this.products[index].specifications.Memoria = req.body.Memoria || this.products[index].specifications.Memoria;
-        this.products[index].specifications.Ram = req.body.Ram || this.products[index].specifications.Ram;
-        this.products[index].specifications.CamaraPrincipal = req.body.CamaraPrincipal || this.products[index].specifications.CamaraPrincipal;
-
-        // Manejo cuando se han subido archivos
-        for (let i = 0; i < 4; i++) {
-            const fileField = req.files[`image${i}`];
-            if (fileField && fileField.length > 0) {
-                this.products[index][`image${i}`] = '/img/' + fileField[0].filename;
-            } else {
-                if (!this.products[index][`image${i}`]) {
-                    this.products[index][`image${i}`]=image;
-                }
-            }
+    getAll: async function () {
+        try {
+            return await db.Productos.findAll({
+                include: [
+                    { association: 'Caracteristica' },
+                    { association: 'ImagenesProductos' },
+                    { association: 'Categoria' }
+                ]
+            });
+        } catch (error) {
+            console.log(error);
+            return [];
         }
-        fs.writeFileSync(productRouter, JSON.stringify(this.products), 'utf-8')
     },
-    delete: function (req) {
-        let index = this.products.indexOf(this.getOne(req));
-        this.products.splice(index, 1);//splice elimina 1 elemento desde el indice indicado, en este caso el elemento buscado
-        fs.writeFileSync(productRouter, JSON.stringify(this.products), 'utf-8');
+    getOne: async function (req) {
+        try {
+            return await db.Productos.findByPk(req.params.id, {
+                include: [
+                    { association: 'Caracteristica' },
+                    { association: 'ImagenesProductos' },
+                    { association: 'Categoria' }
+                ]
+            });
+        } catch {
+            console.log(error);
+            return [];
+        }
     },
-    save: function (req) {
-        let product = {};
-        let categorias = [
-            { "id": "1", "name": "Smartphones" },
-            { "id": "2", "name": "Tablets" },
-            { "id": "3", "name": "Notebooks" }
-        ];
-        let lastProductId = this.products.length > 0 ? this.products[this.products.length - 1].id : 0;
-        product.id = lastProductId + 1;
-        product.name = req.body.name;
-        product.description = req.body.description;
-        let selectedCategory = categorias.find(cat => cat.id === req.body.category);
-        product.category = { "id": selectedCategory.id, "name": selectedCategory.name };
-        product.price = req.body.price;
-        product.discount = req.body.discount;
-        product.plus = "";
-        product.marca = req.body.marca;
-        let image = "/img/default-image.png";
-        let specifications = {
-            "Tamaño": req.body.Tamanio || '',
-            "Memoria": req.body.Memoria || '',
-            "CamaraPrincipal": req.body.CamaraPrincipal|| '',
-            "Ram": req.body.Ram || ''
-        };
-        product.specifications = specifications;
-        if (!req.files || Object.keys(req.files).length === 0) {
-            // Manejo cuando no se han subido archivos
-            for (let i = 0; i < 4; i++) {
-                if (!product[`image${i}`]) {
-                    product[`image${i}`] = image;
-                }
-            }
-        } else {
-            // Manejo cuando se han subido archivos
+    save: async function (req) {
+        try {
+            const nuevoProducto = await db.Productos.create({
+                Nombre: req.body.name,
+                Descripcion: req.body.description,
+                ID_Categoria: req.body.category,
+                Precio: req.body.price,
+                Stock: req.body.stock,
+                Descuento: req.body.discount,
+                Marca: req.body.marca
+            });
+
+            // Agregar las imágenes del producto
             for (let i = 0; i < 4; i++) {
                 const fileField = req.files[`image${i}`];
-                if (fileField && fileField.length > 0) {
-                    product[`image${i}`] = '/img/' + fileField[0].filename;
-                } else {
-                    if (!product[`image${i}`]) {
-                        product[`image${i}`] = image;
-                    }
-                }
+                const imagePath = fileField ? '/img/' + fileField[0].filename : "/img/default-image.png";
+                await db.ImagenesProductos.create({ ID_Producto: nuevoProducto.ID_Producto, ruta: imagePath });
             }
+
+            // Agregar las características del producto
+            // Suponiendo que tienes una variable `caracteristicas` con las características del producto
+            await db.Caracteristicas.create({
+                ID_Producto: nuevoProducto.ID_Producto,
+                tamaño: req.body.Tamanio,
+                memoria: req.body.Memoria,
+                camara: req.body.CamaraPrincipal,
+                ram: req.body.Ram
+            });
+
+            console.log("Producto creado:", nuevoProducto.toJSON());
+            return nuevoProducto;
+        } catch (error) {
+            console.error("Error al guardar el producto:", error);
+            throw error;
         }
 
-        this.products.push(product);
-        fs.writeFileSync(productRouter, JSON.stringify(this.products), 'utf-8');
     },
+    //1.notebook,2.smartphone,3.tablet
+    getProdPorCat: async function (req, res) {
+        try {
+            const productos = await db.Productos.findAll({
+                include: [
+                    { association: 'Categoria' },
+                    { association: 'ImagenesProductos' }
+                ],
+                where: { ID_Categoria: req.query.cat }
+            });
+
+            if (!productos) {
+                return [];
+            }
+
+            return productos;
+        } catch (error) {
+            console.log(error);
+            return []; // Manejo de errores, retorna un array vacío en caso de error
+        }
+    },
+    update: async function (req) {
+        try {
+            const productId = req.params.id;
+
+            // Actualizar la información básica del producto
+            let productoActualizado = await db.Productos.update(
+                {
+                    Nombre: req.body.name,
+                    Descripcion: req.body.description,
+                    Precio: req.body.price,
+                    Descuento: req.body.discount,
+                    Stock: req.body.stock,
+                    ID_Categoria: req.body.category,
+                    Marca: req.body.marca,
+                    ID_Vendedor: req.session.usuarioLogeado.id
+                },
+                { where: { ID_Producto: productId } }
+            );
+            // Actualizar las imágenes del producto
+            const imagesToUpdate = [];
+            let productImages = await db.ImagenesProductos.findAll({
+                attributes: ['id'],
+                where: { ID_Producto: productId }
+            });
+            let ids = productImages.map(image => image.id);
+            for (let i = 0; i < 4; i++) {
+                const imageKey = `image${i}`;
+                console.log(req.files[imageKey]);
+                if (req.files[imageKey]) {
+                    const file = req.files[imageKey][0];
+                    imagesToUpdate.push({
+                        id: i,
+                        ID_Producto: productId,
+                        ruta: '/img/' + file.filename
+                    });
+                } else {
+                    imagesToUpdate.push({
+                        id: i,
+                        ID_Producto: productId,
+                        ruta: null
+                    });
+                }
+            }
+            if (imagesToUpdate.length > 0) {
+                let idParaNuevaRuta=null;
+                let nuevaRuta=null;
+                for (let i = 0; i < imagesToUpdate.length; i++) {
+                    console.log("recorre");
+                    if (imagesToUpdate[i].ruta != null) {
+                        idParaNuevaRuta = ids[i];
+                        nuevaRuta = imagesToUpdate[i].ruta;
+                    }else{
+                        idParaNuevaRuta=null;
+                        nuevaRuta=null;
+                    }
+                    if(idParaNuevaRuta){
+                        let nuevosDatosImagen = {
+                            ruta: nuevaRuta
+                        }
+                        await db.ImagenesProductos.update(nuevosDatosImagen, {
+                            where: { id: idParaNuevaRuta }
+                        });
+                    }
+                }
+
+
+            }
+
+            // Actualizar las características del producto
+            await db.Caracteristicas.update(
+                {
+                    tamaño: req.body.Tamanio,
+                    memoria: req.body.Memoria,
+                    camara: req.body.CamaraPrincipal,
+                    ram: req.body.Ram
+                },
+                { where: { ID_Producto: productId } }
+            );
+
+            return { status: success, message: 'Producto actualizado exitosamente' };
+        } catch (error) {
+            return { error: error.message };
+        }
+    },
+
+    delete: async function (req) {
+        try {
+            const productId = req.params.id;
+
+            // Eliminar las características del producto
+            await db.Caracteristicas.destroy({ where: { ID_Producto: productId } });
+
+            // Eliminar las imágenes del producto
+            await db.ImagenesProductos.destroy({ where: { ID_Producto: productId } });
+
+            // Eliminar el producto de la base de datos
+            const deletedProduct = await db.Productos.destroy({ where: { ID_Producto: productId } });
+
+            if (deletedProduct === 1) {
+                console.log('Producto y sus relaciones eliminadas correctamente');
+                return { status: 'success', message: 'Product and its relationships deleted successfully' };
+            } else {
+                console.log('No se encontró el producto para eliminar');
+                return { status: 'error', message: 'Product not found or already deleted' };
+            }
+        } catch (error) {
+            console.error('Error al eliminar el producto:', error);
+            return { status: 'error', message: error.message };
+        }
+    }
 }
 
 module.exports = productService;

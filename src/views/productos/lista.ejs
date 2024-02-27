@@ -24,29 +24,30 @@
                                 <% productos.forEach(producto=> { %>
                                     <tr>
                                         <td>
-                                            <%= producto.name %>
+                                            <%= producto.Nombre %>
                                         </td>
                                         <td class="td-descripcion">
                                             <p class="p-descripcion">
-                                                <%= producto.description %>
+                                                <%= producto.Descripcion %>
                                             </p>
                                         </td>
-                                        <td><img src="<%= producto.image0 %>" alt="Imagen del producto"></td>
-                                        <td><img src="<%= producto.image1 %>" alt="Imagen del producto-1"></td>
-                                        <td><img src="<%= producto.image2 %>" alt="Imagen del producto-2"></td>
-                                        <td><img src="<%= producto.image3 %>" alt="Imagen del producto-3"></td>
-                                        <td>
-                                            <%= producto.category.name %>
+                                        <td><img src="<%= producto.ImagenesProductos[0] ? producto.ImagenesProductos[0].ruta : '/img/default-image.png' %>" alt="Imagen del producto"></td>
+                                        <td><img src="<%= producto.ImagenesProductos[1] ? producto.ImagenesProductos[1].ruta : '/img/default-image.png' %>" alt="Imagen del producto-1">
                                         </td>
-                                        <td>$<%= funcion.getPrecioFormateado(producto.price) %>
+                                        <td><img src="<%= producto.ImagenesProductos[2] ? producto.ImagenesProductos[2].ruta : '/img/default-image.png' %>" alt="Imagen del producto-2">
+                                        </td>
+                                        <td><img src="<%= producto.ImagenesProductos[3] ? producto.ImagenesProductos[3].ruta : '/img/default-image.png' %>" alt="Imagen del producto-3">
+                                        </td>
+                                        <td><%= producto.Categoria.nombre %></td>
+                                        <td>$<%= funcion.getPrecioFormateado(producto.Precio) %>
                                         </td>
                                         <td>
-                                            <a href="/productos/editar/<%=producto.id%>"><i
+                                            <a href="/productos/editar/<%=producto.ID_Producto%>"><i
                                                     class="fa-solid fa-pen-to-square fa-lg"></i></a>
-                                            <form action="/productos/delete/<%=producto.id %>?_method=delete"
+                                            <form action="/productos/delete/<%=producto.ID_Producto %>?_method=delete"
                                                 method="post" style="display: inline-flex" id="form_delete">
                                                 <button type="submit" class="btn-delete"
-                                                    data-product-id="<%=producto.id %>"><i
+                                                    data-product-id="<%=producto.ID_Producto %>"><i
                                                         class="fa-solid fa-trash fa-lg"></i></button>
                                             </form>
                                         </td>

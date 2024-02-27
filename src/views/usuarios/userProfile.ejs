@@ -1,32 +1,41 @@
 <%-include ('../partials/head',{cssFile:'/css/stylesUsuarioProfile.css'})%>
 
-<body>
-    <%-include ('../partials/headerYNav' ) %>
-    <div class="title-container">
-        <h1 class="title">PERFIL DE USUARIO</h1>
-    </div>
-    <div class="container">
-        <div class="profile-card">
-            <div class="profile-header">
-                <h2 class="name-user">Hola, <%= usuario.firstName %> <%= usuario.lastName %>!</h2>
-            </div>
-            <div class="profile-body">
-                <img src="<%= usuario.image %>" alt="" class="profile-image">
-                <div class="user-data">
-                    <p><strong>País:</strong> <%= usuario.country %></p>
-                    <p><strong>Rol:</strong> <%= usuario.rol %></p>
-                    <p><strong>Email:</strong> <%= usuario.email %></p>
+    <body>
+        <%-include ('../partials/headerYNav' ) %>
+            <h1 class="title">MI PERFIL</h1>
+            <div class="container">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <h2 class="name-user">Hola, <%= usuario.nombre %>
+                                <%= usuario.apellido %>!</h2>
+                    </div>
+                    <div class="profile-body">
+                        <img src="<%= usuario.avatar %>" alt="" class="profile-image">
+                        <div class="user-data">
+                            <p><strong>País:</strong>
+                                <%= usuario.nacionalidad %>
+                            </p>
+                            <p><strong>Rol:</strong>
+                                <%= usuario.rol %>
+                            </p>
+                            <p><strong>Email:</strong>
+                                <%= usuario.email %>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <a href="/usuarios/edit/<%= usuario.id %>" class="btn btn-primary">Editar</a>
+                        <a href="/usuarios/cambiarContrasenia/<%= usuario.id %>" class="btn btn-primary">Cambiar
+                            contraseña</a>
+                        <form action="/usuarios/eliminar/<%= usuario.id %>" method="post"
+                            onsubmit="return confirm('¿Estás seguro?');">
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="action-buttons">
-                <a href="/usuarios/edit/<%= usuario.id %>" class="btn btn-primary">Editar</a>
-                <form action="/usuarios/eliminar/<%= usuario.id %>" method="post" onsubmit="return confirm('¿Estás seguro?');">
-                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                </form>
-            </div>
-        </div>
-    </div>
 
-    <%- include ('../partials/footer') %>
-</body>
-</html>
+            <%- include ('../partials/footer') %>
+    </body>
+
+    </html>

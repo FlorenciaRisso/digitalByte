@@ -5,7 +5,7 @@
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 4px;
   /* Para navegadores webkit (Chrome, Safari, etc.) */
 }
 
@@ -93,7 +93,43 @@ a {
   align-items: center;
   width: 100%;
 }
+/* //busqueda */
+.search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.search-container {
+  position: relative;
+  width: 300px; /* Ajusta el ancho según tu diseño */
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.search-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 7px;
+  background-color: #cccccc00;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+/* Estilos adicionales para el icono */
+.search-button i {
+  font-size: 18px;
+  color: #202020;
+}
+/* fin busqueda */
 .input-search {
   padding: 10px;
   background-color: rgb(237, 237, 237);
@@ -105,6 +141,26 @@ a {
 
 .input-search:focus-visible {
   border: solid 1px rgb(155, 61, 232);
+}
+
+.fa-solid {
+  padding: 5px;
+}
+
+.user-info{
+  display: none;
+}
+
+.img-user{
+  margin-right: 10px;
+  width: 20px;
+}
+
+.user-info-responsive{
+    display: flex;
+    justify-content: end;
+    margin: 15px 0 0 10px;
+    padding-right: 10px;
 }
 
 .user-option {
@@ -121,25 +177,49 @@ a {
 
 
 .btn-carrito {
-  border-radius: 0 20px 20px 0;
+  border-radius: 20px 0 0 20px;
 }
-
 .btn-carrito,
 .btn-registro,
-.btn-login {
+.btn-login,
+.btn-perfil,
+.btn-usuarios {
   background-color: #dbdbdb;
   border: 0;
-  padding: 10px;
+  padding: 0px 10px;
 }
 
-.btn-listProd {
+.rounder{
+  border-radius: 20px;
+}
+.left-rounder{
   border-radius: 20px 0 0 20px;
+}
+.rigth-rounder{
+  border-radius: 0 20px 20px 0;
+}
+.no-rounder{
+  border-radius: 0;
+}
+.btn-listProd {
   background-color: #dbdbdb;
   border: 0;
-  padding: 10px;
+  padding: 0px 10px;
 
 }
-
+.btn-logout{
+  background-color: transparent;
+  border: none;
+}
+.btn-logout a{
+  border-radius: 20px;
+  background-color: #ee8f8f;
+  border: 0;
+  padding: 10px;
+}
+.btn-logout a:hover{
+  background-color: #f35757;
+}
 .btn-header {
   background: transparent;
   border: 0;
@@ -160,6 +240,7 @@ a {
   background-color: #fbfbfb;
   margin-bottom: 15px;
   flex-direction: column;
+
 }
 
 .hamburger-button {
@@ -434,10 +515,9 @@ a {
   width: 100%;
   text-transform: uppercase;
   text-align: center;
-  background-color: #906cbe;
-  border-radius: 10px;
+  background-color: #c3afdf;
   padding: 10px;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 .most-searched__card-container {
@@ -783,7 +863,34 @@ a {
   background-color: blueviolet;
   border-radius: 10px;
 }
+.box-search {
+  display: none;
+  position: fixed;
+  top: 58px;
+  left: 50%;
+  width: 43%;
+  transform: translate(-50%);
+  z-index: 8;
+  background-color: #fff;
+  overflow: hidden;
+  border-radius: 5px;
+  list-style: none;
+}
 
+.box-search li a {
+  display: block;
+  color: #777777;
+  padding: 5px 0;
+}
+
+.box-search li a i {
+  margin-right: 10px;
+  color: #777777;
+}
+
+.box-search li a:hover {
+  background-color: #f3f3f3;
+}
 @media (min-width: 500px) {
 
   /*Header*/
@@ -792,7 +899,6 @@ a {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-bottom: 15px;
 
   }
 
@@ -800,40 +906,51 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
   }
 
   .input-search {
+
     padding: 10px;
     background-color: rgb(237, 237, 237);
     border: 1px solid rgb(155, 155, 155);
     border-radius: 10px;
     color: black;
-    width: 60%;
+    width: 80%;
   }
+
+
+  .cover-search {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
 
   .input-search:focus {
     border: solid 1px rgb(150, 59, 224);
   }
 
-  .btn-carrito {
+  /* .btn-carrito {
     border-radius: 0 20px 20px 0;
+  } */
+
+  .btn-logout a {
+    border-radius: 100%;
+    width:  40px;
+    height: 40px;
   }
 
-  .btn-logout {
-    border-radius: 20px;
-    background-color: #ee8f8f;
-    border: 0;
-    padding: 10px;
-  }
-
+/* 
   .btn-carrito,
   .btn-registro,
   .btn-login {
     background-color: #dbdbdb;
     border: 0;
     padding: 10px;
-  }
+  } */
 
   .user-option {
     display: flex;
@@ -982,5 +1099,21 @@ a {
     overflow-y: hidden;
     /* Evitar el salto de línea */
     position: relative;
+  }
+
+  .user-info{
+    display: flex;
+    justify-content: end;
+    margin: 15px 0 0 10px;
+    padding-right: 30px;
+  }
+
+  .user-info-responsive{
+   display: none;
+  }
+
+  .img-user{
+    margin-right: 10px;
+    width: 20px;
   }
 }

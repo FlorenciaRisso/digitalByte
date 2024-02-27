@@ -6,7 +6,7 @@ body {
 }
 
 .container {
-  max-width: 60%;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -14,8 +14,9 @@ body {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 20px;
+  padding: 10px;
   margin-top: 20px;
+  
 }
 
 .profile-header {
@@ -74,7 +75,12 @@ body {
 }
 
 .title {
-  color: #915df1;
+  width: 100%;
+  background-color: rgb(169, 120, 214);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 1.5rem;
 }
 
 @media (min-width: 500px) {
@@ -91,7 +97,9 @@ body {
   }
 
   .container{
-    margin: 10 auto;
+    margin: 0 auto;
+    max-width: 100%;
+
   }
 
   .profile-image {
