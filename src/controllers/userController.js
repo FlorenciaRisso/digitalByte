@@ -56,11 +56,14 @@ let userController = {
         usuarioExiste.contraseña = userData.contraseña;
         usuarioExiste.rol = userData.rol;
         usuarioExiste.nacionalidad = userData.nacionalidad;
-        usuarioExiste.avatar = '/img/' + req.file.filename;
+        if (req.file) {
+            usuarioExiste.avatar = '/img/' + req.file.filename;
+        }
 
-        userService.update(usuarioExiste);
 
-        res.redirect('/usuarios/lista');
+        userService.update(usuarioExiste).
+        then(data => {res.redirect('/usuarios/lista')}).
+        catch(error=>console.log(error))
     },
 
     cambiarContraseña: (req, res) => {
@@ -119,8 +122,9 @@ let userController = {
     },
 
     delete: (req, res) => {
-        userService.delete(req).then(resultado => {
-            if (req.session.usuarioLogeado.id == req.params.id) {
+        const userId = req.params.id;
+        userService.delete(userId).then(resultado => {
+            if (req.session.usuarioLogeado.id == userId) {
                 this.logout(req, res);
             } else {
                 res.redirect('/usuarios/lista')
