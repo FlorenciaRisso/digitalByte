@@ -9,6 +9,7 @@ const guestMiddleware = require('../middlewares/guestMiddleware');
 const authMiddleware = require('../middlewares/authMiddleware');
 const changePasswordValidation = require('../middlewares/changePasswordValidation')
 const esAdmin = require('../middlewares/esAdmin');
+const esUsuario = require('../middlewares/esUsuario');
 
 router.get('/perfil/:id',authMiddleware, userController.profile);
 router.get('/userProfile', authMiddleware, userController.userProfile)
@@ -29,5 +30,6 @@ router.put('/cambiarContrasenia/:id', changePasswordValidation,userController.up
 router.get('/cerrarSesion',authMiddleware, userController.logout);
 
 router.post('/eliminar/:id', esAdmin, userController.delete);
+router.post('/eliminarCuenta/:id', esUsuario, userController.deleteCuenta);
 
 module.exports = router;

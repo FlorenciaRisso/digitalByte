@@ -104,7 +104,18 @@ let userController = {
         const userId = req.params.id;
         userService.delete(userId).then(resultado => {
             if (req.session.usuarioLogeado.id == userId) {
-                this.logout(req, res);
+                res.redirect('/usuarios/cerrarSesion')
+            } else {
+                res.redirect('/usuarios/lista')
+            }
+        }).catch(error => console.log(error));
+
+    },
+    deleteCuenta: (req, res) => {
+        const userId = req.params.id;
+        userService.delete(userId).then(resultado => {
+            if (req.session.usuarioLogeado.id == userId) {
+                res.redirect('/usuarios/cerrarSesion')
             } else {
                 res.redirect('/usuarios/lista')
             }
