@@ -49,7 +49,7 @@ let userController = {
         if (!usuarioExiste) {
             return res.status(404).send('Usuario no encontrado');
         }
-
+        usuarioExiste.id = userId;
         usuarioExiste.nombre = userData.nombre;
         usuarioExiste.apellido = userData.apellido;
         usuarioExiste.email = userData.email;
@@ -130,7 +130,7 @@ let userController = {
     },
 
     login: (req, res) => {
-        res.render('usuarios/login', { cookie: req.cookies.recordarme || '' });
+        res.render('usuarios/login', { cookie: req.cookies.recordarEmail || '' });
     },
 
     processLogin: async (req, res) => {
@@ -142,8 +142,9 @@ let userController = {
 
                 if (correctContraseña) {
                     req.session.usuarioLogeado = usuarioValido;
-                    if (req.body.recordarme == 'on') {
-                        res.cookie('recordarme', usuarioValido.email, { maxAge: 604800000 });
+                    if (req.body.recordame == 'on') {
+                        res.cookie('recordame', usuarioValido.email, { maxAge: 604800000 });
+                        res.cookie('recordarEmail', usuarioValido.email, { maxAge: 604800000 });
                         console.log('Cookie "recordame" establecida');
                     }
                     return res.redirect('/');
@@ -151,7 +152,7 @@ let userController = {
             }
 
             return res.render('usuarios/login', {
-                cookie: req.cookies.recordarme || '',
+                cookie: req.cookies.recordarEmail || '',
                 errors: {
                     email: {
                         msg: 'Credenciales inválidas'

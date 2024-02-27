@@ -91,8 +91,7 @@ const userService = {
     update: async function (updatedUser) {
         try {
             const userId = updatedUser.id;
-            await Usuarios.update(updatedUser, { where: { id: userId } });
-            return true;
+            return await Usuarios.update(updatedUser, { where: { id: userId } });
         } catch (error) {
             console.error('Error al actualizar el usuario:', error);
             return false;

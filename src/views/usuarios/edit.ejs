@@ -52,7 +52,7 @@
             <select name="rol" id="rol"
               class="edit-user__input-form <%= locals.errors && errors.rol ? 'is-invalid' : '' %>">
               <option value="">Elige una categoría</option>
-              <% let categories=["Vendedor", "Cliente" ] %>
+              <% let categories=["Vendedor", "Cliente", "Administrador" ] %>
 
                 <% for (const oneCategory of categories) { %>
                   <option value="<%= oneCategory %>" <%=locals.oldData && (oneCategory===oldData.rol) ? 'selected'
@@ -120,5 +120,7 @@
     </div>
   </body>
   <%- include ('../partials/footer') %>
+  <%- include ('../partials/script-change-img') %>
+
 
     </html>
