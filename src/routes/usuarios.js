@@ -29,7 +29,7 @@ router.put('/cambiarContrasenia/:id', changePasswordValidation,userController.up
 
 router.get('/cerrarSesion',authMiddleware, userController.logout);
 
-router.post('/eliminar/:id', esAdmin, userController.delete);
+router.get('/eliminar/:id', esAdmin, userController.delete);
 router.post('/eliminarCuenta/:id', esUsuario, userController.deleteCuenta);
 
 module.exports = router;
