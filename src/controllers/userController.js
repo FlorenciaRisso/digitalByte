@@ -42,7 +42,13 @@ let userController = {
     },
 
     update: async (req, res) => { 
-        await userService.update(req); res.redirect('/usuarios/lista'); },
+        let usuarioActualizado = await userService.update(req); res.redirect('/usuarios/lista');
+        if(req.session.usuarioLogeado.id==req.params.id){
+            delete req.session['usuarioLogeado'];
+            req.session.usuarioLogeado=usuarioActualizado;
+        }
+        
+     },
 
 
     cambiarContraseña: (req, res) => {

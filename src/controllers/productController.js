@@ -25,9 +25,9 @@ let productController = {
         },
     carrito: (req, res) => {
         productService.getAll().
-        then(data=>res.render('productos/productCart', { productos: data, funcion: funcion })).
-        catch(error=>console.log(error));
-        
+            then(data => res.render('productos/productCart', { productos: data, funcion: funcion })).
+            catch(error => console.log(error));
+
     },
     listaPorCat: (req, res) => {
         productService.getProdPorCat(req).
@@ -51,18 +51,29 @@ let productController = {
 
     },
     update: (req, res) => {
-        productService.update(req).then(data=>{console.log("producto actualizado"+data);res.redirect('/productos')}).catch(error=>console.log(error));
-        
+        productService.perteneceAMisProductos(req).then(existe => {
+            if (existe) {
+                productService.update(req).then(data => {
+                    console.log("producto actualizado" + data);
+                    res.redirect('/productos')
+                }).catch(error => console.log(error));
+            }else{
+                res.send(403).send({mensaje:'No tienes permiso para editar este producto'});
+            }
+
+        }).catch(error => console.log(error));
+
+
     },
     delete: (req, res) => {
-        productService.delete(req).then(resultado=>{
-            if(resultado.status == 'success'){
+        productService.delete(req).then(resultado => {
+            if (resultado.status == 'success') {
                 res.redirect('/productos/lista');
             } else {
                 res.redirect('/productos/lista');
             }
         })
-        
+
     },
 
     search: async (req, res) => {
