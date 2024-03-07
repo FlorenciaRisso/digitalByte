@@ -1,6 +1,6 @@
 const { check } = require('express-validator');
 const bcrypt = require('bcrypt');
-const { Usuarios } = require('../model/database/models'); // Suponiendo que tienes un modelo de usuario
+const { Usuarios } = require('../../model/database/models'); // Suponiendo que tienes un modelo de usuario
 
 const changePasswordValidation = [
     check('contraseniaVieja').notEmpty().withMessage('El campo no puede estar vacío').bail()

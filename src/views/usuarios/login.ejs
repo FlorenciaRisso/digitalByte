@@ -1,4 +1,4 @@
-<%-include ('../partials/head',{cssFile:'/css/login.css'})%>
+<%-include ('../partials/head',{cssFile:'/css/stylesUsuarioslogin.css'})%>
 
   <body>
     <header class="header">
@@ -20,12 +20,20 @@
                 <%=errors.email.msg %>
               </div>
               <% } %>
-                <div class="login__email-form">
-                  <input class="login__input-form" name='email' type="email" placeholder="Correo electronico" value="<%= cookie%>">
+              <% if(locals.errors && errors.contraseña){ %>
+                <div class="text-danger">
+                  <%=errors.contraseña.msg %>
                 </div>
-
+                <% } %>
+                <div class="login__email-form">
+                  <input class="login__input-form email" name='email' type="email" placeholder="Correo electrónico" value="<%= cookie%>">
+                  <small class="email-message">Email inválido</small>
+                </div>
+                <div class="" ></div>
                 <div class="login__password-form">
-                  <input class="login__input-form" name='contraseña' type="password" placeholder="Contraseña">
+                  <input class="login__input-form contraseña" name='contraseña' type="password" placeholder="Contraseña">
+                  <small class="contraseña-message">Introducir al menos 8 caracteres</small>
+                  
                 </div>
                 <div class="recordame">
                   <input  type="checkbox" id="recordame" name="recordame">
@@ -46,7 +54,7 @@
         </div>
       </div>
     </div>
-    
+    <script src="/js/loginUsuarios.js"></script>
   </body>
 
   </html>

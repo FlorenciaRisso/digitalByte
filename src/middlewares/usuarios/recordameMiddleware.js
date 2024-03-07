@@ -1,4 +1,4 @@
-const { Usuarios } = require('../model/database/models');
+const { Usuarios } = require('../../model/database/models');
 
 function recordame(req, res, next) {
 

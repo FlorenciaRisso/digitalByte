@@ -1,12 +1,11 @@
 const express = require('express');
-const path = require('path');
 const router = express.Router();
 const uploadFile=require('../data/multer');
 const productController = require('../controllers/productController');
-const authMiddleware = require('../middlewares/authMiddleware');
-const esAdmin = require('../middlewares/esAdmin');
-const esCliente = require('../middlewares/esCliente');
-const esVendedor = require('../middlewares/esVendedor');
+const authMiddleware = require('../middlewares/usuarios/authMiddleware');
+const esAdmin = require('../middlewares/usuarios/esAdmin');
+const esCliente = require('../middlewares/usuarios/esCliente');
+const esVendedor = require('../middlewares/usuarios/esVendedor');
 
 
 

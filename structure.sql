@@ -14,7 +14,13 @@ CREATE TABLE `usuarios` (
   `telefono` varchar(20) DEFAULT NULL,
   `avatar` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
+);
 
+CREATE TABLE `categorias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+);
 
 CREATE TABLE IF NOT EXISTS `productos` (
   `ID_Producto` int(11) NOT NULL AUTO_INCREMENT,
@@ -30,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `productos` (
   KEY `Categoria_id` (`ID_Categoria`),
   KEY `vendedor_ibfk_1_idx` (`ID_Vendedor`),
   CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`ID_Categoria`) REFERENCES `categorias` (`id`)
-)
+);
 
 CREATE TABLE `caracteristicas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -42,7 +48,7 @@ CREATE TABLE `caracteristicas` (
   PRIMARY KEY (`id`),
   KEY `producto_id` (`ID_Producto`),
   CONSTRAINT `caracteristicas_ibfk_1` FOREIGN KEY (`ID_Producto`) REFERENCES `productos` (`ID_Producto`)
-)
+);
 
 
 CREATE TABLE IF NOT EXISTS `carrito` (
@@ -52,14 +58,7 @@ CREATE TABLE IF NOT EXISTS `carrito` (
   PRIMARY KEY (`ID_Carrito`),
   KEY `ID_Usuario` (`ID_Usuario`),
   CONSTRAINT `carrito_ibfk_1` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuarios` (`id`)
-)
-
-
-CREATE TABLE `categorias` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-)
+);
 
 CREATE TABLE `detalle_carrito` (
   `id` int(11) NOT NULL,
@@ -69,9 +68,9 @@ CREATE TABLE `detalle_carrito` (
   PRIMARY KEY (`id`),
   KEY `ID_Carrito` (`ID_Carrito`),
   KEY `ID_Producto` (`ID_Producto`),
-  CONSTRAINT `detalle_carrito_ibfk_1` FOREIGN KEY (`ID_Carrito`) REFERENCES `carrito` (`id`),
+  CONSTRAINT `detalle_carrito_ibfk_1` FOREIGN KEY (`ID_Carrito`) REFERENCES `carrito` (`ID_Carrito`),
   CONSTRAINT `detalle_carrito_ibfk_2` FOREIGN KEY (`ID_Producto`) REFERENCES `productos` (`ID_Producto`)
-)
+);
 
 
 CREATE TABLE `imagenes_producto` (
@@ -81,7 +80,16 @@ CREATE TABLE `imagenes_producto` (
   PRIMARY KEY (`id`),
   KEY `producto_id` (`ID_Producto`),
   CONSTRAINT `imagenes_producto_ibfk_1` FOREIGN KEY (`ID_Producto`) REFERENCES `productos` (`ID_Producto`)
-)
+);
+
+CREATE TABLE `ventas` (
+  `id` int(11) NOT NULL,
+  `ID_Usuario` int(11) DEFAULT NULL,
+  `Fecha_Venta` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ID_Usuario` (`ID_Usuario`),
+  CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuarios` (`id`)
+);
 
 CREATE TABLE `detalle_venta` (
   `id` int(11) NOT NULL,
@@ -94,15 +102,5 @@ CREATE TABLE `detalle_venta` (
   KEY `ID_Producto` (`ID_Producto`),
   CONSTRAINT `detalle_venta_ibfk_1` FOREIGN KEY (`ID_Venta`) REFERENCES `ventas` (`id`),
   CONSTRAINT `detalle_venta_ibfk_2` FOREIGN KEY (`ID_Producto`) REFERENCES `productos` (`ID_Producto`)
-)
-
-
-CREATE TABLE `ventas` (
-  `id` int(11) NOT NULL,
-  `ID_Usuario` int(11) DEFAULT NULL,
-  `Fecha_Venta` date DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `ID_Usuario` (`ID_Usuario`),
-  CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuarios` (`id`)
 )
 

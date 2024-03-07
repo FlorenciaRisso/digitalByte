@@ -1,6 +1,7 @@
 const userService = require('../data/userService');
 const bcrypt = require('bcrypt');
 const { Usuarios } = require('../model/database/models');
+const { validationResult } = require('express-validator');
 
 
 let userController = {
@@ -135,6 +136,12 @@ let userController = {
 
     processLogin: async (req, res) => {
         try {
+            let errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.render('usuarios/login', {
+                    cookie: req.cookies.recordarEmail || '',
+                    errors: errors.mapped()})
+            }
             let usuarioValido = await userService.findByField('email', req.body.email);
 
             if (usuarioValido) {
@@ -148,17 +155,17 @@ let userController = {
                         console.log('Cookie "recordame" establecida');
                     }
                     return res.redirect('/');
+                } else {
+                    return res.render('usuarios/login', {
+                        cookie: req.cookies.recordarEmail || '',
+                        errors: {
+                            email: {
+                                msg: 'Credenciales inválidas'
+                            }}
+                        }
+                    )
                 }
             }
-
-            return res.render('usuarios/login', {
-                cookie: req.cookies.recordarEmail || '',
-                errors: {
-                    email: {
-                        msg: 'Credenciales inválidas'
-                    }
-                }
-            });
 
         } catch (error) {
             console.error('Error al procesar el inicio de sesión:', error);

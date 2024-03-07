@@ -20,7 +20,7 @@ app.use(session({ secret: 'secreto', // Secreto para firmar la cookie de sesión
 resave: false,
 saveUninitialized: true}))
 
-const recordameMiddleware = require('./middlewares/recordameMiddleware')
+const recordameMiddleware = require('./middlewares/usuarios/recordameMiddleware')
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());

@@ -1,5 +1,5 @@
 const { check } = require('express-validator');
-const {Usuarios} = require('../model/database/models'); // Suponiendo que tienes un modelo de usuario
+const {Usuarios} = require('../../model/database/models'); // Suponiendo que tienes un modelo de usuario
 const path = require('path');
 
 const registerValidation = [
@@ -21,7 +21,7 @@ const registerValidation = [
     check('rol').notEmpty().withMessage('Debes elegir una categoría de usuario'),
     check('avatar').custom((value, { req }) => {
         let file = req.file;
-        let acceptedExtensions = ['.jpg', '.png', '.gif']
+        let acceptedExtensions = ['.jpg', '.jpeg', '.png', '.gif']
         if (!file) {
             throw new Error('Tienes que subir una imagen');
         } else {

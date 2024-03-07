@@ -1,4 +1,4 @@
-<%-include ('../partials/head',{cssFile:'/css/styleRegistro.css'})%>
+<%-include ('../partials/head',{cssFile:'/css/stylesUsuarioRegistro.css'})%>
 
   <body>
     <header class="header">
@@ -17,7 +17,7 @@
 
           <div class="register__nombre-form block-input">
             <input type="text" name="nombre"
-              class="register__input-form <%= locals.errors && errors.nombre ? 'is-invalid' : null %>" 
+              class="register__input-form nombre <%= locals.errors && errors.nombre ? 'is-invalid' : null %>" 
               placeholder="Nombre" 
               value="<%= locals.oldData ? oldData.nombre : null %>">
 
@@ -30,8 +30,8 @@
 
 
           <div class="register__apellido-form block-input">
-            <input type="text" name="apellido"
-              class="<%= locals.errors && errors.apellido ? 'is-invalid' : null %>" 
+            <input type="text" name="apellido" 
+              class=" apellido <%= locals.errors && errors.apellido ? 'is-invalid' : null %>" 
               placeholder="Apellido" 
               value="<%= locals.oldData ? oldData.apellido : null %>">
 
@@ -45,7 +45,7 @@
 
           <div class="register__email-form block-input">
             <input type="email" name="email"
-              class="register__input-form <%= locals.errors && errors.email ? 'is-invalid' : null %>"
+              class="register__input-form email <%= locals.errors && errors.email ? 'is-invalid' : null %>"
               placeholder="Email" 
               value="<%= locals.oldData ? oldData.email : null %>">
 
