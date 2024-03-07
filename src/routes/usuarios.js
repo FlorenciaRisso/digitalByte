@@ -20,7 +20,7 @@ router.post('/login', loginValidation, userController.processLogin);
 router.get('/registro', guestMiddleware, userController.registro);
 router.post('/registro', uploadFile.single('avatar'),registerValidation, userController.processRegister)
 
-router.get('/edit/:id', esAdmin, userController.edit)
+router.get('/edit/:id', authMiddleware, userController.edit)
 router.put('/edit/:id', uploadFile.single('avatar'), userController.update)
 
 router.get('/cambiarContrasenia/:id', userController.cambiarContraseña)
@@ -28,6 +28,7 @@ router.put('/cambiarContrasenia/:id', changePasswordValidation,userController.up
 
 router.get('/cerrarSesion',authMiddleware, userController.logout);
 
-router.post('/eliminar/:id', esAdmin, userController.delete);
+router.get('/eliminar/:id', esAdmin, userController.delete);
+router.post('/eliminarCuenta/:id', esUsuario, userController.deleteCuenta);
 
 module.exports = router;

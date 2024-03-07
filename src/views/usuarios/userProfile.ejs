@@ -27,10 +27,8 @@
                         <a href="/usuarios/edit/<%= usuario.id %>" class="btn btn-primary">Editar</a>
                         <a href="/usuarios/cambiarContrasenia/<%= usuario.id %>" class="btn btn-primary">Cambiar
                             contraseña</a>
-                        <form action="/usuarios/eliminar/<%= usuario.id %>" method="post"
-                            onsubmit="return confirm('¿Estás seguro?');">
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
+                        <a href="/usuarios/eliminar/<%=usuario.id%>"><button type="submit"
+                                class="btn btn-danger">Eliminar</button></a>
                     </div>
                 </div>
             </div>

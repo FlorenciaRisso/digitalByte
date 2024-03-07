@@ -88,10 +88,21 @@ const userService = {
             };
         }
     },
-    update: async function (updatedUser) {
+    update: async function (req) {
         try {
-            const userId = updatedUser.id;
-            return await Usuarios.update(updatedUser, { where: { id: userId } });
+            let usuario = {
+                nombre: req.body.firstName,
+                apellido: req.body.lastName,
+                nacionalidad: req.body.country,
+                rol: req.body.rol
+            }
+            console.log(usuario);
+            if (req.file) {
+                usuario.avatar = "/img/" + req.file.filename;
+            }
+            const [filasActualizadas, [usuarioActualizado]] = await Usuarios.update(usuario, { where: { id: req.params.id } });
+
+            return usuarioActualizado;
         } catch (error) {
             console.error('Error al actualizar el usuario:', error);
             return false;
@@ -105,8 +116,8 @@ const userService = {
             } else {
                 let usuario = await Usuarios.findByPk(req.params.id);
                 usuario.contraseña = await bcrypt.hash(req.body.contrasenia, 10);
-                let user= await usuario.save(); 
-                return {success:true,user:user};
+                let user = await usuario.save();
+                return { success: true, user: user };
             }
         } catch (error) {
             console.error(error);

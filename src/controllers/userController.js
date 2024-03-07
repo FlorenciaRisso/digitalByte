@@ -42,27 +42,15 @@ let userController = {
             then(data => res.render('usuarios/edit', { usuario: data, oldData: data }))
     },
 
-    update: (req, res) => {
-        const userId = parseInt(req.params.id, 10);
-        const userData = req.body;
-
-        const usuarioExiste = userService.getOne(userId);
-        if (!usuarioExiste) {
-            return res.status(404).send('Usuario no encontrado');
+    update: async (req, res) => { 
+        let usuarioActualizado = await userService.update(req); res.redirect('/usuarios/lista');
+        if(req.session.usuarioLogeado.id==req.params.id){
+            delete req.session['usuarioLogeado'];
+            req.session.usuarioLogeado=usuarioActualizado;
         }
-        usuarioExiste.id = userId;
-        usuarioExiste.nombre = userData.nombre;
-        usuarioExiste.apellido = userData.apellido;
-        usuarioExiste.email = userData.email;
-        usuarioExiste.contraseña = userData.contraseña;
-        usuarioExiste.rol = userData.rol;
-        usuarioExiste.nacionalidad = userData.nacionalidad;
-        usuarioExiste.avatar = '/img/' + req.file.filename;
+        
+     },
 
-        userService.update(usuarioExiste);
-
-        res.redirect('/usuarios/lista');
-    },
 
     cambiarContraseña: (req, res) => {
         res.render('usuarios/cambiarContraseña', {
@@ -120,9 +108,21 @@ let userController = {
     },
 
     delete: (req, res) => {
-        userService.delete(req).then(resultado => {
-            if (req.session.usuarioLogeado.id == req.params.id) {
-                this.logout(req, res);
+        const userId = req.params.id;
+        userService.delete(userId).then(resultado => {
+            if (req.session.usuarioLogeado.id == userId) {
+                res.redirect('/usuarios/cerrarSesion')
+            } else {
+                res.redirect('/usuarios/lista')
+            }
+        }).catch(error => console.log(error));
+
+    },
+    deleteCuenta: (req, res) => {
+        const userId = req.params.id;
+        userService.delete(userId).then(resultado => {
+            if (req.session.usuarioLogeado.id == userId) {
+                res.redirect('/usuarios/cerrarSesion')
             } else {
                 res.redirect('/usuarios/lista')
             }

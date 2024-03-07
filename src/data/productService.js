@@ -92,6 +92,15 @@ const productService = {
             return []; // Manejo de errores, retorna un array vacío en caso de error
         }
     },
+    perteneceAMisProductos: async function (req){
+        let idUsuario=req.params.id;
+        let pertenece= await db.Productos.findByPk(idUsuario,{include:{model:db.Usuarios}});
+        if(!pertenece){
+            return false;
+        }else{
+            return true;
+        }
+    },
     update: async function (req) {
         try {
             const productId = req.params.id;
