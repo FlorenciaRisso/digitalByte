@@ -94,7 +94,7 @@ const productService = {
     },
     perteneceAMisProductos: async function (req){
         let idUsuario=req.params.id;
-        let pertenece= await db.Productos.findByPk(idUsuario,{include:{model:db.Usuarios}});
+        let pertenece= await db.Productos.findByPk(idUsuario,{include:{association:'Usuario'}});
         if(!pertenece){
             return false;
         }else{
@@ -128,7 +128,6 @@ const productService = {
             let ids = productImages.map(image => image.id);
             for (let i = 0; i < 4; i++) {
                 const imageKey = `image${i}`;
-                console.log(req.files[imageKey]);
                 if (req.files[imageKey]) {
                     const file = req.files[imageKey][0];
                     imagesToUpdate.push({
@@ -148,7 +147,6 @@ const productService = {
                 let idParaNuevaRuta=null;
                 let nuevaRuta=null;
                 for (let i = 0; i < imagesToUpdate.length; i++) {
-                    console.log("recorre");
                     if (imagesToUpdate[i].ruta != null) {
                         idParaNuevaRuta = ids[i];
                         nuevaRuta = imagesToUpdate[i].ruta;
@@ -168,18 +166,30 @@ const productService = {
 
 
             }
-
             // Actualizar las características del producto
-            await db.Caracteristicas.update(
-                {
-                    tamaño: req.body.Tamanio,
-                    memoria: req.body.Memoria,
-                    camara: req.body.CamaraPrincipal,
-                    ram: req.body.Ram
-                },
-                { where: { ID_Producto: productId } }
-            );
-
+            let caracteristicas= await db.Caracteristicas.findOne({where: {ID_Producto:productId}});
+            console.log(caracteristicas+"afafasfafs");
+            if(caracteristicas){
+                await db.Caracteristicas.update(
+                    {
+                        tamaño: req.body.Tamanio,
+                        memoria: req.body.Memoria,
+                        camara: req.body.CamaraPrincipal,
+                        ram: req.body.Ram
+                    },
+                    { where: { ID_Producto: productId } }
+                );
+            }else{
+                await db.Caracteristicas.create(
+                    {
+                        tamaño: req.body.Tamanio,
+                        memoria: req.body.Memoria,
+                        camara: req.body.CamaraPrincipal,
+                        ram: req.body.Ram,
+                        ID_Producto:productId
+                    }
+                );
+            }
             return { status: success, message: 'Producto actualizado exitosamente' };
         } catch (error) {
             return { error: error.message };

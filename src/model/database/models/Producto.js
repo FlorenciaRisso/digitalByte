@@ -51,6 +51,10 @@ module.exports = (sequelize, DataTypes) => {
             as: 'Categoria',
             foreignKey: 'ID_Categoria'
         });
+        Producto.belongsTo(models.Usuarios, {
+            as: 'Usuario',
+            foreignKey: 'ID_Vendedor'
+        });
         Producto.hasOne(models.Caracteristicas, {
             as: 'Caracteristica',
             foreignKey: 'ID_Producto'
