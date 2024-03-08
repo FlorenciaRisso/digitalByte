@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const uploadFile = require('../data/multer');
 const userController = require('../controllers/userController')
+
 const registerValidation = require('../middlewares/usuarios/registerValidation');
 const guestMiddleware = require('../middlewares/usuarios/guestMiddleware');
 const authMiddleware = require('../middlewares/usuarios/authMiddleware');
