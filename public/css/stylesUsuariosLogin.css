@@ -21,10 +21,11 @@
   color: red;
 }
 
-.email-message, .empty-message {
+.email-message, .empty-password-message, .empty-email-message{
   display: none;
   color: red;
 }
+
 
 
 .container {
