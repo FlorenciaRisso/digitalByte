@@ -1,38 +1,39 @@
-window.onload = function () {
+window.addEventListener('load', function () {
 
-    document.addEventListener('load', function () {
-        const form = document.querySelector('.register__form');
-        const inputs = form.querySelectorAll('input[type="text"], input[type="email"], input[type="password"]');
+    let form = document.querySelector('.register__form');
+    let inputs = form.querySelectorAll('.block-input');
 
-        inputs.forEach(input => {
-            input.addEventListener('blur', function () {
-                if (this.value.trim() === '') {
-                    this.classList.add('is-invalid');
-                } else {
-                    this.classList.remove('is-invalid');
+    inputs.forEach(input => {
+        input.querySelector('input').addEventListener('blur', function () {
+            if (this.value.trim() === '') {
+                this.classList.add('is-invalid');
+                let small = input.querySelector('small');
+                if (!small) {
+                    small = document.createElement('small');
+                    small.textContent = 'El campo no puede estar vacío';
+                    input.appendChild(small);
                 }
-            });
-        });
-
-        form.addEventListener('submit', function (event) {
-            event.preventDefault(); // Evitar que el formulario se envíe automáticamente
-
-            // Validar nombre y apellido
-            const nombreInput = document.querySelector('.nombre');
-            const apellidoInput = document.querySelector('input[name="apellido"]');
-            const nombre = nombreInput.value.trim();
-            const apellido = apellidoInput.value.trim();
-
-            if (nombre.length < 2 || apellido.length < 2) {
-                alert('El nombre y el apellido deben tener al menos 2 caracteres.');
-                return;
+            } else {
+                this.classList.remove('is-invalid');
+                let small = input.querySelector('small');
+                if (small) {
+                    small.remove();
+                }
             }
-
-            // Aquí puedes agregar más validaciones para otros campos según tus requisitos
-
-            // Si todas las validaciones pasan, puedes enviar el formulario
-            form.submit();
         });
     });
 
-}
+    form.addEventListener('submit', function (event) {
+        event.preventDefault(); // Evitar que el formulario se envíe automáticamente
+
+        let invalidInputs = form.querySelectorAll('.is-invalid');
+
+        if (invalidInputs.length > 0) {
+            alert('Por favor complete todos los campos correctamente.');
+            return;
+        }
+
+        // Si todas las validaciones pasan, puedes enviar el formulario
+        form.submit();
+    });
+});

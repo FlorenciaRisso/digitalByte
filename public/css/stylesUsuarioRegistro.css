@@ -109,6 +109,11 @@ select option {
     margin-bottom: 5px;
 }
 
+.empty-message{
+    display: none;
+    color: red;
+}
+
 .is-invalid{
     border: 1px solid red !important;
 }

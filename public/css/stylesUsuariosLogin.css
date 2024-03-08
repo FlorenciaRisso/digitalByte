@@ -21,7 +21,7 @@
   color: red;
 }
 
-.email-message {
+.email-message, .empty-message {
   display: none;
   color: red;
 }
