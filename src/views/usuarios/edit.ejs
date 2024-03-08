@@ -11,6 +11,7 @@
         <form class="edit-user__form" action="/usuarios/edit/<%= usuario.id %>?_method=put" method="POST" enctype="multipart/form-data">
 
           <div class="edit-user__firstname-form block-input">
+            <input type="hidden" name="id" value="<%=oldData.id %>">
             <input type="text" name="firstName"
               class="edit-user__input-form <%= locals.errors && errors.nombre ? 'is-invalid' : null %>"
               placeholder="Nombre" value="<%= locals.oldData ? oldData.nombre : usuario.nombre %>">

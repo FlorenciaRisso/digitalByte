@@ -9,6 +9,7 @@ const changePasswordValidation = require('../middlewares/usuarios/changePassword
 const esAdmin = require('../middlewares/usuarios/esAdmin');
 const loginValidation = require('../middlewares/usuarios/loginMiddleware');
 const esUsuario = require ('../middlewares/esUsuario');
+const editUsuarioValidation=require ('../middlewares/usuarios/editUsuarioValidation')
 
 
 router.get('/perfil/:id',authMiddleware, userController.profile);

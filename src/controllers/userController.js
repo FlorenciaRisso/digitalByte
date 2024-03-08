@@ -39,17 +39,36 @@ let userController = {
     edit: (req, res) => {
         let userId = parseInt(req.params.id, 10);
         userService.getOne(userId).
-            then(data => res.render('usuarios/edit', { usuario: data, oldData: data }))
+            then(data =>
+                res.render('usuarios/edit', { usuario: data, oldData: data })
+            )
     },
 
-    update: async (req, res) => { 
-        let usuarioActualizado = await userService.update(req); res.redirect('/usuarios/lista');
-        if(req.session.usuarioLogeado.id==req.params.id){
+    update: async (req, res) => {
+        let error = validationResult(req)
+        let usuarioId=parseInt(req.body.id, 1);
+        let usuarioActualizado = await userService.update(req);
+        let data={};
+        data.id=req.body.id;
+        data.nombre=req.body.firstName;
+        data.apellido=req.body.lastName;
+        data.email=req.body.email;
+        data.rol=req.body.rol;
+        data.nacionalidad=req.body.country;
+        data.avatar=req.body.avatar;
+        if (req.session.usuarioLogeado.id == req.params.id && usuarioActualizado>0 && error.isEmpty()) {
             delete req.session['usuarioLogeado'];
-            req.session.usuarioLogeado=usuarioActualizado;
+            let usuarioActualizado= await userService.getOne(req.params.id)
+            req.session.usuarioLogeado = usuarioActualizado;
+            res.redirect('/usuarios/lista');
+
+        } else if (usuarioActualizado>0 && error.isEmpty()) {
+            res.redirect('/usuarios/lista');
+        } else {
+            res.render('usuarios/edit', { oldData: data, errors: error.mapped() })
         }
-        
-     },
+
+    },
 
 
     cambiarContraseña: (req, res) => {
@@ -140,7 +159,8 @@ let userController = {
             if (!errors.isEmpty()) {
                 return res.render('usuarios/login', {
                     cookie: req.cookies.recordarEmail || '',
-                    errors: errors.mapped()})
+                    errors: errors.mapped()
+                })
             }
             let usuarioValido = await userService.findByField('email', req.body.email);
 
@@ -161,8 +181,9 @@ let userController = {
                         errors: {
                             email: {
                                 msg: 'Credenciales inválidas'
-                            }}
+                            }
                         }
+                    }
                     )
                 }
             }
