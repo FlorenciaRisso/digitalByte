@@ -98,8 +98,9 @@ const userService = {
             }
             if (req.file) {
                 usuario.avatar = "/img/" + req.file.filename;
+            }else{
+                usuario.avatar=req.body.oldImage;
             }
-            console.log(usuario);
             const usuarioActualizado = await Usuarios.update(usuario, { where: { id: req.params.id } });
             
             return usuarioActualizado[0];

@@ -39,32 +39,36 @@ let userController = {
     edit: (req, res) => {
         let userId = parseInt(req.params.id, 10);
         userService.getOne(userId).
-            then(data =>
+            then(data => {
+                console.log(data);
                 res.render('usuarios/edit', { usuario: data, oldData: data })
+            }
             )
     },
 
     update: async (req, res) => {
         let error = validationResult(req)
-        let usuarioId=parseInt(req.body.id, 1);
+        let usuarioId = req.body.id; //String
+        let sessionUsuarioId=req.session.usuarioLogeado.id; //Number
         let usuarioActualizado = await userService.update(req);
-        let data={};
-        data.id=req.body.id;
-        data.nombre=req.body.firstName;
-        data.apellido=req.body.lastName;
-        data.email=req.body.email;
-        data.rol=req.body.rol;
-        data.nacionalidad=req.body.country;
-        data.avatar=req.body.avatar;
-        if (req.session.usuarioLogeado.id == req.params.id && usuarioActualizado>0 && error.isEmpty()) {
+        let data = {};
+        data.id = req.body.id;
+        data.nombre = req.body.firstName;
+        data.apellido = req.body.lastName;
+        data.email = req.body.email;
+        data.rol = req.body.rol;
+        data.nacionalidad = req.body.country;
+        data.avatar = req.body.oldImage;
+        if (sessionUsuarioId == usuarioId && usuarioActualizado > 0 && error.isEmpty()) {
             delete req.session['usuarioLogeado'];
-            let usuarioActualizado= await userService.getOne(req.params.id)
+            let usuarioActualizado = await userService.getOne(req.params.id)
             req.session.usuarioLogeado = usuarioActualizado;
             res.redirect('/usuarios/lista');
 
-        } else if (usuarioActualizado>0 && error.isEmpty()) {
+        } else if (usuarioActualizado > 0 && error.isEmpty()) {
             res.redirect('/usuarios/lista');
         } else {
+            console.log(error);
             res.render('usuarios/edit', { oldData: data, errors: error.mapped() })
         }
 

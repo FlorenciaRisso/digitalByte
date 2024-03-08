@@ -8,29 +8,29 @@
         <div class="title-container">
           <h2 class="title">Editar Usuario</h2>
         </div>
-        <form class="edit-user__form" action="/usuarios/edit/<%= usuario.id %>?_method=put" method="POST" enctype="multipart/form-data">
+        <form class="edit-user__form" action="/usuarios/edit/<%= oldData.id %>?_method=put" method="POST" enctype="multipart/form-data">
 
           <div class="edit-user__firstname-form block-input">
             <input type="hidden" name="id" value="<%=oldData.id %>">
             <input type="text" name="firstName"
-              class="edit-user__input-form <%= locals.errors && errors.nombre ? 'is-invalid' : null %>"
+              class="edit-user__input-form <%= locals.errors && errors.firstName? 'is-invalid' : null %>"
               placeholder="Nombre" value="<%= locals.oldData ? oldData.nombre : usuario.nombre %>">
 
-            <% if(locals.errors && errors.nombre) {%>
+            <% if(locals.errors && errors.firstName) {%>
               <div class="text-danger">
-                <%= errors.nombre.msg %>
+                <%= errors.firstName.msg %>
               </div>
               <% } %>
           </div>
 
           <div class="edit-user__lastname-form block-input">
             <input type="text" name="lastName"
-              class="edit-user__input-form <%= locals.errors && errors.apellido ? 'is-invalid' : null %>"
+              class="edit-user__input-form <%= locals.errors && errors.lastName? 'is-invalid' : null %>"
               placeholder="Apellido" value="<%= locals.oldData ? oldData.apellido : usuario.apellido %>">
 
-            <% if(locals.errors && errors.apellido) {%>
+            <% if(locals.errors && errors.lastName) {%>
               <div class="text-danger">
-                <%= errors.apellido.msg %>
+                <%= errors.lastName.msg %>
               </div>
               <% } %>
           </div>
@@ -73,7 +73,7 @@
           <div class="edit-user__category-form block-input">
             <label for="country"><b>País de nacimiento</b></label>
             <select name="country"
-              class="edit-user__input-form <%= locals.errors && errors.nacionalidad ? 'is-invalid' : null %>">
+              class="edit-user__input-form <%= locals.errors && errors.country ? 'is-invalid' : null %>">
               <option value="">Elige un país</option>
               <% let countries=[ "Argentina" , "Bolivia" , "Chile" , "Uruguay" , "Paraguay" , "Colombia" , "Ecuador"
                 , "Perú" ]; %>
@@ -85,9 +85,9 @@
                   <% } %>
             </select>
 
-            <% if(locals.errors && errors.nacionalidad) { %>
+            <% if(locals.errors && errors.country) { %>
               <div class="text-danger">
-                <%= errors.nacionalidad.msg %>
+                <%= errors.country.msg %>
               </div>
               <% } %>
           </div>

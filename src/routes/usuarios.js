@@ -23,7 +23,7 @@ router.get('/registro', guestMiddleware, userController.registro);
 router.post('/registro', uploadFile.single('avatar'),registerValidation, userController.processRegister)
 
 router.get('/edit/:id', authMiddleware, userController.edit)
-router.put('/edit/:id', uploadFile.single('avatar'), userController.update)
+router.put('/edit/:id', uploadFile.single('avatar'),editUsuarioValidation, userController.update)
 
 router.get('/cambiarContrasenia/:id', userController.cambiarContraseña)
 router.put('/cambiarContrasenia/:id', changePasswordValidation,userController.updateContraseña)
