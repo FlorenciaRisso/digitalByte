@@ -13,7 +13,7 @@ router.get('/', productController.index);
 router.post('/search', productController.search);
 router.get('/carrito',authMiddleware,esCliente, productController.carrito);//solo cliente
 router.get('/lista',authMiddleware, esAdmin, productController.lista); //solo admin
-//router.get('/listaMisProductos/:id',authMiddleware, esVendedor, productController.listaPorUsuario); //solo vendedor
+router.get('/listaMisProductos/:id',authMiddleware, esVendedor, productController.listaPorUsuario); //solo vendedor
 //listar
 router.get('/listaproductos',authMiddleware,esVendedor, productController.listado);
 router.get('/categoria',productController.listaPorCat);

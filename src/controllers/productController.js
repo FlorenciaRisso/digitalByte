@@ -1,7 +1,8 @@
 const productService = require('../data/productService');
 const funcion = require('../data/funcion');
 const db = require('../model/database/models');
-const Sequelize = require('sequelize')
+const Sequelize = require('sequelize');
+const { log } = require('console');
 
 let productController = {
     index: function (req, res) {
@@ -23,6 +24,21 @@ let productController = {
                 console.log(error);
             }
         },
+    listaPorUsuario: async function (req, res) {
+        try{
+            let productos=await db.Productos.findAll({ include: [{ association: 'Caracteristica' }, { association: 'Categoria' }, { association: 'ImagenesProductos' }],where: { 
+                ID_Vendedor: req.params.id
+            } } );
+            
+            if (!productos) {
+                return res.status(403).send("No se encontraron productos")
+            }else{
+              res.render('productos/lista', {productos: productos,funcion: funcion });    
+            }                     
+        }catch (error){
+            console.log(error);
+        }
+    },
     carrito: (req, res) => {
         productService.getAll().
             then(data => res.render('productos/productCart', { productos: data, funcion: funcion })).
@@ -57,8 +73,8 @@ let productController = {
                     console.log("producto actualizado" + data);
                     res.redirect('/productos')
                 }).catch(error => console.log(error));
-            }else{
-                res.send(403).send({mensaje:'No tienes permiso para editar este producto'});
+            } else {
+                res.send(403).send({ mensaje: 'No tienes permiso para editar este producto' });
             }
 
         }).catch(error => console.log(error));

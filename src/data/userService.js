@@ -96,13 +96,13 @@ const userService = {
                 nacionalidad: req.body.country,
                 rol: req.body.rol
             }
-            console.log(usuario);
             if (req.file) {
                 usuario.avatar = "/img/" + req.file.filename;
             }
-            const [filasActualizadas, [usuarioActualizado]] = await Usuarios.update(usuario, { where: { id: req.params.id } });
-
-            return usuarioActualizado;
+            console.log(usuario);
+            const usuarioActualizado = await Usuarios.update(usuario, { where: { id: req.params.id } });
+            
+            return usuarioActualizado[0];
         } catch (error) {
             console.error('Error al actualizar el usuario:', error);
             return false;
