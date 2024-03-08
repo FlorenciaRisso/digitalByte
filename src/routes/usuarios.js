@@ -5,9 +5,10 @@ const userController = require('../controllers/userController')
 const registerValidation = require('../middlewares/usuarios/registerValidation');
 const guestMiddleware = require('../middlewares/usuarios/guestMiddleware');
 const authMiddleware = require('../middlewares/usuarios/authMiddleware');
-const changePasswordValidation = require('../middlewares/usuarios/changePasswordValidation')
+const changePasswordValidation = require('../middlewares/usuarios/changePasswordValidation');
 const esAdmin = require('../middlewares/usuarios/esAdmin');
-const loginValidation = require('../middlewares/usuarios/loginMiddleware')
+const loginValidation = require('../middlewares/usuarios/loginMiddleware');
+const esUsuario = require ('../middlewares/esUsuario');
 
 
 router.get('/perfil/:id',authMiddleware, userController.profile);

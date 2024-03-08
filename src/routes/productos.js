@@ -6,15 +6,14 @@ const authMiddleware = require('../middlewares/usuarios/authMiddleware');
 const esAdmin = require('../middlewares/usuarios/esAdmin');
 const esCliente = require('../middlewares/usuarios/esCliente');
 const esVendedor = require('../middlewares/usuarios/esVendedor');
-const esVendedorOAdmin = require('../middlewares/esVendedor');
-
+const esVendedorOAdmin = require('../middlewares/usuarios/esVendedor');
 
 
 router.get('/', productController.index);
 router.post('/search', productController.search);
 router.get('/carrito',authMiddleware,esCliente, productController.carrito);//solo cliente
 router.get('/lista',authMiddleware, esAdmin, productController.lista); //solo admin
-router.get('/listaMisProductos/:id',authMiddleware, esVendedor, productController.listaPorUsuario); //solo vendedor
+//router.get('/listaMisProductos/:id',authMiddleware, esVendedor, productController.listaPorUsuario); //solo vendedor
 //listar
 router.get('/listaproductos',authMiddleware,esVendedor, productController.listado);
 router.get('/categoria',productController.listaPorCat);
