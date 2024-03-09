@@ -88,7 +88,7 @@ let productController = {
         try {
             let producto = await productService.getOne(req);
             console.log(producto.ID_Producto);
-            res.render('productos/editProducto', { oldData: producto, producto: producto, funcion: funcion })
+            res.render('productos/edit', { oldData: producto, producto: producto, funcion: funcion })
         } catch (error) {
             console.log(error);
         }
@@ -110,7 +110,7 @@ let productController = {
                     res.send(403).send({ mensaje: 'No tienes permiso para editar este producto' });
                 }
             } else {
-                res.render('productos/editProducto', { errors: error.mapped(), funcion: funcion, oldData: producto, producto: productoAnterior })
+                res.render('productos/edit', { errors: error.mapped(), funcion: funcion, oldData: producto, producto: productoAnterior })
             }
         }
         catch (error) {
