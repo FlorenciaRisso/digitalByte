@@ -47,6 +47,12 @@ a {
   color: rgb(19, 19, 19);
 }
 
+.text-danger {
+  color: red;
+  margin: 0;
+  padding: 0;
+}
+
 .p-price-offer {
   font-size: 1.5rem;
   background-color: #ba8bf7;
@@ -93,6 +99,7 @@ a {
   align-items: center;
   width: 100%;
 }
+
 /* //busqueda */
 .search-form {
   display: flex;
@@ -102,7 +109,8 @@ a {
 
 .search-container {
   position: relative;
-  width: 300px; /* Ajusta el ancho según tu diseño */
+  width: 300px;
+  /* Ajusta el ancho según tu diseño */
 }
 
 .search-input {
@@ -129,6 +137,7 @@ a {
   font-size: 18px;
   color: #202020;
 }
+
 /* fin busqueda */
 .input-search {
   padding: 10px;
@@ -147,20 +156,20 @@ a {
   padding: 5px;
 }
 
-.user-info{
+.user-info {
   display: none;
 }
 
-.img-user{
+.img-user {
   margin-right: 10px;
   width: 20px;
 }
 
-.user-info-responsive{
-    display: flex;
-    justify-content: end;
-    margin: 15px 0 0 10px;
-    padding-right: 10px;
+.user-info-responsive {
+  display: flex;
+  justify-content: end;
+  margin: 15px 0 0 10px;
+  padding-right: 10px;
 }
 
 .user-option {
@@ -179,6 +188,7 @@ a {
 .btn-carrito {
   border-radius: 20px 0 0 20px;
 }
+
 .btn-carrito,
 .btn-registro,
 .btn-login,
@@ -189,37 +199,45 @@ a {
   padding: 0px 10px;
 }
 
-.rounder{
+.rounder {
   border-radius: 20px;
 }
-.left-rounder{
+
+.left-rounder {
   border-radius: 20px 0 0 20px;
 }
-.rigth-rounder{
+
+.rigth-rounder {
   border-radius: 0 20px 20px 0;
 }
-.no-rounder{
+
+.no-rounder {
   border-radius: 0;
 }
+
 .btn-listProd {
   background-color: #dbdbdb;
   border: 0;
   padding: 0px 10px;
 
 }
-.btn-logout{
+
+.btn-logout {
   background-color: transparent;
   border: none;
 }
-.btn-logout a{
+
+.btn-logout a {
   border-radius: 20px;
   background-color: #ee8f8f;
   border: 0;
   padding: 10px;
 }
-.btn-logout a:hover{
+
+.btn-logout a:hover {
   background-color: #f35757;
 }
+
 .btn-header {
   background: transparent;
   border: 0;
@@ -863,6 +881,7 @@ a {
   background-color: blueviolet;
   border-radius: 10px;
 }
+
 .box-search {
   display: none;
   position: fixed;
@@ -891,6 +910,7 @@ a {
 .box-search li a:hover {
   background-color: #f3f3f3;
 }
+
 @media (min-width: 500px) {
 
   /*Header*/
@@ -939,11 +959,11 @@ a {
 
   .btn-logout a {
     border-radius: 100%;
-    width:  40px;
+    width: 40px;
     height: 40px;
   }
 
-/* 
+  /* 
   .btn-carrito,
   .btn-registro,
   .btn-login {
@@ -1101,18 +1121,18 @@ a {
     position: relative;
   }
 
-  .user-info{
+  .user-info {
     display: flex;
     justify-content: end;
     margin: 15px 0 0 10px;
     padding-right: 30px;
   }
 
-  .user-info-responsive{
-   display: none;
+  .user-info-responsive {
+    display: none;
   }
 
-  .img-user{
+  .img-user {
     margin-right: 10px;
     width: 20px;
   }

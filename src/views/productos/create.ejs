@@ -12,102 +12,175 @@
                         <div class="alta__name-form block-input">
                             <label for="name">Producto: </label>
                             <input class="name__input-form" type="text" name="name" id="name"
-                                placeholder="Nombre del producto" required />
+                                placeholder="Nombre del producto"
+                                value="<%= locals.oldData && oldData.name ? oldData.name : '' %>"  />
+                                <% if(locals.errors && errors.name) {%>
+                                    <div class="text-danger">
+                                        <%= errors.name.msg %>
+                                    </div>
+                                    <% } %>
                         </div>
+                        
 
-                        <div class="alta__descripcion-form block-input">
-                            <label for="description">Descripción:</label>
-                            <input class="descripcion__input-form" type="text" name="description"
-                                placeholder="Descripcion del producto" required />
-                        </div>
+                                <div class="alta__descripcion-form block-input">
+                                    <label for="description">Descripción:</label>
+                                    <input class="descripcion__input-form" type="text" name="description"
+                                        placeholder="Descripcion del producto"
+                                        value="<%= locals.oldData && oldData.description ? oldData.description : '' %>"  />
+                                    <% if(locals.errors && errors.description) {%>
+                                        <div class="text-danger">
+                                            <%= errors.description.msg %>
+                                        </div>
+                                        <% } %>
+                                </div>
 
-                        <!-- agregar checkbox para mas buscados -->
 
-                        <div class="alta__imagen-form block-input">
-                            <label for="image0">Imagen:</label>
-                            <input type="file" name="image0" id="file" class="custom-file-input" accept=".png" multiple
-                                id="imagen">
-                            <img id="previewImage0" class="image none" src="" alt="Vista previa de la imagen"
-                                style="max-width: 40px; max-height: 40px;">
-                        </div>
 
-                        <div class="alta__imagen-form block-input">
-                            <label for="image1">Imagen 1:</label>
-                            <input type="file" name="image1" id="file" class="custom-file-input" accept=".png" multiple
-                                id="image1">
-                            <img id="previewImage1" class="image none" src="" alt="Vista previa de la imagen"
-                                style="max-width: 40px; max-height: 40px;">
-                        </div>
+                                <div class="alta__imagen-form block-input">
+                                    <label for="image0">Imagen:</label>
+                                    <input type="file" name="image0" id="file" class="custom-file-input" accept=".png"
+                                        multiple id="imagen">
+                                    <img id="previewImage0" class="image none" src="" alt="Vista previa de la imagen"
+                                        style="max-width: 40px; max-height: 40px;">
+                                    <% if(locals.errors && errors.image0) {%>
+                                        <div class="text-danger">
+                                            <%= errors.image0.msg %>
+                                        </div>
+                                        <% } %>
+                                </div>
 
-                        <div class="alta__imagen-form block-input">
-                            <label for="image2">Imagen 2:</label>
-                            <input type="file" name="image2" id="file" class="custom-file-input" accept=".png" multiple
-                                id="image2">
-                            <img id="previewImage2" class="image none" src="" alt="Vista previa de la imagen"
-                                style="max-width: 40px; max-height: 40px;">
-                        </div>
 
-                        <div class="alta__imagen-form block-input">
-                            <label for="image3">Imagen 3:</label>
-                            <input type="file" name="image3" id="file" class="custom-file-input" accept=".png" multiple
-                                id="image3">
-                            <img id="previewImage3" class="image none" src="" alt="Vista previa de la imagen"
-                                style="max-width: 40px; max-height: 40px;">
-                        </div>
-                        <% let categorias=[ {"id":"1","name":"Notebooks"}, {"id":"2","name":"Smartphone"},
-                            {"id":"3","name":"Tablets"} ]%>
-                            <div class="alta__categ-form block-input">
-                                <label for="category">Categoria:</label>
-                                <select name="category" id="category">
-                                    <% categorias.forEach(category=>{ %>
-                                        <option value="<%= category.id %>">
-                                            <%= category.name %>
-                                        </option>
-                                        <% }); %>
-                                </select>
-                            </div>
-                            <div class="alta__categ-form block-input">
-                                <label for="tamanio">Tamaño:</label>
-                                <input type="text" id="tamanio" name="Tamanio"><br><br>
+                                <div class="alta__imagen-form block-input">
+                                    <label for="image1">Imagen 1:</label>
+                                    <input type="file" name="image1" id="file" class="custom-file-input" accept=".png"
+                                        multiple id="image1">
+                                    <img id="previewImage1" class="image none" src="" alt="Vista previa de la imagen"
+                                        style="max-width: 40px; max-height: 40px;">
+                                    <% if(locals.errors && errors.image1) {%>
+                                        <div class="text-danger">
+                                            <%= errors.image1.msg %>
+                                        </div>
+                                        <% } %>
+                                </div>
 
-                                <label for="memoria">Memoria:</label>
-                                <input type="text" id="memoria" name="Memoria"><br><br>
+                                <div class="alta__imagen-form block-input">
+                                    <label for="image2">Imagen 2:</label>
+                                    <input type="file" name="image2" id="file" class="custom-file-input" accept=".png"
+                                        multiple id="image2">
+                                    <img id="previewImage2" class="image none" src="" alt="Vista previa de la imagen"
+                                        style="max-width: 40px; max-height: 40px;">
+                                    <% if(locals.errors && errors.image2) {%>
+                                        <div class="text-danger">
+                                            <%= errors.image2.msg %>
+                                        </div>
+                                        <% } %>
+                                </div>
 
-                                <label for="camara">Cámara Principal:</label>
-                                <input type="text" id="camara" name="CamaraPrincipal"><br><br>
+                                <div class="alta__imagen-form block-input">
+                                    <label for="image3">Imagen 3:</label>
+                                    <input type="file" name="image3" id="file" class="custom-file-input" accept=".png"
+                                        multiple id="image3">
+                                    <img id="previewImage3" class="image none" src="" alt="Vista previa de la imagen"
+                                        style="max-width: 40px; max-height: 40px;">
+                                    <% if(locals.errors && errors.image3) {%>
+                                        <div class="text-danger">
+                                            <%= errors.image3.msg %>
+                                        </div>
+                                        <% } %>
+                                </div>
 
-                                <label for="ram">RAM:</label>
-                                <input type="text" id="ram" name="Ram"><br><br>
-                            </div>
-                            <div class="alta__categ-form block-input">
-                                <label for="marca">Marca:</label>
-                                <select name="marca" id="marca">
-                                    <option value="Apple" selected>Apple</option>
-                                    <option value="Samsung">Samsung</option>
-                                    <option value="Xiaomi">Xiaomi</option>
-                                </select>
-                            </div>
 
-                            <div class="alta__precio-form block-input">
-                                <label for="price">Precio:</label>
-                                <input type="number" id="price" name="price" placeholder="Precio del producto">
-                            </div>
+                                <% let categorias=[ {"id":"1","name":"Notebooks"}, {"id":"2","name":"Smartphone"},
+                                    {"id":"3","name":"Tablets"} ]%>
+                                    <div class="alta__categ-form block-input">
+                                        <label for="category">Categoria:</label>
+                                        <select name="category" id="category">
+                                            <% categorias.forEach(category=>{ %>
+                                                <option value="<%= category.id %>" <%=locals.oldData &&
+                                                    (category.id===oldData.category) ? 'selected' : null %>
+                                                    > <%= category.name %>
+                                                </option>
+                                                <% }); %>
+                                        </select>
+                                        <% if(locals.errors && errors.category) {%>
+                                        <div class="text-danger">
+                                            <%= errors.category.msg %>
+                                        </div>
+                                        <% } %>
+                                    </div>
+                                    <div class="alta__categ-form block-input">
+                                        <label for="tamanio">Tamaño:</label>
+                                        <input type="text" id="tamanio"
+                                            value="<%= locals.oldData && oldData.tamanio ? oldData.tamanio : '' %>"
+                                            name="Tamanio"><br><br>
 
-                            <div class="alta__precio-form block-input">
-                                <label for="discount">Descuento:</label>
-                                <input type="number" id="discount" name="discount" placeholder="Descuento">
-                            </div>
+                                        <label for="memoria">Memoria:</label>
+                                        <input type="text" id="memoria"
+                                            value="<%= locals.oldData && oldData.memoria ? oldData.memoria : '' %>"
+                                            name="Memoria"><br><br>
 
-                            <div class="alta__precio-form block-input">
-                                <label for="stock">Stock:</label>
-                                <input type="number" id="stock" name="stock" placeholder="Stock">
-                            </div>
+                                        <label for="camara">Cámara Principal:</label>
+                                        <input type="text" id="camara"
+                                            value="<%= locals.oldData && oldData.camara ? oldData.camara : '' %>"
+                                            name="CamaraPrincipal"><br><br>
 
-                            <div class="alta__button">
-                                <button class="option__button" type="submit">Añadir producto</button>
-                                <button class="option__button" type="reset">Descartar producto</button>
-                                </button>
-                            </div>
+                                        <label for="ram">RAM:</label>
+                                        <input type="text" id="ram"
+                                            value="<%= locals.oldData && oldData.ram ? oldData.ram : '' %>" name="Ram"><br><br>
+                                    </div>
+                                    <% let marca=[ {"id":"1","name":"apple"}, {"id":"2","name":"samsung"},
+                                        {"id":"3","name":"xiaomi"} ]%>
+                                        <div class="alta__categ-form block-input">
+                                            <label for="marca">Marca:</label>
+                                            <select name="marca" id="marca">
+                                                <% marca.forEach(marca=>{ %>
+                                                    <option value="<%= marca.name %>" <%=locals.oldData &&
+                                                        (marca.name===oldData.marca) ? 'selected' : null %>
+                                                        > <%= marca.name %>
+                                                    </option>
+                                                    <% }); %>
+                                            </select>
+                                        </div>
+
+                                        <div class="alta__precio-form block-input">
+                                            <label for="price">Precio:</label>
+                                            <input type="number" id="price" name="price"
+                                                value="<%= locals.oldData && oldData.price ? oldData.price : '' %>"
+                                                placeholder="Precio del producto">
+                                                <% if(locals.errors && errors.price) {%>
+                                        <div class="text-danger">
+                                            <%= errors.price.msg %>
+                                        </div>
+                                        <% } %>
+                                        </div>
+
+                                        <div class="alta__precio-form block-input">
+                                            <label for="discount">Descuento:</label>
+                                            <input type="number" id="discount" name="discount"
+                                                value="<%= locals.oldData && oldData.discount ? oldData.discount : '' %>"
+                                                placeholder="Descuento">
+                                                
+                                        </div>
+
+                                        <div class="alta__precio-form block-input">
+                                            <label for="stock">Stock:</label>
+                                            <input type="number" id="stock" name="stock"
+                                                value="<%= locals.oldData && oldData.stock ? oldData.stock : '' %>"
+                                                placeholder="Stock">
+                                                <% if(locals.errors && errors.stock) {%>
+                                        <div class="text-danger">
+                                            <%= errors.stock.msg %>
+                                        </div>
+                                        <% } %>
+                                        </div>
+
+                                        <div class="alta__button">
+                                            <button class="option__button" type="submit">Añadir
+                                                producto</button>
+                                            <button class="option__button" type="reset">Descartar
+                                                producto</button>
+                                            </button>
+                                        </div>
                     </form>
 
                 </div>
@@ -115,6 +188,6 @@
             <%- include ('../partials/footer') %>
     </body>
     <%- include ('../partials/script-menu') %>
-    <%- include ('../partials/script-change-img') %>
+        <%- include ('../partials/script-change-img') %>
 
-</html>
+            </html>

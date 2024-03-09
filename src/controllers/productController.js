@@ -3,6 +3,7 @@ const funcion = require('../data/funcion');
 const db = require('../model/database/models');
 const Sequelize = require('sequelize');
 const { log } = require('console');
+const { validationResult } = require('express-validator');
 
 let productController = {
     index: function (req, res) {
@@ -25,17 +26,27 @@ let productController = {
             }
         },
     listaPorUsuario: async function (req, res) {
-        try{
-            let productos=await db.Productos.findAll({ include: [{ association: 'Caracteristica' }, { association: 'Categoria' }, { association: 'ImagenesProductos' }],where: { 
-                ID_Vendedor: req.params.id
-            } } );
-            
+        try {
+            let productos;
+            if (req.session.usuarioLogeado.rol == 'Administrador') {
+                productos = await db.Productos.findAll({
+                    include: [{ association: 'Caracteristica' }, { association: 'Categoria' }, { association: 'ImagenesProductos' }]
+                });
+            } else {
+                productos = await db.Productos.findAll({
+                    include: [{ association: 'Caracteristica' }, { association: 'Categoria' }, { association: 'ImagenesProductos' }], where: {
+                        ID_Vendedor: req.params.id
+                    }
+                });
+            }
+
+
             if (!productos) {
                 return res.status(403).send("No se encontraron productos")
-            }else{
-              res.render('productos/lista', {productos: productos,funcion: funcion });    
-            }                     
-        }catch (error){
+            } else {
+                res.render('productos/lista', { productos: productos, funcion: funcion });
+            }
+        } catch (error) {
             console.log(error);
         }
     },
@@ -59,25 +70,52 @@ let productController = {
     create: (req, res) => {
         res.render('productos/create', { funcion: funcion })
     },
-    save: (req, res) => {
-        productService.save(req).then(data => res.redirect('/productos')).catch(error => console.log(error))
-    },
-    editProducto: (req, res) => {
-        productService.getOne(req).then(data => res.render('productos/editProducto', { producto: data, funcion: funcion })).catch(error => console.log(error))
-
-    },
-    update: (req, res) => {
-        productService.perteneceAMisProductos(req).then(existe => {
-            if (existe) {
-                productService.update(req).then(data => {
-                    console.log("producto actualizado" + data);
-                    res.redirect('/productos')
-                }).catch(error => console.log(error));
+    save: async (req, res) => {
+        try {
+            let error = validationResult(req);
+            if (error.isEmpty()) {
+                let nuevoProducto = await productService.save(req);
+                res.redirect('/productos/lista');
             } else {
-                res.send(403).send({ mensaje: 'No tienes permiso para editar este producto' });
+                res.render('productos/create', { errors: error.mapped(), funcion: funcion, oldData: req.body })
             }
+        } catch (error) {
+            console.log(error);
+        }
 
-        }).catch(error => console.log(error));
+    },
+    editProducto: async (req, res) => {
+        try {
+            let producto = await productService.getOne(req);
+            console.log(producto.ID_Producto);
+            res.render('productos/editProducto', { oldData: producto, producto: producto, funcion: funcion })
+        } catch (error) {
+            console.log(error);
+        }
+
+    },
+    update: async (req, res) => {
+        try {
+            let error = validationResult(req);
+            let producto = req.body;
+            producto.ID_Categoria = req.body.category;
+            producto.Marca = req.body.marca;
+            let productoAnterior = await productService.getOne(req);
+            if (error.isEmpty()) {
+                let pertenece = await productService.perteneceAMisProductos(req);
+                if (pertenece) {
+                    await productService.update(req);
+                    res.redirect('/productos/listaMisProductos/' + req.session.usuarioLogeado.id);
+                } else {
+                    res.send(403).send({ mensaje: 'No tienes permiso para editar este producto' });
+                }
+            } else {
+                res.render('productos/editProducto', { errors: error.mapped(), funcion: funcion, oldData: producto, producto: productoAnterior })
+            }
+        }
+        catch (error) {
+            console.log(error)
+        };
 
 
     },

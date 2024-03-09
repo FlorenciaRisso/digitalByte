@@ -8,24 +8,51 @@
           <div class="title-container">
             <h2 class="title">Editar producto</h2>
           </div>
-          <form class="edit__form" action="/productos/editar/<%=producto.ID_Producto%>?_method=put" method="POST"
+          <form class="edit__form" action="/productos/editar/<%=oldData.ID_Producto%>?_method=put" method="POST"
             enctype="multipart/form-data">
+            <input type="hidden" name="ID_Producto" value="<%=oldData.ID_Producto%>">
             <div class="edit__name-form block-input">
               <label for="name">Nombre del producto: </label>
               <input class="login__input-form" type="text" name="name" placeholder="Edita el nombre del producto"
-                value="<%=producto.Nombre%>" required />
+                value="<%=producto.Nombre ? producto.Nombre : oldData.name%>" />
+              <% if(locals.errors && errors.name) {%>
+                <div class="text-danger">
+                  <%= errors.name.msg %>
+                </div>
+                <% } %>
             </div>
 
             <div class="edit__descripcion-form block-input">
               <label for="description">Descripción:</label>
               <textarea class="edit_textarea" name="description"
-                placeholder="Edita la descripción del producto"><%=producto.Descripcion%></textarea>
+                placeholder="Edita la descripción del producto"><%=producto.Descripcion ? producto.Descripcion : oldData.description%></textarea>
+              <% if(locals.errors && errors.description) {%>
+                <div class="text-danger">
+                  <%= errors.description.msg %>
+                </div>
+                <% } %>
             </div>
 
             <div class="edit__discount-form block-input">
               <label for="discount">Descuento:</label>
-              <input name="discount" placeholder="Edita descuento del producto" value=<%=producto.Descuento%>></input>
+              <input name="discount" placeholder="Edita descuento del producto" value="<%=producto.Descuento ? producto.Descuento : oldData.discount%>"></input>
+              <% if(locals.errors && errors.discount) {%>
+                <div class="text-danger">
+                  <%= errors.discount.msg %>
+                </div>
+                <% } %>
             </div>
+
+            <div class="edit__discount-form block-input">
+              <label for="stock">Stock:</label>
+              <input name="stock" placeholder="Edita stock del producto" value="<%=producto.Stock ? producto.Stock : oldData.stock%>"></input>
+              <% if(locals.errors && errors.stock) {%>
+                <div class="text-danger">
+                  <%= errors.stock.msg %>
+                </div>
+                <% } %>
+            </div>
+
             <% let categorias=[ {"id":"1","name":"Notebooks"}, {"id":"2","name":"Smartphones"},
               {"id":"3","name":"Tablets"} ]%>
               <div class="alta__categ-form block-input">
@@ -33,9 +60,9 @@
                 <select name="category" id="category">
 
                   <% categorias.forEach(category=>{ %>
-                    <%if(category.id==producto.Categoria.id){%>
-                      <option value="<%=producto.Categoria.id%>" selected>
-                        <%=producto.Categoria.nombre%>
+                    <%if(category.id==oldData.ID_Categoria){%>
+                      <option value="<%=oldData.ID_Categoria%>" selected>
+                        <%=category.name%>
                       </option>
                       <%}else{%>
                         <option value="<%= category.id %>">
@@ -44,90 +71,144 @@
                         <%}%>
                           <% }); %>
                 </select>
+                <% if(locals.errors && errors.category) {%>
+                  <div class="text-danger">
+                    <%= errors.category.msg %>
+                  </div>
+                  <% } %>
               </div>
 
-              <% let marca=[ {"id":"1","name":"Samsung"}, {"id":"2","name":"Xiaomi"},
-              {"id":"3","name":"Apple"} ]%>
-              <div class="alta__categ-form block-input">
-                <label for="marca">Marca:</label>
-                <select name="marca" id="marca">
+              <% let marca=[ {"id":"1","name":"Samsung"}, {"id":"2","name":"Xiaomi"}, {"id":"3","name":"Apple"} ]%>
+                <div class="alta__categ-form block-input">
+                  <label for="marca">Marca:</label>
+                  <select name="marca" id="marca">
 
-                  <% marca.forEach(marca=>{ %>
-                    <%if(marca.name==producto.Marca){%>
-                      <option value="<%=producto.Marca%>" selected>
-                        <%=producto.Marca%>
-                      </option>
-                      <%}else{%>
-                        <option value="<%= marca.name %>">
-                          <%= marca.name %>
+                    <% marca.forEach(marca=>{ %>
+                      <%if(marca.name==oldData.Marca){%>
+                        <option value="<%=oldData.Marca%>" selected>
+                          <%=oldData.Marca%>
                         </option>
-                        <%}%>
-                          <% }); %>
-                </select>
-              </div>
+                        <%}else{%>
+                          <option value="<%= marca.name %>">
+                            <%= marca.name %>
+                          </option>
+                          <%}%>
+                            <% }); %>
+                  </select>
+                  <% if(locals.errors && errors.marca) {%>
+                    <div class="text-danger">
+                      <%= errors.marca.msg %>
+                    </div>
+                    <% } %>
+                </div>
 
-              <div class="edit__precio-form block-input">
-                <label for="price">Precio:</label>
-                <input type="number" id="price" name="price" placeholder="Precio del producto"
-                  value="<%=producto.Precio%>">
-              </div>
+                <div class="edit__precio-form block-input">
+                  <label for="price">Precio:</label>
+                  <input type="number" id="price" name="price" placeholder="Precio del producto"
+                    value="<%=producto.Precio ? producto.Precio : oldData.price%>">
+                  <% if(locals.errors && errors.price) {%>
+                    <div class="text-danger">
+                      <%= errors.price.msg %>
+                    </div>
+                    <% } %>
+                </div>
 
-              <div class="alta__categ-form block-input">
-                <label for="tamanio">Tamaño:</label>
-                <input type="text" id="tamanio" name="Tamanio"
-                  value="<%= producto.Caracteristica ? producto.Caracteristica.tamaño : '' %>"><br><br>
+                <div class="alta__categ-form block-input">
+                  <label for="tamanio">Tamaño:</label>
+                  <input type="text" id="tamanio" name="Tamanio"
+                    value="<%=producto.Caracteristica.tamaño ? producto.Caracteristica.tamaño : oldData.tamanio%>"><br><br>
 
-                <label for="memoria">Memoria:</label>
-                <input type="text" id="memoria" name="Memoria"
-                  value="<%= producto.Caracteristica ? producto.Caracteristica.memoria : '' %>"><br><br>
+                  <label for="memoria">Memoria:</label>
+                  <input type="text" id="memoria" name="Memoria"
+                    value="<%=producto.Caracteristica.memoria ? producto.Caracteristica.memoria : oldData.memoria%>"><br><br>
 
-                <label for="camara">Cámara Principal:</label>
-                <input type="text" id="camara" name="CamaraPrincipal"
-                  value="<%= producto.Caracteristica ? producto.Caracteristica.camara : '' %>"><br><br>
+                  <label for="camara">Cámara Principal:</label>
+                  <input type="text" id="camara" name="CamaraPrincipal"
+                    value="<%=producto.Caracteristica.camara ? producto.Caracteristica.camara : oldData.camara%>"><br><br>
 
-                <label for="ram">RAM:</label>
-                <input type="text" id="ram" name="Ram"
-                  value="<%= producto.Caracteristica ? producto.Caracteristica.ram : '' %>"><br><br>
-              </div>
+                  <label for="ram">RAM:</label>
+                  <input type="text" id="ram" name="Ram"
+                    value="<%=producto.Caracteristica.ram ? producto.Caracteristica.ram : oldData.ram%>"><br><br>
+                </div>
 
 
-              <div class="alta__imagen-form block-input">
-                <label for="image0">Imagen:</label>
-                <input type="file" name="image0" id="file" class="custom-file-input" accept=".png" multiple
-                  id="imagen0">
-                <img id="previewImage0" src="<%= producto.ImagenesProductos[0] ? producto.ImagenesProductos[0].ruta : '/img/default-image.png' %>" alt="Vista previa de la imagen"
-                  style="max-width: 40px; max-height: 40px;">
-              </div>
+                <div class="alta__imagen-form block-input">
+                  <label for="image0">Imagen:</label>
+                  <input type="file" name="image0" id="file" class="custom-file-input" accept=".png" multiple
+                    id="imagen0" value="<%= producto.ImagenesProductos[0] ? producto.ImagenesProductos[0].ruta : '' %>">
+                  <img id="previewImage0"
+                    src="<%= producto.ImagenesProductos[0] ? producto.ImagenesProductos[0].ruta : oldData.image0 %>"
+                    alt="Vista previa de la imagen" style="max-width: 40px; max-height: 40px;">
+                  <% if (locals.oldData && oldData.image0) { %>
+                    <input type="hidden" name="oldImage" value="<%= oldData.image0 %>">
+                    <% } %>
 
-              <div class="alta__imagen-form block-input">
-                <label for="imagen1">Imagen 1:</label>
-                <input type="file" name="image1" id="file" class="custom-file-input" accept=".png" multiple
-                  id="imagen1">
-                <img id="previewImage1" src="<%= producto.ImagenesProductos[1] ? producto.ImagenesProductos[1].ruta : '/img/default-image.png' %>" alt="Vista previa de la imagen"
-                  style="max-width: 40px; max-height: 40px;">
-              </div>
+                      <% if(locals.errors && errors.image0) {%>
+                        <div class="text-danger">
+                          <%= errors.image0.msg %>
+                        </div>
+                        <% } %>
+                </div>
 
-              <div class="alta__imagen-form block-input">
-                <label for="imagen2">Imagen 2:</label>
-                <input type="file" name="image2" id="file" class="custom-file-input" accept=".png" multiple
-                  id="imagen2">
-                <img id="previewImage2" src="<%= producto.ImagenesProductos[2] ? producto.ImagenesProductos[2].ruta : '/img/default-image.png' %>" alt="Vista previa de la imagen"
-                  style="max-width: 40px; max-height: 40px;">
-              </div>
+                <div class="alta__imagen-form block-input">
+                  <label for="imagen1">Imagen 1:</label>
+                  <input type="file" name="image1" id="file" class="custom-file-input" accept=".png" multiple
+                    id="imagen1">
+                  <img id="previewImage1"
+                    src="<%= producto.ImagenesProductos[1] ? producto.ImagenesProductos[1].ruta : oldData.image1 %>"
+                    alt="Vista previa de la imagen" style="max-width: 40px; max-height: 40px;">
+                  <% if (locals.oldData && oldData.image1) { %>
 
-              <div class="alta__imagen-form block-input">
-                <label for="imagen3">Imagen 3:</label>
-                <input type="file" name="image3" id="file" class="custom-file-input" accept=".png" multiple
-                  id="imagen3">
-                <img id="previewImage3" src="<%= producto.ImagenesProductos[3] ? producto.ImagenesProductos[3].ruta : '/img/default-image.png' %>" alt="Vista previa de la imagen"
-                  style="max-width: 40px; max-height: 40px;">
-              </div>
+                    <input type="hidden" name="oldImage" value="<%= oldData.image1 %>">
+                    <% } %>
+                      <% if(locals.errors && errors.image1) {%>
+                        <div class="text-danger">
+                          <%= errors.image1.msg %>
+                        </div>
+                        <% } %>
+                </div>
 
-              <div class="edit__buttons">
-                <button class="option__button" type="submit">Actualizar Producto</button>
-                <button class="option__button" type="reset">Descartar formulario</button>
-                </button>
-              </div>
+                <div class="alta__imagen-form block-input">
+                  <label for="imagen2">Imagen 2:</label>
+                  <input type="file" name="image2" id="file" class="custom-file-input" accept=".png" multiple
+                    id="imagen2">
+                  <img id="previewImage2"
+                    src="<%= producto.ImagenesProductos[2] ? producto.ImagenesProductos[2].ruta : oldData.image2 %>"
+                    alt="Vista previa de la imagen" style="max-width: 40px; max-height: 40px;">
+                  <% if (locals.oldData && oldData.image2) { %>
+
+                    <input type="hidden" name="oldImage" value="<%= oldData.image2 %>">
+                    <% } %>
+                      <% if(locals.errors && errors.image2) {%>
+                        <div class="text-danger">
+                          <%= errors.image2.msg %>
+                        </div>
+                        <% } %>
+                </div>
+
+                <div class="alta__imagen-form block-input">
+                  <label for="imagen3">Imagen 3:</label>
+                  <input type="file" name="image3" id="file" class="custom-file-input" accept=".png" multiple
+                    id="imagen3">
+                  <img id="previewImage3"
+                    src="<%= producto.ImagenesProductos[3] ? producto.ImagenesProductos[3].ruta : oldData.image3 %>"
+                    alt="Vista previa de la imagen" style="max-width: 40px; max-height: 40px;">
+                  <% if (locals.oldData && oldData.image3) { %>
+
+                    <input type="hidden" name="oldImage" value="<%= oldData.image3 %>">
+                    <% } %>
+                      <% if(locals.errors && errors.image3) {%>
+                        <div class="text-danger">
+                          <%= errors.image3.msg %>
+                        </div>
+                        <% } %>
+                </div>
+
+                <div class="edit__buttons">
+                  <button class="option__button" type="submit">Actualizar Producto</button>
+                  <button class="option__button" type="reset">Descartar formulario</button>
+                  </button>
+                </div>
           </form>
         </div>
       </main>

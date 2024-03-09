@@ -168,7 +168,6 @@ const productService = {
             }
             // Actualizar las características del producto
             let caracteristicas= await db.Caracteristicas.findOne({where: {ID_Producto:productId}});
-            console.log(caracteristicas+"afafasfafs");
             if(caracteristicas){
                 await db.Caracteristicas.update(
                     {

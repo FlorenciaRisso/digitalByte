@@ -116,13 +116,6 @@ select option {
     padding: 10px;
 }
 
-.text-danger {
-    display: block;
-    color: #a70808;
-    font-size: 12px;
-    margin-top: 0px;
-    margin-bottom: 5px;
-}
 
 .is-invalid {
     border: 1px solid red !important;

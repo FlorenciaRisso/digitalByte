@@ -104,14 +104,16 @@ let userController = {
 
     processRegister: (req, res) => {
         let old = req.body;
+        console.log(req.file);
+        if(req.file){
+            old.avatar=req.file.filename;
+        }
+        
         userService.save(req).then(async resultado => {
             if (resultado.success) {
-                // Iniciar sesión automáticamente después del registro
                 try {
-                    // Obtener el usuario recién registrado
                     const usuarioRegistrado = await userService.findByField('email', req.body.email);
 
-                    // Almacenar el usuario en la sesión
                     req.session.usuarioLogeado = usuarioRegistrado;
 
                     // Redirigir al usuario a la página principal o a donde desees

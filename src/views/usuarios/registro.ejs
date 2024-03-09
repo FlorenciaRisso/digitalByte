@@ -17,9 +17,8 @@
 
           <div class="register__nombre-form block-input">
             <input type="text" name="nombre"
-              class="register__input-form nombre <%= locals.errors && errors.nombre ? 'is-invalid' : null %>" 
-              placeholder="Nombre" 
-              value="<%= locals.oldData ? oldData.nombre : null %>">
+              class="register__input-form nombre <%= locals.errors && errors.nombre ? 'is-invalid' : null %>"
+              placeholder="Nombre" value="<%= locals.oldData ? oldData.nombre : null %>">
 
             <% if(locals.errors && errors.nombre) {%>
               <div class="text-danger">
@@ -30,9 +29,8 @@
 
 
           <div class="register__apellido-form block-input">
-            <input type="text" name="apellido" 
-              class=" apellido <%= locals.errors && errors.apellido ? 'is-invalid' : null %>" 
-              placeholder="Apellido" 
+            <input type="text" name="apellido"
+              class=" apellido <%= locals.errors && errors.apellido ? 'is-invalid' : null %>" placeholder="Apellido"
               value="<%= locals.oldData ? oldData.apellido : null %>">
 
             <% if(locals.errors && errors.apellido) {%>
@@ -46,8 +44,7 @@
           <div class="register__email-form block-input">
             <input type="email" name="email"
               class="register__input-form email <%= locals.errors && errors.email ? 'is-invalid' : null %>"
-              placeholder="Email" 
-              value="<%= locals.oldData ? oldData.email : null %>">
+              placeholder="Email" value="<%= locals.oldData ? oldData.email : null %>">
 
             <% if(locals.errors && errors.email) {%>
               <div class="text-danger">
@@ -58,8 +55,8 @@
 
 
           <div class="register__password-form block-input">
-            <input type="password" name="password" 
-            class="register__input-form <%= locals.errors && errors.password ? 'is-invalid' : null %>"
+            <input type="password" name="password"
+              class="register__input-form <%= locals.errors && errors.password ? 'is-invalid' : null %>"
               placeholder="Contraseña" value="<%= locals.oldData ? oldData.password : null %>">
 
             <% if(locals.errors && errors.password) {%>
@@ -71,9 +68,9 @@
 
 
           <div class="register__password-form block-input">
-            <input type="password" name="confirmPassword" 
-            class="<%= locals.errors && errors.confirmPassword ? 'is-invalid' : null %>"
-               placeholder="Repetir contraseña" value="<%= locals.oldData ? oldData.confirmPassword : null %>">
+            <input type="password" name="confirmPassword"
+              class="<%= locals.errors && errors.confirmPassword ? 'is-invalid' : null %>"
+              placeholder="Repetir contraseña" value="<%= locals.oldData ? oldData.confirmPassword : null %>">
 
             <% if(locals.errors && errors.confirmPassword) {%>
               <div class="text-danger">
@@ -85,16 +82,14 @@
 
           <div class="register__category-form block-input">
             <label for="rol"><b>Elige una categoría</b></label>
-            <select 
-            name="rol"
-            class="<%= locals.errors && errors.rol ? 'is-invalid' : null %>" >
+            <select name="rol" class="<%= locals.errors && errors.rol ? 'is-invalid' : null %>">
               <option value="">Categorías</option>
               <% let rols=[ "Vendedor" , "Cliente" ]; %>
-                
+
                 <% for (const rol of rols) { %>
-                  <option value="<%= rol %>"
-                    <%= locals.oldData && (rol === oldData.rol) ? 'selected' : null  %>
-                    > <%= rol %></option>
+                  <option value="<%= rol %>" <%=locals.oldData && (rol===oldData.rol) ? 'selected' : null %>
+                    > <%= rol %>
+                  </option>
                   <% } %>
             </select>
 
@@ -108,17 +103,16 @@
 
           <div class="register__category-form block-input">
             <label for="nacinoalidad"><b>País de nacimiento</b></label>
-            <select 
-            name="nacionalidad"
-            class="<%= locals.errors && errors.nacionalidad ? 'is-invalid' : null %>" >
+            <select name="nacionalidad" class="<%= locals.errors && errors.nacionalidad ? 'is-invalid' : null %>">
               <option value="">Elige un país</option>
               <% let countries=[ "Argentina" , "Bolivia" , "Chile" , "Uruguay" , "Paraguay" , "Colombia" , "Ecuador"
                 , "Perú" ]; %>
-                
+
                 <% for (const oneCountry of countries) { %>
-                  <option value="<%= oneCountry %>"
-                    <%= locals.oldData && (oneCountry === oldData.nacionalidad) ? 'selected' : null  %>
-                    > <%= oneCountry %></option>
+                  <option value="<%= oneCountry %>" <%=locals.oldData && (oneCountry===oldData.nacionalidad)
+                    ? 'selected' : null %>
+                    > <%= oneCountry %>
+                  </option>
                   <% } %>
             </select>
 
@@ -129,15 +123,18 @@
               <% } %>
           </div>
 
-          
+
           <div class="register__image-form block-input">
             <label class="form-label"><b>Imagen de perfil:</b></label>
-            <input type="file" name="avatar" accept=".jpg, .png">
+            <input type="file" name="avatar" id="avatarInput" accept=".jpg, .png, .jpeg, .gif">
+
             <% if(locals.errors && errors.avatar) {%>
               <div class="text-danger">
                 <%= errors.avatar.msg %>
               </div>
               <% } %>
+                <img id="imagenPreview" class="image none" src="" alt="Vista previa de la imagen"
+                  style="max-width: 40px; max-height: 40px;">
           </div>
 
 
@@ -157,5 +154,23 @@
       </div>
     </div>
   </body>
+  <script>
+    function mostrarVistaPrevia(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          document.getElementById('imagenPreview').src = e.target.result;
+          document.getElementById('imagenPreview').style.display = 'block';
+        }
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    document.getElementById('avatarInput').addEventListener('change', function () {
+      mostrarVistaPrevia(this);
+    });
+  </script>
 
   </html>

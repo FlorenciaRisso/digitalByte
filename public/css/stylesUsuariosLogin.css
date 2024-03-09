@@ -10,12 +10,6 @@
   align-items: center;
 }
 
-.text-danger{
-  color: red;
-  margin: 0;
-  padding: 0;
-}
-
 .contraseña-message {
   display: none;
   color: red;

@@ -6,14 +6,16 @@ const authMiddleware = require('../middlewares/usuarios/authMiddleware');
 const esAdmin = require('../middlewares/usuarios/esAdmin');
 const esCliente = require('../middlewares/usuarios/esCliente');
 const esVendedor = require('../middlewares/usuarios/esVendedor');
-const esVendedorOAdmin = require('../middlewares/usuarios/esVendedor');
+const esVendedorOAdmin = require('../middlewares/esVendedorOAdmin');
+const createProductoValidation = require('../middlewares/productos/createProductoValidation');
+const editProductoValidation = require('../middlewares/productos/editProductoValidation');
 
 
 router.get('/', productController.index);
 router.post('/search', productController.search);
 router.get('/carrito',authMiddleware,esCliente, productController.carrito);//solo cliente
 router.get('/lista',authMiddleware, esAdmin, productController.lista); //solo admin
-router.get('/listaMisProductos/:id',authMiddleware, esVendedor, productController.listaPorUsuario); //solo vendedor
+router.get('/listaMisProductos/:id',authMiddleware, esVendedorOAdmin, productController.listaPorUsuario); //solo vendedor
 //listar
 router.get('/listaproductos',authMiddleware,esVendedor, productController.listado);
 router.get('/categoria',productController.listaPorCat);
@@ -24,7 +26,7 @@ router.post('/create',authMiddleware,esVendedorOAdmin, uploadFile.fields([
     { name: 'image1', maxCount: 1 },
     { name: 'image2', maxCount: 1 },
     { name: 'image3', maxCount: 1 }
-]),productController.save);
+]),createProductoValidation,productController.save);
 //detalles
 router.get('/detalle/:id', productController.detalle);
 //editar
@@ -34,10 +36,10 @@ router.put('/editar/:id',authMiddleware,esVendedorOAdmin,uploadFile.fields([
     { name: 'image1', maxCount: 1 },
     { name: 'image2', maxCount: 1 },
     { name: 'image3', maxCount: 1 }
-]), productController.update);
+]),editProductoValidation, productController.update);
 
 //eliminar
-router.delete('/delete/:id',authMiddleware,esVendedor,productController.delete);
+router.delete('/delete/:id',authMiddleware,esVendedorOAdmin,productController.delete);
 
 
 module.exports = router;
