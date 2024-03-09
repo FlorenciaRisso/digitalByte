@@ -11,7 +11,7 @@
                     <form class="alta__form" action="/productos/create" method="post" enctype="multipart/form-data">
                         <div class="alta__name-form block-input">
                             <label for="name">Producto: </label>
-                            <input class="name__input-form" type="text" name="name" id="name"
+                            <input class="name__input-form nombre" type="text" name="name" id="name"
                                 placeholder="Nombre del producto"
                                 value="<%= locals.oldData && oldData.name ? oldData.name : '' %>"  />
                                 <% if(locals.errors && errors.name) {%>
@@ -19,12 +19,13 @@
                                         <%= errors.name.msg %>
                                     </div>
                                     <% } %>
+                            <small class="nombre-empty-msg">Campo obligatorio</small>
+                            <small class="nombre-msg">Debe contener al menos 5 caracteres</small>
                         </div>
-                        
 
                                 <div class="alta__descripcion-form block-input">
                                     <label for="description">Descripción:</label>
-                                    <input class="descripcion__input-form" type="text" name="description"
+                                    <input class="descripcion__input-form descripcion" type="text" name="description"
                                         placeholder="Descripcion del producto"
                                         value="<%= locals.oldData && oldData.description ? oldData.description : '' %>"  />
                                     <% if(locals.errors && errors.description) {%>
@@ -32,13 +33,15 @@
                                             <%= errors.description.msg %>
                                         </div>
                                         <% } %>
-                                </div>
+                                    <small class="descripcion-empty-msg">Campo obligatorio</small>
+                            <small class="descripcion-msg">Debe contener al menos 20 caracteres</small>
+                        </div>
 
 
 
                                 <div class="alta__imagen-form block-input">
                                     <label for="image0">Imagen:</label>
-                                    <input type="file" name="image0" id="file" class="custom-file-input" accept=".png"
+                                    <input type="file" name="image0" id="file" class="custom-file-input imagen0" accept=".png"
                                         multiple id="imagen">
                                     <img id="previewImage0" class="image none" src="" alt="Vista previa de la imagen"
                                         style="max-width: 40px; max-height: 40px;">
@@ -52,7 +55,7 @@
 
                                 <div class="alta__imagen-form block-input">
                                     <label for="image1">Imagen 1:</label>
-                                    <input type="file" name="image1" id="file" class="custom-file-input" accept=".png"
+                                    <input type="file" name="image1" id="file" class="custom-file-input imagen1" accept=".png"
                                         multiple id="image1">
                                     <img id="previewImage1" class="image none" src="" alt="Vista previa de la imagen"
                                         style="max-width: 40px; max-height: 40px;">
@@ -65,7 +68,7 @@
 
                                 <div class="alta__imagen-form block-input">
                                     <label for="image2">Imagen 2:</label>
-                                    <input type="file" name="image2" id="file" class="custom-file-input" accept=".png"
+                                    <input type="file" name="image2" id="file" class="custom-file-input imagen2" accept=".png"
                                         multiple id="image2">
                                     <img id="previewImage2" class="image none" src="" alt="Vista previa de la imagen"
                                         style="max-width: 40px; max-height: 40px;">
@@ -78,7 +81,7 @@
 
                                 <div class="alta__imagen-form block-input">
                                     <label for="image3">Imagen 3:</label>
-                                    <input type="file" name="image3" id="file" class="custom-file-input" accept=".png"
+                                    <input type="file" name="image3" id="file" class="custom-file-input imagen3" accept=".png"
                                         multiple id="image3">
                                     <img id="previewImage3" class="image none" src="" alt="Vista previa de la imagen"
                                         style="max-width: 40px; max-height: 40px;">
@@ -110,22 +113,22 @@
                                     </div>
                                     <div class="alta__categ-form block-input">
                                         <label for="tamanio">Tamaño:</label>
-                                        <input type="text" id="tamanio"
+                                        <input class="tamaño" type="text" id="tamanio"
                                             value="<%= locals.oldData && oldData.tamanio ? oldData.tamanio : '' %>"
                                             name="Tamanio"><br><br>
 
                                         <label for="memoria">Memoria:</label>
-                                        <input type="text" id="memoria"
+                                        <input class="memoria" type="text" id="memoria"
                                             value="<%= locals.oldData && oldData.memoria ? oldData.memoria : '' %>"
                                             name="Memoria"><br><br>
 
                                         <label for="camara">Cámara Principal:</label>
-                                        <input type="text" id="camara"
+                                        <input class="camara" type="text" id="camara"
                                             value="<%= locals.oldData && oldData.camara ? oldData.camara : '' %>"
                                             name="CamaraPrincipal"><br><br>
 
                                         <label for="ram">RAM:</label>
-                                        <input type="text" id="ram"
+                                        <input class="ram" type="text" id="ram"
                                             value="<%= locals.oldData && oldData.ram ? oldData.ram : '' %>" name="Ram"><br><br>
                                     </div>
                                     <% let marca=[ {"id":"1","name":"apple"}, {"id":"2","name":"samsung"},
@@ -144,7 +147,7 @@
 
                                         <div class="alta__precio-form block-input">
                                             <label for="price">Precio:</label>
-                                            <input type="number" id="price" name="price"
+                                            <input class="precio" type="number" id="price" name="price"
                                                 value="<%= locals.oldData && oldData.price ? oldData.price : '' %>"
                                                 placeholder="Precio del producto">
                                                 <% if(locals.errors && errors.price) {%>
@@ -156,7 +159,7 @@
 
                                         <div class="alta__precio-form block-input">
                                             <label for="discount">Descuento:</label>
-                                            <input type="number" id="discount" name="discount"
+                                            <input class="descuento" type="number" id="discount" name="discount"
                                                 value="<%= locals.oldData && oldData.discount ? oldData.discount : '' %>"
                                                 placeholder="Descuento">
                                                 
@@ -164,7 +167,7 @@
 
                                         <div class="alta__precio-form block-input">
                                             <label for="stock">Stock:</label>
-                                            <input type="number" id="stock" name="stock"
+                                            <input class="stock" type="number" id="stock" name="stock"
                                                 value="<%= locals.oldData && oldData.stock ? oldData.stock : '' %>"
                                                 placeholder="Stock">
                                                 <% if(locals.errors && errors.stock) {%>
@@ -188,6 +191,8 @@
             <%- include ('../partials/footer') %>
     </body>
     <%- include ('../partials/script-menu') %>
-        <%- include ('../partials/script-change-img') %>
+            <%- include ('../partials/script-change-img') %>
+            <script src="/js/productoCreate.js"></script>
+
 
             </html>
