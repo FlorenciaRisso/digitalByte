@@ -41,7 +41,7 @@ let productController = {
     },
     carrito: (req, res) => {
         productService.getAll().
-            then(data => res.render('productos/productCart', { productos: data, funcion: funcion })).
+            then(data => res.render('productos/carrito', { productos: data, funcion: funcion })).
             catch(error => console.log(error));
 
     },
@@ -54,7 +54,7 @@ let productController = {
     detalle: async (req, res) => {
         let producto = await productService.getOne(req);
         let productos = await productService.getAll();
-        res.render('productos/productDetail', { producto: producto, productos: productos, funcion: funcion });
+        res.render('productos/detalle', { producto: producto, productos: productos, funcion: funcion });
     },
     create: (req, res) => {
         res.render('productos/create', { funcion: funcion })
@@ -62,8 +62,8 @@ let productController = {
     save: (req, res) => {
         productService.save(req).then(data => res.redirect('/productos')).catch(error => console.log(error))
     },
-    editProducto: (req, res) => {
-        productService.getOne(req).then(data => res.render('productos/editProducto', { producto: data, funcion: funcion })).catch(error => console.log(error))
+    edit: (req, res) => {
+        productService.getOne(req).then(data => res.render('productos/edit', { producto: data, funcion: funcion })).catch(error => console.log(error))
 
     },
     update: (req, res) => {

@@ -29,6 +29,15 @@ td {
     text-align: center;
 }
 
+.nombre-empty-msg, 
+.nombre-msg,
+.descripcion-empty-msg,
+.descripcion-msg {
+    display: none;
+    color: red;
+}
+
+
 td>img {
     height: 90px;
     margin: 5px;

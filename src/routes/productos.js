@@ -6,7 +6,7 @@ const authMiddleware = require('../middlewares/usuarios/authMiddleware');
 const esAdmin = require('../middlewares/usuarios/esAdmin');
 const esCliente = require('../middlewares/usuarios/esCliente');
 const esVendedor = require('../middlewares/usuarios/esVendedor');
-const esVendedorOAdmin = require('../middlewares/usuarios/esVendedor');
+const esVendedorOAdmin = require('../middlewares/esVendedorOAdmin');
 
 
 router.get('/', productController.index);
@@ -28,7 +28,7 @@ router.post('/create',authMiddleware,esVendedorOAdmin, uploadFile.fields([
 //detalles
 router.get('/detalle/:id', productController.detalle);
 //editar
-router.get('/editar/:id',authMiddleware,esVendedorOAdmin, productController.editProducto);
+router.get('/editar/:id',authMiddleware,esVendedorOAdmin, productController.edit);
 router.put('/editar/:id',authMiddleware,esVendedorOAdmin,uploadFile.fields([
     { name: 'image0', maxCount: 1 },
     { name: 'image1', maxCount: 1 },
