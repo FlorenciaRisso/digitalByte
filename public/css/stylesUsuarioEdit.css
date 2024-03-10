@@ -58,6 +58,14 @@ body {
     margin-bottom: 1rem;
 }
 
+.nombre-msg,
+.descripcion-msg,
+.precio-msg,
+.stock-msg{
+    display: none;
+    color: red;
+}
+
 .block-input,
 .edit-user__input-form {
     margin-bottom: 1rem;

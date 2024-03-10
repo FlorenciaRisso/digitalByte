@@ -10,11 +10,13 @@
           </div>
           <form class="edit__form" action="/productos/editar/<%=oldData.ID_Producto%>?_method=put" method="POST"
             enctype="multipart/form-data">
+
             <input type="hidden" name="ID_Producto" value="<%=oldData.ID_Producto%>">
             <div class="edit__name-form block-input">
               <label for="name">Nombre del producto: </label>
-              <input class="login__input-form" type="text" name="name" placeholder="Edita el nombre del producto"
+              <input class="login__input-form nombre" type="text" name="name" placeholder="Edita el nombre del producto"
                 value="<%=producto.Nombre ? producto.Nombre : oldData.name%>" />
+                <small class="nombre-msg">Ingresa el nombre del producto</small>
               <% if(locals.errors && errors.name) {%>
                 <div class="text-danger">
                   <%= errors.name.msg %>
@@ -24,8 +26,9 @@
 
             <div class="edit__descripcion-form block-input">
               <label for="description">Descripción:</label>
-              <textarea class="edit_textarea" name="description"
+              <textarea class="edit_textarea descripcion" name="description"
                 placeholder="Edita la descripción del producto"><%=producto.Descripcion ? producto.Descripcion : oldData.description%></textarea>
+                <small class="descripcion-msg">Ingresa una descripción del producto</small>
               <% if(locals.errors && errors.description) {%>
                 <div class="text-danger">
                   <%= errors.description.msg %>
@@ -35,7 +38,8 @@
 
             <div class="edit__discount-form block-input">
               <label for="discount">Descuento:</label>
-              <input name="discount" placeholder="Edita descuento del producto" value="<%=producto.Descuento ? producto.Descuento : oldData.discount%>"></input>
+              <input name="discount" placeholder="Edita descuento del producto"
+                value="<%=producto.Descuento ? producto.Descuento : oldData.discount%>"></input>
               <% if(locals.errors && errors.discount) {%>
                 <div class="text-danger">
                   <%= errors.discount.msg %>
@@ -45,7 +49,9 @@
 
             <div class="edit__discount-form block-input">
               <label for="stock">Stock:</label>
-              <input name="stock" placeholder="Edita stock del producto" value="<%=producto.Stock ? producto.Stock : oldData.stock%>"></input>
+              <input name="stock" placeholder="Edita stock del producto"
+                value="<%=producto.Stock ? producto.Stock : oldData.stock%>"></input>
+                <small class="stock-msg">Ingresa el stock del producto</small>
               <% if(locals.errors && errors.stock) {%>
                 <div class="text-danger">
                   <%= errors.stock.msg %>
@@ -104,8 +110,9 @@
 
                 <div class="edit__precio-form block-input">
                   <label for="price">Precio:</label>
-                  <input type="number" id="price" name="price" placeholder="Precio del producto"
+                  <input class="precio" type="number" id="price" name="price" placeholder="Precio del producto"
                     value="<%=producto.Precio ? producto.Precio : oldData.price%>">
+                    <small class="precio-msg">Debes ingresar el precio del producto</small>
                   <% if(locals.errors && errors.price) {%>
                     <div class="text-danger">
                       <%= errors.price.msg %>
@@ -116,25 +123,25 @@
                 <div class="alta__categ-form block-input">
                   <label for="tamanio">Tamaño:</label>
                   <input type="text" id="tamanio" name="Tamanio"
-                    value="<%=producto.Caracteristica.tamaño ? producto.Caracteristica.tamaño : oldData.tamanio%>"><br><br>
+                    value="<%= producto.Caracteristica && producto.Caracteristica.tamaño ? producto.Caracteristica.tamaño : oldData.tamanio %>"><br><br>
 
                   <label for="memoria">Memoria:</label>
                   <input type="text" id="memoria" name="Memoria"
-                    value="<%=producto.Caracteristica.memoria ? producto.Caracteristica.memoria : oldData.memoria%>"><br><br>
+                    value="<%= producto.Caracteristica && producto.Caracteristica.memoria ? producto.Caracteristica.memoria : oldData.memoria %>">
 
                   <label for="camara">Cámara Principal:</label>
                   <input type="text" id="camara" name="CamaraPrincipal"
-                    value="<%=producto.Caracteristica.camara ? producto.Caracteristica.camara : oldData.camara%>"><br><br>
+                    value="<%=producto.Caracteristica && producto.Caracteristica.camara ? producto.Caracteristica.camara : oldData.camara%>"><br><br>
 
                   <label for="ram">RAM:</label>
                   <input type="text" id="ram" name="Ram"
-                    value="<%=producto.Caracteristica.ram ? producto.Caracteristica.ram : oldData.ram%>"><br><br>
+                    value="<%=producto.Caracteristica && producto.Caracteristica.ram ? producto.Caracteristica.ram : oldData.ram%>"><br><br>
                 </div>
 
 
                 <div class="alta__imagen-form block-input">
                   <label for="image0">Imagen:</label>
-                  <input type="file" name="image0" id="file" class="custom-file-input" accept=".png" multiple
+                  <input type="file" name="image0" id="file" class="custom-file-input imagen0" accept=".png" multiple
                     id="imagen0" value="<%= producto.ImagenesProductos[0] ? producto.ImagenesProductos[0].ruta : '' %>">
                   <img id="previewImage0"
                     src="<%= producto.ImagenesProductos[0] ? producto.ImagenesProductos[0].ruta : oldData.image0 %>"
@@ -152,7 +159,7 @@
 
                 <div class="alta__imagen-form block-input">
                   <label for="imagen1">Imagen 1:</label>
-                  <input type="file" name="image1" id="file" class="custom-file-input" accept=".png" multiple
+                  <input type="file" name="image1" id="file" class="custom-file-input imagen1" accept=".png" multiple
                     id="imagen1">
                   <img id="previewImage1"
                     src="<%= producto.ImagenesProductos[1] ? producto.ImagenesProductos[1].ruta : oldData.image1 %>"
@@ -170,7 +177,7 @@
 
                 <div class="alta__imagen-form block-input">
                   <label for="imagen2">Imagen 2:</label>
-                  <input type="file" name="image2" id="file" class="custom-file-input" accept=".png" multiple
+                  <input type="file" name="image2" id="file" class="custom-file-input imagen2" accept=".png" multiple
                     id="imagen2">
                   <img id="previewImage2"
                     src="<%= producto.ImagenesProductos[2] ? producto.ImagenesProductos[2].ruta : oldData.image2 %>"
@@ -188,7 +195,7 @@
 
                 <div class="alta__imagen-form block-input">
                   <label for="imagen3">Imagen 3:</label>
-                  <input type="file" name="image3" id="file" class="custom-file-input" accept=".png" multiple
+                  <input type="file" name="image3" id="file" class="custom-file-input imagen3" accept=".png" multiple
                     id="imagen3">
                   <img id="previewImage3"
                     src="<%= producto.ImagenesProductos[3] ? producto.ImagenesProductos[3].ruta : oldData.image3 %>"
