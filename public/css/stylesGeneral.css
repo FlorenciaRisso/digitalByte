@@ -109,7 +109,7 @@ a {
 
 .search-container {
   position: relative;
-  width: 300px;
+  width: 100%;
   /* Ajusta el ancho según tu diseño */
 }
 
@@ -136,6 +136,7 @@ a {
 .search-button i {
   font-size: 18px;
   color: #202020;
+  background-color: white;
 }
 
 /* fin busqueda */
@@ -919,6 +920,7 @@ a {
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap:10px;
 
   }
 
