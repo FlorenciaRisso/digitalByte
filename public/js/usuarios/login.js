@@ -13,7 +13,7 @@ window.addEventListener('load', function () {
             email.style.border = '2px solid red';
             emailMessage.style.display = 'none';
         } else if (email.validity.typeMismatch) {
-            emailMessage.style.display = 'block'; // Correo electrónico no válido
+            emailMessage.style.display = 'block'; 
             emptyEmail.style.display = 'none';
             email.style.border = '2px solid red';
         } else {
@@ -53,7 +53,7 @@ window.addEventListener('load', function () {
     contraseña.addEventListener('input', function () {
         if (contraseña.value.length < 8) {
             emptyPassword.style.display = 'none';
-            contraseña.style.border = '2px solid red'; // Cambiar el borde a verde cuando la contraseña tiene al menos 8 caracteres
+            contraseña.style.border = '2px solid red';
             contraseñaMessage.style.display = 'none';
         } else {
             contraseña.style.border = '2px solid green';
@@ -68,7 +68,7 @@ window.addEventListener('load', function () {
 
     form.addEventListener('submit', function (e) {
         if (email.value === '' || contraseña.value === '') {
-            e.preventDefault(); // Evitar que el formulario se envíe si algún campo está vacío
+            e.preventDefault(); 
         }
     })
 })

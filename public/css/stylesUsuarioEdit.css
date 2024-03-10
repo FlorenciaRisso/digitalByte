@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
 }
+
 .avatar {
     width: 20%;
 }
@@ -18,12 +19,15 @@ body {
     align-items: center;
     height: 100vh;
 }
-.div-img{
+
+.div-img {
     width: 30%;
 }
-.div-img img{
+
+.div-img img {
     width: 20%;
 }
+
 .container {
     width: 100%;
     max-width: 500px;
@@ -47,10 +51,10 @@ body {
     padding: 10px;
     font-weight: 200;
     font-size: 1.5rem;
-    color: #fff;
+    color: #000000;
 }
 
-.title-container .title{
+.title-container .title {
     margin-bottom: 1rem;
 }
 
@@ -59,12 +63,12 @@ body {
     margin-bottom: 1rem;
 }
 
-.edit-user__form{
+.edit-user__form {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    
+
 }
 
 .block-input>input,
@@ -72,7 +76,6 @@ body {
 select {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
     border-radius: 5px;
     margin-top: 5px;
 }
@@ -106,14 +109,15 @@ select {
     color: #906cbe;
 }
 
-@media (min-width:500px ) {
+@media (min-width:500px) {
 
-    .container{
+    .container {
         width: 70%;
     }
-    .register__buttons{
+
+    .register__buttons {
         flex-direction: row;
     }
 
-    
+
 }
