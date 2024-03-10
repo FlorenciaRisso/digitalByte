@@ -9,16 +9,19 @@
     <div class="body">
 
       <div class="container">
-        <div class="title-container">
-          <h2 class="title">Registrate</h2>
-        </div>
+     
+   
         <form class="register__form" action="/usuarios/registro" method="POST" enctype="multipart/form-data">
-
+          <h2 class="title">Registrate</h2> 
+     <div class="title-container">
+            
+        </div>
 
           <div class="register__nombre-form block-input">
             <input type="text" name="nombre"
               class="register__input-form nombre <%= locals.errors && errors.nombre ? 'is-invalid' : null %>"
               placeholder="Nombre" value="<%= locals.oldData ? oldData.nombre : null %>">
+            <small class="name-msg">Ingresa tu nombre</small>
 
             <% if(locals.errors && errors.nombre) {%>
               <div class="text-danger">
@@ -30,8 +33,9 @@
 
           <div class="register__apellido-form block-input">
             <input type="text" name="apellido"
-              class=" apellido <%= locals.errors && errors.apellido ? 'is-invalid' : null %>" placeholder="Apellido"
+              class="<%= locals.errors && errors.apellido ? 'is-invalid' : null %> apellido " placeholder="Apellido"
               value="<%= locals.oldData ? oldData.apellido : null %>">
+            <small class="apellido-msg">Ingresa tu apellido</small>
 
             <% if(locals.errors && errors.apellido) {%>
               <div class="text-danger">
@@ -43,8 +47,9 @@
 
           <div class="register__email-form block-input">
             <input type="email" name="email"
-              class="register__input-form email <%= locals.errors && errors.email ? 'is-invalid' : null %>"
+              class="register__input-form email <%= locals.errors && errors.email ? 'is-invalid' : null %> email "
               placeholder="Email" value="<%= locals.oldData ? oldData.email : null %>">
+            <small class="email-msg">Ingresa tu email</small>
 
             <% if(locals.errors && errors.email) {%>
               <div class="text-danger">
@@ -56,8 +61,9 @@
 
           <div class="register__password-form block-input">
             <input type="password" name="password"
-              class="register__input-form <%= locals.errors && errors.password ? 'is-invalid' : null %>"
+              class="register__input-form <%= locals.errors && errors.password ? 'is-invalid' : null %> contraseña"
               placeholder="Contraseña" value="<%= locals.oldData ? oldData.password : null %>">
+            <small class="contraseña-msg">Ingresa una contraseña</small>
 
             <% if(locals.errors && errors.password) {%>
               <div class="text-danger">
@@ -69,8 +75,9 @@
 
           <div class="register__password-form block-input">
             <input type="password" name="confirmPassword"
-              class="<%= locals.errors && errors.confirmPassword ? 'is-invalid' : null %>"
+              class="<%= locals.errors && errors.confirmPassword ? 'is-invalid' : null %> repetirContraseña"
               placeholder="Repetir contraseña" value="<%= locals.oldData ? oldData.confirmPassword : null %>">
+            <small class="contraseña2-msg">Las contraseñas deben coincidir</small>
 
             <% if(locals.errors && errors.confirmPassword) {%>
               <div class="text-danger">
@@ -81,9 +88,9 @@
 
 
           <div class="register__category-form block-input">
-            <label for="rol"><b>Elige una categoría</b></label>
-            <select name="rol" class="<%= locals.errors && errors.rol ? 'is-invalid' : null %>">
-              <option value="">Categorías</option>
+            <label for="rol"><b></b></label>
+            <select name="rol" class="<%= locals.errors && errors.rol ? 'is-invalid' : null %> rol">
+              <option value="">Elige un rol de usuario</option>
               <% let rols=[ "Vendedor" , "Cliente" ]; %>
 
                 <% for (const rol of rols) { %>
@@ -92,6 +99,7 @@
                   </option>
                   <% } %>
             </select>
+            <small class="rol-msg">Debes elegir un rol de usuario</small>
 
             <% if(locals.errors && errors.rol) { %>
               <div class="text-danger">
@@ -102,9 +110,10 @@
 
 
           <div class="register__category-form block-input">
-            <label for="nacinoalidad"><b>País de nacimiento</b></label>
-            <select name="nacionalidad" class="<%= locals.errors && errors.nacionalidad ? 'is-invalid' : null %>">
-              <option value="">Elige un país</option>
+            <label for="nacionalidad"><b></b></label>
+            <select name="nacionalidad"
+              class="<%= locals.errors && errors.nacionalidad ? 'is-invalid' : null %> nacionalidad">
+              <option value="">Selecciona tu nacionalidad</option>
               <% let countries=[ "Argentina" , "Bolivia" , "Chile" , "Uruguay" , "Paraguay" , "Colombia" , "Ecuador"
                 , "Perú" ]; %>
 
@@ -115,6 +124,7 @@
                   </option>
                   <% } %>
             </select>
+            <small class="nacionalidad-msg">Selecciona tu nacionalidad</small>
 
             <% if(locals.errors && errors.nacionalidad) { %>
               <div class="text-danger">
@@ -126,7 +136,7 @@
 
           <div class="register__image-form block-input">
             <label class="form-label"><b>Imagen de perfil:</b></label>
-            <input type="file" name="avatar" id="avatarInput" accept=".jpg, .png, .jpeg, .gif">
+            <input class="avatar" type="file" name="avatar" id="avatarInput" accept=".jpg, .png, .jpeg, .gif">
 
             <% if(locals.errors && errors.avatar) {%>
               <div class="text-danger">
@@ -172,5 +182,5 @@
       mostrarVistaPrevia(this);
     });
   </script>
-
+    <script src="/js/usuarios/register.js"></script>
   </html>

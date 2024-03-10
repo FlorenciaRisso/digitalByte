@@ -1,27 +1,57 @@
+/* #4c3168 violeta oscuro */
+/* #863876 violeta */
+/* #ce4784 rosa oscuro */
+/* #ff7094 rosa */
+/* #ffac9a rosa claro */
+
+
 label,span,h2{
     display: block;
-    font-family:Arial, Helvetica, sans-serif ;
-    color: rgb(40, 40, 40);
+    font-family: Proxima Nova, -apple-system, Helvetica Neue, helvetica, roboto, arial, sans-serif;
+    color: #282828;
+}
+
+small{
+    font-size: 12px ;
 }
 
 .body{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    background-color: #dcdbf1;
 }
 .container{
     width: 100%;
     max-width: 500px;
 }
 
+.name-msg,
+.apellido-msg,
+.email-msg,
+.contraseña-msg,
+.contraseña2-msg,
+.rol-msg,
+.nacionalidad-msg
+{
+display: none;
+color: red;
+}
+
+.register__google-button{
+    display: none;
+}
+
 .register__form{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 1rem;
+    margin: 40px;
     padding-top: 10px;
-    background-color: rgb(185, 167, 250);
-    border-radius: 10px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    border: #282828;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 .footer-register{
     display: flex;
@@ -51,6 +81,10 @@ label,span,h2{
     border-radius: 5px;
     width: 100%;
 }
+
+.block-input> input:hover {
+    border-color: #666;
+}
 .register__buttons{
     display: flex;
     flex-direction: column;
@@ -60,16 +94,15 @@ label,span,h2{
 }
 .title-container{
     font-family: 'Noto Sans';
-    background-color:#906CBE;
+    background-color: #863876;
     border-radius: 10px;
     text-align: center;
 }
 .title{
-    margin: 0;
+    font-size: 20px;
+    margin: 40px;
     padding: 5px;
-    font-weight: 200;
-    font-size: 1.5rem;
-    color: aliceblue;
+    color: #863876;
 }
 
 .login__link{
@@ -109,6 +142,7 @@ select option {
 .is-invalid{
     border: 1px solid red !important;
 }
+
 
 
 
