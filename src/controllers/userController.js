@@ -146,7 +146,7 @@ let userController = {
     deleteCuenta: async (req, res) => {
         try {
             const userId = req.params.id;
-            if (req.session.usuarioLogeado == userId) {
+            if (req.session.usuarioLogeado.id == userId) {
                 await userService.delete(userId);
                 res.redirect('/usuarios/cerrarSesion')
             } else if (req.session.usuarioLogeado.rol == "Administrador" && req.session.usuarioLogeado.id != userId) {

@@ -156,19 +156,8 @@
       </div>
   </body>
   <%- include ('../partials/footer') %>
-    <%- include ('../partials/script-change-img') %>
       <script src="/js/usuarios/edit.js"></script>
-      <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const cameraIcon = document.getElementById("camera-icon");
-          const avatarUpload = document.getElementById("avatar-upload");
-
-          if (cameraIcon && avatarUpload) {
-            cameraIcon.addEventListener("click", function () {
-              avatarUpload.click();
-            });
-          }
-        });
-      </script>
+      <script src="/js/usuarios/script-change-img.js"></script>
+      
 
       </html>
