@@ -9,7 +9,7 @@ const authMiddleware = require('../middlewares/usuarios/authMiddleware');
 const changePasswordValidation = require('../middlewares/usuarios/changePasswordValidation');
 const esAdmin = require('../middlewares/usuarios/esAdmin');
 const loginValidation = require('../middlewares/usuarios/loginMiddleware');
-const esUsuario = require ('../middlewares/esUsuario');
+const esUsuarioOAdmin = require ('../middlewares/esUsuarioOAdmin');
 const editUsuarioValidation=require ('../middlewares/usuarios/editUsuarioValidation')
 
 
@@ -33,7 +33,6 @@ router.post('/verificarEmail', userController.verificarEmail);
 
 router.get('/cerrarSesion',authMiddleware, userController.logout);
 
-router.get('/eliminar/:id', esAdmin, userController.delete);
-router.post('/eliminarCuenta/:id', esUsuario, userController.deleteCuenta);
+router.delete('/eliminar/:id', esUsuarioOAdmin, userController.deleteCuenta);
 
 module.exports = router;

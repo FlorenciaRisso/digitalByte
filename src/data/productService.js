@@ -43,7 +43,8 @@ const productService = {
                 Precio: req.body.price,
                 Stock: req.body.stock,
                 Descuento: req.body.discount,
-                Marca: req.body.marca
+                Marca: req.body.marca,
+                ID_Vendedor:req.session.usuarioLogeado.id
             });
 
             // Agregar las imágenes del producto

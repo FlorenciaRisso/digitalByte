@@ -57,7 +57,14 @@ h1 {
     justify-content: space-around;
     margin-top: 20px;
 }
-
+.btn-agregar{
+    margin-right: 10px;
+    background-color: rgb(61, 61, 194);
+    border:none;
+    color:white;
+    padding: 10px;
+    border-radius: 10px;
+}
 .title {
     width: 100%;
     background-color: rgb(169, 120, 214);

@@ -14,7 +14,7 @@ const editProductoValidation = require('../middlewares/productos/editProductoVal
 router.get('/', productController.index);
 router.post('/search', productController.search);
 router.get('/carrito',authMiddleware,esCliente, productController.carrito);//solo cliente
-router.get('/lista',authMiddleware, esAdmin, productController.lista); //solo admin
+router.get('/lista',authMiddleware, esVendedorOAdmin, productController.lista);
 router.get('/listaMisProductos/:id',authMiddleware, esVendedorOAdmin, productController.listaPorUsuario); //solo vendedor
 //listar
 router.get('/listaproductos',authMiddleware,esVendedor, productController.listado);

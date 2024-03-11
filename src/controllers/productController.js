@@ -75,7 +75,7 @@ let productController = {
             let error = validationResult(req);
             if (error.isEmpty()) {
                 let nuevoProducto = await productService.save(req);
-                res.redirect('/productos/lista');
+                res.redirect('/productos/listaMisProductos/'+req.session.usuarioLogeado.id);
             } else {
                 res.render('productos/create', { errors: error.mapped(), funcion: funcion, oldData: req.body })
             }

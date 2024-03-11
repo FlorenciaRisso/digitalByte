@@ -6,16 +6,18 @@
             <div class="container">
 
                 <% usuarios.forEach(usuario=> { %>
-                    <ul class="user-list">
-                        <li class="card">
-                            <a href="/usuarios/perfil/<%=usuario.id %>">
-                                <h3 class="user-name">
-                                    <%= usuario.nombre %>
-                                    <%= usuario.apellido %>
-                                </h3>
 
+                    <ul class="user-list">
+
+                        <li class="card">
+
+                            <h3 class="user-name">
+                                <%= usuario.nombre %>
+                                    <%= usuario.apellido %>
+                            </h3>
+                            <a href="/usuarios/perfil/<%=usuario.id %>">
+                                <img src="<%=usuario.avatar%>" alt="image usuario">
                             </a>
-                            <img src="<%=usuario.avatar%>" alt="image usuario">
                             <h1 class="info">
                                 <%= usuario.email %>
                             </h1>
@@ -25,13 +27,16 @@
                                             class="fa-solid fa-pen-to-square fa-lg"></i></a>
                                 </td>
                                 <td>
-                                    <a href="/usuarios/eliminar/<%=usuario.id%>"><i
-                                            class="fa-solid fa-trash-can fa-lg eliminar"></i></a>
+                                    <form action="/usuarios/eliminar/<%=usuario.id%>?_method=delete" method="post"
+                                        style="display: inline-flex" id="form_delete">
+                                        <button type="submit" class="btn-delete eliminar"
+                                            data-usuario-id="<%=usuario.id %>"><i
+                                                class="fa-solid fa-trash-can fa-lg"></i></button>
+                                    </form>
                                 </td>
                             </div>
-
-
                         </li>
+
                     </ul>
 
                     <% }) %>
@@ -39,5 +44,33 @@
 
     </body>
     <%- include ('../partials/footer') %>
+        <%- include ('../partials/script-menu') %>
+            <script>
+                $(document).ready(() => {
+                    $('.btn-delete').click((e) => {
+                        e.preventDefault(); Swal.fire({
+                            title: "Estas seguro?",
+                            text: "No podras revertirlo!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Si, eliminar!"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                const usuarioId = $(e.currentTarget).data('usuario-id');
+                                const form = $(e.currentTarget).closest('#form_delete');
+                                form.attr('action', `/usuarios/eliminar/${usuarioId}?_method=delete`);
+                                form.submit();
+                                Swal.fire({
+                                    title: "Eliminado!",
+                                    text: "El usuario fue eliminado!.",
+                                    icon: "success"
+                                });
+                            }
+                        });
+                    });
+                });
+            </script>
 
-        </html>
+            </html>

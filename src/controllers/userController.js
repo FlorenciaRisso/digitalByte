@@ -49,7 +49,7 @@ let userController = {
     update: async (req, res) => {
         let error = validationResult(req)
         let usuarioId = req.body.id; //String
-        let sessionUsuarioId=req.session.usuarioLogeado.id; //Number
+        let sessionUsuarioId = req.session.usuarioLogeado.id; //Number
         let usuarioActualizado = await userService.update(req);
         let data = {};
         data.id = req.body.id;
@@ -105,10 +105,10 @@ let userController = {
     processRegister: (req, res) => {
         let old = req.body;
         console.log(req.file);
-        if(req.file){
-            old.avatar=req.file.filename;
+        if (req.file) {
+            old.avatar = req.file.filename;
         }
-        
+
         userService.save(req).then(async resultado => {
             if (resultado.success) {
                 try {
@@ -143,15 +143,23 @@ let userController = {
         }).catch(error => console.log(error));
 
     },
-    deleteCuenta: (req, res) => {
-        const userId = req.params.id;
-        userService.delete(userId).then(resultado => {
-            if (req.session.usuarioLogeado.id == userId) {
+    deleteCuenta: async (req, res) => {
+        try {
+            const userId = req.params.id;
+            if (req.session.usuarioLogeado == userId) {
+                await userService.delete(userId);
                 res.redirect('/usuarios/cerrarSesion')
-            } else {
+            } else if (req.session.usuarioLogeado.rol == "Administrador" && req.session.usuarioLogeado.id != userId) {
+                await userService.delete(userId);
                 res.redirect('/usuarios/lista')
+            } else {
+                //error usted no tiene permisos para realizar esta operacion
+                res.redirect("/")
             }
-        }).catch(error => console.log(error));
+        } catch(error){
+            console.log(error);
+        }
+        
 
     },
 
@@ -203,10 +211,10 @@ let userController = {
     verificarEmail: async (req, res) => {
         const email = req.body.email;
         let existe = await userService.findByField('email', email);
-        
+
         res.json({ existe });
     },
-    
+
 
     logout: (req, res) => {
         res.clearCookie('recordame')
