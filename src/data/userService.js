@@ -94,7 +94,10 @@ const userService = {
                 nombre: req.body.firstName,
                 apellido: req.body.lastName,
                 nacionalidad: req.body.country,
-                rol: req.body.rol
+                email:req.body.email,
+                rol: req.body.rol,
+                direccion:req.body.direccion,
+                telefono:req.body.telefono
             }
             if (req.file) {
                 usuario.avatar = "/img/" + req.file.filename;

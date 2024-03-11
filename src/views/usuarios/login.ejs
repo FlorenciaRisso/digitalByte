@@ -9,51 +9,51 @@
 
     <div class="body">
       <div class="container">
-        <div class="title-container">
-          <h2 class="title">Inicia sesión</h2>
-        </div>
-        <div class="container-login">
 
-          <form class="login__form" action="/usuarios/login" method="post">
-            <% if(locals.errors && errors.email){ %>
-              <div class="text-danger">
-                <%=errors.email.msg %>
-              </div>
-              <% } %>
+        <form class="login__form" action="/usuarios/login" method="post">
+          <h2 class="title">Inicia sesión</h2>
+          <% if(locals.errors && errors.email){ %>
+            <div class="text-danger">
+              <%=errors.email.msg %>
+            </div>
+            <% } %>
               <% if(locals.errors && errors.contraseña){ %>
                 <div class="text-danger">
                   <%=errors.contraseña.msg %>
                 </div>
                 <% } %>
-                <div class="login__email-form">
-                  <input class="login__input-form email" name='email' type="email" placeholder="Correo electrónico" value="<%= cookie%>">
-                  <small class="empty-email-message">Campo obligatorio</small>
-                  <small class="email-message">Email inválido</small>
-                </div>
-                <div class="" ></div>
-                <div class="login__password-form">
-                  <input class="login__input-form contraseña" name='contraseña' type="password" placeholder="Contraseña">
-                  <small class="empty-password-message">Campo obligatorio</small>
-                  <small class="contraseña-message">Introducir al menos 8 caracteres</small>
-                  
-                </div>
-                <div class="recordame">
-                  <input  type="checkbox" id="recordame" name="recordame">
-                  <label for="recordame">Recuérdame</label>
-                </div>
-                <div class="login__buttons">
-                  <button class="login__button" type="submit">Iniciar Sesión</button>
-                  <button class="login__google-button">
-                    <i class="fa-brands fa-google login__google-icon"></i>Inicia sesión con google
-                  </button>
-                </div>
+                  <div class="login__email-form block-input">
+                    <input class="login__input-form email" name='email' type="email" placeholder="Correo electrónico"
+                      value="<%= cookie%>">
+                    <small class="empty-email-message">Campo obligatorio</small>
+                    <small class="email-message">Email inválido</small>
+                  </div>
+                  <div class=""></div>
+                  <div class="login__password-form block-input">
+                    <input class="login__input-form contraseña" name='contraseña' type="password"
+                      placeholder="Contraseña">
+                    <small class="empty-password-message">Campo obligatorio</small>
+                    <small class="contraseña-message">Introducir al menos 8 caracteres</small>
 
-          </form>
-          <div class="footer_login">
-            <a href="/usuarios/registro" class="register__link">Crear cuenta</a>
-            <a href="">Olvide mi contraseña</a>
-          </div>
-        </div>
+                  </div>
+                  <div class="recordame">
+                    <input type="checkbox" id="recordame" name="recordame">
+                    <label for="recordame">Recuérdame</label>
+                  </div>
+                  <div class="login__buttons block-input">
+                    <button class="login__button" type="submit">Iniciar Sesión</button>
+                    <button class="login__google-button">
+                      <i class="fa-brands fa-google login__google-icon"></i>Inicia sesión con google
+                    </button>
+                  </div>
+                  <div class="footer_login">
+                    <span>¿No tienes cuenta? </span>
+                    <a href="/usuarios/registro" class="register_link">Crear cuenta</a>
+                    <!-- <a href="">Olvide mi contraseña</a> -->
+                  </div>
+
+        </form>
+
       </div>
     </div>
     <script src="/js/usuarios/login.js"></script>

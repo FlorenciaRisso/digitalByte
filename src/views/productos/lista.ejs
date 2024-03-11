@@ -1,64 +1,42 @@
-<%- include ('../partials/head',{cssFile:'/css/stylesProductCreate.css'}) %>
+<%- include ('../partials/head',{cssFile:'/css/stylesProductLista.css'}) %>
 
     <body>
         <%- include ('../partials/headerYNav',{usuarioLogeado:usuarioLogeado}) %>
-            <main class="main-alta">
-                <div class="section-listar">
-                    <button class="btn-nuevo-prod"><a href="/productos/create">Nuevo Producto</a></button>
-                    <section class="table-responsive">
-                        <table class="table-listar">
-                            <thead class="thead-listar">
-                                <tr>
-                                    <th>Producto</th>
-                                    <th>Descripción</th>
-                                    <th>Imagen 1</th>
-                                    <th>Imagen 2</th>
-                                    <th>Imagen 3</th>
-                                    <th>Imagen 4</th>
-                                    <th>Categoría</th>
-                                    <th>Precio</th>
-                                    <th colspan="2" style="text-align:center;">Actualizar/Eliminar</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% productos.forEach(producto=> { %>
-                                    <tr>
-                                        <td>
-                                            <%= producto.Nombre %>
-                                        </td>
-                                        <td class="td-descripcion">
-                                            <p class="p-descripcion">
-                                                <%= producto.Descripcion %>
-                                            </p>
-                                        </td>
-                                        <td><img src="<%= producto.ImagenesProductos[0] ? producto.ImagenesProductos[0].ruta : '/img/default-image.png' %>" alt="Imagen del producto"></td>
-                                        <td><img src="<%= producto.ImagenesProductos[1] ? producto.ImagenesProductos[1].ruta : '/img/default-image.png' %>" alt="Imagen del producto-1">
-                                        </td>
-                                        <td><img src="<%= producto.ImagenesProductos[2] ? producto.ImagenesProductos[2].ruta : '/img/default-image.png' %>" alt="Imagen del producto-2">
-                                        </td>
-                                        <td><img src="<%= producto.ImagenesProductos[3] ? producto.ImagenesProductos[3].ruta : '/img/default-image.png' %>" alt="Imagen del producto-3">
-                                        </td>
-                                        <td><%= producto.Categoria.nombre %></td>
-                                        <td>$<%= funcion.getPrecioFormateado(producto.Precio) %>
-                                        </td>
-                                        <td>
-                                            <a href="/productos/editar/<%=producto.ID_Producto%>"><i
-                                                    class="fa-solid fa-pen-to-square fa-lg"></i></a>
-                                            <form action="/productos/delete/<%=producto.ID_Producto %>?_method=delete"
-                                                method="post" style="display: inline-flex" id="form_delete">
-                                                <button type="submit" class="btn-delete"
-                                                    data-product-id="<%=producto.ID_Producto %>"><i
-                                                        class="fa-solid fa-trash fa-lg"></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
 
-                                    <% }) %>
-                            </tbody>
-                        </table>
-                    </section>
-                </div>
-            </main>
+            <h1 class="title">Listado de Productos</h1>
+            <div class="container">
+
+                <% productos.forEach(producto=> { %>
+                    <ul class="product-list">
+                        <li class="card">
+                            <a href="/productos/detalle/<%=producto.ID_Producto %>">
+                                <h3 class="product-name">
+                                    <%= producto.Nombre %>
+                                </h3>
+                            </a>
+                            <img src="<%=producto.ImagenesProductos[0].ruta%>" alt="image usuario">
+                            <h1 class="info"> $<%= producto.Precio %></h1>
+                            <div class="botones-acciones">
+                                <td>
+                                    <a href="/productos/editar/<%=producto.ID_Producto%>"><i
+                                            class="fa-solid fa-pen-to-square fa-lg"></i></a>
+                                </td>
+                                <td>
+                                    <form action="/productos/delete/<%=producto.ID_Producto %>?_method=delete"
+                                        method="post" style="display: inline-flex" id="form_delete">
+                                        <button type="submit" class="btn-delete eliminar"
+                                            data-product-id="<%=producto.ID_Producto %>"><i
+                                                class="fa-solid fa-trash-can fa-lg"></i></button>
+                                    </form>
+                                </td>
+                            </div>
+
+
+                        </li>
+                    </ul>
+
+                    <% }) %>
+            </div>
 
             <%- include ('../partials/footer') %>
     </body>

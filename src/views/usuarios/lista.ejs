@@ -11,23 +11,25 @@
                             <a href="/usuarios/perfil/<%=usuario.id %>">
                                 <h3 class="user-name">
                                     <%= usuario.nombre %>
-                                        <%= usuario.apellido %>
+                                    <%= usuario.apellido %>
                                 </h3>
-                                <!-- la imagen se guarda con la ruta absoluta sin public, ejemplo: /img/nombre-image.png -->
-                                <img src="<%=usuario.avatar%>" alt="image usuario">
-                                <h1 class="info"> <%= usuario.email %> </h1>
-                            </a>    
-                                <div class="botones-acciones">
-                                    <td>
-                                        <a href="/usuarios/edit/<%=usuario.id%>"><i
-                                                class="fa-solid fa-pen-to-square fa-lg"></i></a>
-                                    </td>
-                                    <td>
-                                        <a href="/usuarios/eliminar/<%=usuario.id%>"><i
-                                                class="fa-solid fa-trash-can fa-lg"></i></a>
-                                    </td>
-                                </div>
-                            
+
+                            </a>
+                            <img src="<%=usuario.avatar%>" alt="image usuario">
+                            <h1 class="info">
+                                <%= usuario.email %>
+                            </h1>
+                            <div class="botones-acciones">
+                                <td>
+                                    <a href="/usuarios/edit/<%=usuario.id%>"><i
+                                            class="fa-solid fa-pen-to-square fa-lg"></i></a>
+                                </td>
+                                <td>
+                                    <a href="/usuarios/eliminar/<%=usuario.id%>"><i
+                                            class="fa-solid fa-trash-can fa-lg eliminar"></i></a>
+                                </td>
+                            </div>
+
 
                         </li>
                     </ul>

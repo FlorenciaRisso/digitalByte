@@ -68,6 +68,7 @@ color: red;
     padding: 5px;
 }
 .register__button{
+    color: white;
     background-color:#906CBE;
 }
 .block-input{
@@ -91,12 +92,6 @@ border: 1px solid #c2c2c2;
     justify-content: center;
     gap: 20px;
     margin-bottom: 10px;
-}
-.title-container{
-    font-family: 'Noto Sans';
-    background-color: #863876;
-    border-radius: 10px;
-    text-align: center;
 }
 .title{
     font-size: 20px;
