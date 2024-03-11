@@ -51,7 +51,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    border: 1px solid grey;
+
 }
 .p-off{
     font-size: 1.5rem;
@@ -142,8 +142,6 @@
     height: 100%;
     object-fit: cover;
     margin: 2px;
-    background-color: #f7c1ff;
-    border-radius: 10px;
 }
 
 .botones-accion {
@@ -151,44 +149,45 @@
 }
 
 .titulo-producto {
-    background-color: #1259c3;
-    color: white;
-    border-radius: 5px;
+    background-color: #aaabf5cb;
+    border-radius: 0;
+    color: rgb(0, 0, 0);
 }
 
 .titulo-producto p {
+    border-radius: 0%;
     text-align: center;
     padding: 5px;
 
 }
 
-
 .descripcion-producto p {
+    font-size: 15px;
     color: rgb(43, 43, 43);
     padding: 5px;
-    font-family: system-ui;
 }
 
 .descripcion-producto_titulo {
     display: flex;
-    background-color: #d2a3f8;
-    border-radius: 10px;
-    padding: 5px;
+    background-color: #dcc0f3;
+    border-radius: 5px;
+    padding: 2px;
 }
 
 .descripcion-producto_titulo i {
     display: flex;
     align-items: center;
 }
+
 table{
     width: 100%;
 }
 .caracteristicas-producto_titulo {
     display: flex;
     align-items: center;
-    background-color: #d2a3f8;
-    border-radius: 10px;
-    padding: 10px;
+    background-color: #dcc0f3;
+    border-radius: 5px;
+    padding: 5px;
     margin-bottom: 5px;
 }
 .caracteristicas-producto_titulo i{
@@ -304,11 +303,14 @@ table{
     }
 
     .detalle-producto {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+        margin: 30px;
+        background-color: aliceblue;
+        padding: 25px;
         width: 40%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-
     }
 
 
@@ -317,8 +319,6 @@ table{
         flex-direction: column;
         height: 100%;
         justify-content: space-around;
-        background-color: #ffffff;
-        border-radius: 10px;
     }
 
     .imagen-principal {
@@ -342,6 +342,11 @@ table{
 
     }
 
+    .imagenes-secundarias {
+        display: flex;
+        justify-content: space-around;
+    }
+
     .imagen-producto-relacionado {
         display: flex;
         justify-content: center;
@@ -356,4 +361,8 @@ table{
         min-width: 30px;
     }
 
+    .detalle-producto{
+        padding: 25px 0px;
+        
+    }
 }

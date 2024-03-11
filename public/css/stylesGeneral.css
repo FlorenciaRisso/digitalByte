@@ -40,6 +40,7 @@ body {
 
 main {
   flex: 1;
+  background-color: #dcdbf1;
 }
 
 a {
@@ -76,7 +77,6 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 15px;
 
 }
 
@@ -261,10 +261,12 @@ a {
   flex-direction: column;
 
 }
-.float{
+
+.float {
   display: flex;
   justify-content: center;
 }
+
 .hamburger-button {
   display: block;
   color: white;
@@ -460,13 +462,13 @@ a {
 
 .offer__image {
   width: 20vw;
-  border-radius: 10px;
+  border-radius: 5px;
   overflow: hidden;
   text-align: center;
   min-width: 200px;
   min-height: 178px;
   transition: transform 0.3s ease;
-  background-color: #825ab5;
+  background-color: #b291e6;
   position: relative;
 }
 
@@ -493,8 +495,8 @@ a {
 
 .offer__image:hover {
   transform: translateY(-5px);
-  box-shadow: 9px 5px 20px 0px rgba(0, 0, 0, 80%);
-  background-color: #3c1c55;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  background-color: #64467a;
   cursor: pointer;
 }
 
@@ -534,7 +536,7 @@ a {
   width: 100%;
   text-transform: uppercase;
   text-align: center;
-  background-color: #c3afdf;
+  background-color: #aaabf5cb;
   padding: 10px;
   color: rgb(0, 0, 0);
 }
@@ -555,7 +557,7 @@ a {
   justify-content: center;
   align-items: center;
   border: 1px solid #ccc;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   border-radius: 10px;
 }
 
@@ -1038,7 +1040,7 @@ a {
   .lista-secciones>li>a {
     color: rgb(47, 47, 47);
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 15px;
   }
 
   .lista-secciones>li>a:hover {
@@ -1112,6 +1114,7 @@ a {
   }
 
   .offer__image {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     min-width: 300px;
   }
 
@@ -1138,7 +1141,8 @@ a {
     margin-right: 10px;
     width: 20px;
   }
-  .float{
+
+  .float {
     justify-content: right;
   }
 }
