@@ -1,131 +1,174 @@
-<%- include ('../partials/head',{cssFile:'/css/stylesUsuarioEditContraseña.css'})%>
+<%- include ('../partials/head',{cssFile:'/css/stylesUsuarioEdit.css'})%>
 
   <body>
     <%-include ('../partials/headerYNav') %>
 
-    <div class="body">
-      <div class="container">
-        <div class="title-container">
-          <h2 class="title">Editar Usuario</h2>
+      <div class="body">
+        <div class="container">
+          <div class="title-container">
+            <h2 class="title">Editar Usuario</h2>
+          </div>
+          <form class="edit-user__form" action="/usuarios/edit/<%= oldData.id %>?_method=put" method="POST"
+            enctype="multipart/form-data">
+            <div class="div__imagen">
+              <div class="edit-user__image-form block-input">
+                <label for="avatar-upload" class="custom-file-upload">
+                  <b>Imagen de perfil:</b>
+                </label>
+                <% if (locals.oldData && oldData.avatar) { %>
+                  <div class="avatar-container">
+                    <img id="avatar-img" class="avatar" src="<%= oldData.avatar %>" alt="Imagen actual">
+                    <input type="hidden" name="oldImage" value="<%= oldData.avatar %>">
+                    <div id="camera-icon" class="camera-icon"><i class="fas fa-camera"></i></div>
+                  </div>
+                  <% } %>
+                    <input id="avatar-upload" class="file-upload" type="file" name="avatar" accept=".jpg, .png">
+                    <% if(locals.errors && errors.avatar) { %>
+                      <div class="text-danger">
+                        <%= errors.avatar.msg %>
+                      </div>
+                      <% } %>
+              </div>
+            </div>
+            <div class="div__datos">
+              <div class="edit-user__firstname-form block-input">
+                <input type="hidden" name="id" value="<%=oldData.id %>">
+                <input type="text" name="firstName"
+                  class="edit-user__input-form <%= locals.errors && errors.firstName? 'is-invalid' : null %> nombre"
+                  placeholder="Nombre" value="<%= locals.oldData ? oldData.nombre : usuario.nombre %>">
+                <small class="nombre-msg"></small>
+
+                <% if(locals.errors && errors.firstName) {%>
+                  <div class="text-danger">
+                    <%= errors.firstName.msg %>
+                  </div>
+                  <% } %>
+              </div>
+
+              <div class="edit-user__lastname-form block-input">
+                <input type="text" name="lastName"
+                  class="edit-user__input-form <%= locals.errors && errors.lastName? 'is-invalid' : null %> apellido"
+                  placeholder="Apellido" value="<%= locals.oldData ? oldData.apellido : usuario.apellido %>">
+                <small class="apellido-msg"></small>
+
+                <% if(locals.errors && errors.lastName) {%>
+                  <div class="text-danger">
+                    <%= errors.lastName.msg %>
+                  </div>
+                  <% } %>
+              </div>
+
+              <div class="edit-user__email-form block-input">
+                <input type="email" name="email"
+                  class="edit-user__input-form <%= locals.errors && errors.email ? 'is-invalid' : null %> email"
+                  placeholder="Email" value="<%= locals.oldData ? oldData.email : usuario.email %>">
+                <small class="email-msg"></small>
+
+                <% if(locals.errors && errors.email) {%>
+                  <div class="text-danger">
+                    <%= errors.email.msg %>
+                  </div>
+                  <% } %>
+              </div>
+
+              <div class="edit-user__direccion-form block-input">
+                <input type="direccion" name="direccion"
+                  class="edit-user__input-form <%= locals.errors && errors.direccion ? 'is-invalid' : null %> direccion"
+                  placeholder="Email" value="<%= locals.oldData ? oldData.direccion : usuario.direccion %>">
+                <small class="direccion-msg"></small>
+
+                <% if(locals.errors && errors.direccion) {%>
+                  <div class="text-danger">
+                    <%= errors.direccion.msg %>
+                  </div>
+                  <% } %>
+              </div>
+
+              <div class="edit-user__telefono-form block-input">
+                <input type="telefono" name="telefono"
+                  class="edit-user__input-form <%= locals.errors && errors.telefono ? 'is-invalid' : null %> telefono"
+                  placeholder="Email" value="<%= locals.oldData ? oldData.telefono : usuario.telefono %>">
+                <small class="telefono-msg"></small>
+
+                <% if(locals.errors && errors.telefono) {%>
+                  <div class="text-danger">
+                    <%= errors.telefono.msg %>
+                  </div>
+                  <% } %>
+              </div>
+
+              <div class="edit-user__category-form block-input ">
+                <label for="rol"><b>Rol de usuario:</b></label>
+                <select name="rol" id="rol"
+                  class="edit-user__input-form <%= locals.errors && errors.rol ? 'is-invalid' : '' %> rol">
+                  <option value="">Elige un rol de usuario</option>
+                  <% let categories=["Vendedor", "Cliente" , "Administrador" ] %>
+
+                    <% for (const oneCategory of categories) { %>
+                      <option value="<%= oneCategory %>" <%=locals.oldData && (oneCategory===oldData.rol) ? 'selected' :
+                        null %>
+                        > <%= oneCategory %>
+                      </option>
+                      <% } %>
+                </select>
+                <small class="rol-msg"></small>
+
+                <% if(locals.errors && errors.rol) {%>
+                  <div class="text-danger">
+                    <%= errors.rol.msg %>
+                  </div>
+                  <% } %>
+              </div>
+
+              <div class="edit-user__category-form block-input">
+                <label for="country"><b>País de nacimiento</b></label>
+                <select name="country"
+                  class="edit-user__input-form <%= locals.errors && errors.country ? 'is-invalid' : null %> nacionalidad">
+                  <option value="">Elige un país</option>
+                  <% let countries=[ "Argentina" , "Bolivia" , "Chile" , "Uruguay" , "Paraguay" , "Colombia" , "Ecuador"
+                    , "Perú" ]; %>
+                    <% for (const oneCountry of countries) { %>
+                      <option value="<%= oneCountry %>" <%=locals.oldData && (oneCountry===oldData.nacionalidad)
+                        ? 'selected' : null %>
+                        > <%= oneCountry %>
+                      </option>
+                      <% } %>
+                </select>
+                <small class="nacionalidad-msg"></small>
+
+                <% if(locals.errors && errors.country) { %>
+                  <div class="text-danger">
+                    <%= errors.country.msg %>
+                  </div>
+                  <% } %>
+              </div>
+
+              <div class="edit-user__buttons">
+                <button class="edit-user__button btn ">Guardar cambios</button>
+                <div>
+                  <a href="/usuarios/userProfile" class="edit-user__link">Volver al perfil</a>
+                </div>
+              </div>
+
+            </div>
+          </form>
         </div>
-        <form class="edit-user__form" action="/usuarios/edit/<%= oldData.id %>?_method=put" method="POST" enctype="multipart/form-data">
-
-          <div class="edit-user__firstname-form block-input">
-            <input type="hidden" name="id" value="<%=oldData.id %>">
-            <input type="text" name="firstName"
-              class="edit-user__input-form <%= locals.errors && errors.firstName? 'is-invalid' : null %> nombre"
-              placeholder="Nombre" value="<%= locals.oldData ? oldData.nombre : usuario.nombre %>">
-              <small class="nombre-msg"></small>
-
-            <% if(locals.errors && errors.firstName) {%>
-              <div class="text-danger">
-                <%= errors.firstName.msg %>
-              </div>
-              <% } %>
-          </div>
-
-          <div class="edit-user__lastname-form block-input">
-            <input type="text" name="lastName"
-              class="edit-user__input-form <%= locals.errors && errors.lastName? 'is-invalid' : null %> apellido"
-              placeholder="Apellido" value="<%= locals.oldData ? oldData.apellido : usuario.apellido %>">
-              <small class="apellido-msg"></small>
-
-            <% if(locals.errors && errors.lastName) {%>
-              <div class="text-danger">
-                <%= errors.lastName.msg %>
-              </div>
-              <% } %>
-          </div>
-
-          <div class="edit-user__email-form block-input">
-            <input type="email" name="email"
-              class="edit-user__input-form <%= locals.errors && errors.email ? 'is-invalid' : null %> email"
-              placeholder="Email" value="<%= locals.oldData ? oldData.email : usuario.email %>">
-              <small class="email-msg"></small>
-
-            <% if(locals.errors && errors.email) {%>
-              <div class="text-danger">
-                <%= errors.email.msg %>
-              </div>
-              <% } %>
-          </div>
-
-          <div class="edit-user__category-form block-input ">
-            <label for="rol"><b>Rol de usuario:</b></label>
-            <select name="rol" id="rol"
-              class="edit-user__input-form <%= locals.errors && errors.rol ? 'is-invalid' : '' %> rol">
-              <option value="">Elige un rol de usuario</option>
-              <% let categories=["Vendedor", "Cliente", "Administrador" ] %>
-
-                <% for (const oneCategory of categories) { %>
-                  <option value="<%= oneCategory %>" <%=locals.oldData && (oneCategory===oldData.rol) ? 'selected'
-                    : null %>
-                    > <%= oneCategory %>
-                  </option>
-                  <% } %>
-            </select>
-            <small class="rol-msg"></small>
-
-            <% if(locals.errors && errors.rol) {%>
-              <div class="text-danger">
-                <%= errors.rol.msg %>
-              </div>
-              <% } %>
-          </div>
-
-          <div class="edit-user__category-form block-input">
-            <label for="country"><b>País de nacimiento</b></label>
-            <select name="country"
-              class="edit-user__input-form <%= locals.errors && errors.country ? 'is-invalid' : null %> nacionalidad">
-              <option value="">Elige un país</option>
-              <% let countries=[ "Argentina" , "Bolivia" , "Chile" , "Uruguay" , "Paraguay" , "Colombia" , "Ecuador"
-                , "Perú" ]; %>
-                <% for (const oneCountry of countries) { %>
-                  <option value="<%= oneCountry %>" <%=locals.oldData && (oneCountry===oldData.nacionalidad) ? 'selected' :
-                    null %>
-                    > <%= oneCountry %>
-                  </option>
-                  <% } %>
-            </select>
-            <small class="nacionalidad-msg"></small>
-
-            <% if(locals.errors && errors.country) { %>
-              <div class="text-danger">
-                <%= errors.country.msg %>
-              </div>
-              <% } %>
-          </div>
-
-
-          <div class="edit-user__image-form block-input">
-            <label class="form-label"><b>Imagen de perfil:</b></label>
-            <input type="file" name="avatar" accept=".jpg, .png">
-
-            <% if (locals.oldData && oldData.avatar) { %>
-              <img class="avatar" src="<%= oldData.avatar %>" alt="Imagen actual">
-              <input type="hidden" name="oldImage" value="<%= oldData.avatar %>">
-          <% } %>
-
-            <% if(locals.errors && errors.avatar) { %>
-              <div class="text-danger">
-                <%= errors.avatar.msg %>
-              </div>
-              <% } %>
-          </div>
-
-          <div class="edit-user__buttons">
-            <button class="edit-user__button btn ">Guardar cambios</button>
-          </div>
-
-          <div class="footer-edit-user">
-            <a href="/usuarios/userProfile" class="edit-user__link">Volver al perfil</a>
-          </div>
-        </form>
       </div>
-    </div>
   </body>
   <%- include ('../partials/footer') %>
-  <%- include ('../partials/script-change-img') %>
-  <script src="/js/usuarios/edit.js"></script>
+    <%- include ('../partials/script-change-img') %>
+      <script src="/js/usuarios/edit.js"></script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const cameraIcon = document.getElementById("camera-icon");
+          const avatarUpload = document.getElementById("avatar-upload");
 
-    </html>
+          if (cameraIcon && avatarUpload) {
+            cameraIcon.addEventListener("click", function () {
+              avatarUpload.click();
+            });
+          }
+        });
+      </script>
+
+      </html>

@@ -8,10 +8,10 @@ window.addEventListener('load', function () {
 
     email.addEventListener("input", function () {
         let emailValue = this.value.trim();
-    
+
         // Expresión regular para validar un email
         let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    
+
         if (emailValue === '') {
             email.style.border = '2px solid red';
             emailMsg.textContent = 'Este campo es obligatorio';
@@ -25,7 +25,7 @@ window.addEventListener('load', function () {
             emailMsg.style.display = 'none';
         }
     });
-    
+
     email.addEventListener("blur", function () {
         const emailValue = this.value.trim();
         let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -33,13 +33,6 @@ window.addEventListener('load', function () {
             email.style.border = '2px solid red';
             emailMsg.textContent = 'Este campo es obligatorio';
             emailMsg.style.display = 'block';
-        } else if (!emailRegex.test(emailValue)) {
-            email.style.border = '2px solid red';
-            emailMsg.textContent = 'Email inválido';
-            emailMsg.style.display = 'block';
-        } else {
-            email.style.border = '2px solid green';
-            emailMsg.style.display = 'none';
         }
         fetch('/usuarios/verificarEmail', {
             method: 'POST',
@@ -48,17 +41,20 @@ window.addEventListener('load', function () {
             },
             body: JSON.stringify({ email: emailValue }),
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.existe && Object.keys(data.existe).length > 0) {
-                emailMsg.textContent = "Este correo electrónico ya está registrado.";
-                emailMsg.style.display = 'block';
-                email.style.border = '2px solid red';
-            } 
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data.existe && Object.keys(data.existe).length > 0) {
+                    email.style.border = '2px solid green';
+                    emailMsg.style.display = 'none';
+                } else if(email.value.length > 0 && emailRegex.test(emailValue)) {
+                    email.style.border = '2px solid red';
+                    emailMsg.textContent = 'El email no esta registrado';
+                    emailMsg.style.display = 'block';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     });
 
     contraseña.addEventListener('blur', function () {
@@ -95,7 +91,7 @@ window.addEventListener('load', function () {
 
     form.addEventListener('submit', function (e) {
         if (email.value === '' || contraseña.value === '') {
-            e.preventDefault(); 
+            e.preventDefault();
         }
     })
 })

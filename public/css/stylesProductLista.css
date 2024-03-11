@@ -16,10 +16,6 @@ h1 {
     color: #6a0572;
 }
 
-.product-list {
-    list-style: none;
-    padding: 0;
-}
 
 .product-list li {
     border: 1px solid #6a0572;
@@ -49,8 +45,10 @@ h1 {
 .product-info p {
     margin: 5px 0;
 }  */
-
-/* Estilo para la lista de usuarios */
+.product-list {
+    list-style: none;
+    padding: 0;
+}
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -59,11 +57,13 @@ h1 {
 }
 .btn-agregar{
     margin-right: 10px;
-    background-color: rgb(61, 61, 194);
+    background-color: rgb(111, 155, 70);
     border:none;
-    color:white;
     padding: 10px;
     border-radius: 10px;
+}
+.btn-agregar a{
+    color:white;
 }
 .title {
     width: 100%;
@@ -118,7 +118,7 @@ h1 {
 
 /* Estilo para los botones de acciones */
 .botones-acciones a{
-    color: #333;
+    color: #2b2b2b;
     text-decoration: none;
     margin-right: 5px;
 }
@@ -127,6 +127,7 @@ padding: 0;
 border: none;
 background: transparent;
 }
+
 .botones-acciones a:hover {
     color: #007bff;
     cursor: pointer

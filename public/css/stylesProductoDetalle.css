@@ -162,9 +162,6 @@
 
 }
 
-.descripcion-producto {
-    border: 1px solid grey;
-}
 
 .descripcion-producto p {
     color: rgb(43, 43, 43);
@@ -210,7 +207,6 @@ table{
 
 .caracteristicas-producto_table {
     padding: 5px;
-    border: 1px solid grey;
     border-radius: 10px;
 }
 
