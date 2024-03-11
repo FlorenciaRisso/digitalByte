@@ -1,10 +1,6 @@
 window.addEventListener('load', function () {
     let nombre = document.querySelector('.nombre');
-    let nombreVacio = document.querySelector('.nombre-empty-msg');
     let descripcion = document.querySelector('.descripcion');
-    let descripcionVacio = document.querySelector('.descripcion-empty-msg');
-    let descripcionMsg = document.querySelector('.descripcion-msg');
-    let nameMsg = document.querySelector('.nombre-msg');
     let tamaño = document.querySelector('.tamaño');
     let memoria = document.querySelector('.memoria');
     let camara = document.querySelector('.camara');
@@ -13,6 +9,10 @@ window.addEventListener('load', function () {
     let descuento = document.querySelector('.descuento');
     let stock = document.querySelector('.stock');
 
+    let nombreMsg = document.querySelector('.name-msg');
+    let descripcionMsg = document.querySelector('.descripcion-msg');
+    let precioMsg = document.querySelector('.precio-msg');
+    let stockMsg = document.querySelector('.stock-msg');
 
 
     // Event listeners para los campos de tamaño, memoria, cámara, RAM, precio, descuento y stock
@@ -32,52 +32,44 @@ window.addEventListener('load', function () {
             }
         });
 
-
         campo.addEventListener('blur', function () {
             if (soloNumeros(campo.value)) {
                 console.log(campo.value)
                 nombre.style.border = 'none';
             }
-
         });
     });
 
     nombre.addEventListener('blur', function () {
         // Verifica si el campo de nombre está vacío
         if (nombre.value === '') {
-            nombreVacio.style.display = 'block';
+            nombreMsg.style.display = 'block';
             nombre.style.border = '2px solid red';
         } else {
             // Verifica la longitud mínima del nombre
             if (nombre.value.length < 5) {
-                nombreVacio.style.display = 'none';
-                nameMsg.style.display = 'block'; // Muestra el mensaje de longitud mínima
+                nombreMsg.textContent = 'Debe contener al menos 5 caracteres'; // Muestra el mensaje de longitud mínima
                 nombre.style.border = '2px solid red';
             } else {
-                nombreVacio.style.display = 'none';
-                nameMsg.style.display = 'none'; // Oculta el mensaje de longitud mínima
-                nombre.style.border = 'none';
+                nombreMsg.style.display = 'none';
+                nombre.style.border = '2px solid green';
             }
         }
     });
 
     nombre.addEventListener('input', function () {
-        console.log(1)
         // Verifica si el campo de nombre está vacío
         if (nombre.value === '') {
-            nombreVacio.style.display = 'block';
+            nombreMsg.style.display = 'block';
             nombre.style.border = '2px solid red';
-            nameMsg.style.display = 'none'; // Oculta el mensaje de longitud mínima
         } else {
             // Verifica la longitud mínima del nombre
             if (nombre.value.length < 5) {
-                nombreVacio.style.display = 'none';
-                nameMsg.style.display = 'block'; // Muestra el mensaje de longitud mínima
+                nameMsg.textContent = 'Debe contener al menos 5 caracteres'; // Muestra el mensaje de longitud mínima
                 nombre.style.border = '2px solid red';
             } else {
-                nombreVacio.style.display = 'none';
-                nameMsg.style.display = 'none'; // Oculta el mensaje de longitud mínima
-                nombre.style.border = '2px solid initial';
+                nombreMsg.style.display = 'none';
+                nombre.style.border = '2px solid green';
             }
         }
     });
@@ -85,17 +77,16 @@ window.addEventListener('load', function () {
     descripcion.addEventListener('blur', function () {
         // Verifica si el campo de descripción está vacío
         if (descripcion.value === '') {
-            descripcionVacio.style.display = 'block';
+            descripcionMsg.style.display = 'block';
             descripcion.style.border = '2px solid red';
         } else {
             // Verifica la longitud mínima de la descripción
             if (descripcion.value.length < 20) {
-                descripcionMsg.style.display = 'block';
-                descripcionVacio.style.display = 'none';
+                descripcionMsg.textContent = 'La descripción debe contener al menos 20 caracteres';
                 descripcion.style.border = '2px solid red';
             } else {
-                descripcionVacio.style.display = 'none';
-                descripcion.style.border = '2px solid initial';
+                descripcionMsg.style.display = 'none';
+                descripcion.style.border = '2px solid green';
             }
         }
     });
@@ -103,22 +94,40 @@ window.addEventListener('load', function () {
     descripcion.addEventListener('input', function () {
         // Verifica si el campo de descripción está vacío
         if (descripcion.value === '') {
-            descripcionVacio.style.display = 'block';
+            descripcionMsg.style.display = 'block';
             descripcion.style.border = '2px solid red';
-            descripcionMsg.style.display = 'none'; // Oculta el mensaje de longitud mínima
         } else {
             // Verifica la longitud mínima de la descripción
             if (descripcion.value.length < 20) {
-                descripcionMsg.style.display = 'block';
-                descripcionVacio.style.display = 'none';
+                descripcionMsg.style.display = 'La descripción debe contener al menos 20 caracteres';
                 descripcion.style.border = '2px solid red';
             } else {
-                descripcionVacio.style.display = 'none';
-                descripcionMsg.style.display = 'none'; // Oculta el mensaje de longitud mínima
-                descripcion.style.border = 'none';
+                descripcionMsg.style.display = 'none';
+                descripcion.style.border = '2px solid red';
             }
         }
     });
+
+    precio.addEventListener('blur', function () {
+        if (precio.value === '') {
+            precioMsg.style.display = 'block';
+            precio.style.border = '2px solid red';
+        } else {
+            nombreMsg.style.display = 'none';
+            nombre.style.border = '2px solid green';
+        }
+    })
+
+    precio.addEventListener('input', function () {
+        if (precio.value === '') {
+            precioMsg.style.display = 'block';
+            precio.style.border = '2px solid red';
+        } else {
+            precioMsg.style.display = 'none';
+            precio.style.border = '2px solid green';
+        }
+    })
+
 
     function soloNumeros(input) {
         let regex = /^[0-9]*$/;

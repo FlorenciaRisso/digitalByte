@@ -29,10 +29,10 @@ td {
     text-align: center;
 }
 
-.nombre-empty-msg, 
-.nombre-msg,
-.descripcion-empty-msg,
-.descripcion-msg {
+.name-msg, 
+.descripcion-msg,
+.precio-msg,
+.stock-msg {
     display: none;
     color: red;
 }

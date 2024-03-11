@@ -34,23 +34,26 @@
                         <div class="edit-user__password-form block-input">
 
                             <input type="password" name="contraseniaVieja"
-                                class="edit-user__input-form <%= locals.errors && errors.contraseniaVieja ? 'is-invalid' : null %>"
+                                class="edit-user__input-form <%= locals.errors && errors.contraseniaVieja ? 'is-invalid' : null %> contraseña-vieja"
                                 placeholder="Contraseña Actual">
+                                <small class="contraseña-vieja-msg"></small>
                         </div>
 
                         <div class="edit-user__password-form block-input">
 
                             <input type="password" name="contrasenia"
-                                class="edit-user__input-form <%= locals.errors && errors.contrasenia ? 'is-invalid' : null %>"
+                                class="edit-user__input-form <%= locals.errors && errors.contrasenia ? 'is-invalid' : null %> nueva-contraseña"
                                 placeholder="Nueva Contraseña">
+                                <small class="contraseña-nueva-msg"></small>
 
                         </div>
 
                         <div class="edit-user__password-form block-input">
 
                             <input type="password" name="confirmContrasenia"
-                                class="edit-user__input-form <%= locals.errors && errors.confirmContrasenia ? 'is-invalid' : null %>"
+                                class="edit-user__input-form <%= locals.errors && errors.confirmContrasenia ? 'is-invalid' : null %> repetir-contraseña"
                                 placeholder="Repetir contraseña">
+                                <small class="repetir-contraseña-msg"></small>
 
                         </div>
 
@@ -64,5 +67,6 @@
 
     </body>
     <%- include ('../partials/footer') %>
+    <script src="/js/usuarios/changePassword.js"></script>
 
         </html>

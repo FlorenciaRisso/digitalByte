@@ -9,6 +9,7 @@
                         <h2 class="title">Crear producto</h2>
                     </div>
                     <form class="alta__form" action="/productos/create" method="post" enctype="multipart/form-data">
+
                         <div class="alta__name-form block-input">
                             <label for="name">Producto: </label>
                             <input class="name__input-form nombre" type="text" name="name" id="name"
@@ -19,8 +20,7 @@
                                         <%= errors.name.msg %>
                                     </div>
                                     <% } %>
-                            <small class="nombre-empty-msg">Campo obligatorio</small>
-                            <small class="nombre-msg">Debe contener al menos 5 caracteres</small>
+                            <small class="name-msg">Ingresa el nombre del producto</small>
                         </div>
 
                                 <div class="alta__descripcion-form block-input">
@@ -33,8 +33,7 @@
                                             <%= errors.description.msg %>
                                         </div>
                                         <% } %>
-                                    <small class="descripcion-empty-msg">Campo obligatorio</small>
-                            <small class="descripcion-msg">Debe contener al menos 20 caracteres</small>
+                                    <small class="descripcion-msg">Ingresa la descripción del producto</small>
                         </div>
 
 
@@ -150,6 +149,7 @@
                                             <input class="precio" type="number" id="price" name="price"
                                                 value="<%= locals.oldData && oldData.price ? oldData.price : '' %>"
                                                 placeholder="Precio del producto">
+                                                <small class="precio-msg">Ingresa el precio del producto</small>
                                                 <% if(locals.errors && errors.price) {%>
                                         <div class="text-danger">
                                             <%= errors.price.msg %>
@@ -170,8 +170,10 @@
                                             <input class="stock" type="number" id="stock" name="stock"
                                                 value="<%= locals.oldData && oldData.stock ? oldData.stock : '' %>"
                                                 placeholder="Stock">
+                                                <small class="stock-msg">Ingresa el stock del producto</small>
                                                 <% if(locals.errors && errors.stock) {%>
                                         <div class="text-danger">
+
                                             <%= errors.stock.msg %>
                                         </div>
                                         <% } %>
@@ -192,7 +194,7 @@
     </body>
     <%- include ('../partials/script-menu') %>
             <%- include ('../partials/script-change-img') %>
-            <script src="/js/productoCreate.js"></script>
+            <script src="/js/productos/create.js"></script>
 
 
             </html>

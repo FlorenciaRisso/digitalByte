@@ -59,9 +59,17 @@ body {
 }
 
 .nombre-msg,
-.descripcion-msg,
-.precio-msg,
-.stock-msg{
+.apellido-msg,
+.email-msg,
+.rol-msg,
+.nacionalidad-msg {
+    display: none;
+    color: red;
+}
+
+.contraseña-vieja-msg,
+.contraseña-nueva-msg,
+.repetir-contraseña-msg{
     display: none;
     color: red;
 }

@@ -168,7 +168,7 @@ window.addEventListener('load', function () {
     });
 
 
-    repetirContraseña.addEventListener('blur', function () {
+    repetirContraseña.addEventListener('input', function () {
         if (repetirContraseña.value === '') {
             repetirContraseña.style.border = '2px solid red';
             repetirContraseñaMsg.style.display = 'block';
