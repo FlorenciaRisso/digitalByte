@@ -48,6 +48,7 @@ select#category,select#color,#file[type=file]{
 .descripcion-msg,
 .precio-msg,
 .stock-msg{
+    font-size: 12px;
     display: none;
     color: red;
 }

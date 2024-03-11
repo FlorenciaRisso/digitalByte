@@ -126,6 +126,7 @@ select option {
 .email-msg,
 .rol-msg,
 .nacionalidad-msg {
+    font-size: 12px;
     display: none;
     color: red;
 }

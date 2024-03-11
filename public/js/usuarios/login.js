@@ -1,63 +1,90 @@
 window.addEventListener('load', function () {
     let email = document.querySelector('.email');
     let contraseña = document.querySelector('.contraseña');
-    let emptyEmail = document.querySelector('.empty-email-message');
-    let contraseñaMessage = document.querySelector('.contraseña-message');
-    let emailMessage = document.querySelector('.email-message');
 
-    let emptyPassword = document.querySelector('.empty-password-message')
+    let emailMsg = document.querySelector('.email-msg');
+    let contraseñaMsg = document.querySelector('.contraseña-msg');
 
-    email.addEventListener('blur', function () {
-        if (email.value === '') {
-            emptyEmail.style.display = 'block';
+
+    email.addEventListener("input", function () {
+        let emailValue = this.value.trim();
+    
+        // Expresión regular para validar un email
+        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+        if (emailValue === '') {
             email.style.border = '2px solid red';
-            emailMessage.style.display = 'none';
-        } else if (email.validity.typeMismatch) {
-            emailMessage.style.display = 'block'; 
-            emptyEmail.style.display = 'none';
+            emailMsg.textContent = 'Este campo es obligatorio';
+            emailMsg.style.display = 'block';
+        } else if (!emailRegex.test(emailValue)) {
             email.style.border = '2px solid red';
+            emailMsg.textContent = 'Email inválido';
+            emailMsg.style.display = 'block';
         } else {
-            emptyEmail.style.display = 'none';
-            emailMessage.style.display = 'none';
             email.style.border = '2px solid green';
+            emailMsg.style.display = 'none';
         }
     });
-
-    email.addEventListener('input', function () {
-        if (email.value === '') {
-            emptyEmail.style.display = 'block';
+    
+    email.addEventListener("blur", function () {
+        const emailValue = this.value.trim();
+        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailValue === '') {
             email.style.border = '2px solid red';
-            emailMessage.style.display = 'none';
+            emailMsg.textContent = 'Este campo es obligatorio';
+            emailMsg.style.display = 'block';
+        } else if (!emailRegex.test(emailValue)) {
+            email.style.border = '2px solid red';
+            emailMsg.textContent = 'Email inválido';
+            emailMsg.style.display = 'block';
         } else {
-            emptyEmail.style.display = 'none';
-            emailMessage.style.display = 'none';
             email.style.border = '2px solid green';
+            emailMsg.style.display = 'none';
         }
+        fetch('/usuarios/verificarEmail', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email: emailValue }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.existe && Object.keys(data.existe).length > 0) {
+                emailMsg.textContent = "Este correo electrónico ya está registrado.";
+                emailMsg.style.display = 'block';
+                email.style.border = '2px solid red';
+            } 
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     });
-
 
     contraseña.addEventListener('blur', function () {
         if (contraseña.value === '') {
-            emptyPassword.style.display = 'block';
+            contraseñaMsg.textContent = 'Ingresa una contraseña';
+            contraseñaMsg.style.display = 'block';
             contraseña.style.border = '2px solid red';
-            contraseñaMessage.style.display = 'none';
         } else if (contraseña.value.length < 8) {
-            contraseñaMessage.style.display = 'block';
+            contraseñaMsg.textContent = 'Debe contener al menos 8 caracteres';
+            contraseñaMsg.style.display = 'block';
             contraseña.style.border = '2px solid red';
         } else {
             contraseña.style.border = '2px solid green';
+            contraseñaMsg.style.display = 'none';
         }
     });
 
 
     contraseña.addEventListener('input', function () {
         if (contraseña.value.length < 8) {
-            emptyPassword.style.display = 'none';
+            contraseñaMsg.textContent = 'Ingresa una contraseña';
+            contraseñaMsg.style.display = 'block';
             contraseña.style.border = '2px solid red';
-            contraseñaMessage.style.display = 'none';
         } else {
             contraseña.style.border = '2px solid green';
-            contraseñaMessage.style.display = 'none';
+            contraseñaMsg.style.display = 'none';
         }
     });
 
