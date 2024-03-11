@@ -15,9 +15,9 @@
   color: red;
 }
 
-.email-message,
-.empty-password-message,
-.empty-email-message {
+.email-msg,
+.contraseña-msg{
+  font-size: 12px;
   display: none;
   color: red;
 }
