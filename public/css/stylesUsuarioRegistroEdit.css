@@ -121,6 +121,15 @@ select option {
     border: 1px solid red !important;
 }
 
+.nombre-msg,
+.apellido-msg,
+.email-msg,
+.rol-msg,
+.nacionalidad-msg {
+    display: none;
+    color: red;
+}
+
 @media (min-width: 500px) {
     .container {
         width: 70%;

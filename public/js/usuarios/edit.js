@@ -1,23 +1,25 @@
 window.addEventListener('load', function () {
 
     let nombre = document.querySelector('.nombre');
-    let descripcion = document.querySelector('.descripcion');
-    let precio = document.querySelector('.precio');
-    let stock = document.querySelector('.stock');
+    let apellido = document.querySelector('.apellido');
+    let email = document.querySelector('.email');
+    let rol = document.querySelector('.rol');
+    let nacionalidad = document.querySelector('.nacionalidad')
 
-    let nombreMsg = document.querySelector('.nombre-msg')
-    let descripcionMsg = document.querySelector('.descripcion-msg')
-    let precioMsg = document.querySelector('.precio-msg')
-    let stockMsg = document.querySelector('.stock-msg')
+    let nombreMsg = document.querySelector('.nombre-msg');
+    let apellidoMsg = document.querySelector('.apellido-msg');
+    let emailMsg = document.querySelector('.email-msg');
+    let rolMsg = document.querySelector('.empty-rol');
+    let nacionalidadMsg = document.querySelector('.nacionalidad-msg')
 
-    
     nombre.addEventListener('blur', function () {
         if (nombre.value === '') {
             nombre.style.border = '2px solid red';
             nombreMsg.style.display = 'block';
+            nombreMsg.textContent = 'Ingresa tu nombre';
         } else if (nombre.value.length < 2) {
             nombre.style.border = '2px solid red';
-            nombreMsg.textContent = 'Debe contener al menos 5 caracteres';
+            nombreMsg.textContent = 'Debe contener al menos 2 caracteres';
         } else {
             nombre.style.border = '2px solid green';
             nombreMsg.style.display = 'none'
@@ -30,6 +32,108 @@ window.addEventListener('load', function () {
             nombreMsg.style.display = 'none';
         } else {
             nombre.style.border = '1px solid red';
+        }
+    });
+
+    apellido.addEventListener('blur', function () {
+        if (apellido.value === '') {
+            apellido.style.border = '2px solid red';
+            apellidoMsg.style.display = 'block';
+            apellidoMsg.textContent = 'Ingresa tu apellido';
+        } else if (apellido.value.length < 2) {
+            apellido.style.border = '2px solid red';
+            apellidoMsg.textContent = 'Debe contener al menos 2 caracteres';
+        } else {
+            apellido.style.border = '2px solid green';
+            apellidoMsg.style.display = 'none'
+        }
+    });
+
+    apellido.addEventListener('input', function () {
+        if (apellido.value.length > 2) {
+            apellido.style.border = '1px solid green';
+            apellidoMsg.style.display = 'none';
+        } else {
+            apellido.style.border = '1px solid red';
+        }
+    });
+
+    
+    email.addEventListener('blur', function () {
+        let emailValue = email.value.trim();
+
+        // Expresión regular para validar un email
+        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (emailValue === '') {
+            email.style.border = '2px solid red';
+            emailMsg.style.display = 'block';
+            emailMsg.textContent = 'Ingresa tu email';
+        } else if (!emailRegex.test(emailValue)) {
+            email.style.border = '2px solid red';
+            emailMsg.textContent = 'Email inválido';
+        } else {
+            email.style.border = '2px solid green';
+            emailMsg.style.display = 'none';
+        }
+    });
+
+    email.addEventListener('input', function () {
+        let emailValue = email.value.trim();
+
+        // Expresión regular para validar un email
+        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (emailValue === '') {
+            email.style.border = '2px solid red';
+            emailMsg.style.display = 'block';
+        } else if (!emailRegex.test(emailValue)) {
+            email.style.border = '2px solid red';
+            emailMsg.textContent = 'Email inválido';
+        } else {
+            email.style.border = '2px solid green';
+            emailMsg.style.display = 'none';
+        }
+    });
+
+    rol.addEventListener('blur', function () {
+        if (rol.value === '') {
+            rol.style.border = '2px solid red';
+            rolMsg.style.display = 'block';
+        } else {
+            rol.style.border = '2px solid green';
+            rolMsg.style.display = 'none';
+        }
+    })
+
+    rol.addEventListener('change', function () {
+        if (rol.value === '') {
+            rol.style.border = '2px solid red';
+            rolMsg.style.display = 'block';
+            rolMsg.textContent = 'Ingresa tu rol de usuario'
+        } else {
+            rol.style.border = '2px solid green';
+            rolMsg.style.display = 'none';
+        }
+    });
+
+    nacionalidad.addEventListener('blur', function () {
+        if (nacionalidad.value === '') {
+            nacionalidad.style.border = '2px solid red';
+            nacionalidadMsg.style.display = 'block';
+        } else {
+            nacionalidad.style.border = '2px solid green';
+            nacionalidadMsg.style.display = 'none';
+        }
+    })
+
+    nacionalidad.addEventListener('change', function () {
+        if (nacionalidad.value === '') {
+            nacionalidad.style.border = '2px solid red';
+            nacionalidadMsg.style.display = 'block';
+        }else {
+            nacionalidad.style.border = '2px solid green';
+            nacionalidadMsg.style.display = 'none';
         }
     });
 })

@@ -200,6 +200,14 @@ let userController = {
         }
     },
 
+    verificarEmail: async (req, res) => {
+        const email = req.body.email;
+        let existe = await userService.findByField('email', email);
+        
+        res.json({ existe });
+    },
+    
+
     logout: (req, res) => {
         res.clearCookie('recordame')
         req.session.destroy();
