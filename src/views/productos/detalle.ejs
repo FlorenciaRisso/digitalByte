@@ -61,23 +61,21 @@
                             
                         </div>
                         <div class="oferta-precio">
+                            <div class="precio">
+                                <% let precioFinal=producto.Precio-(producto.Precio*(producto.Descuento/100))%>
+                                    <p>$<%=funcion.getPrecioFormateado(precioFinal)%>
+                                    </p>
+                            </div>
                             <% if(producto.Descuento !=0){ %>
                                 <div class="oferta">
                                     <p class="p-off">
                                         <%= producto.Descuento %>%OFF 🎊
                                     </p>
-                                </div>
                                 <%}%>
-                                    <div class="precio-comprar">
-                                        <div class="precio">
-                                            <% let precioFinal=producto.Precio-(producto.Precio*(producto.Descuento/100))%>
-                                                <p>$<%=funcion.getPrecioFormateado(precioFinal)%>
-                                                </p>
-                                        </div>
-                                        <a href="/productos/addCarrito" class="div-btn-comprar">
-                                            <button class="btn-comprar">Agregar al Carrito</button>
-                                        </a>
-                                    </div>
+                                    <a href="/productos/addCarrito" class="div-btn-comprar">
+                                        <button class="btn-comprar">Agregar al Carrito</button>
+                                    </a>
+                                </div>
                         </div>
                     </div>
                 </section>

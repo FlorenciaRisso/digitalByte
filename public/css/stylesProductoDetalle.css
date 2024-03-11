@@ -31,7 +31,7 @@
     color: white;
     margin: 5px;
     border: 0;
-    padding: 10px;
+    padding: 5px;
     border-radius: 5px;
     text-align: center;
 }
@@ -48,16 +48,20 @@
 
 .oferta-precio {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
 
 }
-.p-off{
+.oferta{
+    display: flex;
+}
+.p-off {
     font-size: 1.5rem;
     font-weight: 700;
     color: rgba(242, 74, 116, 0.897);
 }
+
 .imagenes-and-detalle {
     display: flex;
     flex-direction: column;
@@ -77,6 +81,7 @@
     justify-content: center;
     width: 50%;
 }
+
 .precio>p {
     font-weight: 600;
     margin: 4px;
@@ -103,7 +108,15 @@
 }
 
 .detalle-producto {
-    width: 90%;
+    width: 80%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    margin: 30px;
+    background-color: aliceblue;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
 }
 
 .imagenes-producto {
@@ -179,9 +192,10 @@
     align-items: center;
 }
 
-table{
+table {
     width: 100%;
 }
+
 .caracteristicas-producto_titulo {
     display: flex;
     align-items: center;
@@ -190,7 +204,8 @@ table{
     padding: 5px;
     margin-bottom: 5px;
 }
-.caracteristicas-producto_titulo i{
+
+.caracteristicas-producto_titulo i {
     display: flex;
     align-items: center;
     margin-right: 5px;
@@ -311,6 +326,7 @@ table{
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        border-radius: 10px;
     }
 
 
@@ -361,8 +377,12 @@ table{
         min-width: 30px;
     }
 
-    .detalle-producto{
-        padding: 25px 0px;
-        
+    .detalle-producto {
+        padding: 25px;
+
+    }
+
+    .precio>p{
+        font-size: 1.5rem;
     }
 }
