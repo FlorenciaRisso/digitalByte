@@ -13,7 +13,7 @@ window.addEventListener('load', function () {
     let emailMsg = document.querySelector('.email-msg');
     let contraseñaMsg = document.querySelector('.contraseña-msg');
     let repetirContraseñaMsg = document.querySelector('.contraseña2-msg');
-    let rolMsg = document.querySelector('.empty-rol');
+    let rolMsg = document.querySelector('.rol-msg');
     let nacionalidadMsg = document.querySelector('.nacionalidad-msg')
 
 
@@ -63,40 +63,58 @@ window.addEventListener('load', function () {
         }
     });
 
-    email.addEventListener('blur', function () {
-        let emailValue = email.value.trim();
-
+    email.addEventListener("input", function () {
+        let emailValue = this.value.trim();
+    
         // Expresión regular para validar un email
         let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+    
         if (emailValue === '') {
             email.style.border = '2px solid red';
+            emailMsg.textContent = 'Este campo es obligatorio';
             emailMsg.style.display = 'block';
         } else if (!emailRegex.test(emailValue)) {
             email.style.border = '2px solid red';
             emailMsg.textContent = 'Email inválido';
+            emailMsg.style.display = 'block';
         } else {
             email.style.border = '2px solid green';
             emailMsg.style.display = 'none';
         }
     });
-
-    email.addEventListener('input', function () {
-        let emailValue = email.value.trim();
-
-        // Expresión regular para validar un email
-        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+    
+    email.addEventListener("blur", function () {
+        const emailValue = this.value.trim();
         if (emailValue === '') {
             email.style.border = '2px solid red';
+            emailMsg.textContent = 'Este campo es obligatorio';
             emailMsg.style.display = 'block';
         } else if (!emailRegex.test(emailValue)) {
             email.style.border = '2px solid red';
             emailMsg.textContent = 'Email inválido';
+            emailMsg.style.display = 'block';
         } else {
             email.style.border = '2px solid green';
             emailMsg.style.display = 'none';
         }
+        fetch('/usuarios/verificarEmail', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email: emailValue }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.existe && Object.keys(data.existe).length > 0) {
+                emailMsg.textContent = "Este correo electrónico ya está registrado.";
+                emailMsg.style.display = 'block';
+                email.style.border = '2px solid red';
+            } 
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     });
 
     contraseña.addEventListener('blur', function () {
@@ -222,50 +240,5 @@ window.addEventListener('load', function () {
         }
     });
 
-    // // Agregar otras validaciones según sea necesario para tu formulario
 
-    // // Escuchar el evento submit del formulario para realizar una validación final antes de enviar los datos al servidor
-    // form.addEventListener('submit', function (event) {
-    //     // Validar campos adicionales si es necesario
-
-    //     if (nombre.value === '') {
-    //         nombre.style.border = '2px solid red';
-    //         nombreVacio.style.display = 'block';
-    //         event.preventDefault(); // Evitar que el formulario se envíe si hay campos vacíos
-    //     }
-
-    //     if (apellido.value === '') {
-    //         apellido.style.border = '2px solid red';
-    //         apellidoVacio.style.display = 'block';
-    //         event.preventDefault();
-    //     }
-
-    //     if (email.value === '') {
-    //         email.style.border = '2px solid red';
-    //         emailVacio.style.display = 'block';
-    //         event.preventDefault();
-    //     }
-
-    //     if (contraseña.value === '') {
-    //         contraseña.style.border = '2px solid red';
-    //         contraseñaVacia.style.display = 'block';
-    //         event.preventDefault();
-    //     }
-
-    //     if (repetirContraseña.value === '') {
-    //         repetirContraseña.style.border = '2px solid red';
-    //         repetirContraseñaVacia.style.display = 'block';
-    //         event.preventDefault();
-    //     }
-
-    //     if (rol.value === '') {
-    //         rol.style.border = '2px solid red';
-    //         rolVacio.style.display = 'block';
-    //         event.preventDefault();
-    //     }
-
-    //     // Agregar otras validaciones según sea necesario
-
-    //     // Si todas las validaciones son exitosas, el formulario se enviará
-    // });
 });

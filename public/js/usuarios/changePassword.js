@@ -41,7 +41,7 @@ window.addEventListener('load', function () {
         let regexMinuscula = /[a-z]/;
         let regexNumero = /[0-9]/;
         let regexCaracterEspecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-    
+
         if (nuevaContraseña.value === '') {
             nuevaContraseña.style.border = '2px solid red';
             nuevaContraseñaMsg.textContent = 'Ingrese la nueva contraseña';
@@ -51,9 +51,9 @@ window.addEventListener('load', function () {
             nuevaContraseñaMsg.textContent = 'La contraseña debe contener al menos 8 caracteres';
             nuevaContraseñaMsg.style.display = 'block';
         } else if (!regexMayuscula.test(nuevaContraseña.value) ||
-                   !regexMinuscula.test(nuevaContraseña.value) ||
-                   !regexNumero.test(nuevaContraseña.value) ||
-                   !regexCaracterEspecial.test(nuevaContraseña.value)) {
+            !regexMinuscula.test(nuevaContraseña.value) ||
+            !regexNumero.test(nuevaContraseña.value) ||
+            !regexCaracterEspecial.test(nuevaContraseña.value)) {
             nuevaContraseña.style.border = '2px solid red';
             nuevaContraseñaMsg.textContent = 'La contraseña debe contener al menos una mayúscula, una minúscula, un número y un caracter especial';
             nuevaContraseñaMsg.style.display = 'block';
@@ -68,7 +68,7 @@ window.addEventListener('load', function () {
         let regexMinuscula = /[a-z]/;
         let regexNumero = /[0-9]/;
         let regexCaracterEspecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-    
+
         if (nuevaContraseña.value === '') {
             nuevaContraseña.style.border = '2px solid red';
             nuevaContraseñaMsg.textContent = 'La contraseña no puede estar vacía';
@@ -78,9 +78,9 @@ window.addEventListener('load', function () {
             nuevaContraseñaMsg.textContent = 'La contraseña debe contener al menos 8 caracteres';
             nuevaContraseñaMsg.style.display = 'block';
         } else if (!regexMayuscula.test(nuevaContraseña.value) ||
-                   !regexMinuscula.test(nuevaContraseña.value) ||
-                   !regexNumero.test(nuevaContraseña.value) ||
-                   !regexCaracterEspecial.test(nuevaContraseña.value)) {
+            !regexMinuscula.test(nuevaContraseña.value) ||
+            !regexNumero.test(nuevaContraseña.value) ||
+            !regexCaracterEspecial.test(nuevaContraseña.value)) {
             nuevaContraseña.style.border = '2px solid red';
             nuevaContraseñaMsg.textContent = 'La contraseña debe contener al menos una mayúscula, una minúscula, un número y un caracter especial';
             nuevaContraseñaMsg.style.display = 'block';
@@ -100,8 +100,8 @@ window.addEventListener('load', function () {
             repetirContraseñaMsg.textContent = 'Repite la contraseña';
         } else if (repetirContraseña.value !== nuevaContraseña.value) {
             repetirContraseña.style.border = '2px solid red';
-            repetirContraseñaMsg.style.display = 'block'; 
-            repetirContraseñaMsg.textContent = 'Las contraseñas no coinciden'; 
+            repetirContraseñaMsg.style.display = 'block';
+            repetirContraseñaMsg.textContent = 'Las contraseñas no coinciden';
 
         } else {
             repetirContraseña.style.border = '2px solid green';
@@ -124,4 +124,8 @@ window.addEventListener('load', function () {
         }
     });
 
+
+
 });
+
+

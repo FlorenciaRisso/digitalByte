@@ -13,6 +13,7 @@ const esUsuario = require ('../middlewares/esUsuario');
 const editUsuarioValidation=require ('../middlewares/usuarios/editUsuarioValidation')
 
 
+
 router.get('/perfil/:id',authMiddleware, userController.profile);
 router.get('/userProfile', authMiddleware, userController.userProfile)
 router.get('/lista', esAdmin, userController.lista);
@@ -28,6 +29,7 @@ router.put('/edit/:id', uploadFile.single('avatar'),editUsuarioValidation, userC
 
 router.get('/cambiarContrasenia/:id', userController.cambiarContraseña)
 router.put('/cambiarContrasenia/:id', changePasswordValidation,userController.updateContraseña)
+router.post('/verificarEmail', userController.verificarEmail);
 
 router.get('/cerrarSesion',authMiddleware, userController.logout);
 
