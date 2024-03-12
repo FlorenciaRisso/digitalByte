@@ -1,4 +1,5 @@
 window.addEventListener('load', function () {
+
     let nombre = document.querySelector('.nombre');
     let descripcion = document.querySelector('.descripcion');
     let tamaño = document.querySelector('.tamaño');
@@ -14,31 +15,6 @@ window.addEventListener('load', function () {
     let precioMsg = document.querySelector('.precio-msg');
     let stockMsg = document.querySelector('.stock-msg');
 
-
-    // Event listeners para los campos de tamaño, memoria, cámara, RAM, precio, descuento y stock
-    [tamaño, memoria, camara, ram, precio, descuento, stock].forEach(function (campo) {
-        campo.addEventListener('input', function () {
-            // Verifica si el valor ingresado contiene solo números
-            if (!soloNumeros(campo.value)) {
-                // Muestra un mensaje de error si no se ingresan solo números
-                console.log(campo.value)
-                campo.nextElementSibling.style.display = 'block';
-                campo.style.border = '2px solid red';
-            } else {
-                // Oculta el mensaje de error si se ingresan solo números
-                console.log(campo.value)
-                campo.nextElementSibling.style.display = 'none';
-                campo.style.border = 'none';
-            }
-        });
-
-        campo.addEventListener('blur', function () {
-            if (soloNumeros(campo.value)) {
-                console.log(campo.value)
-                nombre.style.border = 'none';
-            }
-        });
-    });
 
     nombre.addEventListener('blur', function () {
         // Verifica si el campo de nombre está vacío
@@ -65,7 +41,7 @@ window.addEventListener('load', function () {
         } else {
             // Verifica la longitud mínima del nombre
             if (nombre.value.length < 5) {
-                nameMsg.textContent = 'Debe contener al menos 5 caracteres'; // Muestra el mensaje de longitud mínima
+                nombreMsg.textContent = 'Debe contener al menos 5 caracteres'; // Muestra el mensaje de longitud mínima
                 nombre.style.border = '2px solid red';
             } else {
                 nombreMsg.style.display = 'none';

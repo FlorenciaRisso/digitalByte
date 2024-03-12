@@ -60,4 +60,51 @@ window.addEventListener('load', function () {
             descripcionMsg.textContent = 'Debe contener al menos 20 caracteres';
         }
     });
+
+    stock.addEventListener('blur', function () {
+        if (stock.value === '') {
+            stock.style.border = '2px solid red';
+            stockMsg.style.display = 'block';
+            stockMsg.textContent = 'Ingresa el stock del producto'
+        } else if (stock.value.length < 5) {
+            stock.style.border = '2px solid red';
+            stockMsg.textContent = 'Debe contener al menos 5 caracteres';
+        } else {
+            stock.style.border = '2px solid green';
+            stockMsg.style.display = 'none'
+        }
+    });
+
+    stock.addEventListener('input', function () {
+        if (stock.value.length >= 5) {
+            stock.style.border = '1px solid green';
+            stockMsg.style.display = 'none';
+        } else {
+            stock.style.border = '1px solid red';
+            stockMsg.textContent = 'Debe contener al menos 5 caracteres';
+        }
+    });
+    precio.addEventListener('blur', function () {
+        if (precio.value === '') {
+            precio.style.border = '2px solid red';
+            precioMsg.style.display = 'block';
+            precioMsg.textContent = 'Ingresa el precio del producto'
+        } else if (precio.value.length < 5) {
+            precio.style.border = '2px solid red';
+            precioMsg.textContent = 'Debe contener al menos 5 caracteres';
+        } else {
+            precio.style.border = '2px solid green';
+            precioMsg.style.display = 'none'
+        }
+    });
+
+    precio.addEventListener('input', function () {
+        if (precio.value.length >= 5) {
+            precio.style.border = '1px solid green';
+            precioMsg.style.display = 'none';
+        } else {
+            precio.style.border = '1px solid red';
+            precioMsg.textContent = 'Debe contener al menos 5 caracteres';
+        }
+    });
 })

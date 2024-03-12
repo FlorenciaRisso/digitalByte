@@ -74,7 +74,7 @@
               <div class="edit-user__direccion-form block-input">
                 <input type="direccion" name="direccion"
                   class="edit-user__input-form <%= locals.errors && errors.direccion ? 'is-invalid' : null %> direccion"
-                  placeholder="Email" value="<%= locals.oldData ? oldData.direccion : usuario.direccion %>">
+                  placeholder="Direccion" value="<%= locals.oldData ? oldData.direccion : usuario.direccion %>">
                 <small class="direccion-msg"></small>
 
                 <% if(locals.errors && errors.direccion) {%>
@@ -87,7 +87,7 @@
               <div class="edit-user__telefono-form block-input">
                 <input type="telefono" name="telefono"
                   class="edit-user__input-form <%= locals.errors && errors.telefono ? 'is-invalid' : null %> telefono"
-                  placeholder="Email" value="<%= locals.oldData ? oldData.telefono : usuario.telefono %>">
+                  placeholder="Telefono" value="<%= locals.oldData ? oldData.telefono : usuario.telefono %>">
                 <small class="telefono-msg"></small>
 
                 <% if(locals.errors && errors.telefono) {%>
@@ -156,19 +156,8 @@
       </div>
   </body>
   <%- include ('../partials/footer') %>
-    <%- include ('../partials/script-change-img') %>
       <script src="/js/usuarios/edit.js"></script>
-      <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          const cameraIcon = document.getElementById("camera-icon");
-          const avatarUpload = document.getElementById("avatar-upload");
-
-          if (cameraIcon && avatarUpload) {
-            cameraIcon.addEventListener("click", function () {
-              avatarUpload.click();
-            });
-          }
-        });
-      </script>
+      <script src="/js/usuarios/script-change-img.js"></script>
+      
 
       </html>
