@@ -36,7 +36,7 @@
                 <input type="text" name="firstName"
                   class="edit-user__input-form <%= locals.errors && errors.firstName? 'is-invalid' : null %> nombre"
                   placeholder="Nombre" value="<%= locals.oldData ? oldData.nombre : usuario.nombre %>">
-                <small class="nombre-msg"></small>
+                <small class="nombre-msg text-danger"></small>
 
                 <% if(locals.errors && errors.firstName) {%>
                   <div class="text-danger">
@@ -49,7 +49,7 @@
                 <input type="text" name="lastName"
                   class="edit-user__input-form <%= locals.errors && errors.lastName? 'is-invalid' : null %> apellido"
                   placeholder="Apellido" value="<%= locals.oldData ? oldData.apellido : usuario.apellido %>">
-                <small class="apellido-msg"></small>
+                <small class="apellido-msg text-danger"></small>
 
                 <% if(locals.errors && errors.lastName) {%>
                   <div class="text-danger">
@@ -62,7 +62,7 @@
                 <input type="email" name="email"
                   class="edit-user__input-form <%= locals.errors && errors.email ? 'is-invalid' : null %> email"
                   placeholder="Email" value="<%= locals.oldData ? oldData.email : usuario.email %>">
-                <small class="email-msg"></small>
+                <small class="email-msg text-danger"></small>
 
                 <% if(locals.errors && errors.email) {%>
                   <div class="text-danger">
@@ -75,7 +75,7 @@
                 <input type="direccion" name="direccion"
                   class="edit-user__input-form <%= locals.errors && errors.direccion ? 'is-invalid' : null %> direccion"
                   placeholder="Direccion" value="<%= locals.oldData ? oldData.direccion : usuario.direccion %>">
-                <small class="direccion-msg"></small>
+                <small class="direccion-msg text-danger"></small>
 
                 <% if(locals.errors && errors.direccion) {%>
                   <div class="text-danger">
@@ -88,7 +88,7 @@
                 <input type="telefono" name="telefono"
                   class="edit-user__input-form <%= locals.errors && errors.telefono ? 'is-invalid' : null %> telefono"
                   placeholder="Telefono" value="<%= locals.oldData ? oldData.telefono : usuario.telefono %>">
-                <small class="telefono-msg"></small>
+                <small class="telefono-msg text-danger"></small>
 
                 <% if(locals.errors && errors.telefono) {%>
                   <div class="text-danger">
@@ -111,7 +111,7 @@
                       </option>
                       <% } %>
                 </select>
-                <small class="rol-msg"></small>
+                <small class="rol-msg text-danger"></small>
 
                 <% if(locals.errors && errors.rol) {%>
                   <div class="text-danger">
@@ -134,7 +134,7 @@
                       </option>
                       <% } %>
                 </select>
-                <small class="nacionalidad-msg"></small>
+                <small class="nacionalidad-msg text-danger"></small>
 
                 <% if(locals.errors && errors.country) { %>
                   <div class="text-danger">
@@ -146,7 +146,7 @@
               <div class="edit-user__buttons">
                 <button class="edit-user__button btn ">Guardar cambios</button>
                 <div>
-                  <a href="/usuarios/userProfile" class="edit-user__link">Volver al perfil</a>
+                  <a href="/usuarios/perfil/<%= usuario.id %>" class="edit-user__link">Volver al perfil</a>
                 </div>
               </div>
 

@@ -1,6 +1,5 @@
 const userService = require('../data/userService');
 const bcrypt = require('bcrypt');
-const { Usuarios } = require('../model/database/models');
 const { validationResult } = require('express-validator');
 
 
@@ -40,7 +39,6 @@ let userController = {
         let userId = parseInt(req.params.id, 10);
         userService.getOne(userId).
             then(data => {
-                console.log(data);
                 res.render('usuarios/edit', { usuario: data, oldData: data })
             }
             )
@@ -84,7 +82,6 @@ let userController = {
     updateContraseña: (req, res) => {
         userService.validarContraseña(req).
             then(resultado => {
-                console.log(resultado);
                 if (resultado.success) {
                     res.redirect('/usuarios/userProfile')
                 } else if (resultado.errors) {
@@ -104,7 +101,6 @@ let userController = {
 
     processRegister: (req, res) => {
         let old = req.body;
-        console.log(req.file);
         if (req.file) {
             old.avatar = req.file.filename;
         }
@@ -190,7 +186,6 @@ let userController = {
                     if (req.body.recordame == 'on') {
                         res.cookie('recordame', usuarioValido.email, { maxAge: 604800000 });
                         res.cookie('recordarEmail', usuarioValido.email, { maxAge: 604800000 });
-                        console.log('Cookie "recordame" establecida');
                     }
                     return res.redirect('/');
                 } else {

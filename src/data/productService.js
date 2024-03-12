@@ -1,9 +1,5 @@
 // 1 SMARTPHONE, 2 TABLET, 3 NOTEBOOK
-
-const fs = require('fs');
 const db = require('../model/database/models')
-
-
 const productService = {
 
     getAll: async function () {
@@ -64,7 +60,6 @@ const productService = {
                 ram: req.body.Ram
             });
 
-            console.log("Producto creado:", nuevoProducto.toJSON());
             return nuevoProducto;
         } catch (error) {
             console.error("Error al guardar el producto:", error);
@@ -210,10 +205,8 @@ const productService = {
             const deletedProduct = await db.Productos.destroy({ where: { ID_Producto: productId } });
 
             if (deletedProduct === 1) {
-                console.log('Producto y sus relaciones eliminadas correctamente');
                 return { status: 'success', message: 'Product and its relationships deleted successfully' };
             } else {
-                console.log('No se encontró el producto para eliminar');
                 return { status: 'error', message: 'Product not found or already deleted' };
             }
         } catch (error) {

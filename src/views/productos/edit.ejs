@@ -45,7 +45,7 @@
                 <label for="name">Nombre del producto: </label>
                 <input class="nombre" type="text" name="name" placeholder="Edita el nombre del producto"
                   value="<%=producto.Nombre ? producto.Nombre : oldData.name%>" />
-                <small class="nombre-msg"></small>
+                <small class="nombre-msg text-danger"></small>
                 <% if(locals.errors && errors.name) {%>
                   <div class="text-danger">
                     <%= errors.name.msg %>
@@ -57,7 +57,7 @@
                 <label for="description">Descripción:</label>
                 <textarea class="input descripcion" name="description"
                   placeholder="Edita la descripción del producto"><%=producto.Descripcion ? producto.Descripcion : oldData.description%></textarea>
-                <small class="descripcion-msg"></small>
+                <small class="descripcion-msg text-danger"></small>
                 <% if(locals.errors && errors.description) {%>
                   <div class="text-danger">
                     <%= errors.description.msg %>
@@ -78,9 +78,9 @@
 
               <div class="block-input">
                 <label for="stock">Stock:</label>
-                <input name="stock" placeholder="Edita stock del producto"
+                <input class="stock" name="stock" placeholder="Edita stock del producto"
                   value="<%=producto.Stock ? producto.Stock : oldData.stock%>"></input>
-                <small class="stock-msg"></small>
+                <small class="stock-msg text-danger"></small>
                 <% if(locals.errors && errors.stock) {%>
                   <div class="text-danger">
                     <%= errors.stock.msg %>
@@ -92,7 +92,7 @@
                 <label for="price">Precio:</label>
                 <input class="precio" type="number" id="price" name="price" placeholder="Precio del producto"
                   value="<%=producto.Precio ? producto.Precio : oldData.price%>">
-                <small class="precio-msg"></small>
+                <small class="precio-msg text-danger"></small>
                 <% if(locals.errors && errors.price) {%>
                   <div class="text-danger">
                     <%= errors.price.msg %>
@@ -182,7 +182,7 @@
       <%- include ('../partials/footer') %>
   </body>
   <%- include ('../partials/script-menu') %>
-    <script src="/js/productos/edit.js"></script>
+    <script src="/js/productos/create-edit.js"></script>
     <script src="/js/productos/script-change-img.js"></script>
 
     </html>

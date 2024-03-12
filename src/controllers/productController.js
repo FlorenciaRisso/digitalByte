@@ -2,7 +2,6 @@ const productService = require('../data/productService');
 const funcion = require('../data/funcion');
 const db = require('../model/database/models');
 const Sequelize = require('sequelize');
-const { log } = require('console');
 const { validationResult } = require('express-validator');
 
 let productController = {
@@ -75,7 +74,7 @@ let productController = {
             let error = validationResult(req);
             if (error.isEmpty()) {
                 let nuevoProducto = await productService.save(req);
-                res.redirect('/productos/listaMisProductos/'+req.session.usuarioLogeado.id);
+                res.redirect('/productos/listaMisProductos');
             } else {
                 res.render('productos/create', { errors: error.mapped(), funcion: funcion, oldData: req.body })
             }
@@ -87,7 +86,6 @@ let productController = {
     editProducto: async (req, res) => {
         try {
             let producto = await productService.getOne(req);
-            console.log(producto.ID_Producto);
             res.render('productos/edit', { oldData: producto, producto: producto, funcion: funcion })
         } catch (error) {
             console.log(error);
@@ -105,7 +103,7 @@ let productController = {
                 let pertenece = await productService.perteneceAMisProductos(req);
                 if (pertenece) {
                     await productService.update(req);
-                    res.redirect('/productos/listaMisProductos/' + req.session.usuarioLogeado.id);
+                    res.redirect('/productos/listaMisProductos');
                 } else {
                     res.send(403).send({ mensaje: 'No tienes permiso para editar este producto' });
                 }

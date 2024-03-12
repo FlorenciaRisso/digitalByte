@@ -6,7 +6,7 @@
             <main class="main">
                 <div class="container">
                     <div class="title-container">
-                        <h2 class="title">Editar producto</h2>
+                        <h2 class="title">Crear producto</h2>
                     </div>
 
                     <form class="edit__form" action="/productos/create"
@@ -39,7 +39,7 @@
                             <div class="block-input">
                                 <label for="name">Nombre del producto: </label>
                                 <input class="nombre" type="text" name="name"
-                                    placeholder="Edita el nombre del producto" />
+                                    placeholder="Ingresa el nombre del producto" />
                                 <small class="nombre-msg text-danger"></small>
                                 <% if(locals.errors && errors.name) {%>
                                     <div class="text-danger">
@@ -51,7 +51,7 @@
                             <div class="block-input">
                                 <label for="description">Descripción:</label>
                                 <textarea class="input descripcion" name="description"
-                                    placeholder="Edita la descripción del producto"></textarea>
+                                    placeholder="Ingresa la descripción del producto"></textarea>
                                 <small class="descripcion-msg text-danger"></small>
                                 <% if(locals.errors && errors.description) {%>
                                     <div class="text-danger">
@@ -62,7 +62,7 @@
 
                             <div class="block-input">
                                 <label for="discount">Descuento:</label>
-                                <input name="discount" placeholder="Edita descuento del producto"></input>
+                                <input name="discount" placeholder="Ingresa descuento del producto"></input>
                                 <% if(locals.errors && errors.discount) {%>
                                     <div class="text-danger">
                                         <%= errors.discount.msg %>
@@ -72,7 +72,7 @@
 
                             <div class="block-input">
                                 <label for="stock">Stock:</label>
-                                <input name="stock" class="stock" placeholder="Edita stock del producto"></input>
+                                <input name="stock" class="stock" placeholder="Ingresa stock del producto"></input>
                                 <small class="stock-msg text-danger"></small>
                                 <% if(locals.errors && errors.stock) {%>
                                     <div class="text-danger">
@@ -161,6 +161,6 @@
             <%- include ('../partials/footer') %>
     </body>
     <%- include ('../partials/script-menu') %>
-        <script src="/js/productos/edit.js"></script>
+        <script src="/js/productos/create-edit.js"></script>
         <script src="/js/productos/script-change-img.js"></script>
         </html>

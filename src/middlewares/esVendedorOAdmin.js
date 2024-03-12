@@ -5,7 +5,6 @@ const esVendedorOAdmin = (req, res, next) => {
     const esVendedor = (usuario && usuario.rol === 'Vendedor') || usuario.rol==='Administrador';
     
     if(!esVendedor){
-        console.log(esVendedor)
         return res.redirect('/')
     } next();
 };
