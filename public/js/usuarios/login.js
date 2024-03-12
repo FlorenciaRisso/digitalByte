@@ -74,7 +74,7 @@ window.addEventListener('load', function () {
 
 
     contraseña.addEventListener('input', function () {
-        if (contraseña.value.length < 8) {
+        if (contraseña.value.length < '') {
             contraseñaMsg.textContent = 'Ingresa una contraseña';
             contraseñaMsg.style.display = 'block';
             contraseña.style.border = '2px solid red';
