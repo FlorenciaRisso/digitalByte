@@ -28,7 +28,8 @@ module.exports = (sequelize, DataTypes) => {
 
         Venta.hasMany(models.DetalleVenta, {
             as: 'ventas',
-            foreignKey: 'ID_Detalle_Venta'
+            foreignKey: 'ID_Detalle_Venta',
+            onDelete: 'CASCADE'
         });
     }
     return Venta;

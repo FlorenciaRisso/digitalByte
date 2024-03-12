@@ -147,8 +147,12 @@ let userController = {
         try {
             const userId = req.params.id;
             if (req.session.usuarioLogeado.id == userId) {
-                await userService.delete(userId);
-                res.redirect('/usuarios/cerrarSesion')
+                let usuario=await userService.delete(userId);
+                if(usuario){
+                   res.redirect('/usuarios/cerrarSesion') 
+                }else{
+                    res.redirect("/");
+                }
             } else if (req.session.usuarioLogeado.rol == "Administrador" && req.session.usuarioLogeado.id != userId) {
                 await userService.delete(userId);
                 res.redirect('/usuarios/lista')

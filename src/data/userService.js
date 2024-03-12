@@ -131,10 +131,7 @@ const userService = {
 
     delete: async function (userId) {
         try {
-            await Productos.destroy({ where: { ID_Vendedor: userId } });
-
-            await Usuarios.destroy({ where: { id: userId } });
-            return true;
+            return await Usuarios.destroy({ where: { id: userId } });
         } catch (error) {
             console.error('Error al eliminar el usuario:', error);
             return false;

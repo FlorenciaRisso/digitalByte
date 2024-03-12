@@ -35,7 +35,7 @@ let productController = {
             } else {
                 productos = await db.Productos.findAll({
                     include: [{ association: 'Caracteristica' }, { association: 'Categoria' }, { association: 'ImagenesProductos' }], where: {
-                        ID_Vendedor: req.params.id
+                        ID_Vendedor: req.session.usuarioLogeado.id
                     }
                 });
             }

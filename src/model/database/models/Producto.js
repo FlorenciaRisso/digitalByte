@@ -57,11 +57,13 @@ module.exports = (sequelize, DataTypes) => {
         });
         Producto.hasOne(models.Caracteristicas, {
             as: 'Caracteristica',
-            foreignKey: 'ID_Producto'
+            foreignKey: 'ID_Producto',
+            onDelete: 'CASCADE'
         });
         Producto.hasMany(models.ImagenesProductos, {
             as: 'ImagenesProductos',
-            foreignKey: 'ID_Producto'
+            foreignKey: 'ID_Producto',
+            onDelete:'CASCADE'
         })
     }
     return Producto;
