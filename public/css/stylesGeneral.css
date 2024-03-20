@@ -185,7 +185,9 @@ a {
   flex-wrap: wrap;
 }
 
-
+.user-option_div {
+  margin-bottom: 30px;
+}
 .btn-carrito {
   border-radius: 20px 0 0 20px;
 }
@@ -989,6 +991,7 @@ a {
   .user-option_div {
     display: flex;
     margin-top: 5px;
+    margin-bottom: 0;
   }
 
   .btn-header {
