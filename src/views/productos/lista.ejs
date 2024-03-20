@@ -8,7 +8,9 @@
                 <button class="btn btn-agregar"><a href="/productos/create">Agregar producto</a></button>
             </div>
             <div class="container">
-
+                <% if(productos.length < 1){ %>
+                    <p>Aun no posees productos</p>
+                <% }else {%>
                 <% productos.forEach(producto=> { %>
                     <ul class="product-list">
                         <li class="card">
@@ -41,7 +43,7 @@
                         </li>
                     </ul>
 
-                    <% }) %>
+                    <% })} %>
             </div>
 
             <%- include ('../partials/footer') %>
