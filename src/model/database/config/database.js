@@ -1,24 +1,27 @@
+require('dotenv').config();
 module.exports = {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "digitalbyte",
-    "port":3306,
-    "host": "127.0.0.1",
+    "username":process.env.DB_USERNAME,
+    "password":process.env.DB_PASSWORD,
+    "database":process.env.DB_DATABASE_NAME,
+    "port":process.env.DB_PORT,
+    "host":process.env.DB_DATABASE_HOST,
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
+    "username":process.env.DB_USERNAME,
+    "password":process.env.DB_PASSWORD,
+    "database":process.env.DB_DATABASE_NAME,
+    "port":process.env.DB_PORT,
+    "host":process.env.DB_DATABASE_HOST,
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "username":process.env.DB_USERNAME,
+    "password":process.env.DB_PASSWORD,
+    "database":process.env.DATABASE_NAME,
+    "port":process.env.PORT,
+    "host":process.env.DATABASE_HOST,
     "dialect": "mysql"
   }
 }
