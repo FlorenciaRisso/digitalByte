@@ -169,6 +169,6 @@ VALUES
 (7, 'Florencia', 'Risso', 'florencia@gmail.com', '$2b$10$IIk3V2PC6thslyFZHYE0SOkfYIFhqlHKFA/b0w8Pz74aAy3HZ6qDa', 'Administrador', 'Argentina', '/img/avatar.jpg', '543 Avenida del Rio', '011-7890-1234'),
 (8, 'Sophia', 'Martinez', 'sophia.martinez@example.com', '$2a$10$3DSm1a6wpHLS/KdNDz6vuO5qAsTI80tt1LUAr6OBpEiut./p/d3Kq', 'Vendedor', 'Argentina', '/img/avatar.jpg', '210 Calle de la Montaña', '011-8901-2345'),
 (9, 'Alexander', 'Perez', 'alexander.perez@example.com', '$2a$10$fAQN4cosIQPTgbqoYUKiFOOU9QoRC5YclVTqbIW0G3.hjjFNhaVpq', 'Vendedor', 'Argentina', '/img/avatar.jpg', '876 Calle de la Playa', '011-9876-5432'),
-(10, 'Benjamin', 'Rodriguez', 'benjamin.rodriguez@example.com', '$2a$10$V3k9O9/eeu9/HBadIjLJu.GAst/ybTnE9RyTPqD4ygy2.Txm6ldQa', 'Administrador', 'Argentina', '/img/avatar.jpg', '109 Avenida de las Estrellas', '011-0123-4567');
+(10, 'Benjamin', 'Rodriguez', 'benjamin.rodriguez@example.com', '$2a$10$V3k9O9/eeu9/HBadIjLJu.GAst/ybTnE9RyTPqD4ygy2.Txm6ldQa', 'Administrador', 'Argentina', '/img/avatar.jpg', '109 Avenida de las Estrellas', '011-0123-4567'),
 (11, 'Super', 'Usuario', 'superusu@gmail.com', '$2b$10$Nh87Yo5fRO7TC2UD9tCSWuv5V4cYUjgOX4jxpQkpXLr/K7MxUYOYq', 'Administrador', 'Argentina', '/img/avatar.jpg', '109 Avenida de las Estrellas', '011-0123-4567');
 
