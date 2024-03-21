@@ -1,5 +1,6 @@
 // 1 SMARTPHONE, 2 TABLET, 3 NOTEBOOK
-const db = require('../model/database/models')
+const db = require('../model/database/models');
+const Sequelize = require('sequelize');
 const productService = {
 
     getAll: async function () {
@@ -14,6 +15,37 @@ const productService = {
         } catch (error) {
             console.log(error);
             return [];
+        }
+    },
+    getAllByID: async function (id) {
+        try {
+            return await db.Productos.findAll({
+                include: [{ association: 'Caracteristica' }, { association: 'Categoria' }, { association: 'ImagenesProductos' }], where: {
+                    ID_Vendedor: id
+                }
+            });
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+
+    },
+    getByName: async function (name) {
+        try {
+            return await db.Productos.findAll({
+                include: [
+                    { association: 'Caracteristica' },
+                    { association: 'ImagenesProductos' },
+                    { association: 'Categoria' }
+                ],
+                where: {
+                    Nombre: {
+                        [Sequelize.Op.like]: `%${name}%`
+                    }
+                }
+            });
+        } catch (error) {
+
         }
     },
     getOne: async function (req) {
@@ -33,14 +65,14 @@ const productService = {
     save: async function (req) {
         try {
             const nuevoProducto = await db.Productos.create({
-                Nombre: req.body.name,
-                Descripcion: req.body.description,
+                nombre: req.body.name,
+                descripcion: req.body.description,
                 ID_Categoria: req.body.category,
-                Precio: req.body.price,
-                Stock: req.body.stock,
-                Descuento: req.body.discount,
-                Marca: req.body.marca,
-                ID_Vendedor:req.session.usuarioLogeado.id
+                precio: req.body.price,
+                stock: req.body.stock,
+                descuento: req.body.discount,
+                marca: req.body.marca,
+                ID_Vendedor: req.session.usuarioLogeado.id
             });
 
             // Agregar las imágenes del producto
@@ -88,29 +120,25 @@ const productService = {
             return []; // Manejo de errores, retorna un array vacío en caso de error
         }
     },
-    perteneceAMisProductos: async function (req){
-        let idUsuario=req.params.id;
-        let pertenece= await db.Productos.findByPk(idUsuario,{include:{association:'Usuario'}});
-        if(!pertenece){
-            return false;
-        }else{
-            return true;
-        }
+    perteneceAMisProductos: async function (req) {
+        let idUsuario = req.params.id;
+        let producto = await db.Productos.findByPk(idUsuario, { include: { association: 'Usuario' } });
+        return !(producto == undefined)
     },
     update: async function (req) {
         try {
             const productId = req.params.id;
 
             // Actualizar la información básica del producto
-            let productoActualizado = await db.Productos.update(
+            await db.Productos.update(
                 {
-                    Nombre: req.body.name,
-                    Descripcion: req.body.description,
-                    Precio: req.body.price,
-                    Descuento: req.body.discount,
-                    Stock: req.body.stock,
+                    nombre: req.body.name,
+                    descripcion: req.body.description,
+                    precio: req.body.price,
+                    descuento: req.body.discount,
+                    stock: req.body.stock,
                     ID_Categoria: req.body.category,
-                    Marca: req.body.marca,
+                    marca: req.body.marca,
                     ID_Vendedor: req.session.usuarioLogeado.id
                 },
                 { where: { ID_Producto: productId } }
@@ -140,17 +168,17 @@ const productService = {
                 }
             }
             if (imagesToUpdate.length > 0) {
-                let idParaNuevaRuta=null;
-                let nuevaRuta=null;
+                let idParaNuevaRuta = null;
+                let nuevaRuta = null;
                 for (let i = 0; i < imagesToUpdate.length; i++) {
                     if (imagesToUpdate[i].ruta != null) {
                         idParaNuevaRuta = ids[i];
                         nuevaRuta = imagesToUpdate[i].ruta;
-                    }else{
-                        idParaNuevaRuta=null;
-                        nuevaRuta=null;
+                    } else {
+                        idParaNuevaRuta = null;
+                        nuevaRuta = null;
                     }
-                    if(idParaNuevaRuta){
+                    if (idParaNuevaRuta) {
                         let nuevosDatosImagen = {
                             ruta: nuevaRuta
                         }
@@ -163,8 +191,8 @@ const productService = {
 
             }
             // Actualizar las características del producto
-            let caracteristicas= await db.Caracteristicas.findOne({where: {ID_Producto:productId}});
-            if(caracteristicas){
+            let caracteristicas = await db.Caracteristicas.findOne({ where: { ID_Producto: productId } });
+            if (caracteristicas) {
                 await db.Caracteristicas.update(
                     {
                         tamaño: req.body.Tamanio,
@@ -174,14 +202,14 @@ const productService = {
                     },
                     { where: { ID_Producto: productId } }
                 );
-            }else{
+            } else {
                 await db.Caracteristicas.create(
                     {
                         tamaño: req.body.Tamanio,
                         memoria: req.body.Memoria,
                         camara: req.body.CamaraPrincipal,
                         ram: req.body.Ram,
-                        ID_Producto:productId
+                        ID_Producto: productId
                     }
                 );
             }

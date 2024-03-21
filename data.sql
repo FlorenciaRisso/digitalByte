@@ -129,6 +129,35 @@ INSERT INTO digitalbyte.imagenes_producto(id,ID_Producto,ruta) VALUES
  (95,24,"/img/xiaomi/redmiPadSE/redmiPadSE-2.png"),
  (96,24,"/img/xiaomi/redmiPadSE/redmiPadSE-3.png");
 
+-- Carga tabla caracterisiticas
+INSERT INTO caracteristicas
+(ID_Producto, tamaño, memoria, camara, ram)
+VALUES
+(1, 14, 32, 48, 8),
+(2, 15, 64, 64, 12),
+(3, 15.5, 128, 108, 16),
+(4, 16, 256, 108, 16),
+(5, 16.5, 512, 108, 16),
+(6, 17, 512, 108, 16),
+(7, 17.5, 512, 108, 16),
+(8, 18, 512, 108, 16),
+(9, 18.5, 512, 108, 16),
+(10, 19, 512, 108, 16),
+(11, 19.5, 512, 108, 16),
+(12, 20, 512, 108, 16),
+(13, 20.5, 512, 108, 16),
+(14, 21, 512, 108, 16),
+(15, 21.5, 512, 108, 16),
+(16, 22, 512, 108, 16),
+(17, 22.5, 512, 108, 16),
+(18, 23, 512, 108, 16),
+(19, 23.5, 512, 108, 16),
+(20, 24, 512, 108, 16),
+(21, 24.5, 512, 108, 16),
+(22, 25, 512, 108, 16),
+(23, 25.5, 512, 108, 16),
+(24, 26, 512, 108, 16);
+
 -- Carga tabla usuarios
  INSERT INTO usuarios (id, nombre, apellido, email, contraseña, rol, nacionalidad, avatar, direccion, telefono) VALUES
 (1, 'Mara', 'Santillan', 'mjsn98@gmail.com', '$2a$10$aYH8I1lxXN8i64SfFk3IMuQgM67y2Fdvp6cuDkq9PvbX6mBAu2aUq', 'Administrador', 'Argentina', '/img/avatar.jpg', '123 Calle Principal', '011-2345-6789'),
@@ -140,4 +169,6 @@ INSERT INTO digitalbyte.imagenes_producto(id,ID_Producto,ruta) VALUES
 (7, 'Florencia', 'Risso', 'florencia@gmail.com', '$2b$10$IIk3V2PC6thslyFZHYE0SOkfYIFhqlHKFA/b0w8Pz74aAy3HZ6qDa', 'Administrador', 'Argentina', '/img/avatar.jpg', '543 Avenida del Rio', '011-7890-1234'),
 (8, 'Sophia', 'Martinez', 'sophia.martinez@example.com', '$2a$10$3DSm1a6wpHLS/KdNDz6vuO5qAsTI80tt1LUAr6OBpEiut./p/d3Kq', 'Vendedor', 'Argentina', '/img/avatar.jpg', '210 Calle de la Montaña', '011-8901-2345'),
 (9, 'Alexander', 'Perez', 'alexander.perez@example.com', '$2a$10$fAQN4cosIQPTgbqoYUKiFOOU9QoRC5YclVTqbIW0G3.hjjFNhaVpq', 'Vendedor', 'Argentina', '/img/avatar.jpg', '876 Calle de la Playa', '011-9876-5432'),
-(10, 'Benjamin', 'Rodriguez', 'benjamin.rodriguez@example.com', '$2a$10$V3k9O9/eeu9/HBadIjLJu.GAst/ybTnE9RyTPqD4ygy2.Txm6ldQa', 'Administrador', 'Argentina', '/img/avatar.jpg', '109 Avenida de las Estrellas', '011-0123-4567');
+(10, 'Benjamin', 'Rodriguez', 'benjamin.rodriguez@example.com', '$2a$10$V3k9O9/eeu9/HBadIjLJu.GAst/ybTnE9RyTPqD4ygy2.Txm6ldQa', 'Administrador', 'Argentina', '/img/avatar.jpg', '109 Avenida de las Estrellas', '011-0123-4567'),
+(11, 'Super', 'Usuario', 'superusu@gmail.com', '$2b$10$Nh87Yo5fRO7TC2UD9tCSWuv5V4cYUjgOX4jxpQkpXLr/K7MxUYOYq', 'Administrador', 'Argentina', '/img/avatar.jpg', '109 Avenida de las Estrellas', '011-0123-4567');
+

@@ -1,7 +1,5 @@
 const productService = require('../data/productService');
 const funcion = require('../data/funcion');
-const db = require('../model/database/models');
-const Sequelize = require('sequelize');
 const { validationResult } = require('express-validator');
 
 let productController = {
@@ -18,7 +16,7 @@ let productController = {
     listado:
         async function (req, res) {
             try {
-                let respuesta = await db.Productos.findAll({ include: [{ association: 'Caracteristica' }, { association: 'Categoria' }, { association: 'ImagenesProductos' }] });
+                let respuesta = await productService.getAll()
                 res.json(respuesta)
             } catch (error) {
                 console.log(error);
@@ -28,23 +26,11 @@ let productController = {
         try {
             let productos;
             if (req.session.usuarioLogeado.rol == 'Administrador') {
-                productos = await db.Productos.findAll({
-                    include: [{ association: 'Caracteristica' }, { association: 'Categoria' }, { association: 'ImagenesProductos' }]
-                });
+                productos = await productService.getAll();
             } else {
-                productos = await db.Productos.findAll({
-                    include: [{ association: 'Caracteristica' }, { association: 'Categoria' }, { association: 'ImagenesProductos' }], where: {
-                        ID_Vendedor: req.session.usuarioLogeado.id
-                    }
-                });
+                productos = productService.getAllByID(req.session.usuarioLogeado.id)
             }
-
-
-            if (!productos) {
-                return res.status(403).send("No se encontraron productos")
-            } else {
-                res.render('productos/lista', { productos: productos, funcion: funcion });
-            }
+            res.render('productos/lista', { productos: productos, funcion: funcion });
         } catch (error) {
             console.log(error);
         }
@@ -73,7 +59,7 @@ let productController = {
         try {
             let error = validationResult(req);
             if (error.isEmpty()) {
-                let nuevoProducto = await productService.save(req);
+                await productService.save(req);
                 res.redirect('/productos/listaMisProductos');
             } else {
                 res.render('productos/create', { errors: error.mapped(), funcion: funcion, oldData: req.body })
@@ -130,19 +116,8 @@ let productController = {
 
     search: async (req, res) => {
         try {
-            const searchTerm = req.body.busqueda;
-            const results = await db.Productos.findAll({
-                include: [
-                    { association: 'Caracteristica' },
-                    { association: 'ImagenesProductos' },
-                    { association: 'Categoria' }
-                ],
-                where: {
-                    Nombre: {
-                        [Sequelize.Op.like]: `%${searchTerm}%`
-                    }
-                }
-            });
+            const name = req.body.busqueda;
+            const results = await productService.getByName(name)
             res.render('productos/resultados', { productos: results, funcion: funcion }); // Renderiza una vista con los resultados
         } catch (error) {
             console.error('Error searching products:', error);
