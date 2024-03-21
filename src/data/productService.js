@@ -90,12 +90,8 @@ const productService = {
     },
     perteneceAMisProductos: async function (req){
         let idUsuario=req.params.id;
-        let pertenece= await db.Productos.findByPk(idUsuario,{include:{association:'Usuario'}});
-        if(!pertenece){
-            return false;
-        }else{
-            return true;
-        }
+        let producto= await db.Productos.findByPk(idUsuario,{include:{association:'Usuario'}});
+        return !(producto == undefined)
     },
     update: async function (req) {
         try {

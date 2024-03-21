@@ -33,3 +33,7 @@ Nuestra audiencia objetivo incluirá a jóvenes, adultos que buscan productos el
 
 ## Trello
  - [Trello](https://trello.com/b/TyfSUuay/digitalbyte)
+
+ ## Credenciales de Superusuario Admin para pruebas
+ correo: superusu@gmail.com
+ contraseña: Superusu1234$
