@@ -1,4 +1,3 @@
-// 1 SMARTPHONE, 2 TABLET, 3 NOTEBOOK
 const db = require('../model/database/models');
 const Sequelize = require('sequelize');
 const productService = {
