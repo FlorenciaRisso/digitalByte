@@ -47,16 +47,17 @@ const productService = {
 
         }
     },
-    getOne: async function (req) {
+    getOne: async function (productId) {
         try {
-            return await db.Productos.findByPk(req.params.id, {
+            return await db.Productos.findByPk(productId, {
                 include: [
                     { association: 'Caracteristica' },
                     { association: 'ImagenesProductos' },
-                    { association: 'Categoria' }
+                    { association: 'Categoria' },
+                    { association: 'Usuario' }
                 ]
             });
-        } catch {
+        } catch (error){
             console.log(error);
             return [];
         }

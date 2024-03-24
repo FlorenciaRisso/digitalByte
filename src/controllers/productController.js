@@ -48,7 +48,8 @@ let productController = {
 
     },
     detalle: async (req, res) => {
-        let producto = await productService.getOne(req);
+        let productId = req.params.id;
+        let producto = await productService.getOne(productId);
         let productos = await productService.getAll();
         res.render('productos/detalle', { producto: producto, productos: productos, funcion: funcion });
     },
