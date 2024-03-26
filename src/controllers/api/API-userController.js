@@ -43,7 +43,7 @@ let userController = {
       userDetails.direccion = user.direccion;
       userDetails.telefono = user.telefono;
 
-      userDetails.avatarURL = `/api/users/${user.id}/avatar`;
+      userDetails.avatarURL = user.avatar;
 
       res.json(userDetails);
     } catch (error) {
