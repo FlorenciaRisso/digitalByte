@@ -1,9 +1,9 @@
-const productService = require("../../data/productService");
+const apiProductService = require("../../data/api/API-productService");
 
 let productController = {
   list: async (req, res) => {
     try {
-      let products = await productService.getAll();
+      let products = await apiProductService.getAll();
       const count = products.length;
 
       let countByCategory = {};
@@ -37,7 +37,7 @@ let productController = {
   detail: async (req, res) => {
     try {
       const productId = req.params.id;
-      const product = await productService.getOne(productId);
+      const product = await apiProductService.getOne(productId);
   
       if (!product) {
         return res.status(404).json({ error: 'Producto no encontrado' });

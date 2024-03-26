@@ -1,9 +1,9 @@
-const userService = require("../../data/userService");
+const apiUserService = require("../../data/api/API-userService");
 
 let userController = {
   list: async (req, res) => {
     try {
-      const users = await userService.getAll();
+      const users = await apiUserService.getAll();
 
       const count = users.length;
 
@@ -26,7 +26,7 @@ let userController = {
 
   detail: async (req, res) => {
     try {
-      const user = await userService.getOne(req.params.id);
+      const user = await apiUserService.getOne(req.params.id);
 
       if (!user) {
         return res.status(404).json({ error: 'Usuario no encontrado' });
