@@ -15,4 +15,18 @@ router.use('/usuarios', routerUsuarios);
 router.use('/api/products', APIproducts);
 router.use('/api/users', APIusers);
 
+router.use('*', function (req, res, next) {
+    const err = new Error();
+    err.status = 404;
+    next(err);
+});
+
+router.use(function(err, req, res, next) {
+    if (err.status === 404) {
+        res.status(404).render('error404');
+    } else {
+        next(err);
+    }
+});
+
 module.exports = router;

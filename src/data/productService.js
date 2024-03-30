@@ -47,6 +47,30 @@ const productService = {
 
         }
     },
+    getSmartphoneByMarca: async function (marca) {
+        try {
+            const productos = await db.Productos.findAll({
+                attributes: ['ID_Producto', 'Nombre','Marca'],
+                include: [
+                    { association: 'Categoria' }
+                ],
+                where: {
+                    Marca: {
+                        [Sequelize.Op.like]: `%${marca}%`
+                    },
+                    ID_Categoria: 2 
+                },
+                order: [['ID_Producto', 'DESC']], 
+                limit: 3 
+            });
+            return productos;
+        } catch (error) {
+            
+            console.error(error);
+            throw error;
+        }
+    },
+    
     getOne: async function (productId) {
         try {
             return await db.Productos.findByPk(productId, {

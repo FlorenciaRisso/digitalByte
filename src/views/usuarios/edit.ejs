@@ -23,11 +23,12 @@
                   </div>
                   <% } %>
                     <input id="avatar-upload" class="file-upload" type="file" name="avatar" accept=".jpg, .png">
-                    <% if(locals.errors && errors.avatar) { %>
+                    <% if (typeof fileValidationError !== 'undefined') { %>
                       <div class="text-danger">
-                        <%= errors.avatar.msg %>
+                        <%= fileValidationError %>
                       </div>
-                      <% } %>
+                  <% } %>
+                  
               </div>
             </div>
             <div class="div__datos">
@@ -146,7 +147,7 @@
               <div class="edit-user__buttons">
                 <button class="edit-user__button btn ">Guardar cambios</button>
                 <div>
-                  <a href="/usuarios/perfil/<%= usuario.id %>" class="edit-user__link">Volver al perfil</a>
+                  <a href="/usuarios/perfil/<%= oldData.id %>" class="edit-user__link">Volver al perfil</a>
                 </div>
               </div>
 

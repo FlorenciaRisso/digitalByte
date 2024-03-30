@@ -2,10 +2,16 @@ const productService = require('../data/productService');
 const funcion = require('../data/funcion')
 
 let mainController = {
-    index: (req, res) => {
-        productService.getAll(req).
-            then(data => {res.render('index', { productos: data, funcion: funcion }) }).
-            catch(error => { console.log(error) })
+    index: async (req, res) => {
+        try {
+            let data = await productService.getAll();
+            let ultimosSamsung= await productService.getSmartphoneByMarca('Samsung');
+            let ultimosXiaomi=await productService.getSmartphoneByMarca('Xiaomi');
+            let ultimosApple=await productService.getSmartphoneByMarca('Apple');
+            res.render('index', { ultimosApple:ultimosApple,ultimosXiaomi:ultimosXiaomi,ultimosSamsung:ultimosSamsung,productos: data, funcion: funcion })
+        } catch (error) {
+            console.log(error)
+        }
     },
 
     contactos: (req, res) => {

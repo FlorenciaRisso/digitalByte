@@ -28,7 +28,7 @@ let productController = {
             if (req.session.usuarioLogeado.rol == 'Administrador') {
                 productos = await productService.getAll();
             } else {
-                productos = productService.getAllByID(req.session.usuarioLogeado.id)
+                productos = await productService.getAllByID(req.session.usuarioLogeado.id)
             }
             res.render('productos/lista', { productos: productos, funcion: funcion });
         } catch (error) {
@@ -63,7 +63,7 @@ let productController = {
                 await productService.save(req);
                 res.redirect('/productos/listaMisProductos');
             } else {
-                res.render('productos/create', { errors: error.mapped(), funcion: funcion, oldData: req.body })
+                res.render('productos/create', { fileValidationError:req.fileValidationError,errors: error.mapped(), funcion: funcion, oldData: req.body })
             }
         } catch (error) {
             console.log(error);
@@ -95,7 +95,7 @@ let productController = {
                     res.send(403).send({ mensaje: 'No tienes permiso para editar este producto' });
                 }
             } else {
-                res.render('productos/edit', { errors: error.mapped(), funcion: funcion, oldData: producto, producto: productoAnterior })
+                res.render('productos/edit', { fileValidationError:req.fileValidationError,errors: error.mapped(), funcion: funcion, oldData: producto, producto: productoAnterior })
             }
         }
         catch (error) {
@@ -107,9 +107,9 @@ let productController = {
     delete: (req, res) => {
         productService.delete(req).then(resultado => {
             if (resultado.status == 'success') {
-                res.redirect('/productos/lista');
+                res.redirect('/productos/listaMisProductos');
             } else {
-                res.redirect('/productos/lista');
+                res.redirect('/productos/listaMisProductos');
             }
         })
 

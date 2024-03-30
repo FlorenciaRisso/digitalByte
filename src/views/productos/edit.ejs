@@ -11,7 +11,7 @@
 
           <form class="edit__form" action="/productos/editar/<%=oldData.ID_Producto%>?_method=put" method="POST"
             enctype="multipart/form-data">
-            
+
             <div class="div-imagenes">
               <% for (let i=0; i < 4; i++) { %>
                 <div class="div-img">
@@ -29,9 +29,9 @@
                     <input type="hidden" name="oldImage<%= i %>" value="<%= oldData['image' + i] %>">
                     <% } %>
 
-                      <% if(locals.errors && errors['image' + i]) { %>
+                      <% if (typeof fileValidationError !=='undefined' ) { %>
                         <div class="text-danger">
-                          <%= errors['image' + i].msg %>
+                          <%= fileValidationError %>
                         </div>
                         <% } %>
                 </div>

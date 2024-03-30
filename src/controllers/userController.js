@@ -61,13 +61,15 @@ let userController = {
             delete req.session['usuarioLogeado'];
             let usuarioActualizado = await userService.getOne(req.params.id)
             req.session.usuarioLogeado = usuarioActualizado;
+            console.log(3);
             res.redirect('/usuarios/lista');
 
         } else if (usuarioActualizado > 0 && error.isEmpty()) {
+            console.log(2);
             res.redirect('/usuarios/lista');
         } else {
-            console.log(error);
-            res.render('usuarios/edit', { oldData: data, errors: error.mapped() })
+            console.log(1);
+            res.render('usuarios/edit', { fileValidationError:req.fileValidationError,oldData: data, errors: error.mapped() })
         }
 
     },
@@ -143,10 +145,10 @@ let userController = {
         try {
             const userId = req.params.id;
             if (req.session.usuarioLogeado.id == userId) {
-                let usuario=await userService.delete(userId);
-                if(usuario){
-                   res.redirect('/usuarios/cerrarSesion') 
-                }else{
+                let usuario = await userService.delete(userId);
+                if (usuario) {
+                    res.redirect('/usuarios/cerrarSesion')
+                } else {
                     res.redirect("/");
                 }
             } else if (req.session.usuarioLogeado.rol == "Administrador" && req.session.usuarioLogeado.id != userId) {
@@ -156,10 +158,10 @@ let userController = {
                 //error usted no tiene permisos para realizar esta operacion
                 res.redirect("/")
             }
-        } catch(error){
+        } catch (error) {
             console.log(error);
         }
-        
+
 
     },
 

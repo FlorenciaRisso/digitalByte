@@ -22,16 +22,16 @@
                                         <i class="fas fa-camera"></i>
                                     </label>
                                     <input type="file" name="image<%= i %>" id="imagen<%= i %>"
-                                        class="custom-file-input imagen<%= i %>" accept=".png" multiple
+                                        class="custom-file-input imagen<%= i %>" accept=".jpg, .png, .gif, .jpeg" multiple
                                         style="display: none;">
 
                                         <input type="hidden" name="oldImage<%= i %>">
 
-                                            <% if(locals.errors && errors['image' + i]) { %>
-                                                <div class="text-danger">
-                                                    <%= errors['image' + i].msg %>
-                                                </div>
-                                                <% } %>
+                                        <% if (typeof fileValidationError !== 'undefined') { %>
+                                            <div class="text-danger">
+                                              <%= fileValidationError %>
+                                            </div>
+                                        <% } %>
                                 </div>
                                 <% } %>
                         </div>

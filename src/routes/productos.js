@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const uploadFile=require('../data/multer');
+const uploadFile=require('../data/multerMulti');
 const productController = require('../controllers/productController');
 const authMiddleware = require('../middlewares/usuarios/authMiddleware');
 const esAdmin = require('../middlewares/usuarios/esAdmin');
@@ -21,22 +21,12 @@ router.get('/listaproductos',authMiddleware,esVendedor, productController.listad
 router.get('/categoria',productController.listaPorCat);
 //crear
 router.get('/create',authMiddleware,esVendedorOAdmin, productController.create);
-router.post('/create',authMiddleware,esVendedorOAdmin, uploadFile.fields([
-    { name: 'image0', maxCount: 1 },
-    { name: 'image1', maxCount: 1 },
-    { name: 'image2', maxCount: 1 },
-    { name: 'image3', maxCount: 1 }
-]),createProductoValidation,productController.save);
+router.post('/create',authMiddleware,esVendedorOAdmin, uploadFile,createProductoValidation,productController.save);
 //detalles
 router.get('/detalle/:id', productController.detalle);
 //editar
 router.get('/editar/:id',authMiddleware,esVendedorOAdmin, productController.editProducto);
-router.put('/editar/:id',authMiddleware,esVendedorOAdmin,uploadFile.fields([
-    { name: 'image0', maxCount: 1 },
-    { name: 'image1', maxCount: 1 },
-    { name: 'image2', maxCount: 1 },
-    { name: 'image3', maxCount: 1 }
-]),editProductoValidation, productController.update);
+router.put('/editar/:id',authMiddleware,esVendedorOAdmin,uploadFile,editProductoValidation, productController.update);
 
 //eliminar
 router.delete('/delete/:id',authMiddleware,esVendedorOAdmin,productController.delete);

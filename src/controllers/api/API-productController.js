@@ -38,11 +38,10 @@ let productController = {
     try {
       const productId = req.params.id;
       const product = await apiProductService.getOne(productId);
-  
+
       if (!product) {
         return res.status(404).json({ error: 'Producto no encontrado' });
       }
-  console.log(product)
       const productDetail = {};
 
       productDetail.id = product.ID_Producto;
@@ -56,11 +55,11 @@ let productController = {
       productDetail.usuario = product.Usuario;
       productDetail.ImagenesProducto = product.ImagenesProductos;
       productDetail.ImagenesProducto = product.ImagenesProductos;
-  
-      
-  
+
+
+
       // productDetail.imageURL = `/api/products/${product.id}/image`;
-  
+
       res.json(productDetail);
     } catch (error) {
       console.log(error.message);

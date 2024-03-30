@@ -22,10 +22,10 @@ router.get('/login', guestMiddleware, userController.login);
 router.post('/login', loginValidation, userController.processLogin);
 
 router.get('/registro', guestMiddleware, userController.registro);
-router.post('/registro', uploadFile.single('avatar'),registerValidation, userController.processRegister)
+router.post('/registro', uploadFile,registerValidation, userController.processRegister)
 
 router.get('/edit/:id', authMiddleware, userController.edit)
-router.put('/edit/:id', uploadFile.single('avatar'),editUsuarioValidation, userController.update)
+router.put('/edit/:id', uploadFile,editUsuarioValidation, userController.update)
 
 router.get('/cambiarContrasenia/:id', userController.cambiarContraseña)
 router.put('/cambiarContrasenia/:id', changePasswordValidation,userController.updateContraseña)

@@ -259,7 +259,6 @@ a {
 .main-nav {
   display: flex;
   background-color: #fbfbfb;
-  margin-bottom: 15px;
   flex-direction: column;
 
 }
@@ -915,7 +914,11 @@ a {
 .box-search li a:hover {
   background-color: #f3f3f3;
 }
-
+.div-error404{
+  display: flex;
+  justify-content: center;
+  background-color: #dcdbf1;
+}
 @media (min-width: 500px) {
 
   /*Header*/
