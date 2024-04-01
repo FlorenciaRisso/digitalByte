@@ -74,6 +74,9 @@ window.addEventListener('load', function () {
     });
 
     stock.addEventListener('input', function () {
+        if (!/^\d*$/.test(stock.value)) {
+            stock.value = stock.value.replace(/[^\d]/g, '');
+        }
         if (stock.value.length >= 5) {
             stock.style.border = '1px solid green';
             stockMsg.style.display = 'none';
@@ -82,6 +85,9 @@ window.addEventListener('load', function () {
         }
     });
     precio.addEventListener('blur', function () {
+        if (!/^\d*$/.test(precio.value)) {
+            precio.value = precio.value.replace(/[^\d]/g, '');
+        }
         if (precio.value === '') {
             precio.style.border = '2px solid red';
             precioMsg.style.display = 'block';

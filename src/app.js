@@ -1,21 +1,16 @@
 //Require de express
 const express = require('express');
-
 //Ejecucion de express
 const app = express();
-
 //Require path
 const path = require('path');
-
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
-
-
 const methodOverride = require('method-override');
 const session = require('express-session');
-
-
 const indexRouter = require('./routes/index');
+
+
 app.use(session({
     secret: 'secreto', // Secreto para firmar la cookie de sesión
     resave: false,

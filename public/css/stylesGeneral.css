@@ -47,7 +47,9 @@ a {
   text-decoration: none;
   color: rgb(19, 19, 19);
 }
-
+.w-50{
+  width: 50%;
+}
 .text-danger {
   color: red;
   margin: 0;
@@ -914,8 +916,10 @@ a {
 .box-search li a:hover {
   background-color: #f3f3f3;
 }
-.div-error404{
+.div-error{
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   background-color: #dcdbf1;
 }

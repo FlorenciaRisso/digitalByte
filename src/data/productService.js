@@ -50,7 +50,7 @@ const productService = {
     getSmartphoneByMarca: async function (marca) {
         try {
             const productos = await db.Productos.findAll({
-                attributes: ['ID_Producto', 'Nombre','Marca'],
+                attributes: ['ID_Producto', 'Nombre', 'Marca'],
                 include: [
                     { association: 'Categoria' }
                 ],
@@ -58,19 +58,19 @@ const productService = {
                     Marca: {
                         [Sequelize.Op.like]: `%${marca}%`
                     },
-                    ID_Categoria: 2 
+                    ID_Categoria: 2
                 },
-                order: [['ID_Producto', 'DESC']], 
-                limit: 3 
+                order: [['ID_Producto', 'DESC']],
+                limit: 3
             });
             return productos;
         } catch (error) {
-            
+
             console.error(error);
             throw error;
         }
     },
-    
+
     getOne: async function (productId) {
         try {
             return await db.Productos.findByPk(productId, {
@@ -81,7 +81,7 @@ const productService = {
                     { association: 'Usuario' }
                 ]
             });
-        } catch (error){
+        } catch (error) {
             console.log(error);
             return [];
         }
@@ -89,16 +89,15 @@ const productService = {
     save: async function (req) {
         try {
             const nuevoProducto = await db.Productos.create({
-                nombre: req.body.name,
-                descripcion: req.body.description,
+                Nombre: req.body.name,
+                Descripcion: req.body.description,
                 ID_Categoria: req.body.category,
-                precio: req.body.price,
-                stock: req.body.stock,
-                descuento: req.body.discount,
-                marca: req.body.marca,
+                Precio: req.body.price,
+                Stock: req.body.stock,
+                Descuento: req.body.discount,
+                Marca: req.body.marca,
                 ID_Vendedor: req.session.usuarioLogeado.id
             });
-
             // Agregar las imágenes del producto
             for (let i = 0; i < 4; i++) {
                 const fileField = req.files[`image${i}`];
@@ -145,8 +144,13 @@ const productService = {
         }
     },
     perteneceAMisProductos: async function (req) {
-        let idUsuario = req.params.id;
-        let producto = await db.Productos.findByPk(idUsuario, { include: { association: 'Usuario' } });
+        let idProducto = req.params.id;
+        let producto = await db.Productos.findOne({
+            where: {
+                ID_Producto: idProducto,
+                ID_Vendedor: req.session.usuarioLogeado.id,
+            }
+        }, { include: { association: 'Usuario' } });
         return !(producto == undefined)
     },
     update: async function (req) {

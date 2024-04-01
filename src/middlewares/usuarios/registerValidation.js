@@ -27,20 +27,7 @@ const registerValidation = [
         return true;  
     }),
     check('nacionalidad').notEmpty().withMessage('Debes seleccionar tu país de nacimiento'),
-    check('rol').notEmpty().withMessage('Debes elegir una categoría de usuario'),
-    check('avatar').custom((value, { req }) => {
-        let file = req.file;
-        let acceptedExtensions = ['.jpg', '.jpeg', '.png', '.gif']
-        if (!file) {
-            throw new Error('Tienes que subir una imagen');
-        } else {
-            let fileExtension = path.extname(file.originalname);
-            if (!acceptedExtensions.includes(fileExtension)) {
-                throw new Error(`Las extensiones permitidas son ${acceptedExtensions.join(', ')}`)
-            }
-        }
-        return true;
-    })
+    check('rol').notEmpty().withMessage('Debes elegir una categoría de usuario')
 ];
 
 module.exports = registerValidation;

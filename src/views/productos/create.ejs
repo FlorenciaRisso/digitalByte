@@ -9,37 +9,36 @@
                         <h2 class="title">Crear producto</h2>
                     </div>
 
-                    <form class="edit__form" action="/productos/create"
-                        method="POST" enctype="multipart/form-data">
+                    <form class="edit__form" action="/productos/create" method="POST" enctype="multipart/form-data">
 
                         <div class="div-imagenes">
                             <% for (let i=0; i < 4; i++) { %>
                                 <div class="div-img">
                                     <label for="image<%= i %>"></label>
-                                    <img class="imagen" id="previewImage<%= i %>"
-                                        alt="Vista previa de la imagen" src="/img/default-image.png">
+                                    <img class="imagen" id="previewImage<%= i %>" alt="Vista previa de la imagen"
+                                        src="<%= locals.oldData && oldData['image' + i] ? oldData['image' + i] : "/img/default-image.png"%>">
                                     <label for="imagen<%= i %>" class="camera-icon">
                                         <i class="fas fa-camera"></i>
                                     </label>
-                                    <input type="file" name="image<%= i %>" id="imagen<%= i %>"
-                                        class="custom-file-input imagen<%= i %>" accept=".jpg, .png, .gif, .jpeg" multiple
-                                        style="display: none;">
+                                    <input type="file" name="image<%=i%>" id="imagen<%= i %>"
+                                        class="custom-file-input imagen<%= i %>" accept=".jpg, .png, .gif, .jpeg"
+                                        multiple style="display: none;">
 
-                                        <input type="hidden" name="oldImage<%= i %>">
-
-                                        <% if (typeof fileValidationError !== 'undefined') { %>
-                                            <div class="text-danger">
-                                              <%= fileValidationError %>
-                                            </div>
-                                        <% } %>
+                                    <input type="hidden" name="oldImage<%= i %>">
                                 </div>
                                 <% } %>
+                                <% if (locals.fileValidationError && (typeof fileValidationError !== undefined) ) { %>
+                                    <div class="text-danger w-50">
+                                        <%= fileValidationError %>
+                                    </div>
+                                    <% } %>
                         </div>
                         <div class="div-datos">
                             <div class="block-input">
                                 <label for="name">Nombre del producto: </label>
                                 <input class="nombre" type="text" name="name"
-                                    placeholder="Ingresa el nombre del producto" />
+                                    placeholder="Ingresa el nombre del producto"
+                                    value="<%=locals.oldData && oldData.name ? oldData.name : ''%>" />
                                 <small class="nombre-msg text-danger"></small>
                                 <% if(locals.errors && errors.name) {%>
                                     <div class="text-danger">
@@ -51,7 +50,7 @@
                             <div class="block-input">
                                 <label for="description">Descripción:</label>
                                 <textarea class="input descripcion" name="description"
-                                    placeholder="Ingresa la descripción del producto"></textarea>
+                                    placeholder="Ingresa la descripción del producto"><%=locals.oldData && oldData.description ? oldData.description : ''%></textarea>
                                 <small class="descripcion-msg text-danger"></small>
                                 <% if(locals.errors && errors.description) {%>
                                     <div class="text-danger">
@@ -62,7 +61,8 @@
 
                             <div class="block-input">
                                 <label for="discount">Descuento:</label>
-                                <input name="discount" placeholder="Ingresa descuento del producto"></input>
+                                <input name="discount" placeholder="Ingresa descuento del producto"
+                                    value="<%=locals.oldData && oldData.discount ? oldData.discount : ''%>"></input>
                                 <% if(locals.errors && errors.discount) {%>
                                     <div class="text-danger">
                                         <%= errors.discount.msg %>
@@ -72,7 +72,8 @@
 
                             <div class="block-input">
                                 <label for="stock">Stock:</label>
-                                <input name="stock" class="stock" placeholder="Ingresa stock del producto"></input>
+                                <input name="stock" class="stock" placeholder="Ingresa stock del producto"
+                                    value="<%=locals.oldData && oldData.stock ? oldData.stock : ''%>"></input>
                                 <small class="stock-msg text-danger"></small>
                                 <% if(locals.errors && errors.stock) {%>
                                     <div class="text-danger">
@@ -84,7 +85,8 @@
                             <div class="block-input">
                                 <label for="price">Precio:</label>
                                 <input class="precio" type="number" id="price" name="price"
-                                    placeholder="Precio del producto">
+                                    placeholder="Precio del producto"
+                                    value="<%=locals.oldData && oldData.price ? oldData.price : ''%>">
                                 <small class="precio-msg text-danger"></small>
                                 <% if(locals.errors && errors.price) {%>
                                     <div class="text-danger">
@@ -100,10 +102,16 @@
                                     <select class="input" name="category" id="category">
 
                                         <% categorias.forEach(category=>{ %>
-                                            <option value="<%= category.id %>">
-                                                <%= category.name %>
-                                            </option>
-                                            <% }); %>
+                                            <%if(locals.oldData && (category.id==oldData.category)){%>
+                                                <option value="<%=locals.oldData && oldData.category%>" selected>
+                                                    <%=category.name%>
+                                                </option>
+                                                <%}else{%>
+                                                    <option value="<%= category.id %>">
+                                                        <%= category.name %>
+                                                    </option>
+                                                    <%}%>
+                                                        <% }); %>
                                     </select>
                                     <% if(locals.errors && errors.category) {%>
                                         <div class="text-danger">
@@ -119,11 +127,16 @@
                                         <select class="input" name="marca" id="marca">
 
                                             <% marca.forEach(marca=>{ %>
-                                                <option value="<%= marca.name %>">
-                                                    <%= marca.name %>
-                                                </option>
-                                                <% }); %>
-
+                                                <%if(locals.oldData &&(marca.name==oldData.marca)){%>
+                                                    <option value="<%=locals.oldData && oldData.marca%>" selected>
+                                                        <%=oldData.marca%>
+                                                    </option>
+                                                    <%}else{%>
+                                                        <option value="<%= marca.name %>">
+                                                            <%= marca.name %>
+                                                        </option>
+                                                        <%}%>
+                                                            <% }); %>
                                         </select>
                                         <% if(locals.errors && errors.marca) {%>
                                             <div class="text-danger">
@@ -134,19 +147,23 @@
 
                                     <div class="block-input">
                                         <label for="tamanio">Tamaño:</label>
-                                        <input class="tamaño" type="text" id="tamanio" name="Tamanio"><br>
+                                        <input class="tamaño" type="text" id="tamanio" name="Tamanio"
+                                            value="<%=locals.oldData && oldData.Tamanio ? oldData.Tamanio : '' %>"><br>
                                     </div>
                                     <div class="block-input">
                                         <label for="memoria">Memoria:</label>
-                                        <input class="memoria" type="text" id="memoria" name="Memoria">
+                                        <input class="memoria" type="text" id="memoria" name="Memoria"
+                                            value="<%=locals.oldData && oldData.Memoria ? oldData.Memoria : '' %>">
                                     </div>
                                     <div class="block-input">
                                         <label for="camara">Cámara Principal:</label>
-                                        <input class="camara" type="text" id="camara" name="CamaraPrincipal"><br>
+                                        <input class="camara" type="text" id="camara" name="CamaraPrincipal"
+                                            value="<%=locals.oldData && oldData.CamaraPrincipal ? oldData.CamaraPrincipal : ''%>"><br>
                                     </div>
                                     <div class="block-input">
                                         <label for="ram">RAM:</label>
-                                        <input class="ram" type="text" id="ram" name="Ram"><br>
+                                        <input class="ram" type="text" id="ram" name="Ram"
+                                            value="<%=locals.oldData && oldData.Ram ? oldData.Ram : ''%>"><br>
                                     </div>
                         </div>
                         <div class="edit__buttons">
@@ -163,4 +180,5 @@
     <%- include ('../partials/script-menu') %>
         <script src="/js/productos/create-edit.js"></script>
         <script src="/js/productos/script-change-img.js"></script>
+
         </html>
