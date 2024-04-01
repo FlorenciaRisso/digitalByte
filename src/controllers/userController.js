@@ -45,33 +45,44 @@ let userController = {
     },
 
     update: async (req, res) => {
-        let error = validationResult(req)
-        let usuarioId = req.body.id; //String
-        let sessionUsuarioId = req.session.usuarioLogeado.id; //Number
-        let usuarioActualizado = await userService.update(req);
-        let data = {};
-        data.id = req.body.id;
-        data.nombre = req.body.firstName;
-        data.apellido = req.body.lastName;
-        data.email = req.body.email;
-        data.rol = req.body.rol;
-        data.nacionalidad = req.body.country;
-        data.avatar = req.body.oldImage;
-        if (sessionUsuarioId == usuarioId && usuarioActualizado > 0 && error.isEmpty()) {
-            delete req.session['usuarioLogeado'];
-            let usuarioActualizado = await userService.getOne(req.params.id)
-            req.session.usuarioLogeado = usuarioActualizado;
-            console.log(3);
-            res.redirect('/usuarios/lista');
-
-        } else if (usuarioActualizado > 0 && error.isEmpty()) {
-            console.log(2);
-            res.redirect('/usuarios/lista');
-        } else {
-            console.log(1);
-            res.render('usuarios/edit', { fileValidationError:req.fileValidationError,oldData: data, errors: error.mapped() })
+        try {
+            let error = validationResult(req);
+            let usuarioId = req.body.id;
+            let sessionUsuarioId = req.session.usuarioLogeado ? req.session.usuarioLogeado.id : null;
+            let existingUser = await userService.findByField('email', req.body.email);
+            let usuarioActualizado;
+    
+            if (existingUser && existingUser.id !== usuarioId) {
+                errors = validationResult(req).array();
+                errors.push({ msg: 'El correo electrónico ya está registrado por otro usuario' });
+            }
+    
+            let data = {
+                id: req.body.id,
+                nombre: req.body.firstName,
+                apellido: req.body.lastName,
+                email: req.body.email,
+                rol: req.body.rol,
+                nacionalidad: req.body.country,
+                avatar: req.body.oldImage
+            };
+    
+            if (sessionUsuarioId == usuarioId && error.length === 0) {
+                delete req.session['usuarioLogeado'];
+                usuarioActualizado = await userService.update(req);
+                let usuarioActualizadoData = await userService.getOne(req.params.id);
+                req.session.usuarioLogeado = usuarioActualizadoData;
+                res.redirect('/usuarios/lista');
+            } else if (error.length === 0) {
+                usuarioActualizado = await userService.update(req);
+                res.redirect('/usuarios/lista');
+            } else {
+                // Mostrar la vista de edición con los errores
+                res.render('usuarios/edit', { fileValidationError:req.fileValidationError,oldData: data, errors: error.mapped() })
+            }
+        } catch (error) {
+            console.error('Error al actualizar usuario:', error);
         }
-
     },
 
 
