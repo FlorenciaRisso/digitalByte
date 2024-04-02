@@ -73,7 +73,6 @@ let userController = {
                 avatar: req.body.oldImage,
                 estado:req.body.estado
             };
-            console.log(sessionUsuarioId, usuarioId, error.isEmpty());
             if (sessionUsuarioId == usuarioId && error.isEmpty()) {
                 delete req.session['usuarioLogeado'];
                 usuarioActualizado = await userService.update(req);

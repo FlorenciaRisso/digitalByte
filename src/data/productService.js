@@ -78,6 +78,15 @@ const productService = {
             console.log(error);
         }
     },
+    getCategorias:async function(){
+        try {
+            const categorias = await db.Categorias.findAll({raw: true
+            });
+            return categorias;
+        } catch (error) {
+            console.log(error);
+        }
+    },
     getBySearch: async function (search) {
         try {
             let resultado = [];
@@ -156,9 +165,7 @@ const productService = {
             // Agregar las imágenes del producto
             for (let i = 0; i < 4; i++) {
                 const fileField = req.files[`image${i}`];
-                console.log(fileField);
                 const imagePath = fileField ? '/img/' + fileField[0].filename : "/img/default-image.png";
-                console.log(imagePath);
                 await db.ImagenesProductos.create({ ID_Producto: nuevoProducto.ID_Producto, ruta: imagePath });
             }
 
@@ -230,7 +237,6 @@ const productService = {
                 },
                 { where: { ID_Producto: productId } }
             );
-            console.log(producto);
             // Actualizar las imágenes del producto
 
             const imagesToUpdate = [];

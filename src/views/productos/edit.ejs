@@ -99,8 +99,6 @@
                   <% } %>
               </div>
 
-              <% let categorias=[ {"id":"1","name":"Notebooks"}, {"id":"2","name":"Smartphones"},
-                {"id":"3","name":"Tablets"} ]%>
                 <div class="block-input">
                   <label for="category">Categoria:</label>
                   <select class="input" name="category" id="category">
@@ -108,11 +106,11 @@
                     <% categorias.forEach(category=>{ %>
                       <%if(category.id==oldData.ID_Categoria){%>
                         <option value="<%=oldData.ID_Categoria%>" selected>
-                          <%=category.name%>
+                          <%=category.nombre%>
                         </option>
                         <%}else{%>
                           <option value="<%= category.id %>">
-                            <%= category.name %>
+                            <%= category.nombre %>
                           </option>
                           <%}%>
                             <% }); %>

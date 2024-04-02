@@ -96,10 +96,11 @@ let productController = {
     editProducto: async (req, res) => {
         try {
             let marcas= await productService.getMarcas();
+            let categorias= await productService.getCategorias();
             let producto = await productService.getOne(req.params.id);
             let pertenece = await productService.perteneceAMisProductos(req);
             if (pertenece || req.session.usuarioLogeado.rol == 'Administrador') {
-                res.render('productos/edit', { marcas:marcas,oldData: producto, producto: producto, funcion: funcion })
+                res.render('productos/edit', { categorias:categorias,marcas:marcas,oldData: producto, producto: producto, funcion: funcion })
             } else {
                 res.status(403).render('error403');
             }
