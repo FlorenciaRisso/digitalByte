@@ -1,13 +1,37 @@
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const { Usuarios } = require('../model/database/models');
-const fs = require('fs');
 
 
 const userService = {
     getAll: async function () {
         try {
-            return await Usuarios.findAll();
+            return await Usuarios.findAll({where:{estado:'A'}});
+        } catch (error) {
+            console.error('Error al obtener todos los usuarios:', error);
+            return [];
+        }
+    },
+    getUsuarios: async function (req) {
+        try {
+            let usuarios;
+            const estado = req.query.estado;
+            if (estado === 'activo') {
+                usuarios = await Usuarios.findAll({ where: { estado: 'A' } });
+            } else if (estado === 'inactivo') {
+                usuarios = await Usuarios.findAll({ where: { estado: 'I' } });
+            } else {
+                usuarios = await Usuarios.findAll();
+            }
+            return usuarios;
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    },
+    getAllInac: async function () {
+        try {
+            return await Usuarios.findAll({where:{estado:'I'}});
         } catch (error) {
             console.error('Error al obtener todos los usuarios:', error);
             return [];
@@ -23,7 +47,7 @@ const userService = {
     },
     findByField: async function (field, value) {
         try {
-            return await Usuarios.findOne({ where: { [field]: value } });
+            return await Usuarios.findOne({ where: { [field]: value,estado:'A'} });
         } catch (error) {
             console.error('Error al buscar el usuario por campo:', error);
             return null;
@@ -64,7 +88,8 @@ const userService = {
                 email:req.body.email,
                 rol: req.body.rol,
                 direccion:req.body.direccion,
-                telefono:req.body.telefono
+                telefono:req.body.telefono,
+                estado:req.body.estado
             }
             if (req.file) {
                 usuario.avatar = "/img/" + req.file.filename;
@@ -98,7 +123,7 @@ const userService = {
 
     delete: async function (userId) {
         try {
-            return await Usuarios.destroy({ where: { id: userId } });
+            return await Usuarios.update({estado:'I'},{ where: { id: userId } });
         } catch (error) {
             console.error('Error al eliminar el usuario:', error);
             return false;

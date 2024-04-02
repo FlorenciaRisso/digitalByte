@@ -9,7 +9,7 @@ window.addEventListener('load', function () {
 
     function ocultarTextDanger() {
         let textDangerBacks = document.querySelectorAll('.text-danger');
-        textDangerBacks.forEach(function(textDangerBack) {
+        textDangerBacks.forEach(function (textDangerBack) {
             textDangerBack.style.display = 'none';
         });
     }
@@ -21,7 +21,7 @@ window.addEventListener('load', function () {
             viejaContraseñaMsg.textContent = 'Ingresa tu actual contraseña';
             ocultarTextDanger();
             viejaContraseñaMsg.style.color = 'red';
-        }else {
+        } else {
             viejaContraseña.style.border = '2px solid green';
             viejaContraseñaMsg.style.display = 'none'
         }
@@ -149,6 +149,19 @@ window.addEventListener('load', function () {
         }
     });
 
+    let togglePasswords = document.querySelectorAll(".toggle-password");
+
+    togglePasswords.forEach(function (togglePassword) {
+        let passwordField = togglePassword.previousElementSibling; 
+
+        togglePassword.addEventListener("click", function () {
+            const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
+            passwordField.setAttribute("type", type);
+
+            this.classList.toggle("fa-eye-slash");
+            this.classList.toggle("fa-eye");
+        });
+    });
 
 
 });

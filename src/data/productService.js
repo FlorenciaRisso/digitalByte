@@ -9,8 +9,43 @@ const productService = {
                     { association: 'Caracteristica' },
                     { association: 'ImagenesProductos' },
                     { association: 'Categoria' }
-                ]
+                ], where: { Estado: 'A' }
             });
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    },
+    getProductos: async function (req) {
+        try {
+            let productos = [];
+            const estado = req.query.estado;
+            if (estado === 'activo') {
+                productos = await db.Productos.findAll({
+                    include: [
+                        { association: 'Caracteristica' },
+                        { association: 'ImagenesProductos' },
+                        { association: 'Categoria' }
+                    ], where: { Estado: 'A' }
+                });
+            } else if (estado === 'inactivo') {
+                productos = await db.Productos.findAll({
+                    include: [
+                        { association: 'Caracteristica' },
+                        { association: 'ImagenesProductos' },
+                        { association: 'Categoria' }
+                    ], where: { Estado: 'I' }
+                });
+            } else {
+                productos = await db.Productos.findAll({
+                    include: [
+                        { association: 'Caracteristica' },
+                        { association: 'ImagenesProductos' },
+                        { association: 'Categoria' }
+                    ]
+                });
+            }
+            return productos;
         } catch (error) {
             console.log(error);
             return [];
@@ -20,7 +55,8 @@ const productService = {
         try {
             return await db.Productos.findAll({
                 include: [{ association: 'Caracteristica' }, { association: 'Categoria' }, { association: 'ImagenesProductos' }], where: {
-                    ID_Vendedor: id
+                    ID_Vendedor: id,
+                    Estado: 'A'
                 }
             });
         } catch (error) {
@@ -29,20 +65,37 @@ const productService = {
         }
 
     },
-    getByName: async function (name) {
+    getMarcas: async function () {
         try {
-            return await db.Productos.findAll({
+            const marcas = await db.Productos.findAll({
+                attributes: [
+                    [Sequelize.fn('DISTINCT', Sequelize.col('Marca')), 'marca']
+                ],raw: true
+            });
+            const nombresMarcas = marcas.map(marca => marca.marca);
+            return nombresMarcas;
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    getBySearch: async function (search) {
+        try {
+            let resultado = [];
+            resultado = await db.Productos.findAll({
                 include: [
                     { association: 'Caracteristica' },
                     { association: 'ImagenesProductos' },
                     { association: 'Categoria' }
                 ],
                 where: {
-                    Nombre: {
-                        [Sequelize.Op.like]: `%${name}%`
-                    }
+                    [Sequelize.Op.or]: [
+                        { Nombre: { [Sequelize.Op.like]: `%${search}%` } },
+                        { Marca: { [Sequelize.Op.like]: `%${search}%` } }
+                    ],
+                    Estado: 'A'
                 }
             });
+            return resultado;
         } catch (error) {
 
         }
@@ -58,7 +111,8 @@ const productService = {
                     Marca: {
                         [Sequelize.Op.like]: `%${marca}%`
                     },
-                    ID_Categoria: 2
+                    ID_Categoria: 2,
+                    Estado: 'A'
                 },
                 order: [['ID_Producto', 'DESC']],
                 limit: 3
@@ -98,7 +152,7 @@ const productService = {
                 Marca: req.body.marca,
                 ID_Vendedor: req.session.usuarioLogeado.id
             });
-            
+
             // Agregar las imágenes del producto
             for (let i = 0; i < 4; i++) {
                 const fileField = req.files[`image${i}`];
@@ -133,7 +187,7 @@ const productService = {
                     { association: 'Categoria' },
                     { association: 'ImagenesProductos' }
                 ],
-                where: { ID_Categoria: req.query.cat }
+                where: { ID_Categoria: req.query.cat, Estado: 'A' }
             });
 
             if (!productos) {
@@ -152,6 +206,7 @@ const productService = {
             where: {
                 ID_Producto: idProducto,
                 ID_Vendedor: req.session.usuarioLogeado.id,
+                Estado: 'A'
             }
         }, { include: { association: 'Usuario' } });
         return !(producto == undefined)
@@ -161,19 +216,21 @@ const productService = {
             const productId = req.params.id;
 
             // Actualizar la información básica del producto
-            await db.Productos.update(
+            let producto= await db.Productos.update(
                 {
-                    nombre: req.body.name,
-                    descripcion: req.body.description,
-                    precio: req.body.price,
-                    descuento: req.body.discount,
-                    stock: req.body.stock,
+                    Nombre: req.body.name,
+                    Descripcion: req.body.description,
+                    Precio: req.body.price,
+                    Descuento: req.body.discount,
+                    Stock: req.body.stock,
                     ID_Categoria: req.body.category,
-                    marca: req.body.marca,
-                    ID_Vendedor: req.session.usuarioLogeado.id
+                    Marca: req.body.marca,
+                    ID_Vendedor: req.session.usuarioLogeado.id,
+                    Estado: req.body.estado || 'A'
                 },
                 { where: { ID_Producto: productId } }
             );
+            console.log(producto);
             // Actualizar las imágenes del producto
 
             const imagesToUpdate = [];
@@ -204,8 +261,8 @@ const productService = {
                 let nuevaRuta = null;
                 for (let i = 0; i < imagesToUpdate.length; i++) {
                     if (imagesToUpdate[i].ruta != null) {
-                        let nuevosDatosImagen={
-                            ruta:imagesToUpdate[i].ruta
+                        let nuevosDatosImagen = {
+                            ruta: imagesToUpdate[i].ruta
                         }
                         await db.ImagenesProductos.update(nuevosDatosImagen, {
                             where: { id: ids[i] }
@@ -241,19 +298,11 @@ const productService = {
             return { error: error.message };
         }
     },
-
+    //Estado = 'A'  -> activo / Estado = 'I' -> Inactivo / Eliminado
     delete: async function (req) {
         try {
             const productId = req.params.id;
-
-            // Eliminar las características del producto
-            await db.Caracteristicas.destroy({ where: { ID_Producto: productId } });
-
-            // Eliminar las imágenes del producto
-            await db.ImagenesProductos.destroy({ where: { ID_Producto: productId } });
-
-            // Eliminar el producto de la base de datos
-            const deletedProduct = await db.Productos.destroy({ where: { ID_Producto: productId } });
+            const deletedProduct = await db.Productos.update({ Estado: 'I' }, { where: { ID_Producto: productId } });
 
             if (deletedProduct === 1) {
                 return { status: 'success', message: 'Producto y sus relaciones eliminadas exitosamente' };

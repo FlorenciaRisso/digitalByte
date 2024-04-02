@@ -5,6 +5,15 @@
 
             <h1 class="title">Listado de Productos</h1>
             <div class="float">
+                <form action="/productos/filtro" method="get" class="filter-form">
+                    <label for="estado">Estado:</label>
+                    <select name="estado" id="estado">
+                        <option value="todos">Todos</option>
+                        <option value="activo">Activos</option>
+                        <option value="inactivo">Inactivos</option>
+                    </select>
+                    <button type="submit">Filtrar</button>
+                </form>
                 <button class="btn btn-agregar"><a href="/productos/create">Agregar producto</a></button>
             </div>
             <div class="container">
@@ -13,16 +22,16 @@
                 <% }else {%>
                 <% productos.forEach(producto=> { %>
                     <ul class="product-list">
-                        <li class="card">
+                        <li class="card <%= producto.Estado=='I' ? 'bg-red' : ''%>">
 
-                            <h3 class="product-name">
+                            <h3 class="product-name <%= producto.Estado=='I' ? 'red' : ''%>">
                                 <%= producto.Nombre %>
                             </h3>
 
                             <a href="/productos/editar/<%=producto.ID_Producto %>"><img
                                 src="<%=producto.ImagenesProductos[0].ruta%>" alt="image usuario"></a>
 
-                            <h1 class="info"> $<%=funcion.getPrecioFormateado(producto.Precio)%>
+                            <h1 class="info <%= producto.Estado=='I' ? 'red' : ''%>"> $<%=funcion.getPrecioFormateado(producto.Precio)%>
                             </h1>
                             <div class="botones-acciones">
                                 <td>
@@ -30,7 +39,7 @@
                                             class="fa-solid fa-pen-to-square fa-lg"></i></a>
                                 </td>
                                 <td>
-                                    <form action="/productos/delete/<%=producto.ID_Producto %>?_method=delete"
+                                    <form class="<%= producto.Estado=='I' ? 'none' : ''%>" action="/productos/delete/<%=producto.ID_Producto %>?_method=put"
                                         method="post" style="display: inline-flex" id="form_delete">
                                         <button type="submit" class="btn-delete eliminar"
                                             data-product-id="<%=producto.ID_Producto %>"><i
@@ -64,7 +73,7 @@
                         if (result.isConfirmed) {
                             const productId = $(e.currentTarget).data('product-id');
                             const form = $(e.currentTarget).closest('#form_delete');
-                            form.attr('action', `/productos/delete/${productId}?_method=delete`);
+                            form.attr('action', `/productos/delete/${productId}?_method=put`);
                             form.submit();
                             Swal.fire({
                                 title: "Eliminado!",

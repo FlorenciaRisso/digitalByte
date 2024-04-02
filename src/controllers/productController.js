@@ -19,6 +19,15 @@ let productController = {
             console.log(error);
         }
     },
+    filtro: async function (req, res) {
+        try {
+            let data = await productService.getProductos(req);
+            console.log(data);
+            res.render('productos/lista', { productos: data, funcion: funcion });
+        } catch {
+            console.log(error);
+        }
+    },
     listado:
         async function (req, res) {
             try {
@@ -86,10 +95,11 @@ let productController = {
     },
     editProducto: async (req, res) => {
         try {
+            let marcas= await productService.getMarcas();
             let producto = await productService.getOne(req.params.id);
             let pertenece = await productService.perteneceAMisProductos(req);
-            if (pertenece) {
-                res.render('productos/edit', { oldData: producto, producto: producto, funcion: funcion })
+            if (pertenece || req.session.usuarioLogeado.rol == 'Administrador') {
+                res.render('productos/edit', { marcas:marcas,oldData: producto, producto: producto, funcion: funcion })
             } else {
                 res.status(403).render('error403');
             }
@@ -120,7 +130,7 @@ let productController = {
     },
     delete: async function(req, res){
         try{
-            let resultado=productService.delete(req);
+            let resultado=await productService.delete(req);
             if (resultado.status == 'success') {
                 res.redirect('/productos/listaMisProductos');
             } else {
@@ -133,8 +143,8 @@ let productController = {
 
     search: async (req, res) => {
         try {
-            const name = req.body.busqueda;
-            const results = await productService.getByName(name)
+            const search = req.body.busqueda;
+            const results = await productService.getBySearch(search)
             res.render('productos/resultados', { productos: results, funcion: funcion }); // Renderiza una vista con los resultados
         } catch (error) {
             console.error('Error searching products:', error);

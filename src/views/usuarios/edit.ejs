@@ -143,7 +143,19 @@
                   </div>
                   <% } %>
               </div>
-
+              <div class="edit-user__category-form block-input">
+                <label for="estado"><b>Estado</b></label>
+                <select name="estado"
+                  class="edit-user__input-form nacionalidad">
+                  <% let estado=[{key:'A',value:'Activo'},{key:'I',value:'Inactivo'}] %>
+                    <% for (const oneEstado of estado) { %>
+                      <option value="<%= oneEstado.key %>" <%=locals.oldData && (oneEstado.key===oldData.estado)
+                        ? 'selected' : null %>
+                        > <%= oneEstado.value %>
+                      </option>
+                      <% } %>
+                </select>
+              </div>
               <div class="edit-user__buttons">
                 <button class="edit-user__button btn ">Guardar cambios</button>
                 <div>

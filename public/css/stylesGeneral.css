@@ -923,6 +923,9 @@ a {
   justify-content: center;
   background-color: #dcdbf1;
 }
+.filter-form{
+  text-align: center;
+}
 @media (min-width: 500px) {
 
   /*Header*/

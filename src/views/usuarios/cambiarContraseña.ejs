@@ -13,44 +13,47 @@
                     <div class="edit-user__password-form block-input">
 
                         <input type="password" name="contraseniaVieja"
-                            class="edit-user__input-form <%= locals.errors && errors.contraseniaVieja ? 'is-invalid' : null %> contraseña-vieja"
+                            class="edit-user__input-form contraseñaVieja <%= locals.errors && errors.contraseniaVieja ? 'is-invalid' : null %> contraseña-vieja"
                             placeholder="Contraseña Actual">
+                            <i class="fa fa-eye-slash toggle-password"></i>
+                        
+                    </div>
                         <small class="contraseña-vieja-msg"></small>
                         <% if(locals.errors && errors.contraseniaVieja) {%>
                             <div class="text-danger">
                                 <%= errors.contraseniaVieja.msg %>
                             </div>
                             <% } %>
-                    </div>
-                        
 
                     <div class="edit-user__password-form block-input">
 
                         <input type="password" name="contrasenia"
-                            class="edit-user__input-form <%= locals.errors && errors.contrasenia ? 'is-invalid' : null %> nueva-contraseña"
+                            class="edit-user__input-form contraseñaNueva <%= locals.errors && errors.contrasenia ? 'is-invalid' : null %> nueva-contraseña"
                             placeholder="Nueva Contraseña">
+                            <i class="fa fa-eye-slash toggle-password"></i>
+                        
+                    </div>
                         <small class="contraseña-nueva-msg"></small>
 <% if(locals.errors && errors.contrasenia) {%>
                             <div class="text-danger">
                                 <%= errors.contrasenia.msg %>
                             </div>
                             <% } %>
-                    </div>
-                        
 
                     <div class="edit-user__password-form block-input">
 
                         <input type="password" name="confirmContrasenia"
-                            class="edit-user__input-form <%= locals.errors && errors.confirmContrasenia ? 'is-invalid' : null %> repetir-contraseña"
+                            class="edit-user__input-form contraseñaConfirm <%= locals.errors && errors.confirmContrasenia ? 'is-invalid' : null %> repetir-contraseña"
                             placeholder="Repetir contraseña">
+                            <i class="fa fa-eye-slash toggle-password"></i>
+                        
+                    </div>
                         <small class="repetir-contraseña-msg"></small>
 <% if(locals.errors && errors.confirmContrasenia) {%>
                             <div class="text-danger">
                                 <%= errors.confirmContrasenia.msg %>
                             </div>
                             <% } %>
-                    </div>
-                        
 
                     <div class="edit-user__buttons">
                         <button class="edit-user__button btn ">Guardar cambios</button>

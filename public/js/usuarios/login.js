@@ -46,7 +46,7 @@ window.addEventListener('load', function () {
                 if (data.existe && Object.keys(data.existe).length > 0) {
                     email.style.border = '2px solid green';
                     emailMsg.style.display = 'none';
-                } else if(email.value.length > 0 && emailRegex.test(emailValue)) {
+                } else if (email.value.length > 0 && emailRegex.test(emailValue)) {
                     email.style.border = '2px solid red';
                     emailMsg.textContent = 'El email no esta registrado';
                     emailMsg.style.display = 'block';
@@ -96,14 +96,14 @@ window.addEventListener('load', function () {
     })
 
     let togglePassword = document.querySelector(".toggle-password");
-  let passwordField = document.querySelector(".contraseña");
+    let passwordField = document.querySelector(".contraseña");
 
-  togglePassword.addEventListener("click", function () {
-    const type =
-      passwordField.getAttribute("type") === "password" ? "text" : "password";
-    passwordField.setAttribute("type", type);
-    this.classList.toggle("fa-eye-slash");
-    this.classList.toggle("fa-eye");
-  });
+    togglePassword.addEventListener("click", function () {
+        const type =
+            passwordField.getAttribute("type") === "password" ? "text" : "password";
+        passwordField.setAttribute("type", type);
+        this.classList.toggle("fa-eye-slash");
+        this.classList.toggle("fa-eye");
+    });
 
 })

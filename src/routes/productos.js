@@ -15,6 +15,7 @@ router.get('/', productController.index);
 router.post('/search', productController.search);
 router.get('/carrito',authMiddleware,esCliente, productController.carrito);//solo cliente
 router.get('/lista',authMiddleware, esAdmin, productController.lista);//solo admin
+router.get('/filtro',authMiddleware, esAdmin, productController.filtro);
 router.get('/listaMisProductos',authMiddleware, esVendedorOAdmin, productController.listaPorUsuario); //solo vendedor y admin
 //listar
 router.get('/listaproductos',authMiddleware,esVendedor, productController.listado);
@@ -29,7 +30,7 @@ router.get('/editar/:id',authMiddleware,esVendedorOAdmin, productController.edit
 router.put('/editar/:id',authMiddleware,esVendedorOAdmin,uploadFile,editProductoValidation, productController.update);
 
 //eliminar
-router.delete('/delete/:id',authMiddleware,esVendedorOAdmin,productController.delete);
+router.put('/delete/:id',authMiddleware,esVendedorOAdmin,productController.delete);
 
 
 module.exports = router;

@@ -14,7 +14,15 @@ let userController = {
             res.status(500).send('Error al obtener usuarios');
         }
     },
-
+    filtro: async function (req, res) {
+        try {
+            const usuarios = await userService.getUsuarios(req);
+            res.render('usuarios/lista', { usuarios: usuarios });
+        } catch (error) {
+            console.error('Error al obtener usuarios:', error);
+            res.status(500).send('Error al obtener usuarios');
+        }
+    },
     profile: async function (req, res) {
         try {
             let userId = req.params.id;
@@ -62,7 +70,8 @@ let userController = {
                 email: req.body.email,
                 rol: req.body.rol,
                 nacionalidad: req.body.country,
-                avatar: req.body.oldImage
+                avatar: req.body.oldImage,
+                estado:req.body.estado
             };
             console.log(sessionUsuarioId, usuarioId, error.isEmpty());
             if (sessionUsuarioId == usuarioId && error.isEmpty()) {
@@ -132,18 +141,6 @@ let userController = {
         } catch (error) {
             console.log(error);
         }
-    },
-
-    delete: async function (req, res) {
-        try {
-            const userId = req.params.id;
-            await userService.delete(userId);
-            if (req.session.usuarioLogeado.id == userId) {
-                res.redirect('/usuarios/cerrarSesion')
-            } else {
-                res.redirect('/usuarios/lista')
-            }
-        } catch (error) { console.log(error) }
     },
     deleteCuenta: async function (req, res) {
         try {

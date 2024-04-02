@@ -136,4 +136,18 @@ background: transparent;
     color:red;
     cursor: pointer;
 }
+.float{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 
+.bg-red{
+    background-color: #ffd2d2
+}
+.red{
+    color: rgb(241, 90, 90);
+}
+.none{
+    display: none !important;
+}

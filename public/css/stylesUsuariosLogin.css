@@ -126,6 +126,10 @@ a {
 
 .toggle-password {
   margin-left: 10px;
+  position: absolute;
+  right: 5px; 
+  top: 50%;
+  transform: translateY(-50%); 
   cursor: pointer;
 }
 
@@ -139,14 +143,6 @@ a {
 
 .logininput-form {
   padding-right: 30px;
-}
-
-.toggle-password {
-  position: absolute;
-  right: 5px; 
-  top: 50%;
-  transform: translateY(-50%); 
-  cursor: pointer;
 }
 
 @media (min-width:500px) {

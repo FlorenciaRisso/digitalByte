@@ -17,6 +17,7 @@ const editUsuarioValidation=require ('../middlewares/usuarios/editUsuarioValidat
 router.get('/perfil/:id',authMiddleware, userController.profile);
 router.get('/userProfile', authMiddleware, userController.userProfile)
 router.get('/lista', esAdmin, userController.lista);
+router.get('/filtro', esAdmin, userController.filtro);
 
 router.get('/login', guestMiddleware, userController.login);
 router.post('/login', loginValidation, userController.processLogin);
@@ -34,6 +35,6 @@ router.post('/verificarEmail', userController.verificarEmail);
 
 router.get('/cerrarSesion',authMiddleware, userController.logout);
 
-router.delete('/eliminar/:id', esUsuarioOAdmin, userController.deleteCuenta);
+router.put('/eliminar/:id', esUsuarioOAdmin, userController.deleteCuenta);
 
 module.exports = router;
