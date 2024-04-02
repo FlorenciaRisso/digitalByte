@@ -31,37 +31,7 @@ const userService = {
     },
     save: async function (req, res) {
         try {
-            const errors = validationResult(req);
-
-            if (!errors.isEmpty()) {
-                if (req.file) { // Si hay una sola imagen
-                    if (req.file.path) {
-                        fs.unlink(req.file.path, err => {
-                            if (err) {
-                                console.error("Error al eliminar la imagen:", err);
-                            }
-                        });
-                    }
-                } else if (req.files) { // Si hay múltiples imágenes
-                    Object.values(req.files).forEach(files => {
-                        if (Array.isArray(files)) {
-                            files.forEach(file => {
-                                if (file && file.path) {
-                                    fs.unlink(file.path, err => {
-                                        if (err) {
-                                            console.error("Error al eliminar la imagen:", err);
-                                        }
-                                    });
-                                }
-                            });
-                        }
-                    });
-                }
-                return { errors: errors.mapped() };
-            }
-
-
-
+            
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
             let userCreated = await Usuarios.create({
@@ -71,13 +41,11 @@ const userService = {
                 contraseña: hashedPassword,
                 rol: req.body.rol,
                 nacionalidad: req.body.nacionalidad,
-                avatar: '/img/' + (req.file ? req.file.filename : 'default-image.png')
+                avatar: '/img/' + (req.file ? req.file.filename : 'avatar.jpg')
             });
 
-            return {
-                success: true,
-                userCreated: userCreated
-            };
+            return userCreated;
+
         } catch (error) {
             console.error('Error al guardar el usuario:', error);
             return {

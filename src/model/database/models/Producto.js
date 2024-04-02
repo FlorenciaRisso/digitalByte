@@ -30,6 +30,10 @@ module.exports = (sequelize, DataTypes) => {
         },
         ID_Vendedor: {
             type: DataTypes.INTEGER(11)
+        },
+        Estado: {
+            type: DataTypes.STRING(1),
+            defaultValue: 'A'
         }
 
     }

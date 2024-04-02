@@ -15,48 +15,46 @@ let userController = {
         }
     },
 
-    profile: (req, res) => {
-        let userId = req.params.id;
-        userService.getOne(userId).
-            then(data => res.render('usuarios/userProfile', {
+    profile: async function (req, res) {
+        try {
+            let userId = req.params.id;
+            let data = await userService.getOne(userId)
+            res.render('usuarios/userProfile', {
                 usuario: data
-            })).
-            catch(error => res.status(404).send('Usuario no encontrado'))
-    },
-
-    userProfile: (req, res) => {
-        userService.getOne(req.session.usuarioLogeado.id).
-
-            then(data => {
-                res.render('usuarios/userProfile', {
-                    usuario: data
-                })
             })
-            .catch(e => console.log(e))
+        } catch (error) {
+            res.status(404).send('Usuario no encontrado')
+        }
     },
 
-    edit: (req, res) => {
-        let userId = parseInt(req.params.id, 10);
-        userService.getOne(userId).
-            then(data => {
-                res.render('usuarios/edit', { usuario: data, oldData: data })
-            }
-            )
+    userProfile: async function (req, res) {
+        try {
+            let data = await userService.getOne(req.session.usuarioLogeado.id)
+            res.render('usuarios/userProfile', {
+                usuario: data
+            })
+        } catch (error) {
+            console.log(error)
+        }
     },
 
-    update: async (req, res) => {
+    edit: async function (req, res) {
+        try {
+            let userId = parseInt(req.params.id, 10);
+            let data = await userService.getOne(userId);
+            res.render('usuarios/edit', { usuario: data, oldData: data });
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
+    update: async function (req, res) {
         try {
             let error = validationResult(req);
             let usuarioId = req.body.id;
             let sessionUsuarioId = req.session.usuarioLogeado ? req.session.usuarioLogeado.id : null;
-            let existingUser = await userService.findByField('email', req.body.email);
             let usuarioActualizado;
-    
-            if (existingUser && existingUser.id !== usuarioId) {
-                errors = validationResult(req).array();
-                errors.push({ msg: 'El correo electrónico ya está registrado por otro usuario' });
-            }
-    
+
             let data = {
                 id: req.body.id,
                 nombre: req.body.firstName,
@@ -66,19 +64,19 @@ let userController = {
                 nacionalidad: req.body.country,
                 avatar: req.body.oldImage
             };
-    
-            if (sessionUsuarioId == usuarioId && error.length === 0) {
+            console.log(sessionUsuarioId, usuarioId, error.isEmpty());
+            if (sessionUsuarioId == usuarioId && error.isEmpty()) {
                 delete req.session['usuarioLogeado'];
                 usuarioActualizado = await userService.update(req);
                 let usuarioActualizadoData = await userService.getOne(req.params.id);
                 req.session.usuarioLogeado = usuarioActualizadoData;
-                res.redirect('/usuarios/lista');
-            } else if (error.length === 0) {
+                res.redirect('/usuarios/userProfile');
+            } else if (error.isEmpty()) {
                 usuarioActualizado = await userService.update(req);
                 res.redirect('/usuarios/lista');
             } else {
                 // Mostrar la vista de edición con los errores
-                res.render('usuarios/edit', { fileValidationError:req.fileValidationError,oldData: data, errors: error.mapped() })
+                res.render('usuarios/edit', { fileValidationError: req.fileValidationError, oldData: data, errors: error.mapped() })
             }
         } catch (error) {
             console.error('Error al actualizar usuario:', error);
@@ -86,73 +84,68 @@ let userController = {
     },
 
 
-    cambiarContraseña: (req, res) => {
+    cambiarContraseña: function (req, res) {
         res.render('usuarios/cambiarContraseña', {
             usuarioId: req.params.id
         })
     },
 
-    updateContraseña: (req, res) => {
-        userService.validarContraseña(req).
-            then(resultado => {
-                if (resultado.success) {
-                    res.redirect('/usuarios/userProfile')
-                } else if (resultado.errors) {
-                    res.render('usuarios/cambiarContraseña', {
-                        errors: resultado.errors, usuarioId: req.params.id
-                    })
-                }
-            }).
-            catch(error => console.log(error))
+    updateContraseña: async function (req, res) {
+        try {
+            let resultado = await userService.validarContraseña(req)
+            if (resultado.success) {
+                res.redirect('/usuarios/userProfile')
+            } else if (resultado.errors) {
+                res.render('usuarios/cambiarContraseña', {
+                    errors: resultado.errors, usuarioId: req.params.id
+                })
+            }
+        } catch (error) { console.log(error) }
     },
 
-    registro: (req, res) => {
+    registro: function (req, res) {
         res.render('usuarios/registro');
     },
 
-
-
-    processRegister: (req, res) => {
-        let old = req.body;
-        if (req.file) {
-            old.avatar = req.file.filename;
-        }
-
-        userService.save(req).then(async resultado => {
-            if (resultado.success) {
+    processRegister: async function (req, res) {
+        try {
+            let old = req.body;
+            if (req.file) {
+                old.avatar = req.file.filename;
+            }
+            let errores = validationResult(req);
+            if (errores.isEmpty() && req.fileValidationError === undefined) {
                 try {
-                    const usuarioRegistrado = await userService.findByField('email', req.body.email);
-
+                    let usuarioRegistrado=await userService.save(req);
                     req.session.usuarioLogeado = usuarioRegistrado;
-
-                    // Redirigir al usuario a la página principal o a donde desees
                     res.redirect('/');
                 } catch (error) {
                     console.error('Error al iniciar sesión automáticamente después del registro:', error);
                     res.status(500).send('Error al iniciar sesión automáticamente después del registro');
                 }
-            } else if (resultado.errors) {
-                res.render('usuarios/registro', {
-                    errors: resultado.errors, oldData: old
+            } else {
+                console.log(errores);
+                res.render('usuarios/registro', {fileValidationError: req.fileValidationError,
+                    errors: errores.mapped(), oldData: old
                 })
             }
-        }).catch(error => {
+        } catch (error) {
             console.log(error);
-        });
+        }
     },
 
-    delete: (req, res) => {
-        const userId = req.params.id;
-        userService.delete(userId).then(resultado => {
+    delete: async function (req, res) {
+        try {
+            const userId = req.params.id;
+            await userService.delete(userId);
             if (req.session.usuarioLogeado.id == userId) {
                 res.redirect('/usuarios/cerrarSesion')
             } else {
                 res.redirect('/usuarios/lista')
             }
-        }).catch(error => console.log(error));
-
+        } catch (error) { console.log(error) }
     },
-    deleteCuenta: async (req, res) => {
+    deleteCuenta: async function (req, res) {
         try {
             const userId = req.params.id;
             if (req.session.usuarioLogeado.id == userId) {
@@ -172,15 +165,13 @@ let userController = {
         } catch (error) {
             console.log(error);
         }
-
-
     },
 
-    login: (req, res) => {
+    login: function (req, res) {
         res.render('usuarios/login', { cookie: req.cookies.recordarEmail || '' });
     },
 
-    processLogin: async (req, res) => {
+    processLogin: async function (req, res) {
         try {
             let errors = validationResult(req);
             if (!errors.isEmpty()) {
@@ -220,7 +211,7 @@ let userController = {
         }
     },
 
-    verificarEmail: async (req, res) => {
+    verificarEmail: async function (req, res) {
         const email = req.body.email;
         let existe = await userService.findByField('email', email);
 
@@ -228,7 +219,7 @@ let userController = {
     },
 
 
-    logout: (req, res) => {
+    logout: function (req, res) {
         res.clearCookie('recordame')
         req.session.destroy();
         return res.redirect('/usuarios/login')

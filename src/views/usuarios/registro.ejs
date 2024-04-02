@@ -132,9 +132,9 @@
             <label class="form-label"><b>Imagen de perfil:</b></label>
             <input class="avatar" type="file" name="avatar" id="avatarInput" accept=".jpg, .png, .jpeg, .gif">
 
-            <% if(locals.errors && errors.avatar) {%>
+            <% if (typeof fileValidationError !=='undefined' ) { %>
               <div class="text-danger">
-                <%= errors.avatar.msg %>
+                <%= fileValidationError %>
               </div>
               <% } %>
                 <img id="imagenPreview" class="image none" src="" alt="Vista previa de la imagen"

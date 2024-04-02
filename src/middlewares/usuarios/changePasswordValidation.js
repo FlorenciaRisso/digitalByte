@@ -13,7 +13,8 @@ const changePasswordValidation = [
                 throw new Error('La contraseña actual es incorrecta');
             }
         }),
-    check('contrasenia').notEmpty().withMessage('El campo no puede estar vacío'),
+    check('contrasenia').notEmpty().withMessage('El campo no puede estar vacío').matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-_!@#$%^&*.,]).{8,}$/)
+    .withMessage('La contraseña debe contener una mayúscula una minúscula, un número, un carácter especial, y tener al menos 8 caracteres de longitud'),
     check('confirmContrasenia')
         .notEmpty().withMessage('El campo confirmación de contraseña no puede estar vacío').bail()
         .custom((value, { req }) => {

@@ -1,5 +1,5 @@
 const { check } = require('express-validator');
-const {Usuarios} = require('../../model/database/models'); // Suponiendo que tienes un modelo de usuario
+const {Usuarios} = require('../../model/database/models');
 const path = require('path');
 
 const registerValidation = [

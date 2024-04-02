@@ -94,4 +94,16 @@ window.addEventListener('load', function () {
             e.preventDefault();
         }
     })
+
+    let togglePassword = document.querySelector(".toggle-password");
+  let passwordField = document.querySelector(".contraseña");
+
+  togglePassword.addEventListener("click", function () {
+    const type =
+      passwordField.getAttribute("type") === "password" ? "text" : "password";
+    passwordField.setAttribute("type", type);
+    this.classList.toggle("fa-eye-slash");
+    this.classList.toggle("fa-eye");
+  });
+
 })

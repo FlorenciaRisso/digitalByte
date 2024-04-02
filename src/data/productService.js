@@ -47,7 +47,7 @@ const productService = {
 
         }
     },
-    getSmartphoneByMarca: async function (marca) {
+    getLastSmartphoneByMarca: async function (marca) {
         try {
             const productos = await db.Productos.findAll({
                 attributes: ['ID_Producto', 'Nombre', 'Marca'],
@@ -98,10 +98,13 @@ const productService = {
                 Marca: req.body.marca,
                 ID_Vendedor: req.session.usuarioLogeado.id
             });
+            
             // Agregar las imágenes del producto
             for (let i = 0; i < 4; i++) {
                 const fileField = req.files[`image${i}`];
+                console.log(fileField);
                 const imagePath = fileField ? '/img/' + fileField[0].filename : "/img/default-image.png";
+                console.log(imagePath);
                 await db.ImagenesProductos.create({ ID_Producto: nuevoProducto.ID_Producto, ruta: imagePath });
             }
 
@@ -172,6 +175,7 @@ const productService = {
                 { where: { ID_Producto: productId } }
             );
             // Actualizar las imágenes del producto
+
             const imagesToUpdate = [];
             let productImages = await db.ImagenesProductos.findAll({
                 attributes: ['id'],
@@ -200,23 +204,14 @@ const productService = {
                 let nuevaRuta = null;
                 for (let i = 0; i < imagesToUpdate.length; i++) {
                     if (imagesToUpdate[i].ruta != null) {
-                        idParaNuevaRuta = ids[i];
-                        nuevaRuta = imagesToUpdate[i].ruta;
-                    } else {
-                        idParaNuevaRuta = null;
-                        nuevaRuta = null;
-                    }
-                    if (idParaNuevaRuta) {
-                        let nuevosDatosImagen = {
-                            ruta: nuevaRuta
+                        let nuevosDatosImagen={
+                            ruta:imagesToUpdate[i].ruta
                         }
                         await db.ImagenesProductos.update(nuevosDatosImagen, {
-                            where: { id: idParaNuevaRuta }
+                            where: { id: ids[i] }
                         });
                     }
                 }
-
-
             }
             // Actualizar las características del producto
             let caracteristicas = await db.Caracteristicas.findOne({ where: { ID_Producto: productId } });
@@ -261,9 +256,9 @@ const productService = {
             const deletedProduct = await db.Productos.destroy({ where: { ID_Producto: productId } });
 
             if (deletedProduct === 1) {
-                return { status: 'success', message: 'Product and its relationships deleted successfully' };
+                return { status: 'success', message: 'Producto y sus relaciones eliminadas exitosamente' };
             } else {
-                return { status: 'error', message: 'Product not found or already deleted' };
+                return { status: 'error', message: 'Producto no encontrado o eliminado' };
             }
         } catch (error) {
             console.error('Error al eliminar el producto:', error);

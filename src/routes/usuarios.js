@@ -27,8 +27,9 @@ router.post('/registro', uploadFile,registerValidation, userController.processRe
 router.get('/edit/:id', authMiddleware, userController.edit)
 router.put('/edit/:id', uploadFile,editUsuarioValidation, userController.update)
 
-router.get('/cambiarContrasenia/:id', userController.cambiarContraseña)
-router.put('/cambiarContrasenia/:id', changePasswordValidation,userController.updateContraseña)
+router.get('/cambiarContrasenia/:id',authMiddleware,userController.cambiarContraseña)
+router.put('/cambiarContrasenia/:id',authMiddleware,changePasswordValidation,userController.updateContraseña)
+
 router.post('/verificarEmail', userController.verificarEmail);
 
 router.get('/cerrarSesion',authMiddleware, userController.logout);

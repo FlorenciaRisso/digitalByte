@@ -3,20 +3,25 @@ window.addEventListener('load', function () {
     let viejaContraseña = document.querySelector('.contraseña-vieja');
     let nuevaContraseña = document.querySelector('.nueva-contraseña');
     let repetirContraseña = document.querySelector('.repetir-contraseña');
-
     let viejaContraseñaMsg = document.querySelector('.contraseña-vieja-msg');
     let nuevaContraseñaMsg = document.querySelector('.contraseña-nueva-msg')
     let repetirContraseñaMsg = document.querySelector('.repetir-contraseña-msg');
+
+    function ocultarTextDanger() {
+        let textDangerBacks = document.querySelectorAll('.text-danger');
+        textDangerBacks.forEach(function(textDangerBack) {
+            textDangerBack.style.display = 'none';
+        });
+    }
 
     viejaContraseña.addEventListener('blur', function () {
         if (viejaContraseña.value === '') {
             viejaContraseña.style.border = '2px solid red';
             viejaContraseñaMsg.style.display = 'block';
             viejaContraseñaMsg.textContent = 'Ingresa tu actual contraseña';
-        } else if (viejaContraseña.value.length < 8) {
-            viejaContraseña.style.border = '2px solid red';
-            viejaContraseñaMsg.textContent = 'Debe contener al menos 8 caracteres';
-        } else {
+            ocultarTextDanger();
+            viejaContraseñaMsg.style.color = 'red';
+        }else {
             viejaContraseña.style.border = '2px solid green';
             viejaContraseñaMsg.style.display = 'none'
         }
@@ -27,12 +32,12 @@ window.addEventListener('load', function () {
             viejaContraseña.style.border = '2px solid red';
             viejaContraseñaMsg.style.display = 'block';
             viejaContraseñaMsg.textContent = 'Ingresa tu actual contraseña';
-        } else if (viejaContraseña.value.length < 8) {
-            viejaContraseña.style.border = '2px solid red';
-            viejaContraseñaMsg.textContent = 'Debe contener al menos 8 caracteres';
+            ocultarTextDanger();
+            viejaContraseñaMsg.style.color = 'red';
         } else {
             viejaContraseña.style.border = '2px solid green';
             viejaContraseñaMsg.style.display = 'none'
+            ocultarTextDanger();
         }
     });
 
@@ -45,10 +50,14 @@ window.addEventListener('load', function () {
         if (nuevaContraseña.value === '') {
             nuevaContraseña.style.border = '2px solid red';
             nuevaContraseñaMsg.textContent = 'Ingrese la nueva contraseña';
+            ocultarTextDanger();
+            nuevaContraseñaMsg.style.color = 'red';
             nuevaContraseñaMsg.style.display = 'block';
         } else if (nuevaContraseña.value.length < 8) {
             nuevaContraseña.style.border = '2px solid red';
             nuevaContraseñaMsg.textContent = 'La contraseña debe contener al menos 8 caracteres';
+            ocultarTextDanger();
+            nuevaContraseñaMsg.style.color = 'red';
             nuevaContraseñaMsg.style.display = 'block';
         } else if (!regexMayuscula.test(nuevaContraseña.value) ||
             !regexMinuscula.test(nuevaContraseña.value) ||
@@ -56,6 +65,8 @@ window.addEventListener('load', function () {
             !regexCaracterEspecial.test(nuevaContraseña.value)) {
             nuevaContraseña.style.border = '2px solid red';
             nuevaContraseñaMsg.textContent = 'La contraseña debe contener al menos una mayúscula, una minúscula, un número y un caracter especial';
+            ocultarTextDanger();
+            nuevaContraseñaMsg.style.color = 'red';
             nuevaContraseñaMsg.style.display = 'block';
         } else {
             nuevaContraseña.style.border = '2px solid green';
@@ -72,10 +83,14 @@ window.addEventListener('load', function () {
         if (nuevaContraseña.value === '') {
             nuevaContraseña.style.border = '2px solid red';
             nuevaContraseñaMsg.textContent = 'La contraseña no puede estar vacía';
+            ocultarTextDanger();
+            nuevaContraseñaMsg.style.color = 'red';
             nuevaContraseñaMsg.style.display = 'block';
         } else if (nuevaContraseña.value.length < 8) {
             nuevaContraseña.style.border = '2px solid red';
             nuevaContraseñaMsg.textContent = 'La contraseña debe contener al menos 8 caracteres';
+            ocultarTextDanger();
+            nuevaContraseñaMsg.style.color = 'red';
             nuevaContraseñaMsg.style.display = 'block';
         } else if (!regexMayuscula.test(nuevaContraseña.value) ||
             !regexMinuscula.test(nuevaContraseña.value) ||
@@ -83,6 +98,8 @@ window.addEventListener('load', function () {
             !regexCaracterEspecial.test(nuevaContraseña.value)) {
             nuevaContraseña.style.border = '2px solid red';
             nuevaContraseñaMsg.textContent = 'La contraseña debe contener al menos una mayúscula, una minúscula, un número y un caracter especial';
+            ocultarTextDanger();
+            nuevaContraseñaMsg.style.color = 'red';
             nuevaContraseñaMsg.style.display = 'block';
         } else {
             nuevaContraseña.style.border = '2px solid green';
@@ -98,10 +115,14 @@ window.addEventListener('load', function () {
             repetirContraseña.style.border = '2px solid red';
             repetirContraseñaMsg.style.display = 'block';
             repetirContraseñaMsg.textContent = 'Repite la contraseña';
+            ocultarTextDanger();
+            repetirContraseñaMsg.style.color = 'red';
         } else if (repetirContraseña.value !== nuevaContraseña.value) {
             repetirContraseña.style.border = '2px solid red';
             repetirContraseñaMsg.style.display = 'block';
             repetirContraseñaMsg.textContent = 'Las contraseñas no coinciden';
+            ocultarTextDanger();
+            repetirContraseñaMsg.style.color = 'red';
 
         } else {
             repetirContraseña.style.border = '2px solid green';
@@ -115,9 +136,13 @@ window.addEventListener('load', function () {
             repetirContraseña.style.border = '2px solid red';
             repetirContraseñaMsg.style.display = 'block';
             repetirContraseñaMsg.textContent = 'Repite la contraseña';
+            ocultarTextDanger();
+            repetirContraseñaMsg.style.color = 'red';
         } else if (repetirContraseña.value !== nuevaContraseña.value) {
             repetirContraseña.style.border = '2px solid red';
             repetirContraseñaMsg.textContent = 'Las contraseñas no coinciden';
+            ocultarTextDanger();
+            repetirContraseñaMsg.style.color = 'red';
         } else {
             repetirContraseña.style.border = '2px solid green';
             repetirContraseñaMsg.style.display = 'none'

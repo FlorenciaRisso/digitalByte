@@ -13,6 +13,7 @@ CREATE TABLE `usuarios` (
   `direccion` varchar(255) DEFAULT NULL,
   `telefono` varchar(20) DEFAULT NULL,
   `avatar` varchar(100) DEFAULT NULL,
+  `estado` varchar(1) DEFAULT 'A',
   PRIMARY KEY (`id`)
 );
 
@@ -21,7 +22,14 @@ CREATE TABLE `categorias` (
   `nombre` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 );
-
+CREATE TABLE `interesados` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  `apellido` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `telefono` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
 CREATE TABLE IF NOT EXISTS `productos` (
   `ID_Producto` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(100) DEFAULT NULL,
@@ -32,6 +40,7 @@ CREATE TABLE IF NOT EXISTS `productos` (
   `Marca` varchar(50) DEFAULT NULL,
   `Descuento` int(10) DEFAULT NULL,
   `ID_Vendedor` int(11) DEFAULT NULL,
+  `Estado` varchar(1) DEFAULT 'A',
   PRIMARY KEY (`ID_Producto`),
   KEY `Categoria_id` (`ID_Categoria`),
   KEY `vendedor_ibfk_1_idx` (`ID_Vendedor`),
