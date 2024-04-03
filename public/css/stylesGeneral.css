@@ -41,15 +41,18 @@ body {
 main {
   flex: 1;
   background-color: #dcdbf1;
+  padding-top: 15px;
 }
 
 a {
   text-decoration: none;
   color: rgb(19, 19, 19);
 }
-.w-50{
+
+.w-50 {
   width: 50%;
 }
+
 .text-danger {
   color: red;
   margin: 0;
@@ -190,6 +193,7 @@ a {
 .user-option_div {
   margin-bottom: 30px;
 }
+
 .btn-carrito {
   border-radius: 20px 0 0 20px;
 }
@@ -304,6 +308,7 @@ a {
   width: 100%;
   display: flex;
   justify-content: center;
+margin-bottom: 5px;
 }
 
 
@@ -916,16 +921,36 @@ a {
 .box-search li a:hover {
   background-color: #f3f3f3;
 }
-.div-error{
+
+.div-error {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #dcdbf1;
 }
-.filter-form{
+
+.filter-form {
   text-align: center;
 }
+
+.select-style {
+  border: 0;
+  width: 100%;
+  transition: all ease-in 0.5s;
+  background-color: #a567d5;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.select-style:hover {
+  background-color: #3c1c55;
+}
+
 @media (min-width: 500px) {
 
   /*Header*/
@@ -934,7 +959,7 @@ a {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap:10px;
+    gap: 10px;
 
   }
 
@@ -1040,9 +1065,28 @@ a {
     border-right: 2px solid rgb(191, 191, 191);
   }
 
-  .lista-secciones li:last-child {
-    border-right: 0;
+  .lista-secciones li:nth-child(3) {
+    height: 100%;
+  }
+
+  .select-style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.8s;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    color: rgb(47, 47, 47);
     text-align: center;
+    font-size: 15px;
+  }
+  .select-style:hover {
+    cursor: pointer;
+    background-color: transparent;
   }
 
   .lista-secciones li:hover {

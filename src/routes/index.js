@@ -6,6 +6,7 @@ const routerMain = require('./main');
 
 const APIproducts = require('./api/API-productRoutes');
 const APIusers = require('./api/API-userRoutes');
+const APIcateg = require('./api/API-categRoutes');
 
 
 router.use('/', routerMain);
@@ -14,6 +15,7 @@ router.use('/usuarios', routerUsuarios);
 
 router.use('/api/products', APIproducts);
 router.use('/api/users', APIusers);
+router.use('/api/cat', APIcateg);
 
 router.use('*', function (req, res, next) {
     const err = new Error();

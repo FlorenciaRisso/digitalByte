@@ -69,7 +69,8 @@
                                     <div class="user-info">
                                         <% if (usuarioLogeado) { %>
                                             <a href="/usuarios/userProfile">
-                                                <img class="img-user" src="<%= usuarioLogeado.avatar ? usuarioLogeado.avatar  :'/img/default-image.png' %>"
+                                                <img class="img-user"
+                                                    src="<%= usuarioLogeado.avatar ? usuarioLogeado.avatar  :'/img/default-image.png' %>"
                                                     alt="Foto de perfil">
                                                 <span>
                                                     <%= usuarioLogeado.nombre %>/<%=usuarioLogeado.rol %>
@@ -89,13 +90,34 @@
             </button>
         </a>
     </div>
-    <!-- cambiar por lista desplegable -->
-    <ul class="lista-secciones">
+    <ul id="lista-categorias" class="lista-secciones">
         <li><a href="/">Home</a></li>
         <li><a href="/productos">Todos</a></li>
-        <li><a href="/productos/categoria?cat=2">Smartphones</a></li>
-        <li><a href="/productos/categoria?cat=3">Tablets</a></li>
-        <li><a href="/productos/categoria?cat=1">Notebooks</a></li>
+        <li>
+            <select id="categorias-dropdown" class="select-style">
+                <option value="" selected>Categorías</option>
+            </select>
+        </li>
         <li><a href="/quienes-somos">¿Quienes Somos?</a></li>
     </ul>
 </nav>
+
+<script>
+    fetch('/api/cat/list')
+        .then(response => response.json())
+        .then(categorias => {
+            const dropdown = document.getElementById('categorias-dropdown');
+            categorias.forEach(categoria => {
+                const option = document.createElement('option');
+                option.value = `/productos/categoria?cat=${categoria.id}`;
+                option.textContent = categoria.nombre;
+                dropdown.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error al obtener las categorías:', error));
+
+    document.getElementById('categorias-dropdown').addEventListener('change', function () {
+        const selectedCategory = this.value;
+        window.location.href = selectedCategory;
+    });
+</script>
