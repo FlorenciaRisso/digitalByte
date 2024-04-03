@@ -1,84 +1,86 @@
-<header class="main-header">
-    <div class="logo-container">
-        <a href="/"><img class="img-logo" src="/img/logo-dbytee.png" alt="logoDigitalByte"></a>
-    </div>
+<header>
+    <div class="main-header">
+        <div class="logo-container">
+            <a href="/"><img class="img-logo" src="/img/logo-dbytee.png" alt="logoDigitalByte"></a>
+        </div>
 
-
-
-    <div class="bar-search">
-        <form action="/productos/search" method="POST" id="search-form" class="search-form">
-            <div class="search-container">
-                <input type="text" name="busqueda" class="search-input" id="search-input"
-                    placeholder="Buscar productos...">
-                <button type="submit" class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </div>
-        </form>
-
-    </div>
-    <div class="user-info-responsive">
-        <% if (usuarioLogeado) { %>
-            <a href="/usuarios/userProfile">
-                <img class="img-user" src="<%= usuarioLogeado.avatar?usuarioLogeado.avatar:'/img/default-image.png' %>"
-                    alt="Foto de perfil">
-                <span>
-                    <%= usuarioLogeado.nombre %>/<%=usuarioLogeado.rol %>
-                </span>
-            </a>
-            <% } %>
-    </div>
-    <div class="user-option">
-        <div><!-- Luego validar si el usuario tiene permisos de administrador -->
-            <% if(usuarioLogeado && usuarioLogeado.rol==='Administrador' ){ %>
-                <div class="user-option_div">
-                    <button class="user-btn btn-listProd left-rounder" type="button"><a
-                            href="/productos/lista">Productos</a></button>
-                    <button class="user-btn btn-usuarios rigth-rounder" type="button"><a
-                            href="/usuarios/lista">Usuarios</a></button>
-                    <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
-                                class="fa-solid fa-right-from-bracket"></i></a></button>
+        <div class="bar-search">
+            <form action="/productos/search" method="POST" id="search-form" class="search-form">
+                <div class="search-container">
+                    <input type="text" name="busqueda" class="search-input" id="search-input"
+                        placeholder="Buscar productos...">
+                    <button type="submit" class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
+            </form>
 
-                <%}else if(usuarioLogeado && usuarioLogeado.rol==='Vendedor' ){%>
+        </div>
+        <div class="user-info-responsive">
+            <% if (usuarioLogeado) { %>
+                <a href="/usuarios/userProfile">
+                    <img class="img-user"
+                        src="<%= usuarioLogeado.avatar?usuarioLogeado.avatar:'/img/default-image.png' %>"
+                        alt="Foto de perfil">
+                    <span>
+                        <%= usuarioLogeado.nombre %>/<%=usuarioLogeado.rol %>
+                    </span>
+                </a>
+                <% } %>
+        </div>
+        <div class="user-option">
+            <div><!-- Luego validar si el usuario tiene permisos de administrador -->
+                <% if(usuarioLogeado && usuarioLogeado.rol==='Administrador' ){ %>
                     <div class="user-option_div">
-                        <button class="user-btn btn-carrito rounder" type="button"><a
-                                href="/productos/listaMisProductos">Mis Productos</a></button>
+                        <button class="user-btn btn-listProd left-rounder" type="button"><a
+                                href="/productos/lista">Productos</a></button>
+                        <button class="user-btn btn-usuarios rigth-rounder" type="button"><a
+                                href="/usuarios/lista">Usuarios</a></button>
                         <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
                                     class="fa-solid fa-right-from-bracket"></i></a></button>
                     </div>
-                    <%}else if(usuarioLogeado && usuarioLogeado.rol==='Cliente' ){%>
+
+                    <%}else if(usuarioLogeado && usuarioLogeado.rol==='Vendedor' ){%>
                         <div class="user-option_div">
                             <button class="user-btn btn-carrito rounder" type="button"><a
-                                    href="/productos/carrito">Carrito</a></button>
+                                    href="/productos/listaMisProductos">Mis Productos</a></button>
                             <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
                                         class="fa-solid fa-right-from-bracket"></i></a></button>
                         </div>
-                        <%}else if(usuarioLogeado){%>
+                        <%}else if(usuarioLogeado && usuarioLogeado.rol==='Cliente' ){%>
                             <div class="user-option_div">
+                                <button class="user-btn btn-carrito rounder" type="button"><a
+                                        href="/productos/carrito">Carrito</a></button>
                                 <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
                                             class="fa-solid fa-right-from-bracket"></i></a></button>
                             </div>
-
-                            <% }else{ %>
+                            <%}else if(usuarioLogeado){%>
                                 <div class="user-option_div">
-                                    <button class="user-btn btn-registro left-rounder" type="button"><a
-                                            href="/usuarios/registro">Registro</a></button>
-                                    <button class="user-btn btn-login rigth-rounder" type="button"><a
-                                            href="/usuarios/login">Login</a></button>
+                                    <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
+                                                class="fa-solid fa-right-from-bracket"></i></a></button>
                                 </div>
-                                <% }%>
-                                    <div class="user-info">
-                                        <% if (usuarioLogeado) { %>
-                                            <a href="/usuarios/userProfile">
-                                                <img class="img-user"
-                                                    src="<%= usuarioLogeado.avatar ? usuarioLogeado.avatar  :'/img/default-image.png' %>"
-                                                    alt="Foto de perfil">
-                                                <span>
-                                                    <%= usuarioLogeado.nombre %>/<%=usuarioLogeado.rol %>
-                                                </span>
-                                            </a>
-                                            <!-- Ajusta la ruta de la imagen según cómo esté guardada en tu sistema -->
-                                            <% } %>
+
+                                <% }else{ %>
+                                    <div class="user-option_div">
+                                        <button class="user-btn btn-registro left-rounder" type="button"><a
+                                                href="/usuarios/registro">Registro</a></button>
+                                        <button class="user-btn btn-login rigth-rounder" type="button"><a
+                                                href="/usuarios/login">Login</a></button>
                                     </div>
+                                    <% }%>
+                                        <div class="user-info">
+                                            <% if (usuarioLogeado) { %>
+                                                <a href="/usuarios/userProfile">
+                                                    <img class="img-user"
+                                                        src="<%= usuarioLogeado.avatar ? usuarioLogeado.avatar  :'/img/default-image.png' %>"
+                                                        alt="Foto de perfil">
+                                                    <span>
+                                                        <%= usuarioLogeado.nombre %>/<%=usuarioLogeado.rol %>
+                                                    </span>
+                                                </a>
+                                                <!-- Ajusta la ruta de la imagen según cómo esté guardada en tu sistema -->
+                                                <% } %>
+                                        </div>
+            </div>
+
 </header>
 
 

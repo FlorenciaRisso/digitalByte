@@ -4,62 +4,66 @@
         <%-include ('../partials/headerYNav' ) %>
 
             <main>
-                <div class="section">
-                    <section class="carrito">
-                        <table class="table">
+                <div class="container">
+                    <div class="section">
+                        <section class="carrito">
+                            <table class="table">
 
-                            <tr class="main-productos">
-                                <th class="main-productos_th">Producto</th>
-                                <th class="main-productos_th">Cantidad</th>
-                                <th class="main-productos_th">Nombre</th>
-                                <th class="main-productos_th">Precio</th>
-                                <th class="main-productos_th">Sub total</th>
-                            </tr>
+                                <tr class="main-productos">
+                                    <th class="main-productos_th">Producto</th>
+                                    <th class="main-productos_th">Cantidad</th>
+                                    <th class="main-productos_th">Nombre</th>
+                                    <th class="main-productos_th">Precio</th>
+                                    <th class="main-productos_th">Sub total</th>
+                                </tr>
 
-                            <tr class="detalle-producto">
-                                <td><img class="det-prod__img" src="/img/apple/iphone13/iphone13.png" alt=""></td>
-                                <td><input class="input-contador-prod" type="number" value="1" min="1"></td>
-                                <td>iPhone 13</td>
-                                <td>$1.322.142</td>
-                                <td>$1.322.142</td>
-                            </tr>
+                                <tr class="detalle-producto">
+                                    <td><img class="det-prod__img" src="/img/apple/iphone13/iphone13.png" alt=""></td>
+                                    <td><input class="input-contador-prod" type="number" value="1" min="1"></td>
+                                    <td>iPhone 13</td>
+                                    <td>$1.322.142</td>
+                                    <td>$1.322.142</td>
+                                </tr>
 
-                            <tr class="detalle-producto">
-                                <td> <img class="det-prod__img" src="/img/apple/iphone14/iphone14.png" alt="">
-                                </td>
-                                <td><input class="input-contador-prod" type="number" value="1" min="1"></td>
-                                <td>Iphone 14</td>
-                                <td>$1.544.999</td>
-                                <td>$1.544.999</td>
-                            </tr>
-                        </table>
+                                <tr class="detalle-producto">
+                                    <td> <img class="det-prod__img" src="/img/apple/iphone14/iphone14.png" alt="">
+                                    </td>
+                                    <td><input class="input-contador-prod" type="number" value="1" min="1"></td>
+                                    <td>Iphone 14</td>
+                                    <td>$1.544.999</td>
+                                    <td>$1.544.999</td>
+                                </tr>
+                            </table>
 
-                        <div class="saldo-total">
-                            <span class="text-total">Total a pagar: </span>
-                            <h3 class="total">$2.867.141</h3>
-                        </div>
-
-                        <div class="botones-carrito">
-                            <button class="btn"> Actualizar carrito
-                            </button>
-                            <button class="btn"> Realizar compra
-                            </button>
-
-                        </div>
-                    </section> 
-                </div>
-                
-
-                <section class="most-searched__section">
-                    <article class="most-searched__article">
-                        <h4 class="most-searched__title">Productos mas buscados</h4>
-                        <div class="div-responsive">
-                            <div class="most-searched__card-container">
-                                <%- include ('../partials/cardArticulosMasBuscados',{productos:productos,funcion:funcion}) %>
+                            <div class="saldo-total">
+                                <span class="text-total">Total a pagar: </span>
+                                <h3 class="total">$2.867.141</h3>
                             </div>
-                        </div>
-                    </article>
-                </section>
+
+                            <div class="botones-carrito">
+                                <button class="btn"> Actualizar carrito
+                                </button>
+                                <button class="btn"> Realizar compra
+                                </button>
+
+                            </div>
+                        </section>
+                    </div>
+
+
+                    <section class="most-searched__section">
+                        <article class="most-searched__article">
+                            <h4 class="most-searched__title">Productos mas buscados</h4>
+                            <div class="div-responsive">
+                                <div class="most-searched__card-container">
+                                    <%- include
+                                        ('../partials/cardArticulosMasBuscados',{productos:productos,funcion:funcion})
+                                        %>
+                                </div>
+                            </div>
+                        </article>
+                    </section>
+                </div>
 
             </main>
 
@@ -67,4 +71,4 @@
     </body>
     <%- include ('../partials/script-menu') %>
 
-    </html>
+        </html>

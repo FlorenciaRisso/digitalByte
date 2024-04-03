@@ -40,13 +40,23 @@ body {
 
 main {
   flex: 1;
-  background-color: #dcdbf1;
+  background-color: #ffffff;
   padding-top: 15px;
+  display: flex;
+  justify-content: center;
 }
-
+header{
+  display: flex;
+  justify-content: center;
+  background-color: #ffffff;
+}
 a {
   text-decoration: none;
   color: rgb(19, 19, 19);
+}
+
+.w-100 {
+  width: 100%;
 }
 
 .w-50 {
@@ -264,9 +274,9 @@ a {
 /*Nav*/
 .main-nav {
   display: flex;
-  background-color: #fbfbfb;
+  background-color: #ffffff;
   flex-direction: column;
-
+  align-items: center;
 }
 
 .float {
@@ -298,6 +308,7 @@ a {
   border-radius: 10px;
   padding: 10px;
   transition: all ease-in 0.5s;
+  width: 100%;
 }
 
 .mostrar {
@@ -308,7 +319,7 @@ a {
   width: 100%;
   display: flex;
   justify-content: center;
-margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 
@@ -936,7 +947,6 @@ margin-bottom: 5px;
 
 .select-style {
   border: 0;
-  width: 100%;
   transition: all ease-in 0.5s;
   background-color: #a567d5;
   color: white;
@@ -955,12 +965,18 @@ margin-bottom: 5px;
 
   /*Header*/
   .main-header {
+    width: 100%;
     background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 10px;
+    max-width: 1200px;
+  }
 
+  .container {
+    max-width: 1200px;
+    width: 100%;
   }
 
   .bar-search {
@@ -1037,7 +1053,6 @@ margin-bottom: 5px;
 
   /*Nav*/
   .main-nav {
-    background-color: #dbdbdb;
     overflow-x: clip;
   }
 
@@ -1054,6 +1069,7 @@ margin-bottom: 5px;
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+    max-width: 1200px;
   }
 
   .lista-secciones>li {
@@ -1067,6 +1083,10 @@ margin-bottom: 5px;
 
   .lista-secciones li:nth-child(3) {
     height: 100%;
+  }
+
+  .lista-secciones li:nth-child(1) {
+    border-left: 2px solid rgb(191, 191, 191);
   }
 
   .select-style {
@@ -1084,6 +1104,7 @@ margin-bottom: 5px;
     text-align: center;
     font-size: 15px;
   }
+
   .select-style:hover {
     cursor: pointer;
     background-color: transparent;

@@ -3,76 +3,99 @@
   <body>
     <%-include ('partials/headerYNav') %>
       <main>
-        <div class="cover-search" ></div>
-        <div class="brand__container">
-          <section class="brand__section">
-            <article class="brand__article">
-              <h4 class="brand__title"><%=ultimosApple[0].Marca%></h4>
+        <div class="container">
+          <div class="cover-search"></div>
+          <div class="brand__container">
+            <section class="brand__section">
+              <article class="brand__article">
+                <h4 class="brand__title">
+                  <%=ultimosApple[0].Marca%>
+                </h4>
 
-              <ul class="brand__list">
-                <% ultimosApple.forEach(producto=>{ %>
-                  <li class="brand__item"><a href="/productos/detalle/<%=producto.ID_Producto %>"><%=producto.Nombre%></a></li>
-                  <% }) %>
-              </ul>
+                <ul class="brand__list">
+                  <% ultimosApple.forEach(producto=>{ %>
+                    <li class="brand__item"><a href="/productos/detalle/<%=producto.ID_Producto %>">
+                        <%=producto.Nombre%>
+                      </a></li>
+                    <% }) %>
+                </ul>
+              </article>
+
+              <article class="brand__article">
+                <h4 class="brand__title">
+                  <%=ultimosXiaomi[0].Marca%>
+                </h4>
+                <ul class="brand__list">
+                  <% ultimosXiaomi.forEach(producto=>{ %>
+                    <li class="brand__item"><a href="/productos/detalle/<%=producto.ID_Producto %>">
+                        <%=producto.Nombre%>
+                      </a></li>
+                    <% }) %>
+                </ul>
+              </article>
+
+              <article class="brand__article">
+                <h4 class="brand__title">
+                  <%=ultimosSamsung[0].Marca%>
+                </h4>
+                <ul class="brand__list">
+                  <% ultimosSamsung.forEach(producto=>{ %>
+                    <li class="brand__item"><a href="/productos/detalle/<%=producto.ID_Producto %>">
+                        <%=producto.Nombre%>
+                      </a></li>
+                    <% }) %>
+                </ul>
+              </article>
+            </section>
+          </div>
+
+          <section class="offer__section">
+            <article class="offer__article">
+              <div class="offer__container">
+                <h4 class="most-searched__title">💥🎊20% Off de la semana🎊💥</h4>
+                <div class="offer">
+                  <% productos.forEach(producto=>{ if(producto.Descuento == 20){%>
+                    <a href="/productos/detalle/<%=producto.ID_Producto%>">
+                      <div class="offer__image">
+                        <img class="offer__image-img"
+                          src="<%= producto.ImagenesProductos[0] ? producto.ImagenesProductos[0].ruta : '/img/default-image.png' %>"
+                          alt="" />
+                        <% if(producto.Descuento !=0){ %>
+                          <div class="discount-circle">
+                            <p class="discount-value">
+                              <%= producto.Descuento %>%
+                            </p>
+                          </div>
+                          <% } %>
+                            <% let precioFinal=producto.Precio-(producto.Precio*(producto.Descuento/100))%>
+                              <p class="p-price-offer">$<%=funcion.getPrecioFormateado(precioFinal)%>
+                              </p>
+                              <p class="p-white">
+                                <%=producto.Nombre%>
+                              </p>
+                      </div>
+                    </a>
+                    <%}});%>
+                </div>
+              </div>
             </article>
+          </section>
 
-            <article class="brand__article">
-              <h4 class="brand__title"><%=ultimosXiaomi[0].Marca%></h4>
-              <ul class="brand__list">
-                <% ultimosXiaomi.forEach(producto=>{ %>
-                  <li class="brand__item"><a href="/productos/detalle/<%=producto.ID_Producto %>"><%=producto.Nombre%></a></li>
-                  <% }) %>
-              </ul>
-            </article>
-
-            <article class="brand__article">
-              <h4 class="brand__title"><%=ultimosSamsung[0].Marca%></h4>
-              <ul class="brand__list">
-                <% ultimosSamsung.forEach(producto=>{ %>
-                <li class="brand__item"><a href="/productos/detalle/<%=producto.ID_Producto %>"><%=producto.Nombre%></a></li>
-                <% }) %>
-              </ul>
+          <section class="most-searched__section">
+            <article class="most-searched__article">
+              <h4 class="most-searched__title">Lo mas buscado</h4>
+              <div class="div-responsive">
+                <div class="most-searched__card-container">
+                  <%- include ('partials/cardArticulosMasBuscados',{productos:productos,funcion:funcion}) %>
+                </div>
+              </div>
             </article>
           </section>
         </div>
 
-        <section class="offer__section">
-          <article class="offer__article">
-            <div class="offer__container">
-              <h4 class="most-searched__title">💥🎊20% Off de la semana🎊💥</h4>
-              <div class="offer">
-                <% productos.forEach(producto=>{ if(producto.Descuento == 20){%>
-                <a href="/productos/detalle/<%=producto.ID_Producto%>">
-                  <div class="offer__image">
-                    <img class="offer__image-img" src="<%= producto.ImagenesProductos[0] ? producto.ImagenesProductos[0].ruta : '/img/default-image.png' %>" alt="" />
-                    <% if(producto.Descuento != 0){ %>
-                      <div class="discount-circle">
-                        <p class="discount-value"><%= producto.Descuento %>%</p>
-                      </div>
-                    <% } %>
-                    <% let precioFinal=producto.Precio-(producto.Precio*(producto.Descuento/100))%>
-                    <p class="p-price-offer">$<%=funcion.getPrecioFormateado(precioFinal)%></p>
-                    <p class="p-white"><%=producto.Nombre%></p>
-                  </div>
-                </a>
-                <%}});%>
-              </div>
-            </div>
-          </article>
-        </section>
-
-        <section class="most-searched__section">
-          <article class="most-searched__article">
-            <h4 class="most-searched__title">Lo mas buscado</h4>
-            <div class="div-responsive">
-              <div class="most-searched__card-container">
-                <%- include ('partials/cardArticulosMasBuscados',{productos:productos,funcion:funcion}) %>
-              </div>
-            </div>
-          </article>
-        </section>
       </main>
       <%- include ('partials/footer') %>
   </body>
   <%- include ('partials/script-menu') %>
-  </html>
+
+    </html>

@@ -16,7 +16,8 @@
                                 <div class="div-img">
                                     <label for="image<%= i %>"></label>
                                     <img class="imagen" id="previewImage<%= i %>" alt="Vista previa de la imagen"
-                                        src="<%= locals.oldData && oldData['image' + i] ? oldData['image' + i] : "/img/default-image.png"%>">
+                                        src="<%= locals.oldData && oldData[" image" + i] ? oldData['image' + i]
+                                        : "/img/default-image.png" %>">
                                     <label for="imagen<%= i %>" class="camera-icon">
                                         <i class="fas fa-camera"></i>
                                     </label>
@@ -27,11 +28,12 @@
                                     <input type="hidden" name="oldImage<%= i %>">
                                 </div>
                                 <% } %>
-                                <% if (locals.fileValidationError && (typeof fileValidationError !== undefined) ) { %>
-                                    <div class="text-danger w-50">
-                                        <%= fileValidationError %>
-                                    </div>
-                                    <% } %>
+                                    <% if (locals.fileValidationError && (typeof fileValidationError !==undefined) ) {
+                                        %>
+                                        <div class="text-danger w-50">
+                                            <%= fileValidationError %>
+                                        </div>
+                                        <% } %>
                         </div>
                         <div class="div-datos">
                             <div class="block-input">
@@ -95,20 +97,18 @@
                                     <% } %>
                             </div>
 
-                            <% let categorias=[ {"id":"1","name":"Notebooks"}, {"id":"2","name":"Smartphones"},
-                                {"id":"3","name":"Tablets"} ]%>
                                 <div class="block-input">
                                     <label for="category">Categoria:</label>
                                     <select class="input" name="category" id="category">
-
+                                        
                                         <% categorias.forEach(category=>{ %>
                                             <%if(locals.oldData && (category.id==oldData.category)){%>
                                                 <option value="<%=locals.oldData && oldData.category%>" selected>
-                                                    <%=category.name%>
+                                                    <%=category.nombre%>
                                                 </option>
                                                 <%}else{%>
                                                     <option value="<%= category.id %>">
-                                                        <%= category.name %>
+                                                        <%= category.nombre %>
                                                     </option>
                                                     <%}%>
                                                         <% }); %>
@@ -120,20 +120,19 @@
                                         <% } %>
                                 </div>
 
-                                <% let marca=[ {"id":"1","name":"Samsung"}, {"id":"2","name":"Xiaomi"},
-                                    {"id":"3","name":"Apple"} ]%>
+                                
                                     <div class="block-input">
                                         <label for="marca">Marca:</label>
                                         <select class="input" name="marca" id="marca">
 
-                                            <% marca.forEach(marca=>{ %>
-                                                <%if(locals.oldData &&(marca.name==oldData.marca)){%>
+                                            <% marcas.forEach(marca=>{ %>
+                                                <%if(locals.oldData &&(marca==oldData.marca)){%>
                                                     <option value="<%=locals.oldData && oldData.marca%>" selected>
                                                         <%=oldData.marca%>
                                                     </option>
                                                     <%}else{%>
-                                                        <option value="<%= marca.name %>">
-                                                            <%= marca.name %>
+                                                        <option value="<%= marca %>">
+                                                            <%= marca %>
                                                         </option>
                                                         <%}%>
                                                             <% }); %>
@@ -148,7 +147,7 @@
                                     <div class="block-input">
                                         <label for="tamanio">Tamaño:</label>
                                         <input class="tamaño" type="text" id="tamanio" name="Tamanio"
-                                            value="<%=locals.oldData && oldData.Tamanio ? oldData.Tamanio : '' %>"><br>
+                                            value="<%=locals.oldData && oldData.Tamanio ? oldData.Tamanio : '' %>">
                                     </div>
                                     <div class="block-input">
                                         <label for="memoria">Memoria:</label>
@@ -158,12 +157,24 @@
                                     <div class="block-input">
                                         <label for="camara">Cámara Principal:</label>
                                         <input class="camara" type="text" id="camara" name="CamaraPrincipal"
-                                            value="<%=locals.oldData && oldData.CamaraPrincipal ? oldData.CamaraPrincipal : ''%>"><br>
+                                            value="<%=locals.oldData && oldData.CamaraPrincipal ? oldData.CamaraPrincipal : ''%>">
                                     </div>
                                     <div class="block-input">
                                         <label for="ram">RAM:</label>
                                         <input class="ram" type="text" id="ram" name="Ram"
-                                            value="<%=locals.oldData && oldData.Ram ? oldData.Ram : ''%>"><br>
+                                            value="<%=locals.oldData && oldData.Ram ? oldData.Ram : ''%>">
+                                    </div>
+                                    <div class="edit-user__category-form block-input">
+                                        <label for="estado">Estado</label>
+                                        <select name="estado" class="edit-user__input-form nacionalidad">
+
+                                            <option value="A">
+                                                Activo
+                                            </option>
+                                            <option value="I">
+                                                Inactivo
+                                            </option>
+                                        </select>
                                     </div>
                         </div>
                         <div class="edit__buttons">

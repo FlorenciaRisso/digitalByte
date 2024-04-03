@@ -15,7 +15,7 @@ router.get('/', productController.index);
 router.post('/search', productController.search);
 router.get('/carrito',authMiddleware,esCliente, productController.carrito);//solo cliente
 router.get('/lista',authMiddleware, esAdmin, productController.lista);//solo admin
-router.get('/filtro',authMiddleware, esAdmin, productController.filtro);
+router.get('/filtro',authMiddleware, esVendedorOAdmin, productController.filtro);
 router.get('/listaMisProductos',authMiddleware, esVendedorOAdmin, productController.listaPorUsuario); //solo vendedor y admin
 //listar
 router.get('/listaproductos',authMiddleware,esVendedor, productController.listado);

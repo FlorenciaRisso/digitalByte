@@ -164,6 +164,7 @@ const productService = {
 
             // Agregar las imágenes del producto
             for (let i = 0; i < 4; i++) {
+                console.log(req.files);
                 const fileField = req.files[`image${i}`];
                 const imagePath = fileField ? '/img/' + fileField[0].filename : "/img/default-image.png";
                 await db.ImagenesProductos.create({ ID_Producto: nuevoProducto.ID_Producto, ruta: imagePath });
@@ -212,8 +213,7 @@ const productService = {
         let producto = await db.Productos.findOne({
             where: {
                 ID_Producto: idProducto,
-                ID_Vendedor: req.session.usuarioLogeado.id,
-                Estado: 'A'
+                ID_Vendedor: req.session.usuarioLogeado.id
             }
         }, { include: { association: 'Usuario' } });
         return !(producto == undefined)

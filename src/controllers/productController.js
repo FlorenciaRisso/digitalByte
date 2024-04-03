@@ -50,24 +50,24 @@ let productController = {
             console.log(error);
         }
     },
-    carrito: async function (req, res){
-        try{
-            let data=await productService.getAll();
+    carrito: async function (req, res) {
+        try {
+            let data = await productService.getAll();
             res.render('productos/carrito', { productos: data, funcion: funcion });
-        }catch(error){
+        } catch (error) {
             console.log(error);
         }
-        
+
 
     },
-    listaPorCat:async function (req, res){
-        try{
-            let data=await productService.getProdPorCat(req);
+    listaPorCat: async function (req, res) {
+        try {
+            let data = await productService.getProdPorCat(req);
             res.render('productos/categoria', { productos: data, funcion: funcion });
-        }catch(error){
+        } catch (error) {
             console.log(error);
         }
-        
+
 
     },
     detalle: async (req, res) => {
@@ -76,17 +76,22 @@ let productController = {
         let productos = await productService.getAll();
         res.render('productos/detalle', { producto: producto, productos: productos, funcion: funcion });
     },
-    create: (req, res) => {
-        res.render('productos/create', { funcion: funcion })
+    create: async (req, res) => {
+        let marcas = await productService.getMarcas();
+        let categorias = await productService.getCategorias();
+        console.log(categorias);
+        res.render('productos/create', { funcion: funcion, marcas: marcas, categorias: categorias })
     },
     save: async (req, res) => {
         try {
             let error = validationResult(req);
+            let marcas = await productService.getMarcas();
+            let categorias = await productService.getCategorias();
             if (error.isEmpty() && req.fileValidationError === undefined) {
                 await productService.save(req);
                 res.redirect('/productos/listaMisProductos');
             } else {
-                res.render('productos/create', { fileValidationError: req.fileValidationError, errors: error.mapped(), funcion: funcion, oldData: req.body })
+                res.render('productos/create', { marcas: marcas, categorias: categorias, fileValidationError: req.fileValidationError, errors: error.mapped(), funcion: funcion, oldData: req.body })
             }
         } catch (error) {
             console.log(error);
@@ -95,12 +100,12 @@ let productController = {
     },
     editProducto: async (req, res) => {
         try {
-            let marcas= await productService.getMarcas();
-            let categorias= await productService.getCategorias();
+            let marcas = await productService.getMarcas();
+            let categorias = await productService.getCategorias();
             let producto = await productService.getOne(req.params.id);
             let pertenece = await productService.perteneceAMisProductos(req);
             if (pertenece || req.session.usuarioLogeado.rol == 'Administrador') {
-                res.render('productos/edit', { categorias:categorias,marcas:marcas,oldData: producto, producto: producto, funcion: funcion })
+                res.render('productos/edit', { categorias: categorias, marcas: marcas, oldData: producto, producto: producto, funcion: funcion })
             } else {
                 res.status(403).render('error403');
             }
@@ -113,6 +118,8 @@ let productController = {
         try {
             let error = validationResult(req);
             let producto = req.body;
+            let marcas = await productService.getMarcas();
+            let categorias = await productService.getCategorias();
             producto.ID_Categoria = req.body.category;
             producto.Marca = req.body.marca;
             let productoAnterior = await productService.getOne(req.params.id);
@@ -120,24 +127,22 @@ let productController = {
                 await productService.update(req);
                 res.redirect('/productos/listaMisProductos');
             } else {
-                res.render('productos/edit', { fileValidationError: req.fileValidationError, errors: error.mapped(), funcion: funcion, oldData: producto, producto: productoAnterior })
+                res.render('productos/edit', { marcas: marcas, categorias: categorias, fileValidationError: req.fileValidationError, errors: error.mapped(), funcion: funcion, oldData: producto, producto: productoAnterior })
             }
         }
         catch (error) {
             console.log(error)
         };
-
-
     },
-    delete: async function(req, res){
-        try{
-            let resultado=await productService.delete(req);
+    delete: async function (req, res) {
+        try {
+            let resultado = await productService.delete(req);
             if (resultado.status == 'success') {
                 res.redirect('/productos/listaMisProductos');
             } else {
                 res.redirect('/productos/listaMisProductos');
             }
-        }catch(error){
+        } catch (error) {
             console.log(error);
         }
     },

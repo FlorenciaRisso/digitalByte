@@ -2,58 +2,64 @@
 
     <body>
         <%- include ('../partials/headerYNav',{usuarioLogeado:usuarioLogeado}) %>
+            <main>
+                <div class="container">
+                    <h1 class="title">Listado de Productos</h1>
+                    <div class="float w-100">
+                        <form action="/productos/filtro" method="get" class="filter-form">
+                            <label for="estado">Estado:</label>
+                            <select name="estado" id="estado">
+                                <option value="todos">Todos</option>
+                                <option value="activo">Activos</option>
+                                <option value="inactivo">Inactivos</option>
+                            </select>
+                            <button type="submit">Filtrar</button>
+                        </form>
+                        <button class="btn btn-agregar"><a href="/productos/create">Agregar producto</a></button>
+                    </div>
+                    <div class="container">
+                        <% if(productos.length < 1){ %>
+                            <p>Aun no posees productos</p>
+                            <% }else {%>
+                                <% productos.forEach(producto=> { %>
+                                    <ul class="product-list">
+                                        <li class="card <%= producto.Estado=='I' ? 'bg-red' : ''%>">
 
-            <h1 class="title">Listado de Productos</h1>
-            <div class="float">
-                <form action="/productos/filtro" method="get" class="filter-form">
-                    <label for="estado">Estado:</label>
-                    <select name="estado" id="estado">
-                        <option value="todos">Todos</option>
-                        <option value="activo">Activos</option>
-                        <option value="inactivo">Inactivos</option>
-                    </select>
-                    <button type="submit">Filtrar</button>
-                </form>
-                <button class="btn btn-agregar"><a href="/productos/create">Agregar producto</a></button>
-            </div>
-            <div class="container">
-                <% if(productos.length < 1){ %>
-                    <p>Aun no posees productos</p>
-                <% }else {%>
-                <% productos.forEach(producto=> { %>
-                    <ul class="product-list">
-                        <li class="card <%= producto.Estado=='I' ? 'bg-red' : ''%>">
+                                            <h3 class="product-name <%= producto.Estado=='I' ? 'red' : ''%>">
+                                                <%= producto.Nombre %>
+                                            </h3>
 
-                            <h3 class="product-name <%= producto.Estado=='I' ? 'red' : ''%>">
-                                <%= producto.Nombre %>
-                            </h3>
+                                            <a href="/productos/editar/<%=producto.ID_Producto %>"><img
+                                                    src="<%=producto.ImagenesProductos[0].ruta%>"
+                                                    alt="image usuario"></a>
 
-                            <a href="/productos/editar/<%=producto.ID_Producto %>"><img
-                                src="<%=producto.ImagenesProductos[0].ruta%>" alt="image usuario"></a>
-
-                            <h1 class="info <%= producto.Estado=='I' ? 'red' : ''%>"> $<%=funcion.getPrecioFormateado(producto.Precio)%>
-                            </h1>
-                            <div class="botones-acciones">
-                                <td>
-                                    <a href="/productos/editar/<%=producto.ID_Producto%>"><i
-                                            class="fa-solid fa-pen-to-square fa-lg"></i></a>
-                                </td>
-                                <td>
-                                    <form class="<%= producto.Estado=='I' ? 'none' : ''%>" action="/productos/delete/<%=producto.ID_Producto %>?_method=put"
-                                        method="post" style="display: inline-flex" id="form_delete">
-                                        <button type="submit" class="btn-delete eliminar"
-                                            data-product-id="<%=producto.ID_Producto %>"><i
-                                                class="fa-solid fa-trash-can fa-lg"></i></button>
-                                    </form>
-                                </td>
-                            </div>
+                                            <h1 class="info <%= producto.Estado=='I' ? 'red' : ''%>"> $
+                                                <%=funcion.getPrecioFormateado(producto.Precio)%>
+                                            </h1>
+                                            <div class="botones-acciones">
+                                                <td>
+                                                    <a href="/productos/editar/<%=producto.ID_Producto%>"><i
+                                                            class="fa-solid fa-pen-to-square fa-lg"></i></a>
+                                                </td>
+                                                <td>
+                                                    <form class="<%= producto.Estado=='I' ? 'none' : ''%>"
+                                                        action="/productos/delete/<%=producto.ID_Producto %>?_method=put"
+                                                        method="post" style="display: inline-flex" id="form_delete">
+                                                        <button type="submit" class="btn-delete eliminar"
+                                                            data-product-id="<%=producto.ID_Producto %>"><i
+                                                                class="fa-solid fa-trash-can fa-lg"></i></button>
+                                                    </form>
+                                                </td>
+                                            </div>
 
 
-                        </li>
-                    </ul>
+                                        </li>
+                                    </ul>
 
-                    <% })} %>
-            </div>
+                                    <% })} %>
+                    </div>
+                </div>
+            </main>
 
             <%- include ('../partials/footer') %>
     </body>
