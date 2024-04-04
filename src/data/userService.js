@@ -12,6 +12,13 @@ const userService = {
             return [];
         }
     },
+    getBy:async function(clave,valor){
+        try{
+            return await Usuarios.findOne({ where: {[clave]: valor } })
+        }catch(error){
+            return[];
+        }
+    },
     getUsuarios: async function (req) {
         try {
             let usuarios;

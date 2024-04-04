@@ -37,7 +37,7 @@ let userController = {
 
     userProfile: async function (req, res) {
         try {
-            let data = await userService.getOne(req.session.usuarioLogeado.id)
+            let data = await userService.getOne(req.session.usuarioLog.id)
             res.render('usuarios/userProfile', {
                 usuario: data
             })
@@ -60,7 +60,7 @@ let userController = {
         try {
             let error = validationResult(req);
             let usuarioId = req.body.id;
-            let sessionUsuarioId = req.session.usuarioLogeado ? req.session.usuarioLogeado.id : null;
+            let sessionUsuarioId = req.session.usuarioLog ? req.session.usuarioLog.id : null;
             let usuarioActualizado;
 
             let data = {
@@ -74,10 +74,10 @@ let userController = {
                 estado:req.body.estado
             };
             if (sessionUsuarioId == usuarioId && error.isEmpty()) {
-                delete req.session['usuarioLogeado'];
+                delete req.session['usuarioLog'];
                 usuarioActualizado = await userService.update(req);
                 let usuarioActualizadoData = await userService.getOne(req.params.id);
-                req.session.usuarioLogeado = usuarioActualizadoData;
+                req.session.usuarioLog = usuarioActualizadoData;
                 res.redirect('/usuarios/userProfile');
             } else if (error.isEmpty()) {
                 usuarioActualizado = await userService.update(req);
@@ -125,7 +125,7 @@ let userController = {
             if (errores.isEmpty() && req.fileValidationError === undefined) {
                 try {
                     let usuarioRegistrado=await userService.save(req);
-                    req.session.usuarioLogeado = usuarioRegistrado;
+                    req.session.usuarioLog = usuarioRegistrado;
                     res.redirect('/');
                 } catch (error) {
                     console.error('Error al iniciar sesión automáticamente después del registro:', error);
@@ -144,14 +144,14 @@ let userController = {
     deleteCuenta: async function (req, res) {
         try {
             const userId = req.params.id;
-            if (req.session.usuarioLogeado.id == userId) {
+            if (req.session.usuarioLog.id == userId) {
                 let usuario = await userService.delete(userId);
                 if (usuario) {
                     res.redirect('/usuarios/cerrarSesion')
                 } else {
                     res.redirect("/");
                 }
-            } else if (req.session.usuarioLogeado.rol == "Administrador" && req.session.usuarioLogeado.id != userId) {
+            } else if (req.session.usuarioLog.rol == "Administrador" && req.session.usuarioLog.id != userId) {
                 await userService.delete(userId);
                 res.redirect('/usuarios/lista')
             } else {
@@ -182,7 +182,7 @@ let userController = {
                 let correctContraseña = bcrypt.compareSync(req.body.contraseña, usuarioValido.contraseña);
 
                 if (correctContraseña) {
-                    req.session.usuarioLogeado = usuarioValido;
+                    req.session.usuarioLog = usuarioValido;
                     if (req.body.recordame == 'on') {
                         res.cookie('recordame', usuarioValido.email, { maxAge: 604800000 });
                         res.cookie('recordarEmail', usuarioValido.email, { maxAge: 604800000 });

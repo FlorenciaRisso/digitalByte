@@ -111,7 +111,7 @@
                         > <%= oneCategory %>
                       </option>
                       <% } %>
-                      <%if (usuarioLogeado.rol==='Administrador'){%>
+                      <%if (usuarioLog.rol==='Administrador'){%>
                         <option value="Administrador" <%=locals.oldData && ('Administrador'===oldData.rol) ? 'selected' :
                           null %>>Administrador</option>
                       <%}%>

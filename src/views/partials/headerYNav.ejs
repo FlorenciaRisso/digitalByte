@@ -15,19 +15,19 @@
 
         </div>
         <div class="user-info-responsive">
-            <% if (usuarioLogeado) { %>
+            <% if (usuarioLog) { %>
                 <a href="/usuarios/userProfile">
                     <img class="img-user"
-                        src="<%= usuarioLogeado.avatar?usuarioLogeado.avatar:'/img/default-image.png' %>"
+                        src="<%= usuarioLog.avatar?usuarioLog.avatar:'/img/default-image.png' %>"
                         alt="Foto de perfil">
                     <span>
-                        <%= usuarioLogeado.nombre %>/<%=usuarioLogeado.rol %>
+                        <%= usuarioLog.nombre %>/<%=usuarioLog.rol %>
                     </span>
                 </a>
                 <% } %>
         </div>
         <div class="user-option">
-                <% if(usuarioLogeado && usuarioLogeado.rol==='Administrador' ){ %>
+                <% if(usuarioLog && usuarioLog.rol==='Administrador' ){ %>
                     <div class="user-option_div">
                         <button class="user-btn btn-listProd left-rounder" type="button"><a
                                 href="/productos/lista">Productos</a></button>
@@ -37,21 +37,21 @@
                                     class="fa-solid fa-right-from-bracket"></i></a></button>
                     </div>
 
-                    <%}else if(usuarioLogeado && usuarioLogeado.rol==='Vendedor' ){%>
+                    <%}else if(usuarioLog && usuarioLog.rol==='Vendedor' ){%>
                         <div class="user-option_div">
                             <button class="user-btn btn-carrito rounder" type="button"><a
                                     href="/productos/listaMisProductos">Mis Productos</a></button>
                             <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
                                         class="fa-solid fa-right-from-bracket"></i></a></button>
                         </div>
-                        <%}else if(usuarioLogeado && usuarioLogeado.rol==='Cliente' ){%>
+                        <%}else if(usuarioLog && usuarioLog.rol==='Cliente' ){%>
                             <div class="user-option_div">
                                 <button class="user-btn btn-carrito rounder" type="button"><a
                                         href="/productos/carrito">Carrito</a></button>
                                 <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
                                             class="fa-solid fa-right-from-bracket"></i></a></button>
                             </div>
-                            <%}else if(usuarioLogeado){%>
+                            <%}else if(usuarioLog){%>
                                 <div class="user-option_div">
                                     <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
                                                 class="fa-solid fa-right-from-bracket"></i></a></button>
@@ -66,13 +66,13 @@
                                     </div>
                                     <% }%>
                                         <div class="user-info">
-                                            <% if (usuarioLogeado) { %>
+                                            <% if (usuarioLog) { %>
                                                 <a href="/usuarios/userProfile">
                                                     <img class="img-user"
-                                                        src="<%= usuarioLogeado.avatar ? usuarioLogeado.avatar  :'/img/default-image.png' %>"
+                                                        src="<%= usuarioLog.avatar ? usuarioLog.avatar  :'/img/default-image.png' %>"
                                                         alt="Foto de perfil">
                                                     <span>
-                                                        <%= usuarioLogeado.nombre %>/<%=usuarioLogeado.rol %>
+                                                        <%= usuarioLog.nombre %>/<%=usuarioLog.rol %>
                                                     </span>
                                                 </a>
                                                 <!-- Ajusta la ruta de la imagen según cómo esté guardada en tu sistema -->

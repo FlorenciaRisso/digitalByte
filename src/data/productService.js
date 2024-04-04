@@ -159,7 +159,7 @@ const productService = {
                 Stock: req.body.stock,
                 Descuento: req.body.discount,
                 Marca: req.body.marca,
-                ID_Vendedor: req.session.usuarioLogeado.id
+                ID_Vendedor: req.session.usuarioLog.id
             });
 
             // Agregar las imágenes del producto
@@ -213,7 +213,7 @@ const productService = {
         let producto = await db.Productos.findOne({
             where: {
                 ID_Producto: idProducto,
-                ID_Vendedor: req.session.usuarioLogeado.id
+                ID_Vendedor: req.session.usuarioLog.id
             }
         }, { include: { association: 'Usuario' } });
         return !(producto == undefined)
@@ -232,7 +232,7 @@ const productService = {
                     Stock: req.body.stock,
                     ID_Categoria: req.body.category,
                     Marca: req.body.marca,
-                    ID_Vendedor: req.session.usuarioLogeado.id,
+                    ID_Vendedor: req.session.usuarioLog.id,
                     Estado: req.body.estado || 'A'
                 },
                 { where: { ID_Producto: productId } }

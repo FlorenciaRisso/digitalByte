@@ -40,10 +40,10 @@ let productController = {
     listaPorUsuario: async function (req, res) {
         try {
             let productos;
-            if (req.session.usuarioLogeado.rol == 'Administrador') {
+            if (req.session.usuarioLog.rol == 'Administrador') {
                 productos = await productService.getAll();
             } else {
-                productos = await productService.getAllByID(req.session.usuarioLogeado.id);
+                productos = await productService.getAllByID(req.session.usuarioLog.id);
             }
             res.render('productos/lista', { productos: productos, funcion: funcion });
         } catch (error) {
@@ -60,6 +60,13 @@ let productController = {
 
 
     },
+    agregarAlCarrito: async function (req, res) {
+        try {
+
+        } catch {
+
+        }
+    },
     listaPorCat: async function (req, res) {
         try {
             let data = await productService.getProdPorCat(req);
@@ -73,13 +80,15 @@ let productController = {
     detalle: async (req, res) => {
         let productId = req.params.id;
         let producto = await productService.getOne(productId);
+        if (!producto) {
+            res.status(404).render('error404');
+        }
         let productos = await productService.getAll();
         res.render('productos/detalle', { producto: producto, productos: productos, funcion: funcion });
     },
     create: async (req, res) => {
         let marcas = await productService.getMarcas();
         let categorias = await productService.getCategorias();
-        console.log(categorias);
         res.render('productos/create', { funcion: funcion, marcas: marcas, categorias: categorias })
     },
     save: async (req, res) => {
@@ -104,9 +113,12 @@ let productController = {
             let categorias = await productService.getCategorias();
             let producto = await productService.getOne(req.params.id);
             let pertenece = await productService.perteneceAMisProductos(req);
-            if (pertenece || req.session.usuarioLogeado.rol == 'Administrador') {
+            if (!producto) {
+                res.status(404).render('error404');
+            }
+            if (pertenece || req.session.usuarioLog.rol == 'Administrador') {
                 res.render('productos/edit', { categorias: categorias, marcas: marcas, oldData: producto, producto: producto, funcion: funcion })
-            } else {
+            } else if (producto) {
                 res.status(403).render('error403');
             }
         } catch (error) {

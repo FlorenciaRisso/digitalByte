@@ -1,5 +1,5 @@
 const { check } = require('express-validator');
-const {Usuarios} = require('../../model/database/models');
+const userService = require('../../data/userService');
 const path = require('path');
 
 const registerValidation = [
@@ -10,7 +10,7 @@ const registerValidation = [
         .isEmail().withMessage('Debes ingresar un email válido').bail()
         .custom(async (value,{req}) => {
             // Verificar si el email ya está registrado en la base de datos
-            const existingUser = await Usuarios.findOne({ where: { email: value } });
+            const existingUser = await userService.getBy('email',value);
             if (existingUser) {
                 throw new Error('El email ya está registrado');
             }
@@ -27,7 +27,8 @@ const registerValidation = [
         return true;  
     }),
     check('nacionalidad').notEmpty().withMessage('Debes seleccionar tu país de nacimiento'),
-    check('rol').notEmpty().withMessage('Debes elegir una categoría de usuario')
+    check('rol').notEmpty().withMessage('Debes elegir una categoría de usuario').
+    isIn(['Vendedor', 'Cliente']).withMessage('El rol debe ser "Vendedor" o "Cliente"')
 ];
 
 module.exports = registerValidation;
