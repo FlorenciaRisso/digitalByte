@@ -3,7 +3,7 @@
   <body>
     <%-include ('../partials/headerYNav') %>
 
-      <div class="body">
+      <main>
         <div class="container">
           <div class="title-container">
             <h2 class="title">Editar Usuario</h2>
@@ -103,7 +103,7 @@
                 <select name="rol" id="rol"
                   class="edit-user__input-form <%= locals.errors && errors.rol ? 'is-invalid' : '' %> rol">
                   <option value="">Elige un rol de usuario</option>
-                  <% let categories=["Vendedor", "Cliente" , "Administrador" ] %>
+                  <% let categories=["Vendedor", "Cliente"] %>
 
                     <% for (const oneCategory of categories) { %>
                       <option value="<%= oneCategory %>" <%=locals.oldData && (oneCategory===oldData.rol) ? 'selected' :
@@ -111,6 +111,10 @@
                         > <%= oneCategory %>
                       </option>
                       <% } %>
+                      <%if (usuarioLogeado.rol==='Administrador'){%>
+                        <option value="Administrador" <%=locals.oldData && ('Administrador'===oldData.rol) ? 'selected' :
+                          null %>>Administrador</option>
+                      <%}%>
                 </select>
                 <small class="rol-msg text-danger"></small>
 
@@ -166,7 +170,7 @@
             </div>
           </form>
         </div>
-      </div>
+      </main>
   </body>
   <%- include ('../partials/footer') %>
       <script src="/js/usuarios/edit.js"></script>

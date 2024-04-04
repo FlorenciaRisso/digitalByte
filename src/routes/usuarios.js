@@ -25,11 +25,11 @@ router.post('/login', loginValidation, userController.processLogin);
 router.get('/registro', guestMiddleware, userController.registro);
 router.post('/registro', uploadFile,registerValidation, userController.processRegister)
 
-router.get('/edit/:id', authMiddleware, userController.edit)
-router.put('/edit/:id', uploadFile,editUsuarioValidation, userController.update)
+router.get('/edit/:id', authMiddleware,esUsuarioOAdmin, userController.edit)
+router.put('/edit/:id', uploadFile,esUsuarioOAdmin, editUsuarioValidation, userController.update)
 
-router.get('/cambiarContrasenia/:id',authMiddleware,userController.cambiarContraseña)
-router.put('/cambiarContrasenia/:id',authMiddleware,changePasswordValidation,userController.updateContraseña)
+router.get('/cambiarContrasenia/:id',authMiddleware,esUsuarioOAdmin,userController.cambiarContraseña)
+router.put('/cambiarContrasenia/:id',authMiddleware,esUsuarioOAdmin,changePasswordValidation,userController.updateContraseña)
 
 router.post('/verificarEmail', userController.verificarEmail);
 

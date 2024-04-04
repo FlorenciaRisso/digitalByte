@@ -7,19 +7,25 @@
                     <h1 class="title">Listado de Productos</h1>
                     <div class="float w-100">
                         <form action="/productos/filtro" method="get" class="filter-form">
-                            <label for="estado">Estado:</label>
                             <select name="estado" id="estado">
                                 <option value="todos">Todos</option>
                                 <option value="activo">Activos</option>
                                 <option value="inactivo">Inactivos</option>
                             </select>
-                            <button type="submit">Filtrar</button>
+                            <button type="submit" class="btn btn-primary">Filtrar</button>
                         </form>
                         <button class="btn btn-agregar"><a href="/productos/create">Agregar producto</a></button>
                     </div>
-                    <div class="container">
+                    <div class="listaMisProductos">
                         <% if(productos.length < 1){ %>
-                            <p>Aun no posees productos</p>
+                            <div class="noProduct">
+                                <p class="mensajeNoProd">Aun no posees productos</p>
+                                <div class="img">
+                                    <img src="/img/box.jpg" alt="" width="150" height="150">
+                                </div>
+                            </div>
+
+
                             <% }else {%>
                                 <% productos.forEach(producto=> { %>
                                     <ul class="product-list">

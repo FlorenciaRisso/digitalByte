@@ -1,10 +1,11 @@
 const esUsuarioOAdmin = (req, res, next) => {
 
-    const usuario = req.session.usuarioLogeado;
+    const permiso = req.session.usuarioLogeado.id==req.params.id;
+    const usuario= req.session.usuarioLogeado;
 
-    const esUsuario = usuario && (usuario.rol === 'Vendedor' ||  usuario.rol ==='Cliente' || usuario.rol ==='Administrador');
+    const esUsuario = permiso && (usuario.rol === 'Vendedor' ||  usuario.rol ==='Cliente' || usuario.rol ==='Administrador');
     if(!esUsuario){
-        return res.redirect('/')
+        res.status(403).render('error403');
     } next();
 };
 

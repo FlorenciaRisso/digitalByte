@@ -68,7 +68,9 @@ a {
   margin: 0;
   padding: 0;
 }
-
+/* .container{
+  background-color: #dcdbf1;
+} */
 .p-price-offer {
   font-size: 1.5rem;
   background-color: #ba8bf7;
@@ -201,7 +203,7 @@ a {
 }
 
 .user-option_div {
-  margin-bottom: 30px;
+  margin:10px 0 ;
 }
 
 .btn-carrito {
@@ -217,7 +219,19 @@ a {
   border: 0;
   padding: 0px 10px;
 }
-
+.btn{
+  border: 0;
+  padding: 2px 4px;
+  border-radius: 5px;
+  background-color: white;
+}
+.btn:hover{
+  cursor: pointer;
+}
+.btn-primary{
+  background-color: #446faf;
+  color: white;
+}
 .rounder {
   border-radius: 20px;
 }
@@ -319,7 +333,6 @@ a {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 5px;
 }
 
 
