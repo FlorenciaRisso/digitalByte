@@ -62,7 +62,7 @@
             <small class="contraseña-msg w-50">Ingresa una contraseña</small>
 
             <% if(locals.errors && errors.password) {%>
-              <div class="text-danger">
+              <div class="text-danger w-50">
                 <%= errors.password.msg %>
               </div>
               <% } %>
@@ -78,7 +78,7 @@
               <small class="contraseña2-msg w-50">Las contraseñas deben coincidir</small>
 
             <% if(locals.errors && errors.confirmPassword) {%>
-              <div class="text-danger">
+              <div class="text-danger w-50">
                 <%= errors.confirmPassword.msg %>
               </div>
               <% } %>

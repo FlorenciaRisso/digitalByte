@@ -17,7 +17,7 @@ const registerValidation = [
             return true;
         }),
     check('password').notEmpty().withMessage('El campo contraseña no puede estar vacío')
-    .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-_!@#$%^&*.,]).{8,}$/)
+    .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/)
     .withMessage('La contraseña debe contener al menos una mayúscula, una minúscula, un número y un carácter especial, y tener al menos 8 caracteres de longitud'),
     check('confirmPassword').notEmpty().withMessage('Repite la contraseña')
     .custom((value, { req }) => {
