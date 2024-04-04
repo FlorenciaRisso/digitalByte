@@ -82,16 +82,16 @@
                                         <p>$<%=funcion.getPrecioFormateado(precioFinal)%>
                                         </p>
                                 </div>
+                                <div class="oferta">
                                 <% if(producto.Descuento !=0){ %>
-                                    <div class="oferta">
                                         <p class="p-off">
                                             <%= producto.Descuento %>%OFF 🎊
                                         </p>
-                                        <%}%>
-                                            <a href="/productos/carrito" class="div-btn-comprar">
-                                                <button class="btn-comprar">Agregar al Carrito</button>
-                                            </a>
-                                    </div>
+                                <%}%>
+                                        <a href="/productos/carrito" class="div-btn-comprar">
+                                            <button class="btn-comprar">Agregar al Carrito</button>
+                                        </a>
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -107,10 +107,7 @@
                             </div>
                         </article>
                     </section>
-
-                    </section>
                 </div>
-
             </main>
             <%- include ('../partials/footer') %>
     </body>
