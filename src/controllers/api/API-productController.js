@@ -54,11 +54,6 @@ let productController = {
       productDetail.descuento = product.Descuento;
       productDetail.usuario = product.Usuario;
       productDetail.ImagenesProducto = product.ImagenesProductos;
-      productDetail.ImagenesProducto = product.ImagenesProductos;
-
-
-
-      // productDetail.imageURL = `/api/products/${product.id}/image`;
 
       res.json(productDetail);
     } catch (error) {

@@ -19,10 +19,16 @@ app.use(session({
 
 const recordameMiddleware = require('./middlewares/usuarios/recordameMiddleware')
 
+app.use((req, res, next)=>{
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    next();
+});
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cookieParser())
-app.use(recordameMiddleware)
+app.use(cookieParser());
+app.use(recordameMiddleware);
 //Usando recursos estaticos
 app.use(express.static('public'));
 //Override
