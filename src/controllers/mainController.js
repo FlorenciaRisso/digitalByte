@@ -10,7 +10,9 @@ let mainController = {
             let ultimosSamsung = await productService.getLastSmartphoneByMarca('Samsung');
             let ultimosXiaomi = await productService.getLastSmartphoneByMarca('Xiaomi');
             let ultimosApple = await productService.getLastSmartphoneByMarca('Apple');
-            res.render('index', { ultimosApple: ultimosApple, ultimosXiaomi: ultimosXiaomi, ultimosSamsung: ultimosSamsung, productos: data, funcion: funcion })
+            let maxMasBuscados = 10;
+            let masBuscados = data.slice(0, maxMasBuscados);
+            res.render('index', { masBuscados:masBuscados,ultimosApple: ultimosApple, ultimosXiaomi: ultimosXiaomi, ultimosSamsung: ultimosSamsung, productos: data, funcion: funcion })
         } catch (error) {
             console.log(error)
         }

@@ -6,7 +6,9 @@ let productController = {
     index: async function (req, res) {
         try {
             let data = await productService.getAll();
-            res.render('productos/index', { productos: data, funcion: funcion });
+            let maxMasBuscados = 10;
+            let masBuscados = data.slice(0, maxMasBuscados);
+            res.render('productos/index', { masBuscados: masBuscados,productos: data, funcion: funcion });
         } catch (error) {
             console.log(error);
         }
@@ -53,7 +55,9 @@ let productController = {
     carrito: async function (req, res) {
         try {
             let data = await productService.getAll();
-            res.render('productos/carrito', { productos: data, funcion: funcion });
+            let maxMasBuscados = 10;
+            let masBuscados = data.slice(0, maxMasBuscados);
+            res.render('productos/carrito', { masBuscados:masBuscados,productos: data, funcion: funcion });
         } catch (error) {
             console.log(error);
         }
@@ -69,7 +73,7 @@ let productController = {
     },
     listaPorCat: async function (req, res) {
         try {
-            let data = await productService.getProdPorCat(req);
+            let data = await productService.getProdPorCat(req.query.cat);
             res.render('productos/categoria', { productos: data, funcion: funcion });
         } catch (error) {
             console.log(error);
@@ -80,11 +84,14 @@ let productController = {
     detalle: async (req, res) => {
         let productId = req.params.id;
         let producto = await productService.getOne(productId);
+        let relacionados = await productService.getProdPorCat(producto.ID_Categoria);
+        let maxRelacionados = 6;
+        relacionados = relacionados.slice(0, maxRelacionados);
         if (!producto) {
             res.status(404).render('error404');
         }
         let productos = await productService.getAll();
-        res.render('productos/detalle', { producto: producto, productos: productos, funcion: funcion });
+        res.render('productos/detalle', { relacionados: relacionados, producto: producto, productos: productos, funcion: funcion });
     },
     create: async (req, res) => {
         let marcas = await productService.getMarcas();

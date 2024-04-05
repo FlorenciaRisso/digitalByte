@@ -2,14 +2,40 @@ const db = require('../../model/database/models');
 const Sequelize = require('sequelize');
 const apiProductService = {
 
-    getAll: async function () {
+    getAllWithPagination: async function (limit,offset) {
+        try {
+            return await db.Productos.findAll({
+                limit: limit,
+                offset: offset,
+                include: [
+                    { association: 'Caracteristica' },
+                    { association: 'ImagenesProductos' },
+                    { association: 'Categoria' }
+                ]
+            });
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    },
+    getCount:async () => {
+        try {
+          const count = await db.Productos.count();
+          return count;
+        } catch (error) {
+          return[];
+        }
+    },
+    getAll: async function (limit) {
         try {
             return await db.Productos.findAll({
                 include: [
                     { association: 'Caracteristica' },
                     { association: 'ImagenesProductos' },
                     { association: 'Categoria' }
-                ]
+                ],
+                limit: limit,
+                offset: 10
             });
         } catch (error) {
             console.log(error);
@@ -26,7 +52,7 @@ const apiProductService = {
                     { association: 'Usuario' }
                 ]
             });
-        } catch (error){
+        } catch (error) {
             console.log(error);
             return [];
         }

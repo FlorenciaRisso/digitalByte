@@ -187,14 +187,14 @@ const productService = {
 
     },
     //1.notebook,2.smartphone,3.tablet
-    getProdPorCat: async function (req, res) {
+    getProdPorCat: async function (categoria, res) {
         try {
             const productos = await db.Productos.findAll({
                 include: [
                     { association: 'Categoria' },
                     { association: 'ImagenesProductos' }
                 ],
-                where: { ID_Categoria: req.query.cat, Estado: 'A' }
+                where: { ID_Categoria: categoria, Estado: 'A' }
             });
 
             if (!productos) {
