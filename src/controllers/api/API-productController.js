@@ -25,7 +25,9 @@ let productController = {
         name: product.Nombre,
         description: product.Descripcion,
         categories: product.Categoria.nombre,
-        detail: `/api/products/${product.ID_Producto}`
+        detail: `/api/products/${product.ID_Producto}`,
+        imagen: product.ImagenesProductos[0],
+        price: product.Precio
       }));
 
       let nextUrl = null;
