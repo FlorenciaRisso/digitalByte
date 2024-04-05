@@ -20,6 +20,14 @@ let productController = {
         countByCategory[categoryName]++;
       });
 
+      let productList = products.map(product => ({
+        id: product.ID_Producto,
+        name: product.Nombre,
+        description: product.Descripcion,
+        categories: product.Categoria.nombre,
+        detail: `/api/products/${product.ID_Producto}`
+      }));
+
       let nextUrl = null;
       let prevUrl = null;
       const totalPages = Math.ceil(count / limit);
@@ -33,7 +41,7 @@ let productController = {
       res.json({
         count: count,
         countByCategory: countByCategory,
-        products: products,
+        products: productList,
         next: nextUrl,
         previous: prevUrl
       });
