@@ -7,36 +7,48 @@
                     <div class="title-container">
                         <h2 class="title">Contactanos</h2>
                     </div>
-                    <form class="contacto__form" action="/usuarios/contactanos" method="POST">
 
-                        <div class="nombre-apellido">
-                            <div class="contacto__name-form block-input">
-                                <label for="producto">Nombre: </label>
-                                <input class="name__input-form input-form" type="text" id="producto"
-                                    placeholder="Nombre del producto" required />
-                            </div>
+                    <% if (typeof respuesta !== 'undefined' && respuesta === true) { %>
+                        <div class="alert div-success">
+                            <p>Contacto registrado</p>
+                        </div>
+                    <% } else if (typeof respuesta !== 'undefined' && respuesta === false) { %>
+                        <div class="alert div-danger">
+                            <p>Contacto no registrado</p>
+                        </div>
+                    <% } %>
+                    
+                    
+                            <form class="contacto__form" action="/contacto" method="POST">
 
-                            <div class="contacto__descripcion-form block-input">
-                                <label for="descripcion">Apellido:</label>
-                                <input class="apellido__input-form input-form" type="text"
-                                    placeholder="Descripcion del producto" required />
-                            </div>
-                        </div>
-                        <div class="contacto__descripcion-form block-input">
-                            <label for="descripcion">Email:</label>
-                            <input class="email__input-form input-form" type="email" placeholder="Ingrese su correo"
-                                required />
-                        </div>
-                        <div class="contacto__descripcion-form block-input">
-                            <label for="descripcion">Telefono:</label>
-                            <input class="telefono__input-form input-form" type="text" placeholder="Telefono Sin 0 ni 15 Ej:(+54)385 5698542"
-                                required />
-                        </div>
+                                <div class="nombre-apellido">
+                                    <div class="contacto__name-form block-input">
+                                        <label for="producto">Nombre: </label>
+                                        <input class="name__input-form input-form" name="nombre" type="text"
+                                            id="producto" placeholder="Nombre del producto" />
+                                    </div>
 
-                        <div class="contacto__button">
-                            <button class="option__button" type="submit">Enviar</button>
-                        </div>
-                    </form>
+                                    <div class="contacto__descripcion-form block-input">
+                                        <label for="descripcion">Apellido:</label>
+                                        <input class="apellido__input-form input-form" name="apellido" type="text"
+                                            placeholder="Descripcion del producto" />
+                                    </div>
+                                </div>
+                                <div class="contacto__descripcion-form block-input">
+                                    <label for="descripcion">Email:</label>
+                                    <input class="email__input-form input-form" name="email" type="email"
+                                        placeholder="Ingrese su correo" />
+                                </div>
+                                <div class="contacto__descripcion-form block-input">
+                                    <label for="descripcion">Telefono:</label>
+                                    <input class="telefono__input-form input-form" name="telefono" type="text"
+                                        placeholder="Telefono Sin 0 ni 15 Ej:(+54)385 5698542" />
+                                </div>
+
+                                <div class="contacto__button">
+                                    <button class="option__button" type="submit">Enviar</button>
+                                </div>
+                            </form>
 
                 </div>
             </main>
@@ -45,4 +57,5 @@
             <%- include ('partials/footer') %>
     </body>
     <%- include ('partials/script-menu') %>
-    </html>
+
+        </html>

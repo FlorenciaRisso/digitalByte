@@ -46,23 +46,28 @@
                         </ul>
                         <h3>Integrantes del equipo</h3>
                         <div class="integrantes">
-                            <div class="integrante">
+                            <!-- <div class="integrante">
                                 <div class="img-integrante">
                                     <img src="/img/perfiles/perfil-1.png" alt="" srcset="">
                                 </div>
                                 <div class="nombre-integrante">
                                     <h4>Lautaro Capua</h4>
                                 </div>
+                            </div> -->
+                            <div class="integrante" onmouseover="mostrarGithub(this)" onmouseout="ocultarGithub(this)">
+                                <a href="https://github.com/FlorenciaRisso">
+                                    <div class="img-integrante">
+                                        <img src="/img/perfiles/perfil-2.png" alt="" srcset="">
+                                    </div>
+                                    <div class="nombre-integrante">
+                                        <h4>Florencia Risso</h4>
+                                        <div class="github-icono none">
+                                            <i class="fa-brands fa-github"></i>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                            <div class="integrante">
-                                <div class="img-integrante">
-                                    <img src="/img/perfiles/perfil-2.png" alt="" srcset="">
-                                </div>
-                                <div class="nombre-integrante">
-                                    <h4>Florencia Risso</h4>
-                                </div>
-                            </div>
-                            <div class="integrante">
+                            <!-- <div class="integrante">
                                 <div class="img-integrante">
                                     <img src="/img/perfiles/perfil-3.png" alt="" srcset="">
                                 </div>
@@ -77,21 +82,29 @@
                                 <div class="nombre-integrante">
                                     <h4>Ili Alsaad</h4>
                                 </div>
-                            </div>
-                            <div class="integrante">
-                                <div class="img-integrante">
-                                    <img src="/img/perfiles/perfil-5.png" alt="" srcset="">
-                                </div>
-                                <div class="nombre-integrante">
-                                    <h4>Mara Santillan</h4>
-                                </div>
+                            </div> -->
+                            <div class="integrante" onmouseover="mostrarGithub(this)" onmouseout="ocultarGithub(this)">
+                                <a href="https://github.com/mjsn98">
+                                    <div class="img-integrante">
+                                        <img src="/img/perfiles/perfil-5.png" alt="" srcset="">
+                                    </div>
+                                    <div class="nombre-integrante">
+                                        <h4>Mara Santillan</h4>
+                                        <div class="github-icono none">
+                                            <i class="fa-brands fa-github"></i>
+                                        </div>
+                                    </div>
+                                    
+                                </a>
                             </div>
                         </div>
                     </section>
                 </div>
             </main>
             <%- include ('partials/footer') %>
+            <script src="/js/quienesSomos.js"></script>
     </body>
     <%- include ('partials/script-menu') %>
+    
 
         </html>

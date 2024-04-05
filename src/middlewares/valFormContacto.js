@@ -1,6 +1,4 @@
 const { check } = require('express-validator');
-const path = require('path');
-const {Interesado} = require('../model/database/models/Interesados')
 
 const contactoValidation = [
     check('nombre').notEmpty().withMessage('El campo nombre no puede estar vacío'),
