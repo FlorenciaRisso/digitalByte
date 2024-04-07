@@ -26,16 +26,14 @@ const apiProductService = {
           return[];
         }
     },
-    getAll: async function (limit) {
+    getAll: async function () {
         try {
             return await db.Productos.findAll({
                 include: [
                     { association: 'Caracteristica' },
                     { association: 'ImagenesProductos' },
                     { association: 'Categoria' }
-                ],
-                limit: limit,
-                offset: 10
+                ]
             });
         } catch (error) {
             console.log(error);
@@ -55,6 +53,24 @@ const apiProductService = {
         } catch (error) {
             console.log(error);
             return [];
+        }
+    },
+    getMaxProduct: async () => {
+        try {
+            const highestProduct = await db.Productos.findOne({
+                order: [
+                    ['ID_Producto', 'DESC']
+                ],
+                include: [
+                    { association: 'Caracteristica' },
+                    { association: 'ImagenesProductos' },
+                    { association: 'Categoria' },
+                    { association: 'Usuario' }
+                ]
+            });
+            return highestProduct;
+        } catch (error) {
+            throw new Error('Error al obtener el producto con el ID más alto');
         }
     }
 }

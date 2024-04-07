@@ -4,5 +4,4 @@ const router = express.Router();
 
 router.get('/list',ApicategoriaController.lista);
 
-
 module.exports = router;

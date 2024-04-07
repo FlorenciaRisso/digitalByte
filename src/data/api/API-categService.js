@@ -9,6 +9,14 @@ const ApiCategoriaService = {
             console.log(error);
             return [];
         }
-    }
+    },
+    getCount:async () => {
+        try {
+          const count = await db.Categorias.count();
+          return count;
+        } catch (error) {
+          return[];
+        }
+    },
 }
 module.exports = ApiCategoriaService;
