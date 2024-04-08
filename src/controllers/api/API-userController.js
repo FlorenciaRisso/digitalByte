@@ -25,7 +25,8 @@ let userController = {
         id: user.id,
         name: `${user.nombre} ${user.apellido}`,
         email: user.email,
-        detail: `/api/users/${user.id}`
+        detail: `/api/users/${user.id}`,
+        imagen:user.avatar
       }));
 
       res.json({

@@ -108,7 +108,7 @@
         .then(response => response.json())
         .then(categorias => {
             const dropdown = document.getElementById('categorias-dropdown');
-            categorias.forEach(categoria => {
+            categorias.Categories.forEach(categoria => {
                 const option = document.createElement('option');
                 option.value = `/productos/categoria?cat=${categoria.id}`;
                 option.textContent = categoria.nombre;
