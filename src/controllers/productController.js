@@ -6,7 +6,7 @@ const { validationResult } = require('express-validator');
 let productController = {
     index: async function (req, res) {
         try {
-            let data = await productService.getAll();
+            let data = await productService.getAllDescByID();
             let maxMasBuscados = 10;
             let masBuscados = data.slice(0, maxMasBuscados);
             res.render('productos/index', { masBuscados: masBuscados, productos: data, funcion: funcion });

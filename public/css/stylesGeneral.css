@@ -979,6 +979,9 @@ a {
   justify-content: center;
   background-color: #dcdbf1;
 }
+.pl-0{
+  padding-left: 0;
+}
 
 .filter-form {
   text-align: center;

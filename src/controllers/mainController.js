@@ -6,7 +6,7 @@ const { validationResult } = require('express-validator');
 let mainController = {
     index: async function (req, res) {
         try {
-            let data = await productService.getAll();
+            let data = await productService.getAllDescByID();
             let ultimosSamsung = await productService.getLastSmartphoneByMarca('Samsung');
             let ultimosXiaomi = await productService.getLastSmartphoneByMarca('Xiaomi');
             let ultimosApple = await productService.getLastSmartphoneByMarca('Apple');
