@@ -308,7 +308,7 @@ a {
 }
 
 .none {
-  display: none;
+  display: none !important;
 }
 
 /*Nav*/
@@ -982,6 +982,8 @@ a {
 
 .filter-form {
   text-align: center;
+  display: block;
+  width: 100% !important;
 }
 
 .select-style {

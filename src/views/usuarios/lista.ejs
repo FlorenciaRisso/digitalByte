@@ -2,6 +2,7 @@
 
     <body>
         <%-include ('../partials/headerYNav' ) %>
+        <main><div class="container">
             <h1 class="title">Listado de Usuarios</h1>
             <form action="/usuarios/filtro" method="get" class="filter-form">
                 <label for="estado">Estado:</label>
@@ -13,8 +14,6 @@
                 <button type="submit">Filtrar</button>
             </form>
             
-            <div class="container">
-                
                 <% usuarios.forEach(usuario=> { %>
 
                     <ul class="user-list">
@@ -51,6 +50,7 @@
 
                     <% }) %>
             </div>
+        </main>
 
     </body>
     <%- include ('../partials/footer') %>

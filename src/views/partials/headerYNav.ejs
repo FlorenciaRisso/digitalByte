@@ -23,6 +23,10 @@
                         <%= usuarioLog.nombre %>/<%=usuarioLog.rol %>
                     </span>
                 </a>
+                <% if(usuarioLog && usuarioLog.rol==='Cliente' ){ %>
+                    <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
+                        class="fa-solid fa-right-from-bracket"></i></a></button>
+                <% } %>
                 <% } %>
         </div>
         <div class="user-option">
@@ -44,13 +48,11 @@
                                     class="fa-solid fa-right-from-bracket"></i></a></button>
                     </div>
                     <%}else if(usuarioLog && usuarioLog.rol==='Cliente' ){%>
-                        <div class="user-option_div">
-                            <button class="user-btn btn-carrito rounder" type="button"><a
-                                        href="/carrito">Carrito</a>
+                            <!-- <button class="user-btn btn-carrito rounder" type="button"><a
+                                        href="/carrito">Carrito</a> -->
                                         <!-- <span class="cart-number">0</span></button> -->
-                            <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
-                                        class="fa-solid fa-right-from-bracket"></i></a></button>
-                        </div>
+                            <!-- <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
+                                        class="fa-solid fa-right-from-bracket"></i></a></button> -->
                         <%}else if(usuarioLog){%>
                             <div class="user-option_div">
                                 <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
@@ -75,7 +77,10 @@
                                                     <%= usuarioLog.nombre %>/<%=usuarioLog.rol %>
                                                 </span>
                                             </a>
-                                            
+                                            <% if(usuarioLog && usuarioLog.rol==='Cliente' ){ %>
+                                                <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
+                                                    class="fa-solid fa-right-from-bracket"></i></a></button>
+                                            <% } %>
                                             <% } %>
                                     </div>
         </div>

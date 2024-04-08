@@ -78,21 +78,23 @@
 
                             </div>
                             <div class="oferta-precio">
-                                <div class="precio">
-                                    <% let precioFinal=producto.Precio-(producto.Precio*(producto.Descuento/100))%>
-                                        <p>$<%=funcion.getPrecioFormateado(precioFinal)%>
-                                        </p>
+                                <div class="precio" style="text-align: center;">
+                                    <% let precioFinal = producto.Precio - (producto.Precio * (producto.Descuento / 100)) %>
+                                    <% if (producto.Descuento != 0) { %>
+                                        <del><p>$<%= funcion.getPrecioFormateado(producto.Precio) %></p></del>
+                                        <p>$<%= funcion.getPrecioFormateado(precioFinal) %></p>
+                                    <% } else { %>
+                                        <p>$<%= funcion.getPrecioFormateado(producto.Precio) %></p>
+                                    <% } %>
                                 </div>
                                 <div class="oferta">
-                                <% if(producto.Descuento !=0){ %>
-                                        <p class="p-off">
-                                            <%= producto.Descuento %>%OFF 🎊
-                                        </p>
-                                <%}%>
-                                        <button class=" div-btn-comprar btn-comprar agregar_carrito" data-id="<%= producto.ID_Producto %>" id="btnAgregarCarrito">Agregar al Carrito</button>
-                                        
+                                    <% if (producto.Descuento != 0) { %>
+                                        <p class="p-off"><%= producto.Descuento %>%OFF 🎊</p>
+                                    <% } %>
+                                    <button class="none div-btn-comprar btn-comprar agregar_carrito" data-id="<%= producto.ID_Producto %>" id="btnAgregarCarrito">Agregar al Carrito</button>
                                 </div>
                             </div>
+                            
                         </div>
                     </section>
                     <section class="most-searched__section">
