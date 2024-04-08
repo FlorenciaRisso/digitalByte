@@ -2,55 +2,73 @@
 
     <body>
         <%-include ('../partials/headerYNav' ) %>
-        <main><div class="container">
-            <h1 class="title">Listado de Usuarios</h1>
-            <form action="/usuarios/filtro" method="get" class="filter-form">
-                <label for="estado">Estado:</label>
-                <select name="estado" id="estado">
-                    <option value="todos">Todos</option>
-                    <option value="activo">Activos</option>
-                    <option value="inactivo">Inactivos</option>
-                </select>
-                <button type="submit">Filtrar</button>
-            </form>
-            
-                <% usuarios.forEach(usuario=> { %>
+            <main>
+                <div class="container">
+                    <h1 class="title title-usu-list">Listado de Usuarios</h1>
+                    <div class="form-usu-list">
+                        <form action="/usuarios/filtro" method="get" class="filter-form">
+                            <label for="estado">Estado:</label>
+                            <select name="estado" id="estado">
+                                <option value="todos">Todos</option>
+                                <option value="activo">Activos</option>
+                                <option value="inactivo">Inactivos</option>
+                            </select>
+                            <button type="submit">Filtrar</button>
+                        </form>
+                    </div>
 
-                    <ul class="user-list pl-0">
 
-                        <li class="card <%= usuario.estado=='I' ? 'bg-red' : ''%>">
-
-                            <h3 class="user-name <%= usuario.estado=='I' ? 'red' : ''%>">
-                                <%= usuario.nombre %>
-                                    <%= usuario.apellido %>
-                            </h3>
-                            <a href="/usuarios/perfil/<%=usuario.id %>">
-                                <img src="<%=usuario.avatar%>" alt="image usuario">
-                            </a>
-                            <h1 class="info <%= usuario.estado=='I' ? 'red' : ''%>">
-                                <%= usuario.email %>
-                            </h1>
-                            <div class="botones-acciones">
-                                <td>
-                                    <a href="/usuarios/edit/<%=usuario.id%>"><i
-                                            class="fa-solid fa-pen-to-square fa-lg"></i></a>
-                                </td>
-                                <td>
-                                    <form class="<%= usuario.estado=='I' ? 'none' : ''%>" action="/usuarios/eliminar/<%=usuario.id%>?_method=put" method="post"
-                                        style="display: inline-flex" id="form_delete">
-                                        <button type="submit" class="btn-delete eliminar"
-                                            data-usuario-id="<%=usuario.id %>"><i
-                                                class="fa-solid fa-trash-can fa-lg"></i></button>
-                                    </form>
-                                </td>
+                    <div class="listaMisUsuarios">
+                        <% if(usuarios.length < 1){ %>
+                            <div class="noUsu">
+                                <p class="mensajeNoUsu">No hay usuarios</p>
+                                <div class="img">
+                                    <img src="/img/avatar.jpg" alt="" width="150" height="150">
+                                </div>
                             </div>
-                        </li>
 
-                    </ul>
 
-                    <% }) %>
-            </div>
-        </main>
+                            <% }else {%>
+                                <% usuarios.forEach(usuario=> { %>
+
+                                    <ul class="user-list pl-0">
+
+                                        <li class="card <%= usuario.estado=='I' ? 'bg-red' : ''%>">
+
+                                            <h3 class="user-name <%= usuario.estado=='I' ? 'red' : ''%>">
+                                                <%= usuario.nombre %>
+                                                    <%= usuario.apellido %>
+                                            </h3>
+                                            <a href="/usuarios/perfil/<%=usuario.id %>">
+                                                <img src="<%=usuario.avatar%>" alt="image usuario">
+                                            </a>
+                                            <h1 class="info <%= usuario.estado=='I' ? 'red' : ''%>">
+                                                <%= usuario.email %>
+                                            </h1>
+                                            <div class="botones-acciones">
+                                                <td>
+                                                    <a href="/usuarios/edit/<%=usuario.id%>"><i
+                                                            class="fa-solid fa-pen-to-square fa-lg"></i></a>
+                                                </td>
+                                                <td>
+                                                    <form class="<%= usuario.estado=='I' ? 'none' : ''%>"
+                                                        action="/usuarios/eliminar/<%=usuario.id%>?_method=put"
+                                                        method="post" style="display: inline-flex" id="form_delete">
+                                                        <button type="submit" class="btn-delete eliminar"
+                                                            data-usuario-id="<%=usuario.id %>"><i
+                                                                class="fa-solid fa-trash-can fa-lg"></i></button>
+                                                    </form>
+                                                </td>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+
+                                    <% }) %>
+                                        <%}%>
+
+                    </div>
+            </main>
 
     </body>
     <%- include ('../partials/footer') %>
