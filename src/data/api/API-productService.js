@@ -72,6 +72,24 @@ const apiProductService = {
         } catch (error) {
             throw new Error('Error al obtener el producto con el ID más alto');
         }
+    },
+    getDiscountedProducts: async (discountPercentage) => {
+        try {
+            const discountedProducts = await db.Productos.findAll({
+                include: [
+                    { association: 'Caracteristica' },
+                    { association: 'ImagenesProductos' },
+                    { association: 'Categoria' }
+                ],
+                where: {
+                    descuento: 20
+                }
+            });
+            return discountedProducts;
+        } catch (error) {
+            console.log(error);
+            throw new Error('Error al obtener los productos con descuento');
+        }
     }
 }
 module.exports = apiProductService;

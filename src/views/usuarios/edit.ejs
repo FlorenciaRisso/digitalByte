@@ -147,6 +147,7 @@
                   </div>
                   <% } %>
               </div>
+              <% if (usuarioLog.rol === 'Administrador') { %>
               <div class="edit-user__category-form block-input">
                 <label for="estado"><b>Estado</b></label>
                 <select name="estado"
@@ -160,6 +161,7 @@
                       <% } %>
                 </select>
               </div>
+              <% } %>
               <div class="edit-user__buttons">
                 <button class="edit-user__button btn ">Guardar cambios</button>
                 <div>

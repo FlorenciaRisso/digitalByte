@@ -50,7 +50,7 @@ let userController = {
         try {
             let userId = parseInt(req.params.id, 10);
             let data = await userService.getOne(userId);
-            res.render('usuarios/edit', { usuario: data, oldData: data });
+            res.render('usuarios/edit', { usuario: data, oldData: data, usuarioLog: req.session.usuarioLog });
         } catch (error) {
             console.log(error);
         }

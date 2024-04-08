@@ -5,54 +5,42 @@ let productController = {
   list: async (req, res) => {
     try {
       const page = parseInt(req.query.page) || 1;
-      const limit = 10; // Cantidad de registros por página
-      const offset = (page - 1) * limit; //  Paginación
-
-      let products = await apiProductService.getAllWithPagination(limit, offset);
-      let allProducts = await apiProductService.getAll();
-      const count = await apiProductService.getCount(); //Cuenta el total de los productos
+      const limit = 10;
+      const offset = (page - 1) * limit;
+      const allProducts = await apiProductService.getAllWithPagination(limit, offset);
+  
+      const discountedProducts = await apiProductService.getDiscountedProducts(20);
+  
       let countByCategory = {};
-
       allProducts.forEach(product => {
         const categoryName = product.Categoria.nombre;
-        if (!countByCategory[categoryName] ) {
+        if (!countByCategory[categoryName]) {
           countByCategory[categoryName] = 0;
         }
         countByCategory[categoryName]++;
       });
-
-      let result = [];
-
-      Object.keys(countByCategory).forEach(categoryName => {
-        // Almacenar el nombre de la categoría y la cantidad de productos asociados en un objeto
-        const categoryObject = {
-          nombre: categoryName,
-          cantidad: countByCategory[categoryName]
-        };
-        // Agregar el objeto al arreglo result
-        result.push(categoryObject);
-      });
-
+  
       let siguienteUrl = null;
       let anteriorUrl = null;
-
-      const totalPages = Math.ceil(count / limit); //Calcula y redondea hacia arriba el numero de paginas
-
+      const count = await apiProductService.getCount();
+      const totalPages = Math.ceil(count / limit);
+  
       if (page < totalPages) {
         siguienteUrl = `${page + 1}`;
       }
       if (page > 1) {
         anteriorUrl = `${page - 1}`;
       }
-
+  
       res.json({
         count: count,
-        countByCategory: result,
-        products: products,
+        countByCategory: countByCategory,
+        discountedProducts: discountedProducts,
+        products: allProducts,
         next: siguienteUrl,
         previous: anteriorUrl
       });
-
+  
     } catch (error) {
       console.log(error.message);
       res.status(500).json({ error: 'Error inesperado' });
@@ -83,6 +71,20 @@ let productController = {
       }
       
       res.json(latestProduct);
+    } catch (error) {
+      console.log(error.message);
+      res.status(500).json({ error: 'Error inesperado' });
+    }
+  },
+  discount: async (req, res) => {
+    try {
+      const discountedProducts = await apiProductService.getDiscountedProducts(20);
+  
+      if (discountedProducts.length === 0) {
+        return res.status(404).json({ error: 'No se encontraron productos con descuento del 20%' });
+      }
+
+      res.json(discountedProducts);
     } catch (error) {
       console.log(error.message);
       res.status(500).json({ error: 'Error inesperado' });
