@@ -53,32 +53,36 @@
           </div>
 
 
-          <div class="register__password-form block-input">
+          <div class="user__password-form block-input">
             <input type="password" name="password"
-              class="register__input-form <%= locals.errors && errors.password ? 'is-invalid' : null %> contraseña"
+              class="user__input-form <%= locals.errors && errors.password ? 'is-invalid' : null %> contraseña"
               placeholder="Contraseña" value="<%= locals.oldData ? oldData.password : null %>">
-            <small class="contraseña-msg">Ingresa una contraseña</small>
+              <i class="fa fa-eye-slash toggle-password"></i>
+            </div>
+            <small class="contraseña-msg w-50">Ingresa una contraseña</small>
 
             <% if(locals.errors && errors.password) {%>
-              <div class="text-danger">
+              <div class="text-danger w-50">
                 <%= errors.password.msg %>
               </div>
               <% } %>
-          </div>
+          
 
 
-          <div class="register__password-form block-input">
+          <div class="user__password-form block-input">
             <input type="password" name="confirmPassword"
-              class="<%= locals.errors && errors.confirmPassword ? 'is-invalid' : null %> repetirContraseña"
+              class="user__input-form <%= locals.errors && errors.confirmPassword ? 'is-invalid' : null %> repetirContraseña"
               placeholder="Repetir contraseña" value="<%= locals.oldData ? oldData.confirmPassword : null %>">
-            <small class="contraseña2-msg">Las contraseñas deben coincidir</small>
+              <i class="fa fa-eye-slash toggle-password"></i>
+            </div>
+              <small class="contraseña2-msg w-50">Las contraseñas deben coincidir</small>
 
             <% if(locals.errors && errors.confirmPassword) {%>
-              <div class="text-danger">
+              <div class="text-danger w-50">
                 <%= errors.confirmPassword.msg %>
               </div>
               <% } %>
-          </div>
+          
 
 
           <div class="register__category-form block-input">
@@ -132,9 +136,9 @@
             <label class="form-label"><b>Imagen de perfil:</b></label>
             <input class="avatar" type="file" name="avatar" id="avatarInput" accept=".jpg, .png, .jpeg, .gif">
 
-            <% if(locals.errors && errors.avatar) {%>
+            <% if (typeof fileValidationError !=='undefined' ) { %>
               <div class="text-danger">
-                <%= errors.avatar.msg %>
+                <%= fileValidationError %>
               </div>
               <% } %>
                 <img id="imagenPreview" class="image none" src="" alt="Vista previa de la imagen"
@@ -177,5 +181,6 @@
     });
   </script>
   <script src="/js/usuarios/register.js"></script>
+  <script src="/js/usuarios/showHiddePassword.js"></script>
 
   </html>

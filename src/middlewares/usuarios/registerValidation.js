@@ -1,5 +1,5 @@
 const { check } = require('express-validator');
-const {Usuarios} = require('../../model/database/models'); // Suponiendo que tienes un modelo de usuario
+const userService = require('../../data/userService');
 const path = require('path');
 
 const registerValidation = [
@@ -10,14 +10,14 @@ const registerValidation = [
         .isEmail().withMessage('Debes ingresar un email válido').bail()
         .custom(async (value,{req}) => {
             // Verificar si el email ya está registrado en la base de datos
-            const existingUser = await Usuarios.findOne({ where: { email: value } });
+            const existingUser = await userService.getBy('email',value);
             if (existingUser) {
                 throw new Error('El email ya está registrado');
             }
             return true;
         }),
     check('password').notEmpty().withMessage('El campo contraseña no puede estar vacío')
-    .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[-_!@#$%^&*.,]).{8,}$/)
+    .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/)
     .withMessage('La contraseña debe contener al menos una mayúscula, una minúscula, un número y un carácter especial, y tener al menos 8 caracteres de longitud'),
     check('confirmPassword').notEmpty().withMessage('Repite la contraseña')
     .custom((value, { req }) => {
@@ -27,20 +27,8 @@ const registerValidation = [
         return true;  
     }),
     check('nacionalidad').notEmpty().withMessage('Debes seleccionar tu país de nacimiento'),
-    check('rol').notEmpty().withMessage('Debes elegir una categoría de usuario'),
-    check('avatar').custom((value, { req }) => {
-        let file = req.file;
-        let acceptedExtensions = ['.jpg', '.jpeg', '.png', '.gif']
-        if (!file) {
-            throw new Error('Tienes que subir una imagen');
-        } else {
-            let fileExtension = path.extname(file.originalname);
-            if (!acceptedExtensions.includes(fileExtension)) {
-                throw new Error(`Las extensiones permitidas son ${acceptedExtensions.join(', ')}`)
-            }
-        }
-        return true;
-    })
+    check('rol').notEmpty().withMessage('Debes elegir una categoría de usuario').
+    isIn(['Vendedor', 'Cliente']).withMessage('El rol debe ser "Vendedor" o "Cliente"')
 ];
 
 module.exports = registerValidation;

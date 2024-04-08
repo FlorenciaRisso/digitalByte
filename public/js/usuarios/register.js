@@ -1,5 +1,4 @@
 window.addEventListener('load', function () {
-    let form = document.querySelector('.register__form');
     let nombre = document.querySelector('.nombre');
     let apellido = document.querySelector('.apellido');
     let email = document.querySelector('.email');
@@ -66,7 +65,6 @@ window.addEventListener('load', function () {
     email.addEventListener("input", function () {
         let emailValue = this.value.trim();
     
-        // Expresión regular para validar un email
         let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     
         if (emailValue === '') {
@@ -84,6 +82,7 @@ window.addEventListener('load', function () {
     });
     
     email.addEventListener("blur", function () {
+        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const emailValue = this.value.trim();
         if (emailValue === '') {
             email.style.border = '2px solid red';

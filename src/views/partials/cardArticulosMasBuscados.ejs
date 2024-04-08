@@ -1,4 +1,4 @@
-<%productos.forEach(producto=>{if(producto.Stock >= 20){%>
+<%productos.forEach(producto=>{%>
     <a href="/productos/detalle/<%=producto.ID_Producto %>">
         <div class="most-searched__card">
 
@@ -14,4 +14,4 @@
             <%- include('accionesProd',{producto:producto,funcion:funcion}) %>
         </div>
     </a>
-    <% }}); %>
+    <% }); %>

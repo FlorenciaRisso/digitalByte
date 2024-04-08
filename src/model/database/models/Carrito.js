@@ -1,15 +1,22 @@
 module.exports = (sequelize, DataTypes) => {
     let alias = 'Carritos';
     let columns = {
-        ID_Carrito: {
+        id:{
             type: DataTypes.INTEGER,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true
         },
         ID_Usuario: {
             type: DataTypes.INTEGER
         },
+        Total:{
+            type: DataTypes.DECIMAL(10, 2)
+        },
         Fecha_Creacion: {
             type: DataTypes.DATE
+        },
+        Estado:{
+            type:DataTypes.INTEGER
         }
     };
 
@@ -26,10 +33,9 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'ID_Usuario'
         });
 
-        Carrito.hasMany(models.Productos, {
-            as: 'Productos',
-
-            foreignKey: 'ID_Producto'
+        Carrito.hasMany(models.DetalleCarrito, {
+            as: 'Detalles',
+            foreignKey: 'ID_Carrito'
         });
     }
     return Carrito;

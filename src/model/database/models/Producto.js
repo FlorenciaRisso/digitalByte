@@ -30,6 +30,10 @@ module.exports = (sequelize, DataTypes) => {
         },
         ID_Vendedor: {
             type: DataTypes.INTEGER(11)
+        },
+        Estado: {
+            type: DataTypes.STRING(1),
+            defaultValue: 'A'
         }
 
     }
@@ -41,12 +45,14 @@ module.exports = (sequelize, DataTypes) => {
     let Producto = sequelize.define(alias, columns, config);
 
     Producto.associate = function (models) {
+
         Producto.belongsToMany(models.Carritos, {
-            as: 'Carrito',
-            through: 'DetalleCarrito',
-            foreignKey: 'ID_Vendedor',
-            otherKey: 'ID_Carrito'
+            through: models.DetalleCarrito,
+            foreignKey: 'ID_Producto',
+            otherKey: 'ID_Carrito', 
+            as: 'Carritos'
         });
+        
         Producto.belongsTo(models.Categorias, {
             as: 'Categoria',
             foreignKey: 'ID_Categoria'

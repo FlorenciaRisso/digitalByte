@@ -62,19 +62,20 @@
 }
 .img-integrante>img{
     width: 50%;
-    background-color: burlywood;
-    border-radius: 30px;
-    box-shadow: 1em 1em 20px 0px #796d91;
+    transition: 0.5ms;
     
 }
 .img-integrante>img:hover{
     transform: scale(1.1);
 }
 .nombre-integrante{
-    width: 80%;
+    width: 100%;
     text-align: center;
 }
 .nombre-integrante>h4{
     margin:5px;
     color: rgb(47, 46, 46);
+}
+.none{
+    display: none;
 }

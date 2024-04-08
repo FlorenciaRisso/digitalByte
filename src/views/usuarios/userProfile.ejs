@@ -2,39 +2,41 @@
 
     <body>
         <%-include ('../partials/headerYNav' ) %>
-            <h1 class="title">MI PERFIL</h1>
-            <div class="container">
-                <div class="profile-card">
-                    <div class="profile-header">
-                        <h2 class="name-user">Hola, <%= usuario.nombre %>
-                                <%= usuario.apellido %>!</h2>
-                    </div>
-                    <div class="profile-body">
-                        <img src="<%= usuario.avatar %>" alt="" class="profile-image">
-                        <div class="user-data">
-                            <p><strong>País:</strong>
-                                <%= usuario.nacionalidad %>
-                            </p>
-                            <p><strong>Rol:</strong>
-                                <%= usuario.rol %>
-                            </p>
-                            <p><strong>Email:</strong>
-                                <%= usuario.email %>
-                            </p>
+            <main>
+                <div class="container">
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <h2 class="name-user">Hola, <%= usuario.nombre %>
+                                    <%= usuario.apellido %>!</h2>
+                        </div>
+                        <div class="profile-body">
+                            <img src="<%= usuario.avatar %>" alt="" class="profile-image">
+                            <div class="user-data">
+                                <p><strong>País:</strong>
+                                    <%= usuario.nacionalidad %>
+                                </p>
+                                <p><strong>Rol:</strong>
+                                    <%= usuario.rol %>
+                                </p>
+                                <p><strong>Email:</strong>
+                                    <%= usuario.email %>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="action-buttons">
+                            <a href="/usuarios/edit/<%= usuario.id %>" class="btn btn-primary">Editar</a>
+                            <a href="/usuarios/cambiarContrasenia/<%= usuario.id %>" class="btn btn-primary">Cambiar
+                                contraseña</a>
+                            <form action="/usuarios/eliminar/<%=usuario.id%>?_method=put" method="post"
+                                id="form_delete">
+                                <button type="submit" class="btn btn-danger"
+                                    data-usuario-id="<%=usuario.id %>">Eliminar</button>
+                            </form>
                         </div>
                     </div>
-                    <div class="action-buttons">
-                        <a href="/usuarios/edit/<%= usuario.id %>" class="btn btn-primary">Editar</a>
-                        <a href="/usuarios/cambiarContrasenia/<%= usuario.id %>" class="btn btn-primary">Cambiar
-                            contraseña</a>
-                        <form action="/usuarios/eliminar/<%=usuario.id%>?_method=delete" method="post"
-                         id="form_delete">
-                            <button type="submit" class="btn btn-danger"
-                                data-usuario-id="<%=usuario.id %>">Eliminar</button>
-                        </form>
-                    </div>
                 </div>
-            </div>
+            </main>
+
 
             <%- include ('../partials/footer') %>
 
@@ -55,7 +57,7 @@
                                     if (result.isConfirmed) {
                                         const usuarioId = $(e.currentTarget).data('usuario-id');
                                         const form = $(e.currentTarget).closest('#form_delete');
-                                        form.attr('action', `/usuarios/eliminar/${usuarioId}?_method=delete`);
+                                        form.attr('action', `/usuarios/eliminar/${usuarioId}?_method=put`);
                                         form.submit();
                                         Swal.fire({
                                             title: "Eliminado!",

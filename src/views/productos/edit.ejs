@@ -11,7 +11,7 @@
 
           <form class="edit__form" action="/productos/editar/<%=oldData.ID_Producto%>?_method=put" method="POST"
             enctype="multipart/form-data">
-            
+
             <div class="div-imagenes">
               <% for (let i=0; i < 4; i++) { %>
                 <div class="div-img">
@@ -23,19 +23,18 @@
                     <i class="fas fa-camera"></i>
                   </label>
                   <input type="file" name="image<%= i %>" id="imagen<%= i %>" class="custom-file-input imagen<%= i %>"
-                    accept=".png" multiple style="display: none;">
+                    accept=".jpg, .png, .gif, .jpeg" multiple style="display: none;">
 
                   <% if (locals.oldData && oldData['image' + i]) { %>
                     <input type="hidden" name="oldImage<%= i %>" value="<%= oldData['image' + i] %>">
                     <% } %>
-
-                      <% if(locals.errors && errors['image' + i]) { %>
-                        <div class="text-danger">
-                          <%= errors['image' + i].msg %>
-                        </div>
-                        <% } %>
                 </div>
                 <% } %>
+                  <% if (locals.fileValidationError && (typeof fileValidationError !==undefined )) { %>
+                    <div class="text-danger w-50">
+                      <%= fileValidationError %>
+                    </div>
+                    <% } %>
             </div>
 
             <div class="div-datos">
@@ -100,8 +99,6 @@
                   <% } %>
               </div>
 
-              <% let categorias=[ {"id":"1","name":"Notebooks"}, {"id":"2","name":"Smartphones"},
-                {"id":"3","name":"Tablets"} ]%>
                 <div class="block-input">
                   <label for="category">Categoria:</label>
                   <select class="input" name="category" id="category">
@@ -109,11 +106,11 @@
                     <% categorias.forEach(category=>{ %>
                       <%if(category.id==oldData.ID_Categoria){%>
                         <option value="<%=oldData.ID_Categoria%>" selected>
-                          <%=category.name%>
+                          <%=category.nombre%>
                         </option>
                         <%}else{%>
                           <option value="<%= category.id %>">
-                            <%= category.name %>
+                            <%= category.nombre %>
                           </option>
                           <%}%>
                             <% }); %>
@@ -125,19 +122,18 @@
                     <% } %>
                 </div>
 
-                <% let marca=[ {"id":"1","name":"Samsung"}, {"id":"2","name":"Xiaomi"}, {"id":"3","name":"Apple"} ]%>
                   <div class="block-input">
                     <label for="marca">Marca:</label>
                     <select class="input" name="marca" id="marca">
 
-                      <% marca.forEach(marca=>{ %>
-                        <%if(marca.name==oldData.Marca){%>
+                      <% marcas.forEach(marca=>{ %>
+                        <%if(marca==oldData.Marca){%>
                           <option value="<%=oldData.Marca%>" selected>
                             <%=oldData.Marca%>
                           </option>
                           <%}else{%>
-                            <option value="<%= marca.name %>">
-                              <%= marca.name %>
+                            <option value="<%= marca%>">
+                              <%= marca %>
                             </option>
                             <%}%>
                               <% }); %>
@@ -152,7 +148,7 @@
                   <div class="block-input">
                     <label for="tamanio">Tamaño:</label>
                     <input type="text" id="tamanio" name="Tamanio"
-                      value="<%= producto.Caracteristica && producto.Caracteristica.tamaño ? producto.Caracteristica.tamaño : oldData.tamanio %>"><br>
+                      value="<%= producto.Caracteristica && producto.Caracteristica.tamaño ? producto.Caracteristica.tamaño : oldData.tamanio %>">
                   </div>
                   <div class="block-input">
                     <label for="memoria">Memoria:</label>
@@ -162,18 +158,30 @@
                   <div class="block-input">
                     <label for="camara">Cámara Principal:</label>
                     <input type="text" id="camara" name="CamaraPrincipal"
-                      value="<%=producto.Caracteristica && producto.Caracteristica.camara ? producto.Caracteristica.camara : oldData.camara%>"><br>
+                      value="<%=producto.Caracteristica && producto.Caracteristica.camara ? producto.Caracteristica.camara : oldData.camara%>">
                   </div>
                   <div class="block-input">
                     <label for="ram">RAM:</label>
                     <input type="text" id="ram" name="Ram"
-                      value="<%=producto.Caracteristica && producto.Caracteristica.ram ? producto.Caracteristica.ram : oldData.ram%>"><br>
+                      value="<%=producto.Caracteristica && producto.Caracteristica.ram ? producto.Caracteristica.ram : oldData.ram%>">
+                  </div>
+                  <div class="edit-user__category-form block-input">
+                    <label for="estado">Estado</label>
+                    <select name="estado" class="edit-user__input-form nacionalidad">
+                      <% let estado=[{key:'A',value:'Activo'},{key:'I',value:'Inactivo'}] %>
+                        <% for (const oneEstado of estado) { %>
+                          <option value="<%= oneEstado.key %>" <%=producto.Estado == oneEstado.key
+                            ? 'selected' : null %>
+                            > <%= oneEstado.value %>
+                          </option>
+                          <% } %>
+                    </select>
                   </div>
             </div>
             <div class="edit__buttons">
               <button class="edit__button" type="submit">Actualizar Producto</button>
               <div>
-                <a href="/productos/lista" class="edit-user__link">Volver al listado</a>
+                <a href="/productos/listaMisProductos" class="edit-user__link">Volver al listado</a>
               </div>
             </div>
           </form>

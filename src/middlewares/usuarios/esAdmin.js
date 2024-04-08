@@ -1,6 +1,6 @@
 const esAdmin = (req, res, next) => {
 
-    const usuario = req.session.usuarioLogeado;
+    const usuario = req.session.usuarioLog;
 
     const esAdmin = (usuario && usuario.rol === 'Administrador');
     if(!esAdmin){

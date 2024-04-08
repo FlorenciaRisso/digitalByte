@@ -72,7 +72,7 @@ color: red;
     background-color:#906CBE;
 }
 .block-input{
-    margin-bottom: 1rem;
+    margin-top: 1rem;
     width: 55%;
     text-align: left;
 }
@@ -138,7 +138,25 @@ select option {
     border: 1px solid red !important;
 }
 
+.toggle-password {
+    margin-left: 10px;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
 
+.user__password-form {
+    display: flex;
+    align-items: center;
+    position: relative;
+    display: inline-block;
+}
+
+.user__input-form {
+    padding-right: 30px;
+}
 
 
 @media (min-width:500px ) {

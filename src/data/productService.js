@@ -1,4 +1,3 @@
-// 1 SMARTPHONE, 2 TABLET, 3 NOTEBOOK
 const db = require('../model/database/models');
 const Sequelize = require('sequelize');
 const productService = {
@@ -10,8 +9,57 @@ const productService = {
                     { association: 'Caracteristica' },
                     { association: 'ImagenesProductos' },
                     { association: 'Categoria' }
-                ]
+                ], where: { Estado: 'A' }
             });
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    },
+    getAllDescByID:async function(){
+        try {
+            return await db.Productos.findAll({
+                include: [
+                    { association: 'Caracteristica' },
+                    { association: 'ImagenesProductos' },
+                    { association: 'Categoria' }
+                ], where: { Estado: 'A' },order: [['ID_Producto', 'DESC']]
+            });
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    },
+    getProductos: async function (req) {
+        try {
+            let productos = [];
+            const estado = req.query.estado;
+            if (estado === 'activo') {
+                productos = await db.Productos.findAll({
+                    include: [
+                        { association: 'Caracteristica' },
+                        { association: 'ImagenesProductos' },
+                        { association: 'Categoria' }
+                    ], where: { Estado: 'A' }
+                });
+            } else if (estado === 'inactivo') {
+                productos = await db.Productos.findAll({
+                    include: [
+                        { association: 'Caracteristica' },
+                        { association: 'ImagenesProductos' },
+                        { association: 'Categoria' }
+                    ], where: { Estado: 'I' }
+                });
+            } else {
+                productos = await db.Productos.findAll({
+                    include: [
+                        { association: 'Caracteristica' },
+                        { association: 'ImagenesProductos' },
+                        { association: 'Categoria' }
+                    ]
+                });
+            }
+            return productos;
         } catch (error) {
             console.log(error);
             return [];
@@ -21,7 +69,8 @@ const productService = {
         try {
             return await db.Productos.findAll({
                 include: [{ association: 'Caracteristica' }, { association: 'Categoria' }, { association: 'ImagenesProductos' }], where: {
-                    ID_Vendedor: id
+                    ID_Vendedor: id,
+                    Estado: 'A'
                 }
             });
         } catch (error) {
@@ -30,34 +79,87 @@ const productService = {
         }
 
     },
-    getByName: async function (name) {
+    getMarcas: async function () {
         try {
-            return await db.Productos.findAll({
+            const marcas = await db.Productos.findAll({
+                attributes: [
+                    [Sequelize.fn('DISTINCT', Sequelize.col('Marca')), 'marca']
+                ], raw: true
+            });
+            const nombresMarcas = marcas.map(marca => marca.marca);
+            return nombresMarcas;
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    getCategorias: async function () {
+        try {
+            const categorias = await db.Categorias.findAll({
+                raw: true
+            });
+            return categorias;
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    getBySearch: async function (search) {
+        try {
+            let resultado = [];
+            resultado = await db.Productos.findAll({
                 include: [
                     { association: 'Caracteristica' },
                     { association: 'ImagenesProductos' },
                     { association: 'Categoria' }
                 ],
                 where: {
-                    Nombre: {
-                        [Sequelize.Op.like]: `%${name}%`
-                    }
+                    [Sequelize.Op.or]: [
+                        { Nombre: { [Sequelize.Op.like]: `%${search}%` } },
+                        { Marca: { [Sequelize.Op.like]: `%${search}%` } }
+                    ],
+                    Estado: 'A'
                 }
             });
+            return resultado;
         } catch (error) {
 
         }
     },
-    getOne: async function (req) {
+    getLastSmartphoneByMarca: async function (marca) {
         try {
-            return await db.Productos.findByPk(req.params.id, {
+            const productos = await db.Productos.findAll({
+                attributes: ['ID_Producto', 'Nombre', 'Marca'],
+                include: [
+                    { association: 'Categoria' }
+                ],
+                where: {
+                    Marca: {
+                        [Sequelize.Op.like]: `%${marca}%`
+                    },
+                    ID_Categoria: 2,
+                    Estado: 'A'
+                },
+                order: [['ID_Producto', 'DESC']],
+                limit: 3
+            });
+            return productos;
+        } catch (error) {
+
+            console.error(error);
+            throw error;
+        }
+    },
+
+    getOne: async function (productId) {
+        try {
+            return await db.Productos.findByPk(productId, {
                 include: [
                     { association: 'Caracteristica' },
                     { association: 'ImagenesProductos' },
-                    { association: 'Categoria' }
+                    { association: 'Categoria' },
+                    { association: 'Usuario' }
                 ]
             });
-        } catch {
+        } catch (error) {
             console.log(error);
             return [];
         }
@@ -65,14 +167,14 @@ const productService = {
     save: async function (req) {
         try {
             const nuevoProducto = await db.Productos.create({
-                nombre: req.body.name,
-                descripcion: req.body.description,
+                Nombre: req.body.name,
+                Descripcion: req.body.description,
                 ID_Categoria: req.body.category,
-                precio: req.body.price,
-                stock: req.body.stock,
-                descuento: req.body.discount,
-                marca: req.body.marca,
-                ID_Vendedor: req.session.usuarioLogeado.id
+                Precio: req.body.price,
+                Stock: req.body.stock,
+                Descuento: req.body.discount,
+                Marca: req.body.marca,
+                ID_Vendedor: req.session.usuarioLog.id
             });
 
             // Agregar las imágenes del producto
@@ -83,7 +185,6 @@ const productService = {
             }
 
             // Agregar las características del producto
-            // Suponiendo que tienes una variable `caracteristicas` con las características del producto
             await db.Caracteristicas.create({
                 ID_Producto: nuevoProducto.ID_Producto,
                 tamaño: req.body.Tamanio,
@@ -100,14 +201,14 @@ const productService = {
 
     },
     //1.notebook,2.smartphone,3.tablet
-    getProdPorCat: async function (req, res) {
+    getProdPorCat: async function (categoria, res) {
         try {
             const productos = await db.Productos.findAll({
                 include: [
                     { association: 'Categoria' },
                     { association: 'ImagenesProductos' }
                 ],
-                where: { ID_Categoria: req.query.cat }
+                where: { ID_Categoria: categoria, Estado: 'A' }
             });
 
             if (!productos) {
@@ -121,8 +222,13 @@ const productService = {
         }
     },
     perteneceAMisProductos: async function (req) {
-        let idUsuario = req.params.id;
-        let producto = await db.Productos.findByPk(idUsuario, { include: { association: 'Usuario' } });
+        let idProducto = req.params.id;
+        let producto = await db.Productos.findOne({
+            where: {
+                ID_Producto: idProducto,
+                ID_Vendedor: req.session.usuarioLog.id
+            }
+        }, { include: { association: 'Usuario' } });
         return !(producto == undefined)
     },
     update: async function (req) {
@@ -130,20 +236,22 @@ const productService = {
             const productId = req.params.id;
 
             // Actualizar la información básica del producto
-            await db.Productos.update(
+            let producto = await db.Productos.update(
                 {
-                    nombre: req.body.name,
-                    descripcion: req.body.description,
-                    precio: req.body.price,
-                    descuento: req.body.discount,
-                    stock: req.body.stock,
+                    Nombre: req.body.name,
+                    Descripcion: req.body.description,
+                    Precio: req.body.price,
+                    Descuento: req.body.discount,
+                    Stock: req.body.stock,
                     ID_Categoria: req.body.category,
-                    marca: req.body.marca,
-                    ID_Vendedor: req.session.usuarioLogeado.id
+                    Marca: req.body.marca,
+                    ID_Vendedor: req.session.usuarioLog.id,
+                    Estado: req.body.estado || 'A'
                 },
                 { where: { ID_Producto: productId } }
             );
             // Actualizar las imágenes del producto
+
             const imagesToUpdate = [];
             let productImages = await db.ImagenesProductos.findAll({
                 attributes: ['id'],
@@ -172,23 +280,14 @@ const productService = {
                 let nuevaRuta = null;
                 for (let i = 0; i < imagesToUpdate.length; i++) {
                     if (imagesToUpdate[i].ruta != null) {
-                        idParaNuevaRuta = ids[i];
-                        nuevaRuta = imagesToUpdate[i].ruta;
-                    } else {
-                        idParaNuevaRuta = null;
-                        nuevaRuta = null;
-                    }
-                    if (idParaNuevaRuta) {
                         let nuevosDatosImagen = {
-                            ruta: nuevaRuta
+                            ruta: imagesToUpdate[i].ruta
                         }
                         await db.ImagenesProductos.update(nuevosDatosImagen, {
-                            where: { id: idParaNuevaRuta }
+                            where: { id: ids[i] }
                         });
                     }
                 }
-
-
             }
             // Actualizar las características del producto
             let caracteristicas = await db.Caracteristicas.findOne({ where: { ID_Producto: productId } });
@@ -218,24 +317,16 @@ const productService = {
             return { error: error.message };
         }
     },
-
+    //Estado = 'A'  -> activo / Estado = 'I' -> Inactivo / Eliminado
     delete: async function (req) {
         try {
             const productId = req.params.id;
-
-            // Eliminar las características del producto
-            await db.Caracteristicas.destroy({ where: { ID_Producto: productId } });
-
-            // Eliminar las imágenes del producto
-            await db.ImagenesProductos.destroy({ where: { ID_Producto: productId } });
-
-            // Eliminar el producto de la base de datos
-            const deletedProduct = await db.Productos.destroy({ where: { ID_Producto: productId } });
+            const deletedProduct = await db.Productos.update({ Estado: 'I' }, { where: { ID_Producto: productId } });
 
             if (deletedProduct === 1) {
-                return { status: 'success', message: 'Product and its relationships deleted successfully' };
+                return { status: 'success', message: 'Producto y sus relaciones eliminadas exitosamente' };
             } else {
-                return { status: 'error', message: 'Product not found or already deleted' };
+                return { status: 'error', message: 'Producto no encontrado o eliminado' };
             }
         } catch (error) {
             console.error('Error al eliminar el producto:', error);

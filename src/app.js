@@ -1,21 +1,16 @@
 //Require de express
 const express = require('express');
-
 //Ejecucion de express
 const app = express();
-
 //Require path
 const path = require('path');
-
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
-
-
 const methodOverride = require('method-override');
 const session = require('express-session');
-
-
 const indexRouter = require('./routes/index');
+
+
 app.use(session({
     secret: 'secreto', // Secreto para firmar la cookie de sesión
     resave: false,
@@ -24,17 +19,23 @@ app.use(session({
 
 const recordameMiddleware = require('./middlewares/usuarios/recordameMiddleware')
 
+app.use((req, res, next)=>{
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    next();
+});
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cookieParser())
-app.use(recordameMiddleware)
+app.use(cookieParser());
+app.use(recordameMiddleware);
 //Usando recursos estaticos
 app.use(express.static('public'));
 //Override
 app.use(methodOverride('_method'));
 //config utf-8
 app.use((req, res, next) => {
-    res.locals.usuarioLogeado = req.session.usuarioLogeado || null;
+    res.locals.usuarioLog = req.session.usuarioLog || null;
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     next();
 });

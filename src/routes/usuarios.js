@@ -17,22 +17,24 @@ const editUsuarioValidation=require ('../middlewares/usuarios/editUsuarioValidat
 router.get('/perfil/:id',authMiddleware, userController.profile);
 router.get('/userProfile', authMiddleware, userController.userProfile)
 router.get('/lista', esAdmin, userController.lista);
+router.get('/filtro', esAdmin, userController.filtro);
 
 router.get('/login', guestMiddleware, userController.login);
 router.post('/login', loginValidation, userController.processLogin);
 
 router.get('/registro', guestMiddleware, userController.registro);
-router.post('/registro', uploadFile.single('avatar'),registerValidation, userController.processRegister)
+router.post('/registro', uploadFile,registerValidation, userController.processRegister)
 
-router.get('/edit/:id', authMiddleware, userController.edit)
-router.put('/edit/:id', uploadFile.single('avatar'),editUsuarioValidation, userController.update)
+router.get('/edit/:id', authMiddleware,esUsuarioOAdmin, userController.edit)
+router.put('/edit/:id', uploadFile,esUsuarioOAdmin, editUsuarioValidation, userController.update)
 
-router.get('/cambiarContrasenia/:id', userController.cambiarContraseña)
-router.put('/cambiarContrasenia/:id', changePasswordValidation,userController.updateContraseña)
+router.get('/cambiarContrasenia/:id',authMiddleware,esUsuarioOAdmin,userController.cambiarContraseña)
+router.put('/cambiarContrasenia/:id',authMiddleware,esUsuarioOAdmin,changePasswordValidation,userController.updateContraseña)
+
 router.post('/verificarEmail', userController.verificarEmail);
 
 router.get('/cerrarSesion',authMiddleware, userController.logout);
 
-router.delete('/eliminar/:id', esUsuarioOAdmin, userController.deleteCuenta);
+router.put('/eliminar/:id', esUsuarioOAdmin, userController.deleteCuenta);
 
 module.exports = router;

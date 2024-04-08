@@ -1,13 +1,44 @@
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const { Usuarios } = require('../model/database/models');
-const fs = require('fs');
 
 
 const userService = {
     getAll: async function () {
         try {
-            return await Usuarios.findAll();
+            return await Usuarios.findAll({where:{estado:'A'}});
+        } catch (error) {
+            console.error('Error al obtener todos los usuarios:', error);
+            return [];
+        }
+    },
+    getBy:async function(clave,valor){
+        try{
+            return await Usuarios.findOne({ where: {[clave]: valor } })
+        }catch(error){
+            return[];
+        }
+    },
+    getUsuarios: async function (req) {
+        try {
+            let usuarios;
+            const estado = req.query.estado;
+            if (estado === 'activo') {
+                usuarios = await Usuarios.findAll({ where: { estado: 'A' } });
+            } else if (estado === 'inactivo') {
+                usuarios = await Usuarios.findAll({ where: { estado: 'I' } });
+            } else {
+                usuarios = await Usuarios.findAll();
+            }
+            return usuarios;
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    },
+    getAllInac: async function () {
+        try {
+            return await Usuarios.findAll({where:{estado:'I'}});
         } catch (error) {
             console.error('Error al obtener todos los usuarios:', error);
             return [];
@@ -23,7 +54,7 @@ const userService = {
     },
     findByField: async function (field, value) {
         try {
-            return await Usuarios.findOne({ where: { [field]: value } });
+            return await Usuarios.findOne({ where: { [field]: value,estado:'A'} });
         } catch (error) {
             console.error('Error al buscar el usuario por campo:', error);
             return null;
@@ -31,37 +62,7 @@ const userService = {
     },
     save: async function (req, res) {
         try {
-            const errors = validationResult(req);
-
-            if (!errors.isEmpty()) {
-                if (req.file) { // Si hay una sola imagen
-                    if (req.file.path) {
-                        fs.unlink(req.file.path, err => {
-                            if (err) {
-                                console.error("Error al eliminar la imagen:", err);
-                            }
-                        });
-                    }
-                } else if (req.files) { // Si hay múltiples imágenes
-                    Object.values(req.files).forEach(files => {
-                        if (Array.isArray(files)) {
-                            files.forEach(file => {
-                                if (file && file.path) {
-                                    fs.unlink(file.path, err => {
-                                        if (err) {
-                                            console.error("Error al eliminar la imagen:", err);
-                                        }
-                                    });
-                                }
-                            });
-                        }
-                    });
-                }
-                return { errors: errors.mapped() };
-            }
-
-
-
+            
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
             let userCreated = await Usuarios.create({
@@ -71,13 +72,11 @@ const userService = {
                 contraseña: hashedPassword,
                 rol: req.body.rol,
                 nacionalidad: req.body.nacionalidad,
-                avatar: '/img/' + (req.file ? req.file.filename : 'default-image.png')
+                avatar: '/img/' + (req.file ? req.file.filename : 'avatar.jpg')
             });
 
-            return {
-                success: true,
-                userCreated: userCreated
-            };
+            return userCreated;
+
         } catch (error) {
             console.error('Error al guardar el usuario:', error);
             return {
@@ -96,7 +95,8 @@ const userService = {
                 email:req.body.email,
                 rol: req.body.rol,
                 direccion:req.body.direccion,
-                telefono:req.body.telefono
+                telefono:req.body.telefono,
+                estado:req.body.estado
             }
             if (req.file) {
                 usuario.avatar = "/img/" + req.file.filename;
@@ -130,7 +130,7 @@ const userService = {
 
     delete: async function (userId) {
         try {
-            return await Usuarios.destroy({ where: { id: userId } });
+            return await Usuarios.update({estado:'I'},{ where: { id: userId } });
         } catch (error) {
             console.error('Error al eliminar el usuario:', error);
             return false;
