@@ -1,6 +1,6 @@
 let productService = require('../../data/productService')
 const validarCategoria = async (req, res, next) => {
-
+    
     let categorias = await productService.getCategorias();
 
     let idsCategorias=categorias.map(e=> e.id.toString());

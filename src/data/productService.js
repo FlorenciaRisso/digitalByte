@@ -185,7 +185,6 @@ const productService = {
             }
 
             // Agregar las características del producto
-            // Suponiendo que tienes una variable `caracteristicas` con las características del producto
             await db.Caracteristicas.create({
                 ID_Producto: nuevoProducto.ID_Producto,
                 tamaño: req.body.Tamanio,
