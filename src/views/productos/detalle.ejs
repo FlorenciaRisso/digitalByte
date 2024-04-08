@@ -89,9 +89,8 @@
                                             <%= producto.Descuento %>%OFF 🎊
                                         </p>
                                 <%}%>
-                                        <a href="/productos/addCarrito/<%=producto.ID_Producto %>?_method=put" class="div-btn-comprar">
-                                            <button class="btn-comprar">Agregar al Carrito</button>
-                                        </a>
+                                        <button class=" div-btn-comprar btn-comprar agregar_carrito" data-id="<%= producto.ID_Producto %>" id="btnAgregarCarrito">Agregar al Carrito</button>
+                                        
                                 </div>
                             </div>
                         </div>
@@ -112,6 +111,6 @@
             </main>
             <%- include ('../partials/footer') %>
     </body>
+    <script src="/js/carrito/script.js"></script>
     <%- include ('../partials/script-menu') %>
-
-        </html>
+</html>

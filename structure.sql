@@ -61,23 +61,25 @@ CREATE TABLE `caracteristicas` (
 
 
 CREATE TABLE IF NOT EXISTS `carrito` (
-  `ID_Carrito` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `ID_Usuario` int(11) DEFAULT NULL,
+  `Total` decimal(10,2) DEFAULT NULL,
   `Fecha_Creacion` date DEFAULT NULL,
-  PRIMARY KEY (`ID_Carrito`),
+  `Estado` int(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
   KEY `ID_Usuario` (`ID_Usuario`),
   CONSTRAINT `carrito_ibfk_1` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuarios` (`id`)
 );
 
 CREATE TABLE `detalle_carrito` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `ID_Carrito` int(11) DEFAULT NULL,
   `ID_Producto` int(11) DEFAULT NULL,
   `Cantidad` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `ID_Carrito` (`ID_Carrito`),
   KEY `ID_Producto` (`ID_Producto`),
-  CONSTRAINT `detalle_carrito_ibfk_1` FOREIGN KEY (`ID_Carrito`) REFERENCES `carrito` (`ID_Carrito`),
+  CONSTRAINT `detalle_carrito_ibfk_1` FOREIGN KEY (`ID_Carrito`) REFERENCES `carrito` (`id`),
   CONSTRAINT `detalle_carrito_ibfk_2` FOREIGN KEY (`ID_Producto`) REFERENCES `productos` (`ID_Producto`)
 );
 
@@ -91,25 +93,4 @@ CREATE TABLE `imagenes_producto` (
   CONSTRAINT `imagenes_producto_ibfk_1` FOREIGN KEY (`ID_Producto`) REFERENCES `productos` (`ID_Producto`)
 );
 
-CREATE TABLE `ventas` (
-  `id` int(11) NOT NULL,
-  `ID_Usuario` int(11) DEFAULT NULL,
-  `Fecha_Venta` date DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `ID_Usuario` (`ID_Usuario`),
-  CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`ID_Usuario`) REFERENCES `usuarios` (`id`)
-);
-
-CREATE TABLE `detalle_venta` (
-  `id` int(11) NOT NULL,
-  `ID_Venta` int(11) DEFAULT NULL,
-  `ID_Producto` int(11) DEFAULT NULL,
-  `Cantidad` int(11) DEFAULT NULL,
-  `Precio_Unitario` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `ID_Venta` (`ID_Venta`),
-  KEY `ID_Producto` (`ID_Producto`),
-  CONSTRAINT `detalle_venta_ibfk_1` FOREIGN KEY (`ID_Venta`) REFERENCES `ventas` (`id`),
-  CONSTRAINT `detalle_venta_ibfk_2` FOREIGN KEY (`ID_Producto`) REFERENCES `productos` (`ID_Producto`)
-)
 

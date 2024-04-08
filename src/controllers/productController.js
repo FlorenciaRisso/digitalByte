@@ -1,4 +1,5 @@
 const productService = require('../data/productService');
+const cartService = require('../data/cartService');
 const funcion = require('../data/funcion');
 const { validationResult } = require('express-validator');
 
@@ -8,7 +9,7 @@ let productController = {
             let data = await productService.getAll();
             let maxMasBuscados = 10;
             let masBuscados = data.slice(0, maxMasBuscados);
-            res.render('productos/index', { masBuscados: masBuscados,productos: data, funcion: funcion });
+            res.render('productos/index', { masBuscados: masBuscados, productos: data, funcion: funcion });
         } catch (error) {
             console.log(error);
         }
@@ -24,7 +25,6 @@ let productController = {
     filtro: async function (req, res) {
         try {
             let data = await productService.getProductos(req);
-            console.log(data);
             res.render('productos/lista', { productos: data, funcion: funcion });
         } catch {
             console.log(error);
@@ -50,25 +50,6 @@ let productController = {
             res.render('productos/lista', { productos: productos, funcion: funcion });
         } catch (error) {
             console.log(error);
-        }
-    },
-    carrito: async function (req, res) {
-        try {
-            let data = await productService.getAll();
-            let maxMasBuscados = 10;
-            let masBuscados = data.slice(0, maxMasBuscados);
-            res.render('productos/carrito', { masBuscados:masBuscados,productos: data, funcion: funcion });
-        } catch (error) {
-            console.log(error);
-        }
-
-
-    },
-    agregarAlCarrito: async function (req, res) {
-        try {
-
-        } catch {
-
         }
     },
     listaPorCat: async function (req, res) {

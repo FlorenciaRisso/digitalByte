@@ -1,74 +1,78 @@
-<%-include ('../partials/head',{cssFile:'/css/stylesProductoCarrito.css'})%>
+<%- include('../partials/head', { cssFile: '/css/stylesProductoCarrito.css' }) %>
 
     <body>
-        <%-include ('../partials/headerYNav' ) %>
+        <%- include('../partials/headerYNav') %>
 
             <main>
                 <div class="container">
-                    <div class="section">
+                    <section class="section">
                         <section class="carrito">
-                            <table class="table">
-
-                                <tr class="main-productos">
-                                    <th class="main-productos_th">Producto</th>
-                                    <th class="main-productos_th">Cantidad</th>
-                                    <th class="main-productos_th">Nombre</th>
-                                    <th class="main-productos_th">Precio</th>
-                                    <th class="main-productos_th">Sub total</th>
-                                </tr>
-
-                                <tr class="detalle-producto">
-                                    <td><img class="det-prod__img" src="/img/apple/iphone13/iphone13.png" alt=""></td>
-                                    <td><input class="input-contador-prod" type="number" value="1" min="1"></td>
-                                    <td>iPhone 13</td>
-                                    <td>$1.322.142</td>
-                                    <td>$1.322.142</td>
-                                </tr>
-
-                                <tr class="detalle-producto">
-                                    <td> <img class="det-prod__img" src="/img/apple/iphone14/iphone14.png" alt="">
-                                    </td>
-                                    <td><input class="input-contador-prod" type="number" value="1" min="1"></td>
-                                    <td>Iphone 14</td>
-                                    <td>$1.544.999</td>
-                                    <td>$1.544.999</td>
-                                </tr>
-                            </table>
-
+                            
+                                <table class="table">
+                                  <thead>
+                                    <tr class="main-productos">
+                                      <th class="main-productos_th">Producto</th>
+                                      <th class="main-productos_th">Cantidad</th>
+                                      <th class="main-productos_th">Nombre</th>
+                                      <th class="main-productos_th">Precio</th>
+                                      <th class="main-productos_th">Sub total</th>
+                                      <th class="main-productos_th">Quitar</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <% if (productosCarrito.length > 0) { %>
+                                      <% productosCarrito.forEach(producto => { %>
+                                        <tr class="detalle-producto">
+                                          <td><img class="det-prod__img" src="<%= producto.producto.ImagenesProductos[0].ruta %>" ></td>
+                                          <td>
+                                            <input class="input-cantidad" type="number" min="1" value="<%= producto.Cantidad %>" data-id="<%= producto.id %>">
+                                          </td>
+                                          <td><%= producto.producto.Nombre %></td>
+                                          <td>$<%= funcion.getPrecioFormateado(producto.producto.Precio) %></td>
+                                          <td>$<%= funcion.getPrecioFormateado(producto.producto.Precio * producto.Cantidad )%></td>
+                                          <td><button class="btn btn-trash"><i class="fa-solid fa-trash"></i></button></td>
+                                        </tr>
+                                      <% }); %>
+                                    <% } else { %>
+                                      <tr>
+                                        <td colspan="6">
+                                          <p style="padding: 20px;">No agregó productos al Carrito.</p>
+                                        </td>
+                                      </tr>
+                                    <% } %>
+                                  </tbody>
+                                </table>
+                              
                             <div class="saldo-total">
-                                <span class="text-total">Total a pagar: </span>
-                                <h3 class="total">$2.867.141</h3>
+                                <span class="text-total">Total a pagar:</span>
+                                <h3 class="total">$<%= carrito && !carrito.isEmpty ? funcion.getPrecioFormateado(carrito.Total) : '$0.00'%></h3>
                             </div>
 
                             <div class="botones-carrito">
-                                <button class="btn"> Actualizar carrito
-                                </button>
-                                <button class="btn"> Realizar compra
-                                </button>
-
+                                <button class="btn actualizar-compra">Actualizar compra</button>
+                                <button class="btn">Realizar compra</button>
                             </div>
+                              
                         </section>
-                    </div>
-
+                    </section>
 
                     <section class="most-searched__section">
                         <article class="most-searched__article">
-                            <h4 class="most-searched__title">Productos mas buscados</h4>
+                            <h4 class="most-searched__title">Productos Relacionados</h4>
                             <div class="div-responsive">
                                 <div class="most-searched__card-container">
-                                    <%- include
-                                        ('../partials/cardArticulosMasBuscados',{productos:masBuscados,funcion:funcion})
-                                        %>
+                                    <%- include('../partials/cardArticulosMasBuscados', { productos: masBuscados,
+                                        funcion: funcion }) %>
                                 </div>
                             </div>
                         </article>
                     </section>
                 </div>
-
             </main>
 
-            <%- include ('../partials/footer') %>
+            <%- include('../partials/footer') %>
     </body>
-    <%- include ('../partials/script-menu') %>
+    <script src="/js/carrito/script.js"></script>
+    <%- include('../partials/script-menu') %>
 
         </html>

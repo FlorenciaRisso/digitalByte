@@ -3,6 +3,7 @@ const router = express.Router();
 const routerProductos = require('./productos');
 const routerUsuarios = require('./usuarios');
 const routerMain = require('./main');
+const routerCarrito = require('./carrito');
 
 const APIproducts = require('./api/API-productRoutes');
 const APIusers = require('./api/API-userRoutes');
@@ -12,6 +13,7 @@ const APIcateg = require('./api/API-categRoutes');
 router.use('/', routerMain);
 router.use('/productos', routerProductos);
 router.use('/usuarios', routerUsuarios);
+router.use('/carrito', routerCarrito);
 
 router.use('/api/products', APIproducts);
 router.use('/api/users', APIusers);

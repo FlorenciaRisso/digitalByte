@@ -90,9 +90,9 @@ a {
   margin: 0;
   padding: 0;
 }
-/* .container{
-  background-color: #dcdbf1;
-} */
+.container{
+  width: 90%;
+}
 .p-price-offer {
   font-size: 1.5rem;
   background-color: #ba8bf7;
@@ -246,6 +246,10 @@ a {
   padding: 2px 4px;
   border-radius: 5px;
   background-color: white;
+}
+.btn-trash{
+  background-color: rgb(255, 255, 255)!important;
+  color:rgb(201, 53, 53)!important;
 }
 .btn:hover{
   cursor: pointer;
@@ -1011,7 +1015,6 @@ a {
 
   .container {
     max-width: 1200px;
-    width: 100%;
   }
 
   .bar-search {

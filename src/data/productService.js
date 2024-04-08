@@ -70,7 +70,7 @@ const productService = {
             const marcas = await db.Productos.findAll({
                 attributes: [
                     [Sequelize.fn('DISTINCT', Sequelize.col('Marca')), 'marca']
-                ],raw: true
+                ], raw: true
             });
             const nombresMarcas = marcas.map(marca => marca.marca);
             return nombresMarcas;
@@ -78,9 +78,10 @@ const productService = {
             console.log(error);
         }
     },
-    getCategorias:async function(){
+    getCategorias: async function () {
         try {
-            const categorias = await db.Categorias.findAll({raw: true
+            const categorias = await db.Categorias.findAll({
+                raw: true
             });
             return categorias;
         } catch (error) {
@@ -222,7 +223,7 @@ const productService = {
             const productId = req.params.id;
 
             // Actualizar la información básica del producto
-            let producto= await db.Productos.update(
+            let producto = await db.Productos.update(
                 {
                     Nombre: req.body.name,
                     Descripcion: req.body.description,

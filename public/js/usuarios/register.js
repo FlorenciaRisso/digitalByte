@@ -105,7 +105,6 @@ window.addEventListener('load', function () {
         })
         .then(response => response.json())
         .then(data => {
-            console.log("Entra");
             if (data.existe && Object.keys(data.existe).length > 0) {
                 emailMsg.textContent = "Este correo electrónico ya está registrado.";
                 emailMsg.style.display = 'block';
