@@ -11,6 +11,25 @@ const apiUserService = {
             return [];
         }
     },
+    getAllWithPagination: async function (limit,offset) {
+        try {
+            return await Usuarios.findAll({
+                limit: limit,
+                offset: offset
+            });
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    },
+    getCount:async () => {
+        try {
+          const count = await Usuarios.count();
+          return count;
+        } catch (error) {
+          return[];
+        }
+    },
     getOne: async function (userId) {
         try {
             return await Usuarios.findByPk(userId);

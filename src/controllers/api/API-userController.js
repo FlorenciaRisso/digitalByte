@@ -1,13 +1,27 @@
 const apiUserService = require("../../data/api/API-userService");
 
 let userController = {
+  
   list: async (req, res) => {
     try {
-      const users = await apiUserService.getAll();
+      const page = parseInt(req.query.page) || 1;
+      const limit = 10;
+      const offset = (page - 1) * limit;
+      let userList = await apiUserService.getAllWithPagination(limit, offset);
+  
+      let siguienteUrl = null;
+      let anteriorUrl = null;
+      const count = await apiUserService.getCount();
+      const totalPages = Math.ceil(count / limit);
+  
+      if (page < totalPages) {
+        siguienteUrl = `${page + 1}`;
+      }
+      if (page > 1) {
+        anteriorUrl = `${page - 1}`;
+      }
 
-      const count = users.length;
-
-      const userList = users.map(user => ({
+      userList = userList.map(user => ({
         id: user.id,
         name: `${user.nombre} ${user.apellido}`,
         email: user.email,
@@ -16,8 +30,11 @@ let userController = {
 
       res.json({
         count: count,
-        users: userList
+        users:userList,
+        next: siguienteUrl,
+        previous: anteriorUrl
       });
+  
     } catch (error) {
       console.log(error.message);
       res.status(500).json({ error: 'Error inesperado' });
