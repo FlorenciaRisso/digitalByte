@@ -200,6 +200,15 @@ let userController = {
                     )
                 }
             }
+            return res.render('usuarios/login', {
+                cookie: req.cookies.recordarEmail || '',
+                errors: {
+                    email: {
+                        msg: 'Usuario Inactivo'
+                    }
+                }
+            }
+        )
 
         } catch (error) {
             console.error('Error al procesar el inicio de sesión:', error);

@@ -58,24 +58,35 @@ window.addEventListener('load', function () {
         }
     });
 
-    
-    email.addEventListener('blur', function () {
-        let emailValue = email.value.trim();
-
-        // Expresión regular para validar un email
+    email.addEventListener("blur", function () {
+        const emailValue = this.value.trim();
         let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
         if (emailValue === '') {
             email.style.border = '2px solid red';
+            emailMsg.textContent = 'Este campo es obligatorio';
             emailMsg.style.display = 'block';
-            emailMsg.textContent = 'Ingresa tu email';
-        } else if (!emailRegex.test(emailValue)) {
-            email.style.border = '2px solid red';
-            emailMsg.textContent = 'Email inválido';
-        } else {
-            email.style.border = '2px solid green';
-            emailMsg.style.display = 'none';
         }
+        fetch('/usuarios/verificarEmail', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email: emailValue }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.existe && Object.keys(data.existe).length > 0) {
+                    email.style.border = '2px solid red';
+                    emailMsg.style.display = 'block';
+                    emailMsg.textContent = 'El email ya esta registrado';
+                } else if (email.value.length > 0 && emailRegex.test(emailValue)) {
+                    email.style.border = '2px solid green';
+                    emailMsg.style.display = 'none';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     });
 
     email.addEventListener('input', function () {
