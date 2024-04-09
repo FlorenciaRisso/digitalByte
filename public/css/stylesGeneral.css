@@ -482,6 +482,7 @@ del{
 
 .brand__section {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   background: rgb(2,0,36);
   background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(197,175,223,1) 0%, rgba(119,133,236,1) 100%);
@@ -1243,7 +1244,7 @@ del{
   }
 
   .brand__section {
-    display: flex;
+    flex-direction: row;
     justify-content: space-around;
   }
 
