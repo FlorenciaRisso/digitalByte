@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const uploadFile=require('../data/multerMulti');
 const productController = require('../controllers/productController');
+
 const validarCategoria = require('../middlewares/productos/validarCategoria');
 const authMiddleware = require('../middlewares/usuarios/authMiddleware');
 const esAdmin = require('../middlewares/usuarios/esAdmin');
@@ -26,10 +27,10 @@ router.get('/categoria',validarCategoria,productController.listaPorCat);
 router.get('/create',authMiddleware,esVendedorOAdmin, productController.create);
 router.post('/create',authMiddleware,esVendedorOAdmin, uploadFile,createProductoValidation,productController.save);
 //detalles
-router.get('/detalle/:id', productController.detalle);
+router.get('/:id', productController.detalle);
 //editar
-router.get('/editar/:id',authMiddleware,esVendedorOAdmin, productController.editProducto);
-router.put('/editar/:id',authMiddleware,esVendedorOAdmin,uploadFile,editProductoValidation, productController.update);
+router.get('/:id',authMiddleware,esVendedorOAdmin, productController.editProducto);
+router.put('/:id',authMiddleware,esVendedorOAdmin,uploadFile,editProductoValidation, productController.update);
 
 //eliminar
 router.put('/delete/:id',authMiddleware,esVendedorOAdmin,productController.delete);

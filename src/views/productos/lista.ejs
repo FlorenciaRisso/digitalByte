@@ -35,7 +35,7 @@
                                                 <%= producto.Nombre %>
                                             </h3>
 
-                                            <a href="/productos/editar/<%=producto.ID_Producto %>"><img
+                                            <a href="/productos/<%=producto.ID_Producto %>"><img
                                                     src="<%=producto.ImagenesProductos[0].ruta%>"
                                                     alt="image usuario"></a>
                                             <% let precioFinal=producto.Precio - (producto.Precio * (producto.Descuento / 100)) %>
@@ -56,7 +56,7 @@
                                             
                                             <div class="botones-acciones">
                                                 <td>
-                                                    <a href="/productos/editar/<%=producto.ID_Producto%>"><i
+                                                    <a href="/productos/<%=producto.ID_Producto%>"><i
                                                             class="fa-solid fa-pen-to-square fa-lg"></i></a>
                                                 </td>
                                                 <td>

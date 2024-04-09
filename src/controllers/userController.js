@@ -27,7 +27,7 @@ let userController = {
         try {
             let userId = req.params.id;
             let data = await userService.getOne(userId)
-            res.render('usuarios/userProfile', {
+            res.render('usuarios/profile', {
                 usuario: data
             })
         } catch (error) {

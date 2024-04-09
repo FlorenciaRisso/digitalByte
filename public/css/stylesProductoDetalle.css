@@ -64,7 +64,6 @@
 
 .detalle-producto>div {
     margin-bottom: 10px;
-    border-radius: 10px;
     padding: 5px;
 }
 
@@ -101,15 +100,12 @@
 }
 
 .detalle-producto {
-    width: 80%;
+    width: 100vw;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-    margin: 30px;
     background-color: aliceblue;
-    padding: 25px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-radius: 10px;
     position: relative;
 }
 
@@ -156,16 +152,15 @@
 }
 
 .titulo-producto {
-    background-color: #aaabf5cb;
+    background-color: #cec9eb;
     border-radius: 0;
-    color: rgb(0, 0, 0);
 }
 
 .titulo-producto p {
-    border-radius: 0%;
+    font-size: x-large;
+    font: sans-serif;
     text-align: center;
     padding: 5px;
-
 }
 
 .descripcion-producto p {
@@ -176,9 +171,8 @@
 
 .descripcion-producto_titulo {
     display: flex;
-    background-color: #dcc0f3;
-    border-radius: 5px;
-    padding: 2px;
+    background-color: #d2ccf0;
+    border-bottom: #5c4c69;
 }
 
 .descripcion-producto_titulo i {
@@ -193,8 +187,7 @@ table {
 .caracteristicas-producto_titulo {
     display: flex;
     align-items: center;
-    background-color: #dcc0f3;
-    border-radius: 5px;
+    background-color: #d2ccf0;
     padding: 5px;
     margin-bottom: 5px;
 }
@@ -210,12 +203,10 @@ table {
     display: flex;
     flex-direction: column;
     align-items: left;
-    border-radius: 5px;
 }
 
 .caracteristicas-producto_table {
     padding: 5px;
-    border-radius: 10px;
 }
 
 .caracteristicas-producto_first_td {
@@ -313,14 +304,11 @@ table {
 
     .detalle-producto {
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-        margin: 30px;
-        background-color: aliceblue;
-        padding: 25px;
+        background-color: rgb(233, 227, 248);
         width: 40%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        border-radius: 10px;
     }
 
 
@@ -374,5 +362,8 @@ table {
 
     .precio>p{
         font-size: 1.5rem;
+    }
+    .detalle-producto>div {
+        margin-bottom: 10px;
     }
 }
