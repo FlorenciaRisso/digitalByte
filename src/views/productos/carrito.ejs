@@ -22,14 +22,14 @@
                                   <tbody>
                                     <% if (productosCarrito.length > 0) { %>
                                       <% productosCarrito.forEach(producto => { %>
-                                        <tr class="detalle-producto">
-                                          <td><img class="det-prod__img" src="<%= producto.producto.ImagenesProductos[0].ruta %>" ></td>
+                                        <tr class="detalle-producto" data-id="<%= producto.id %>">
+                                          <td><a href="/productos/detalle/<%=producto.ID_Producto%>"><img class="det-prod__img" src="<%= producto.producto.ImagenesProductos[0].ruta %>" ></a></td>
                                           <td>
                                             <input class="input-cantidad" type="number" min="1" value="<%= producto.Cantidad %>" data-id="<%= producto.id %>">
                                           </td>
                                           <td><%= producto.producto.Nombre %></td>
-                                          <td>$<%= funcion.getPrecioFormateado(producto.producto.Precio) %></td>
-                                          <td>$<%= funcion.getPrecioFormateado(producto.producto.Precio * producto.Cantidad )%></td>
+                                          <td>$<%= funcion.getPrecioFormateado(producto.producto.PrecioConDescuento) %></td>
+                                          <td>$<%= funcion.getPrecioFormateado(producto.producto.SubtotalConDescuento )%></td>
                                           <td><button class="btn btn-trash"><i class="fa-solid fa-trash"></i></button></td>
                                         </tr>
                                       <% }); %>
@@ -49,7 +49,6 @@
                             </div>
 
                             <div class="botones-carrito">
-                                <button class="btn actualizar-compra">Actualizar compra</button>
                                 <button class="btn">Realizar compra</button>
                             </div>
                               
@@ -72,7 +71,7 @@
 
             <%- include('../partials/footer') %>
     </body>
-    <script src="/js/carrito/script.js"></script>
+    <script src="/js/carrito/scriptEliminar.js"></script>
     <%- include('../partials/script-menu') %>
 
         </html>

@@ -3,13 +3,13 @@ const Sequelize = require('sequelize');
 const productService = require('./productService');
 
 const cartService = {
-
+    //funciona
     createCarrito: async function (idUser) {
         try {
             let carritoNuevo = await db.Carritos.create({
                 ID_Usuario: idUser,
                 Fecha_Creacion: new Date(),
-                Total:'0.00'
+                Total: 0
             });
             return carritoNuevo;
         } catch (error) {
@@ -17,6 +17,31 @@ const cartService = {
             return [];
         }
     },
+    //funciona
+    cantidadItemsCarrito: async function(id) {
+        try {
+            let cantidad=0;
+            let productosCarrito;
+            let carrito = await db.Carritos.findOne({
+                where: {
+                    ID_Usuario: id,
+                    Estado: 0
+                }, raw: true
+            });
+            if (carrito){
+                 productosCarrito = await db.DetalleCarrito.findAll({
+                    where: { ID_carrito: carrito.id },
+                    raw: true
+                });
+                cantidad=productosCarrito.length
+            };
+            return cantidad;
+        } catch(error) {
+            console.log(error);
+            return[];
+        }
+    },
+    //funciona
     getCarritoPendiente: async function (idUser) {
         try {
             let carrito = await db.Carritos.findOne({
@@ -31,12 +56,13 @@ const cartService = {
             return [];
         }
     },
-    addProductoAlCarrito: async function (idCarrito, idProducto) {
+
+    addProductoAlCarrito: async function (idCarrito, idProducto,cantidad) {
         try {
             let nuevoDetalleCarrito = await db.DetalleCarrito.create({
                 ID_Carrito: idCarrito,
                 ID_Producto: idProducto,
-                Cantidad: 1
+                Cantidad: cantidad
             });
             return nuevoDetalleCarrito;
         } catch (error) {
@@ -50,7 +76,6 @@ const cartService = {
                 where: { ID_carrito: idCart },
                 raw: true
             });
-
             if (!productosCarrito || productosCarrito.length === 0) {
                 throw 'No hay productos en este carrito';
             }
@@ -59,6 +84,7 @@ const cartService = {
                 const data = await productService.getOne(producto.ID_Producto);
                 producto.producto = data;
             }
+            console.log(productosCarrito);
             return productosCarrito;
         } catch (error) {
             console.log(error);
@@ -72,9 +98,17 @@ const cartService = {
                 throw new Error('Elemento del carrito no encontrado');
             }
             detalleProducto.Cantidad = cantidad;
-            await this.actualizarTotalCarrito(detalleProducto.ID_Carrito,detalleProducto.ID_Producto,cantidad);
+            await this.actualizarTotalCarrito(detalleProducto.ID_Carrito, detalleProducto.ID_Producto, cantidad);
             await detalleProducto.save();
             return detalleProducto;
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    },
+    delete: async function (id) {
+        try {
+            return await db.DetalleCarrito.destroy({ where: { id: id } });
         } catch (error) {
             console.log(error);
             return [];
@@ -82,7 +116,4 @@ const cartService = {
     }
 
 }
-//TODO: En la primer carga de detalle junto a la creaicon del carrito no guarda el idDelCarrito
-//Validar Stock antes de agregar, Mostrar precio con descuento si lo tiene 
-//Tachas precios en detalle
 module.exports = cartService;

@@ -65,7 +65,6 @@ let productController = {
   latest: async (req, res) => {
     try {
       const latestProduct = await apiProductService.getMaxProduct();
-      console.log(latestProduct)
       if (!latestProduct) {
         return res.status(404).json({ error: 'No se encontró ningún producto' });
       }

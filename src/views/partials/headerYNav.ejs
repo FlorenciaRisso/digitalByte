@@ -46,10 +46,13 @@
                     </div>
                     <%}else if(usuarioLog && usuarioLog.rol==='Cliente' ){%>
                         <div class="user-option_div">
-                            <button class="user-btn btn-carrito rounder" type="button"><a href="/carrito">Carrito</a>
-                                <span class="cart-number">0</span></button>
+                            <button class="user-btn btn-carrito rounder" type="button">
+                                <a href="/carrito"><i class="fa-solid fa-cart-shopping"></i>Carrito</a>
+                            </button>
+                            
                             <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
                                         class="fa-solid fa-right-from-bracket"></i></a></button>
+                            <span class="cart-number" id="cart-number">0</span>
                         </div>
 
                         <%}else if(usuarioLog){%>
@@ -103,23 +106,5 @@
         <li><a href="/quienes-somos">¿Quienes Somos?</a></li>
     </ul>
 </nav>
-
-<script>
-    fetch('/api/cat/list')
-        .then(response => response.json())
-        .then(categorias => {
-            const dropdown = document.getElementById('categorias-dropdown');
-            categorias.Categories.forEach(categoria => {
-                const option = document.createElement('option');
-                option.value = `/productos/categoria?cat=${categoria.id}`;
-                option.textContent = categoria.nombre;
-                dropdown.appendChild(option);
-            });
-        })
-        .catch(error => console.error('Error al obtener las categorías:', error));
-
-        document.getElementById('categorias-dropdown').addEventListener('change', function () {
-            const selectedCategory = this.value;
-            window.location.href = selectedCategory;
-    });
-</script>
+<script src="/js/categorias/listaCategorias.js"></script>
+<script src="/js/carrito/script.js"></script>

@@ -16,6 +16,20 @@ const productService = {
             return [];
         }
     },
+    getBy:async function(whereClausule={}){
+        try {
+            return await db.Productos.findAll({
+                include: [
+                    { association: 'Caracteristica' },
+                    { association: 'ImagenesProductos' },
+                    { association: 'Categoria' }
+                ], where: whereClausule
+            });
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    },
     getAllDescByID:async function(){
         try {
             return await db.Productos.findAll({

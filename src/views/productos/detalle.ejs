@@ -91,7 +91,10 @@
                                     <% if (producto.Descuento != 0) { %>
                                         <p class="descuento-insignia"><i class="fas fa-tag"></i> <%= producto.Descuento %>%</p>
                                     <% } %>
+                                    <input type="number" id="cantidadProducto" name="cantidadProducto" data-id="<%= producto.Stock %>" min="1" max="<%= producto.Stock %>" value="1">
                                     <button class="div-btn-comprar btn-comprar agregar_carrito" data-id="<%= producto.ID_Producto %>" id="btnAgregarCarrito">Agregar al Carrito</button>
+                                    <p id="mensajeStock"><%= producto.Stock && producto.Stock < 1 ? "Sin Stock" : '' %></p>
+                                    <p><%= locals.error && error.cantidadProducto ? error.cantidadProducto.msg : '' %></p>
                                 </div>
                             </div>
                             
@@ -112,7 +115,7 @@
                 </div>
             </main>
             <%- include ('../partials/footer') %>
+        <script src="/js/carrito/scriptAgregar.js"></script>    
     </body>
-    <script src="/js/carrito/script.js"></script>
     <%- include ('../partials/script-menu') %>
 </html>

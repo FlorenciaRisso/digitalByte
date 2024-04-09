@@ -87,7 +87,6 @@ let productController = {
 
             let data = await productService.getProdPorCat(req.query.cat, limit, offset);
             const totalProducts = await productService.getCountPorCat(req.query.cat);
-            console.log(totalProducts);
             const totalPages = Math.ceil(totalProducts / limit);
             res.render('productos/categoria', { cat:req.query.cat, productos: data, funcion: funcion, totalPages: totalPages, currentPage: page });
         } catch (error) {
@@ -112,8 +111,7 @@ let productController = {
         if (!producto) {
             res.status(404).render('error404');
         }
-        let productos = await productService.getAll();
-        res.render('productos/detalle', { relacionados: relacionados, producto: producto, productos: productos, funcion: funcion });
+        res.render('productos/detalle', { relacionados: relacionados, producto: producto, funcion: funcion });
     },
     create: async (req, res) => {
         let marcas = await productService.getMarcas();
