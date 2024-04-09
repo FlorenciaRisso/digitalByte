@@ -23,10 +23,7 @@
                         <%= usuarioLog.nombre %>/<%=usuarioLog.rol %>
                     </span>
                 </a>
-                <% if(usuarioLog && usuarioLog.rol==='Cliente' ){ %>
-                    <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
-                        class="fa-solid fa-right-from-bracket"></i></a></button>
-                <% } %>
+
                 <% } %>
         </div>
         <div class="user-option">
@@ -48,11 +45,13 @@
                                     class="fa-solid fa-right-from-bracket"></i></a></button>
                     </div>
                     <%}else if(usuarioLog && usuarioLog.rol==='Cliente' ){%>
-                            <!-- <button class="user-btn btn-carrito rounder" type="button"><a
-                                        href="/carrito">Carrito</a> -->
-                                        <!-- <span class="cart-number">0</span></button> -->
-                            <!-- <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
-                                        class="fa-solid fa-right-from-bracket"></i></a></button> -->
+                        <div class="user-option_div">
+                            <button class="user-btn btn-carrito rounder" type="button"><a href="/carrito">Carrito</a>
+                                <span class="cart-number">0</span></button>
+                            <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
+                                        class="fa-solid fa-right-from-bracket"></i></a></button>
+                        </div>
+
                         <%}else if(usuarioLog){%>
                             <div class="user-option_div">
                                 <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
@@ -77,10 +76,6 @@
                                                     <%= usuarioLog.nombre %>/<%=usuarioLog.rol %>
                                                 </span>
                                             </a>
-                                            <% if(usuarioLog && usuarioLog.rol==='Cliente' ){ %>
-                                                <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
-                                                    class="fa-solid fa-right-from-bracket"></i></a></button>
-                                            <% } %>
                                             <% } %>
                                     </div>
         </div>
@@ -99,6 +94,7 @@
     <ul id="lista-categorias" class="lista-secciones">
         <li><a href="/">Home</a></li>
         <li><a href="/productos">Todos</a></li>
+        <li><a href="/productos/ofertas">Ofertas</a></li>
         <li>
             <select id="categorias-dropdown" class="select-style">
                 <option value="" selected>Categorías</option>
@@ -122,8 +118,8 @@
         })
         .catch(error => console.error('Error al obtener las categorías:', error));
 
-    document.getElementById('categorias-dropdown').addEventListener('change', function () {
-        const selectedCategory = this.value;
-        window.location.href = selectedCategory;
+        document.getElementById('categorias-dropdown').addEventListener('change', function () {
+            const selectedCategory = this.value;
+            window.location.href = selectedCategory;
     });
 </script>

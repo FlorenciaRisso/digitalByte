@@ -89,9 +89,9 @@
                                 </div>
                                 <div class="oferta">
                                     <% if (producto.Descuento != 0) { %>
-                                        <p class="p-off"><%= producto.Descuento %>%OFF 🎊</p>
+                                        <p class="descuento-insignia"><i class="fas fa-tag"></i> <%= producto.Descuento %>%</p>
                                     <% } %>
-                                    <button class="none div-btn-comprar btn-comprar agregar_carrito" data-id="<%= producto.ID_Producto %>" id="btnAgregarCarrito">Agregar al Carrito</button>
+                                    <button class="div-btn-comprar btn-comprar agregar_carrito" data-id="<%= producto.ID_Producto %>" id="btnAgregarCarrito">Agregar al Carrito</button>
                                 </div>
                             </div>
                             
@@ -100,7 +100,7 @@
                     <section class="most-searched__section">
                         <article class="most-searched__article">
                             <h4 class="most-searched__title">Productos Relacionados</h4>
-                            <div class="div-responsive">
+                            <div class="div-responsive" id="horizontalScroll">
                                 <div class="most-searched__card-container">
                                     <%- include
                                         ('../partials/cardArticulosMasBuscados',{productos:relacionados,funcion:funcion})

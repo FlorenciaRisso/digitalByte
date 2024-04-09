@@ -36,5 +36,6 @@ router.post('/verificarEmail', userController.verificarEmail);
 router.get('/cerrarSesion',authMiddleware, userController.logout);
 
 router.put('/eliminar/:id', esUsuarioOAdmin, userController.deleteCuenta);
+router.put('/activar/:id', esUsuarioOAdmin, userController.activarCuenta);
 
 module.exports = router;

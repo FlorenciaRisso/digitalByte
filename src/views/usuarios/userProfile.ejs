@@ -27,11 +27,19 @@
                             <a href="/usuarios/edit/<%= usuario.id %>" class="btn btn-primary">Editar</a>
                             <a href="/usuarios/cambiarContrasenia/<%= usuario.id %>" class="btn btn-primary">Cambiar
                                 contraseña</a>
+                            <% if(usuario.estado == 'A'){ %>
                             <form action="/usuarios/eliminar/<%=usuario.id%>?_method=put" method="post"
                                 id="form_delete">
                                 <button type="submit" class="btn btn-danger"
                                     data-usuario-id="<%=usuario.id %>">Eliminar</button>
                             </form>
+                            <% }else { %>
+                            <form action="/usuarios/activar/<%=usuario.id%>?_method=put" method="post"
+                                id="form_activate">
+                                <button type="submit" class="btn btn-secondary"
+                                    data-usuario-id="<%=usuario.id %>">Activar</button>
+                            </form>
+                            <%} %>
                         </div>
                     </div>
                 </div>
@@ -39,15 +47,13 @@
 
 
             <%- include ('../partials/footer') %>
-
-
                 <%- include ('../partials/script-menu') %>
+
                     <script>
                         $(document).ready(() => {
                             $('.btn-danger').click((e) => {
                                 e.preventDefault(); Swal.fire({
                                     title: "Estas seguro?",
-                                    text: "No podras revertirlo!",
                                     icon: "warning",
                                     showCancelButton: true,
                                     confirmButtonColor: "#3085d6",
@@ -62,6 +68,28 @@
                                         Swal.fire({
                                             title: "Eliminado!",
                                             text: "El usuario fue eliminado!.",
+                                            icon: "success"
+                                        });
+                                    }
+                                });
+                            });
+                            $('.btn-secondary').click((e) => {
+                                e.preventDefault(); Swal.fire({
+                                    title: "Estas seguro?",
+                                    icon: "warning",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#3085d6",
+                                    cancelButtonColor: "#d33",
+                                    confirmButtonText: "Si, Activar!"
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        const usuarioId = $(e.currentTarget).data('usuario-id');
+                                        const form = $(e.currentTarget).closest('#form_activate');
+                                        form.attr('action', `/usuarios/activar/${usuarioId}?_method=put`);
+                                        form.submit();
+                                        Swal.fire({
+                                            title: "Activado!",
+                                            text: "El usuario fue activado!.",
                                             icon: "success"
                                         });
                                     }

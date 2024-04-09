@@ -201,9 +201,11 @@ const productService = {
 
     },
     //1.notebook,2.smartphone,3.tablet
-    getProdPorCat: async function (categoria, res) {
+    getProdPorCat: async function (categoria,limit,offset) {
         try {
             const productos = await db.Productos.findAll({
+                limit: limit,
+                offset: offset,
                 include: [
                     { association: 'Categoria' },
                     { association: 'ImagenesProductos' }
@@ -218,8 +220,16 @@ const productService = {
             return productos;
         } catch (error) {
             console.log(error);
-            return []; // Manejo de errores, retorna un array vacío en caso de error
+            return []; 
         }
+    },
+    getCountPorCat:async function(cat){
+            try {
+              const count = await db.Productos.count({where: { ID_Categoria: cat, Estado: 'A' }});
+              return count;
+            } catch (error) {
+              return[];
+            }
     },
     perteneceAMisProductos: async function (req) {
         let idProducto = req.params.id;

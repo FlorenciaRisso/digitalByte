@@ -1,19 +1,27 @@
-<%-include ('../partials/head',{cssFile:'/css/stylesProductoCategoria.css'})%>
+<%- include ('../partials/head',{cssFile:'/css/stylesProductoCategoria.css'})%>
 
-    <body>
-        <%-include ('../partials/headerYNav' ) %>
-            <main class="main-categoria">
-
-
-                <div class="container">
-                    <h1 class='titulo-categoria'>Productos</h1>
-                    <% productos.forEach(producto=>{%>
-                        <%- include ('../partials/cardArticulos',{producto:producto,funcion:funcion}) %>
-                            <%});%>
-                </div>
-            </main>
-            <%- include ('../partials/footer') %>
-    </body>
-    <%- include ('../partials/script-menu') %>
-
-        </html>
+<body>
+    <%- include ('../partials/headerYNav') %>
+    <main class="main-categoria">
+        <div class="container">
+            <h1 class='titulo-categoria'>Productos</h1>
+            <% products.forEach(product => {%>
+                <%- include ('../partials/cardArticulos', {producto: product, funcion: funcion}) %>
+            <% }); %>
+            <!-- Paginación -->
+        <div class="paginacion">
+            <% if (currentPage > 1) { %>
+                <a href="?page=1">Primera</a>
+                <a href="?page=<%= parseInt(currentPage) - 1 %>">Anterior</a>
+            <% } %>
+            <% if (currentPage < totalPages) { %>
+                <a href="?page=<%= parseInt(currentPage) + 1 %>">Siguiente</a>
+                <a href="?page=<%= totalPages %>">Última</a>
+            <% } %>
+        </div>
+        </div>
+    </main>
+    <%- include ('../partials/footer') %>
+</body>
+<%- include ('../partials/script-menu') %>
+</html>

@@ -153,9 +153,28 @@ let userController = {
                 }
             } else if (req.session.usuarioLog.rol == "Administrador" && req.session.usuarioLog.id != userId) {
                 await userService.delete(userId);
-                res.redirect('/usuarios/lista')
+                res.redirect('back');
             } else {
-                //error usted no tiene permisos para realizar esta operacion
+                res.redirect("/")
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    activarCuenta: async function (req, res) {
+        try {
+            const userId = req.params.id;
+            if (req.session.usuarioLog.id == userId) {
+                let usuario = await userService.activar(userId);
+                if (usuario) {
+                    res.redirect('/usuarios/cerrarSesion')
+                } else {
+                    res.redirect("/");
+                }
+            } else if (req.session.usuarioLog.rol == "Administrador" && req.session.usuarioLog.id != userId) {
+                await userService.activar(userId);
+                res.redirect('back');
+            } else {
                 res.redirect("/")
             }
         } catch (error) {

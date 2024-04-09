@@ -13,6 +13,7 @@ const editProductoValidation = require('../middlewares/productos/editProductoVal
 
 
 router.get('/', productController.index);
+router.get('/ofertas', productController.ofertas);
 router.post('/search', productController.search);
 
 router.get('/lista',authMiddleware, esAdmin, productController.lista);//solo admin
