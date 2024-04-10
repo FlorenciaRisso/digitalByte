@@ -82,7 +82,8 @@ const cartService = {
     calcularTotalCarritoIncremento: function (totalCarrito, precioProdu, descProdu, nuevaCantidad) {
         totalCarrito = parseFloat(totalCarrito);
         let precioConDescuento = parseFloat(precioProdu) - (parseFloat(precioProdu) * (descProdu / 100));
-        let totalDetalle = nuevaCantidad * precioConDescuento;
+        let totalDetalle = 0;
+        totalDetalle=( nuevaCantidad!==0 ? nuevaCantidad * precioConDescuento : 0);
         let nuevoTotalCarrito = totalCarrito + totalDetalle;
         return nuevoTotalCarrito
     },
@@ -95,6 +96,7 @@ const cartService = {
     },
     addProductoAlCarrito: async function (idCarrito, idProducto, cantidad) {
         try {
+            
             let nuevoTotalCarrito;
             let producto = await db.Productos.findByPk(idProducto);
             if (!producto) {
@@ -102,7 +104,10 @@ const cartService = {
             }
             const existeProducto = await this.existeProductoEnCarrito(idCarrito, idProducto);
             const existeCarrito = await this.getBy({ id: idCarrito });
+            let cantidadASumar=0;
+            let b=0;
             if (existeProducto) {
+                //Guardo la diferencia entre la cantidad que hay en el carrito y la que viene por paramet
                 await db.DetalleCarrito.update(
                     { Cantidad: parseInt(cantidad) + existeProducto.Cantidad },
                     {
@@ -116,12 +121,17 @@ const cartService = {
                 await db.DetalleCarrito.create({
                     ID_Carrito: idCarrito,
                     ID_Producto: idProducto,
-                    Cantidad: cantidad
+                    Cantidad: parseInt(cantidad)
                 });
+                b=1;
             }
             productoDetalle = await db.DetalleCarrito.findOne({ where: { ID_Carrito: idCarrito, ID_Producto: idProducto } });
-            nuevoTotalCarrito = this.calcularTotalCarritoIncremento(existeCarrito[0].Total, producto.Precio, producto.Descuento, productoDetalle.Cantidad)
-
+            if(b==1){
+                cantidadASumar=productoDetalle.Cantidad;
+            }else{
+                cantidadASumar=productoDetalle.Cantidad - parseInt(cantidad)
+            }
+            nuevoTotalCarrito = this.calcularTotalCarritoIncremento(existeCarrito[0].Total, producto.Precio, producto.Descuento, cantidadASumar)
             return await db.Carritos.update({ Total: nuevoTotalCarrito }, { where: { id: idCarrito } });
         } catch (error) {
             console.error('Error al agregar producto al carrito:', error);
