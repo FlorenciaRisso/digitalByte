@@ -1,5 +1,4 @@
 const db = require('../model/database/models');
-const Sequelize = require('sequelize');
 const productService = require('./productService');
 
 const cartService = {
@@ -18,9 +17,9 @@ const cartService = {
         }
     },
     //funciona
-    cantidadItemsCarrito: async function(id) {
+    cantidadItemsCarrito: async function (id) {
         try {
-            let cantidad=0;
+            let cantidad = 0;
             let productosCarrito;
             let carrito = await db.Carritos.findOne({
                 where: {
@@ -28,17 +27,17 @@ const cartService = {
                     Estado: 0
                 }, raw: true
             });
-            if (carrito){
-                 productosCarrito = await db.DetalleCarrito.findAll({
+            if (carrito) {
+                productosCarrito = await db.DetalleCarrito.findAll({
                     where: { ID_carrito: carrito.id },
                     raw: true
                 });
-                cantidad=productosCarrito.length
+                cantidad = productosCarrito.length
             };
             return cantidad;
-        } catch(error) {
+        } catch (error) {
             console.log(error);
-            return[];
+            return [];
         }
     },
     //funciona
@@ -57,7 +56,7 @@ const cartService = {
         }
     },
 
-    addProductoAlCarrito: async function (idCarrito, idProducto,cantidad) {
+    addProductoAlCarrito: async function (idCarrito, idProducto, cantidad) {
         try {
             let nuevoDetalleCarrito = await db.DetalleCarrito.create({
                 ID_Carrito: idCarrito,
@@ -84,11 +83,22 @@ const cartService = {
                 const data = await productService.getOne(producto.ID_Producto);
                 producto.producto = data;
             }
-            console.log(productosCarrito);
             return productosCarrito;
         } catch (error) {
             console.log(error);
             return [];
+        }
+    },
+    getCantidadByIdProdIdCart: async function (idCarrito,idProd) {
+        try {
+            const cantidadProducto = await db.DetalleCarrito.findOne({
+                where: { ID_Producto: idProd,ID_Carrito:idCarrito },
+                raw: true
+            });
+            return cantidadProducto;
+        } catch (error) {
+            console.log(error);
+            return[];
         }
     },
     updateCantidad: async function (idDetalleProducto, cantidad) {

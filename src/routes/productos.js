@@ -29,7 +29,7 @@ router.post('/create',authMiddleware,esVendedorOAdmin, uploadFile,createProducto
 //detalles
 router.get('/:id', productController.detalle);
 //editar
-router.get('/:id',authMiddleware,esVendedorOAdmin, productController.editProducto);
+router.get('/editar/:id',authMiddleware,esVendedorOAdmin, productController.editProducto);
 router.put('/:id',authMiddleware,esVendedorOAdmin,uploadFile,editProductoValidation, productController.update);
 
 //eliminar

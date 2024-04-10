@@ -23,7 +23,7 @@
                                     <% if (productosCarrito.length > 0) { %>
                                       <% productosCarrito.forEach(producto => { %>
                                         <tr class="detalle-producto" data-id="<%= producto.id %>">
-                                          <td><a href="/productos/detalle/<%=producto.ID_Producto%>"><img class="det-prod__img" src="<%= producto.producto.ImagenesProductos[0].ruta %>" ></a></td>
+                                          <td><a href="/productos/<%=producto.ID_Producto%>"><img class="det-prod__img" src="<%= producto.producto.ImagenesProductos[0].ruta %>" ></a></td>
                                           <td>
                                             <input class="input-cantidad" type="number" min="1" value="<%= producto.Cantidad %>" data-id="<%= producto.id %>">
                                           </td>
