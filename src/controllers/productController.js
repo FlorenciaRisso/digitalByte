@@ -188,9 +188,9 @@ let productController = {
 
     search: async (req, res) => {
         try {
-            const search = req.body.busqueda;
+            const search = req.query.busqueda;
             const results = await productService.getBySearch(search)
-            res.render('productos/resultados', { productos: results, funcion: funcion }); // Renderiza una vista con los resultados
+            res.render('productos/resultados', { productos: results, funcion: funcion });
         } catch (error) {
             console.error('Error searching products:', error);
             res.status(500).json({ error: 'Internal server error' });
