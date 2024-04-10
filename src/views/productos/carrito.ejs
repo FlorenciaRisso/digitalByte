@@ -45,12 +45,12 @@
                               
                             <div class="saldo-total">
                                 <span class="text-total">Total a pagar:</span>
-                                <h3 class="total">$<%= carrito && !carrito.isEmpty ? funcion.getPrecioFormateado(carrito.Total) : '$0.00'%></h3>
+                                <h3 class="total">$<%= carrito && !carrito.isEmpty ? funcion.getPrecioFormateado(carrito.Total) : '0.00'%></h3>
                             </div>
 
-                            <div class="botones-carrito">
-                                <button class="btn">Realizar compra</button>
-                            </div>
+                            <form action="/carrito/comprar" method="POST"> 
+                              <button type="submit" class="btn">Realizar compra</button> 
+                          </form> 
                               
                         </section>
                     </section>

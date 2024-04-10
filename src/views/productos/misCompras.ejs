@@ -1,0 +1,40 @@
+<%- include ('../partials/head',{cssFile:'/css/stylesMisCompras.css'}) %>
+
+<body>
+  <%-include ('../partials/headerYNav') %>
+  <main>
+    <div class="container">
+      <h1 >Ventas</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>ID Venta</th>
+            <th>Fecha</th>
+            <th>Usuario</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% arrCompras.forEach(venta => { %>
+          <tr>
+            <td><%= venta.id %></td>
+            <td><%= venta.Fecha_Creacion %></td>
+            <td>
+              <%= venta['Usuarios.nombre'] %> <%= venta['Usuarios.apellido'] %>
+            </td>
+            <td><%= venta.Total %></td>
+          </tr>
+          <% venta.producto.forEach(producto => { %>
+          <tr class="detalles">
+            <td colspan="4" class="producto">
+              <%= producto.Nombre %> - <%= producto.Precio %>
+            </td>
+          </tr>
+          <% }); %> <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <%- include('../partials/footer') %>
+</body>

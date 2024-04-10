@@ -11,6 +11,8 @@ router.get('/',authMiddleware,esCliente, cartController.carrito);
 router.get('/cantidadItems',authMiddleware,esCliente, cartController.cantidadItems);
 
 router.get('/agregarCarrito',authMiddleware,esCliente,validarStockAdd,cartController.agregarAlCarrito);
+
+router.post('/comprar',authMiddleware,esCliente,validarStockAdd,cartController.comprar);
 router.put('/actualizarCantidad/:id',authMiddleware,esCliente,cartController.actualizarCantidad);
 router.delete('/eliminarDetalleCarrito',authMiddleware,esCliente, cartController.eliminarDetalleCarrito);
 

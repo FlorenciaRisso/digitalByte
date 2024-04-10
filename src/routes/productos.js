@@ -20,6 +20,8 @@ router.get('/search', productController.search);
 router.get('/lista',authMiddleware, esAdmin, productController.lista);//solo admin
 router.get('/filtro',authMiddleware, esVendedorOAdmin, productController.filtro);
 router.get('/listaMisProductos',authMiddleware, esVendedorOAdmin, productController.listaPorUsuario); //solo vendedor y admin
+router.get('/misCompras', authMiddleware, productController.misCompras);
+
 //listar
 router.get('/listaproductos',authMiddleware,esVendedor, productController.listado);
 router.get('/categoria',validarCategoria,productController.listaPorCat);

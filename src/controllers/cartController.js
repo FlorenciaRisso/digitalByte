@@ -68,8 +68,27 @@ let cartController = {
         } catch (error) {
             console.error(error);
         }
-    }
+    },
+    comprar: async function (req, res) { 
+        try { 
+            const userId = req.session.usuarioLog.id; 
 
+            const carritoPendiente = await cartService.getCarritoPendiente(userId); 
+
+            if (!carritoPendiente) { 
+                throw new Error('No hay un carrito pendiente para este usuario'); 
+            } 
+            await cartService.finalizarCompra(carritoPendiente.id); 
+
+            let carritoDetalles = await cartService.getCarritoyDetalle(userId)
+            console.log(carritoDetalles,11111)
+            
+            res.render('productos/misCompras', {arrCompras:carritoDetalles}); 
+        } catch (error) { 
+            console.error('Error al realizar la compra:', error); 
+            res.status(500).send('Error al realizar la compra'); 
+        } 
+    }
 }
 
 module.exports = cartController;

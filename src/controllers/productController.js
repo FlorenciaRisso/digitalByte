@@ -195,6 +195,16 @@ let productController = {
             console.error('Error buscando productos:', error);
             res.status(500).json({ error: 'Internal server error' });
         }
+    },
+    misCompras: async (req, res) =>{
+        try {
+            let compras = await cartService.getCarritoyDetalle(req.session.usuarioLog.id);
+            console.log(compras,999999);
+            res.render('productos/misCompras', {arrCompras:compras})
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ error: 'Internal server error' });
+        }
     }
 
 }
