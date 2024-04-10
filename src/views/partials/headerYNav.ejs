@@ -5,15 +5,14 @@
         </div>
 
         <div class="bar-search">
-            <form action="/productos/search" method="POST" id="search-form" class="search-form">
+            <form action="/productos/search" method="GET" id="search-form" class="search-form">
                 <div class="search-container">
-                    <input type="text" name="busqueda" class="search-input" id="search-input"
-                        placeholder="Buscar productos...">
+                    <input type="text" name="busqueda" class="search-input" id="search-input" placeholder="Buscar productos...">
                     <button type="submit" class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
             </form>
-
         </div>
+        
         <div class="user-info-responsive">
             <% if (usuarioLog) { %>
                 <a href="/usuarios/userProfile">
