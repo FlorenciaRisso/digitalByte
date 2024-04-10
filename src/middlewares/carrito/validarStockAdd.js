@@ -2,21 +2,21 @@ const productService = require('../../data/productService');
 const cartService = require('../../data/cartService');
 const funcion = require('../../data/funcion');
 
-async function validarStock(req,res,next) {
+async function validarStockAdd(req,res,next) {
     let cantidadCarrito=0;
     let miProducto={}
-    let productId = req.query.id;
+    let productId = parseInt(req.query.id);
+    let cantidad=parseInt(req.query.cant);
     let miCarrito = await cartService.getCarritoPendiente(req.session.usuarioLog.id);
     let producto = await productService.getOne(productId);
     if (miCarrito && producto){
-        console.log("entro aqui");
         miProducto=await cartService.getCantidadByIdProdIdCart(miCarrito.id,producto.ID_Producto);
         if(miProducto){
             cantidadCarrito=miProducto.Cantidad;
         }
     }
-    if (!producto || producto.Stock < req.query.cant || req.query.cant < 0 || (cantidadCarrito + req.query.cant > producto.Stock)) {
-        if( req.query.cant < 0){
+    if (!producto || producto.Stock < cantidad || cantidad < 0 || (cantidadCarrito + cantidad > producto.Stock)) {
+        if( cantidad < 0){
             error = {
                 cantidadProducto: {
                     msg: 'Monto Invalido'
@@ -39,4 +39,4 @@ async function validarStock(req,res,next) {
     }
     next();
 }
-module.exports = validarStock
+module.exports = validarStockAdd;

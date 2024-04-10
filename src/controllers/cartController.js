@@ -35,8 +35,8 @@ let cartController = {
     },
     agregarAlCarrito: async function (req, res) {
         try {
-            let idProducto = req.query.id;
-            let cantidad = req.query.cant;
+            let idProducto = parseInt(req.query.id);
+            let cantidad = parseInt(req.query.cant);
             let carritoPendiente = await cartService.getCarritoPendiente(req.session.usuarioLog.id);
             if (carritoPendiente !== null) {
                 await cartService.addProductoAlCarrito(carritoPendiente.id, idProducto, cantidad);
@@ -45,11 +45,11 @@ let cartController = {
                 await cartService.addProductoAlCarrito(carritoPendiente.id, idProducto, cantidad);
             }
             return res.redirect(req.get('referer'));
-        } catch(error) {
-        console.log(error);
-        res.send(500).json({ error });
-    }
-},
+        } catch (error) {
+            console.log(error);
+            res.send(500).json({ error });
+        }
+    },
     actualizarCantidad: async function (req, res) {
         try {
             const { id, cantidad } = req.body;
@@ -59,15 +59,15 @@ let cartController = {
             console.error(error);
         }
     },
-eliminarDetalleCarrito: async function (req, res) {
-    try {
-        const id = req.query.id;
-        await cartService.delete(id);
-        res.status(200).json({ mensaje: 'Cantidad actualizada correctamente' });
-    } catch (error) {
-        console.error(error);
+    eliminarDetalleCarrito: async function (req, res) {
+        try {
+            const id = req.query.id;
+            await cartService.delete(id);
+            res.status(200).json({ mensaje: 'Cantidad actualizada correctamente' });
+        } catch (error) {
+            console.error(error);
+        }
     }
-}
 
 }
 

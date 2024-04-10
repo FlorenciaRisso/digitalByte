@@ -24,18 +24,30 @@ window.addEventListener("load", function () {
 
 
     inputsCantidad.forEach(input => {
-
         input.addEventListener('change', function () {
             const detalleProductoId = this.dataset.id;
             const nuevaCantidad = parseInt(this.value);
-
-            fetch(`/carrito/actualizarCantidad/${detalleProductoId}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ id: detalleProductoId, cantidad: nuevaCantidad })
-            })
+    
+            if (nuevaCantidad === 0) {
+                fetch(`/carrito/eliminarDetalleCarrito?id=${detalleProductoId}`, {
+                    method: 'DELETE'
+                })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        console.error('Error al eliminar el detalle del carrito');
+                    }
+                })
+                .catch(error => console.error('Error al enviar la solicitud:', error));
+            } else {
+                fetch(`/carrito/actualizarCantidad/${detalleProductoId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ id: detalleProductoId, cantidad: nuevaCantidad })
+                })
                 .then(response => {
                     if (response.ok) {
                         location.reload();
@@ -47,7 +59,8 @@ window.addEventListener("load", function () {
                 .catch(error => {
                     console.error('Error en la solicitud AJAX:', error);
                 });
+            }
         });
-
     });
+    
 });

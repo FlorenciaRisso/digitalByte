@@ -132,7 +132,6 @@ let userController = {
                     res.status(500).send('Error al iniciar sesión automáticamente después del registro');
                 }
             } else {
-                console.log(errores);
                 res.render('usuarios/registro', {fileValidationError: req.fileValidationError,
                     errors: errores.mapped(), oldData: old
                 })

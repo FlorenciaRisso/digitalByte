@@ -111,7 +111,7 @@ let productController = {
         if (!producto) {
             res.status(404).render('error404');
         }
-        res.render('productos/detalle', { relacionados: relacionados, producto: producto, funcion: funcion });
+        res.render('productos/detalle', { usuario:req.session.usuarioLog || '',relacionados: relacionados, producto: producto, funcion: funcion });
     },
     create: async (req, res) => {
         let marcas = await productService.getMarcas();

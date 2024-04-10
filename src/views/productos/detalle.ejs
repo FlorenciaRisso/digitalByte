@@ -88,13 +88,28 @@
                                     <% } %>
                                 </div>
                                 <div class="oferta">
-                                    <% if (producto.Descuento != 0) { %>
+                                    <% if (!usuario || usuario.rol === "Cliente") { %>
+                                        <% if (producto.Descuento != 0) { %>
+                                            <p class="descuento-insignia"><i class="fas fa-tag"></i> <%= producto.Descuento %>%</p>
+                                        <% } %>
+                                        <input type="number" id="cantidadProducto" name="cantidadProducto" data-id="<%= producto.Stock %>" min="1" max="<%= producto.Stock %>" value="0">
+                                        <% if(producto.Stock==0){ %>
+                                            <div class="card_sinStock">
+                                                <p>Sin stock</p>
+                                            </div>
+                                        <%}else{%>
+                                            <button class="div-btn-comprar btn-comprar agregar_carrito" data-id="<%= producto.ID_Producto %>" id="btnAgregarCarrito">Agregar al Carrito</button>
+                                        <% } %>
+                                        <p id="mensajeStock"></p>
+                                        <p><%= locals.error && error.cantidadProducto ? error.cantidadProducto.msg : '' %></p>
+                                    <% }else if (producto.Descuento != 0) { %>
                                         <p class="descuento-insignia"><i class="fas fa-tag"></i> <%= producto.Descuento %>%</p>
-                                    <% } %>
-                                    <input type="number" id="cantidadProducto" name="cantidadProducto" data-id="<%= producto.Stock %>" min="1" max="<%= producto.Stock %>" value="1">
-                                    <button class="div-btn-comprar btn-comprar agregar_carrito" data-id="<%= producto.ID_Producto %>" id="btnAgregarCarrito">Agregar al Carrito</button>
-                                    <p id="mensajeStock"><%= producto.Stock && producto.Stock < 1 ? "Sin Stock" : '' %></p>
-                                    <p><%= locals.error && error.cantidadProducto ? error.cantidadProducto.msg : '' %></p>
+                                        <% if(producto.Stock==0){ %>
+                                            <div class="card_sinStock">
+                                                <p>Sin stock</p>
+                                            </div>
+                                        <%}%>
+                                    <%}%>
                                 </div>
                             </div>
                             
