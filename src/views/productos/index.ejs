@@ -4,7 +4,11 @@
     <%- include ('../partials/headerYNav') %>
     <main class="main-categoria">
         <div class="container">
+            <% if(locals.ofertas && ofertas){ %>
+                <h1 class='titulo-categoria'>Ofertas</h1>
+            <%}else{%>
             <h1 class='titulo-categoria'>Productos</h1>
+            <%}%>
             <% products.forEach(product => {%>
                 <%- include ('../partials/cardArticulos', {producto: product, funcion: funcion}) %>
             <% }); %>

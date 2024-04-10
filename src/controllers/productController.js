@@ -9,7 +9,7 @@ let productController = {
     index: async function (req, res) {
         try {
             const page = req.query.page || 1;
-            const limit = 5;
+            const limit = 6;
             const offset = (page - 1) * limit;
 
             const totalProducts = await apiProductService.getCount();
@@ -34,7 +34,7 @@ let productController = {
 
             const products = await apiProductService.getAllWithPagination(limit, offset,{estado:'A',descuento:{[Op.gt]:0}});
 
-            res.render('productos/index', { products: products, totalPages: totalPages, currentPage: page, funcion: funcion });
+            res.render('productos/index', { ofertas:true,products: products, totalPages: totalPages, currentPage: page, funcion: funcion });
         } catch (error) {
             console.log(error);
             res.status(500).send('Error interno del servidor');
@@ -82,7 +82,7 @@ let productController = {
 
         try {
             const page = req.query.page || 1;
-            const limit = 4;
+            const limit = 6;
             const offset = (page - 1) * limit;
 
             let data = await productService.getProdPorCat(req.query.cat, limit, offset);
@@ -192,7 +192,7 @@ let productController = {
             const results = await productService.getBySearch(search)
             res.render('productos/resultados', { productos: results, funcion: funcion });
         } catch (error) {
-            console.error('Error searching products:', error);
+            console.error('Error buscando productos:', error);
             res.status(500).json({ error: 'Internal server error' });
         }
     }

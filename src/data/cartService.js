@@ -164,17 +164,14 @@ const cartService = {
     updateCantidad: async function (idDetalleProducto, nuevaCantidad) {
         try {
             let detalleProductoAnterior = await db.DetalleCarrito.findByPk(idDetalleProducto);
-
+            let producto = await db.Productos.findByPk(detalleProductoAnterior.ID_Producto);
+            if (nuevaCantidad > producto.Stock) {
+                throw new Error('La cantidad es mayor que el stock disponible');
+            }
             await db.DetalleCarrito.update({ Cantidad: nuevaCantidad }, { where: { id: idDetalleProducto } });
-
             let detalleProductoActualizado = await db.DetalleCarrito.findByPk(idDetalleProducto);
-
             let diferenciaCantidad = nuevaCantidad - detalleProductoAnterior.Cantidad;
-
-            let producto = await db.Productos.findByPk(detalleProductoActualizado.ID_Producto);
-
             let carrito = await db.Carritos.findByPk(detalleProductoActualizado.ID_Carrito);
-
             let nuevoTotalCarrito = carrito.Total;
 
             if (diferenciaCantidad < 0) { // Si estás decrementando la cantidad
@@ -188,7 +185,7 @@ const cartService = {
 
         } catch (error) {
             console.log(error);
-            return [];
+            throw error;
         }
     },
 

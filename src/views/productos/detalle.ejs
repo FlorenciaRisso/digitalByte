@@ -88,7 +88,7 @@
                                     <% } %>
                                 </div>
                                 <div class="oferta">
-                                    <% if (!usuario || usuario.rol === "Cliente") { %>
+                                    <% if ((locals.usuario===undefined || usuario.rol === "Cliente")) { %>
                                         <% if (producto.Descuento != 0) { %>
                                             <p class="descuento-insignia"><i class="fas fa-tag"></i> <%= producto.Descuento %>%</p>
                                         <% } %>
@@ -108,7 +108,10 @@
                                             <div class="card_sinStock">
                                                 <p>Sin stock</p>
                                             </div>
-                                        <%}%>
+                                        <%}else{%>
+                                            <input type="number" id="cantidadProducto" name="cantidadProducto" data-id="<%= producto.Stock %>" min="1" max="<%= producto.Stock %>" value="0">
+                                            <button class="div-btn-comprar btn-comprar agregar_carrito" data-id="<%= producto.ID_Producto %>" id="btnAgregarCarrito">Agregar al Carrito</button>
+                                        <% } %>
                                     <%}%>
                                 </div>
                             </div>

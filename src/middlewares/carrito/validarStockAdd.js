@@ -15,11 +15,11 @@ async function validarStockAdd(req,res,next) {
             cantidadCarrito=miProducto.Cantidad;
         }
     }
-    if (!producto || producto.Stock < cantidad || cantidad < 0 || (cantidadCarrito + cantidad > producto.Stock)) {
-        if( cantidad < 0){
+    if (!producto || producto.Stock < cantidad || cantidad <= 0 || (cantidadCarrito + cantidad > producto.Stock)) {
+        if( cantidad <= 0){
             error = {
                 cantidadProducto: {
-                    msg: 'Monto Invalido'
+                    msg:'Cantidad Invalida'
                 }
             }
         }else{

@@ -55,7 +55,6 @@ let userController = {
             console.log(error);
         }
     },
-
     update: async function (req, res) {
         try {
             let error = validationResult(req);
@@ -68,10 +67,12 @@ let userController = {
                 nombre: req.body.firstName,
                 apellido: req.body.lastName,
                 email: req.body.email,
+                direccion:req.body.direccion,
                 rol: req.body.rol,
                 nacionalidad: req.body.country,
                 avatar: req.body.oldImage,
-                estado:req.body.estado
+                estado:req.body.estado,
+                telefono:req.body.telefono
             };
             if (sessionUsuarioId == usuarioId && error.isEmpty()) {
                 delete req.session['usuarioLog'];
@@ -83,7 +84,6 @@ let userController = {
                 usuarioActualizado = await userService.update(req);
                 res.redirect('/usuarios/lista');
             } else {
-                // Mostrar la vista de edición con los errores
                 res.render('usuarios/edit', { fileValidationError: req.fileValidationError, oldData: data, errors: error.mapped() })
             }
         } catch (error) {
@@ -235,12 +235,29 @@ let userController = {
     },
 
     verificarEmail: async function (req, res) {
-        const email = req.body.email;
-        let existe = await userService.findByField('email', email);
-
-        res.json({ existe });
+        try {
+            const email = req.body.email;
+            let existe = await userService.findByField('email', email);
+        
+            // Si el usuario está intentando editar su perfil
+            if (req.session.usuarioLog) {
+                if (existe && existe.email === req.session.usuarioLog.email) {
+                    existe = null;
+                }
+            } 
+            // Si el usuario está intentando iniciar sesión
+            else {
+                if (!existe) {
+                    existe = null;
+                }
+            }
+            
+            res.json({ existe });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Error al verificar el correo electrónico' });
+        }
     },
-
 
     logout: function (req, res) {
         res.clearCookie('recordame')

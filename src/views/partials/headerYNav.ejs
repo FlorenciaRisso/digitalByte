@@ -22,9 +22,10 @@
                         <%= usuarioLog.nombre %>/<%=usuarioLog.rol %>
                     </span>
                 </a>
+                <a href="/usuarios/cerrarSesion"><i
+                    class="fa-solid fa-right-from-bracket ml-2"></i></a>
             <% } %>
-            <a href="/usuarios/cerrarSesion"><i
-                class="fa-solid fa-right-from-bracket ml-2"></i></a>
+            
         </div>
         <div class="user-option">
             <% if(usuarioLog && usuarioLog.rol==='Administrador' ){ %>

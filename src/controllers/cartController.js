@@ -44,7 +44,7 @@ let cartController = {
                 carritoPendiente = await cartService.createCarrito(req.session.usuarioLog.id);
                 await cartService.addProductoAlCarrito(carritoPendiente.id, idProducto, cantidad);
             }
-            return res.redirect(req.get('referer'));
+            return res.redirect(req.get('referer')+'?added=true');
         } catch (error) {
             console.log(error);
             res.send(500).json({ error });
@@ -57,6 +57,7 @@ let cartController = {
             res.status(200).json({ mensaje: 'Cantidad actualizada correctamente' });
         } catch (error) {
             console.error(error);
+            res.status(400).json({ error: error.message })
         }
     },
     eliminarDetalleCarrito: async function (req, res) {

@@ -31,7 +31,7 @@ router.put('/edit/:id', uploadFile,esUsuarioOAdmin, editUsuarioValidation, userC
 router.get('/cambiarContrasenia/:id',authMiddleware,esUsuarioOAdmin,userController.cambiarContraseña)
 router.put('/cambiarContrasenia/:id',authMiddleware,esUsuarioOAdmin,changePasswordValidation,userController.updateContraseña)
 
-router.post('/verificarEmail', userController.verificarEmail);
+router.post('/verificarEmail',userController.verificarEmail);
 
 router.get('/cerrarSesion',authMiddleware, userController.logout);
 

@@ -54,10 +54,12 @@ window.addEventListener("load", function () {
                         console.log('Cantidad actualizada correctamente');
                     } else {
                         console.error('Error al actualizar la cantidad del producto');
+                        throw new Error('Error al actualizar la cantidad del producto');
                     }
                 })
                 .catch(error => {
                     console.error('Error en la solicitud AJAX:', error);
+                    alert('Stock insuficiente');
                 });
             }
         });
