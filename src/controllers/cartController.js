@@ -81,7 +81,6 @@ let cartController = {
             await cartService.finalizarCompra(carritoPendiente.id); 
 
             let carritoDetalles = await cartService.getCarritoyDetalle(userId)
-            console.log(carritoDetalles,11111)
             
             res.redirect('/productos/misCompras'); 
         } catch (error) { 

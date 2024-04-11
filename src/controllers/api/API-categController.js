@@ -8,6 +8,18 @@ let categoriaController = {
             res.json({
                 Count: count,
                 Categories: data
+
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    detail: async function (req, res) {
+        try {
+            let data = await apiCategoriaService.getBy(req.params.id);
+            res.json({
+                Categories: data
+
             });
         } catch (error) {
             console.log(error);
