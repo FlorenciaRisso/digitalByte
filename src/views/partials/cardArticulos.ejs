@@ -1,7 +1,9 @@
-<a href="/productos/detalle/<%=producto.ID_Producto %>">
-    <div class="most-searched__card">
-        <div class="card">
-            <img class="card__image" src="<%= producto.ImagenesProductos[0] ? producto.ImagenesProductos[0].ruta : '/img/default-image.png' %>" alt="" />
+<div class="most-searched__card">
+    <a href="/productos/<%=producto.ID_Producto %>">
+        <div class="card" style="text-align: center;">
+            <img class="card__image"
+                src="<%= producto.ImagenesProductos[0] ? producto.ImagenesProductos[0].ruta : '/img/default-image.png' %>"
+                alt="" />
         </div>
 
         <div class="card__p">
@@ -9,6 +11,25 @@
                 <%=producto.Nombre%>
             </p>
         </div>
-        <%- include('accionesProd',{producto:producto,funcion:funcion}) %>
-    </div>
-</a>
+        <div class="oferta-precio">
+            <div class="card__precio" style="text-align: center;">
+                <% let precioFinal=producto.Precio - (producto.Precio * (producto.Descuento / 100)) %>
+                    <% if (producto.Descuento !=0) { %>
+                        <del>
+                            <p>$<%= funcion.getPrecioFormateado(producto.Precio) %>
+                            </p>
+                        </del>
+                        <p>$<%= funcion.getPrecioFormateado(precioFinal) %>
+                        </p>
+                        <div class="descuento-insignia">
+                            <i class="fas fa-tag"></i> <%= producto.Descuento %>%
+                        </div>
+                        <% } else { %>
+                            <p>$<%= funcion.getPrecioFormateado(producto.Precio) %>
+                            </p>
+                            <% } %>
+            </div>
+        </div>
+        <!-- include('accionesProd',{producto:producto,funcion:funcion})  -->
+    </a>
+</div>

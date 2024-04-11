@@ -135,6 +135,14 @@ const userService = {
             console.error('Error al eliminar el usuario:', error);
             return false;
         }
+    },
+    activar: async function (userId) {
+        try {
+            return await Usuarios.update({estado:'A'},{ where: { id: userId } });
+        } catch (error) {
+            console.error('Error al activar el usuario:', error);
+            return false;
+        }
     }
 
 }

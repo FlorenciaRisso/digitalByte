@@ -100,12 +100,7 @@
     cursor: pointer;
 }
 
-.bg-red{
-    background-color: #ffd2d2
-}
-.red{
-    color: rgb(241, 90, 90);
-}
+
 .none{
     display: none !important;
 }

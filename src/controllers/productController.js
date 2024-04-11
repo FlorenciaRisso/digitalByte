@@ -1,17 +1,43 @@
 const productService = require('../data/productService');
 const cartService = require('../data/cartService');
+const apiProductService = require('../data/api/API-productService');
+const { Op } = require('sequelize');
 const funcion = require('../data/funcion');
 const { validationResult } = require('express-validator');
 
 let productController = {
     index: async function (req, res) {
         try {
-            let data = await productService.getAllDescByID();
-            let maxMasBuscados = 10;
-            let masBuscados = data.slice(0, maxMasBuscados);
-            res.render('productos/index', { masBuscados: masBuscados, productos: data, funcion: funcion });
+            const page = req.query.page || 1;
+            const limit = 6;
+            const offset = (page - 1) * limit;
+
+            const totalProducts = await apiProductService.getCount();
+            const totalPages = Math.ceil(totalProducts / limit);
+
+            const products = await apiProductService.getAllWithPagination(limit, offset,{estado:'A'});
+
+            res.render('productos/index', { products: products, totalPages: totalPages, currentPage: page, funcion: funcion });
         } catch (error) {
             console.log(error);
+            res.status(500).send('Error interno del servidor');
+        }
+    },
+    ofertas: async function (req, res) {
+        try {
+            const page = req.query.page || 1;
+            const limit = 5;
+            const offset = (page - 1) * limit;
+
+            const totalProducts = await apiProductService.getCount({estado:'A',descuento:{[Op.gt]:0}});
+            const totalPages = Math.ceil(totalProducts / limit);
+
+            const products = await apiProductService.getAllWithPagination(limit, offset,{estado:'A',descuento:{[Op.gt]:0}});
+
+            res.render('productos/index', { ofertas:true,products: products, totalPages: totalPages, currentPage: page, funcion: funcion });
+        } catch (error) {
+            console.log(error);
+            res.status(500).send('Error interno del servidor');
         }
     },
     lista: async function (req, res) {
@@ -53,14 +79,28 @@ let productController = {
         }
     },
     listaPorCat: async function (req, res) {
+
         try {
-            let data = await productService.getProdPorCat(req.query.cat);
-            res.render('productos/categoria', { productos: data, funcion: funcion });
+            const page = req.query.page || 1;
+            const limit = 6;
+            const offset = (page - 1) * limit;
+
+            let data = await productService.getProdPorCat(req.query.cat, limit, offset);
+            const totalProducts = await productService.getCountPorCat(req.query.cat);
+            const totalPages = Math.ceil(totalProducts / limit);
+            res.render('productos/categoria', { cat:req.query.cat, productos: data, funcion: funcion, totalPages: totalPages, currentPage: page });
         } catch (error) {
             console.log(error);
         }
 
+    },
+    addCat:async function (req,res){
+        try{
+            await productService.addCategory(req.body.nombre);
+            res.redirect('/adminProducto');
+        }catch(error){
 
+        }
     },
     detalle: async (req, res) => {
         let productId = req.params.id;
@@ -71,8 +111,7 @@ let productController = {
         if (!producto) {
             res.status(404).render('error404');
         }
-        let productos = await productService.getAll();
-        res.render('productos/detalle', { relacionados: relacionados, producto: producto, productos: productos, funcion: funcion });
+        res.render('productos/detalle', { usuario:req.session.usuarioLog || '',relacionados: relacionados, producto: producto, funcion: funcion });
     },
     create: async (req, res) => {
         let marcas = await productService.getMarcas();
@@ -149,11 +188,21 @@ let productController = {
 
     search: async (req, res) => {
         try {
-            const search = req.body.busqueda;
+            const search = req.query.busqueda;
             const results = await productService.getBySearch(search)
-            res.render('productos/resultados', { productos: results, funcion: funcion }); // Renderiza una vista con los resultados
+            res.render('productos/resultados', { productos: results, funcion: funcion });
         } catch (error) {
-            console.error('Error searching products:', error);
+            console.error('Error buscando productos:', error);
+            res.status(500).json({ error: 'Internal server error' });
+        }
+    },
+    misCompras: async (req, res) =>{
+        try {
+            let compras = await cartService.getCarritoyDetalle(req.session.usuarioLog.id);
+            console.log(compras,999999);
+            res.render('productos/misCompras', {arrCompras:compras})
+        } catch (error) {
+            console.log(error);
             res.status(500).json({ error: 'Internal server error' });
         }
     }

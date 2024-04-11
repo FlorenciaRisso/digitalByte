@@ -1,8 +1,7 @@
 const db = require('../../model/database/models');
-const Sequelize = require('sequelize');
 const apiProductService = {
 
-    getAllWithPagination: async function (limit,offset) {
+    getAllWithPagination: async function (limit, offset, whereClause = {}) {
         try {
             return await db.Productos.findAll({
                 limit: limit,
@@ -11,19 +10,23 @@ const apiProductService = {
                     { association: 'Caracteristica' },
                     { association: 'ImagenesProductos' },
                     { association: 'Categoria' }
-                ]
+                ],
+                where: whereClause
             });
         } catch (error) {
             console.log(error);
             return [];
         }
     },
-    getCount:async () => {
+    getCount: async function(whereClause = {}) {
         try {
-          const count = await db.Productos.count();
-          return count;
+            const count = await db.Productos.count({
+                where: whereClause
+            });
+            return count;
         } catch (error) {
-          return[];
+            console.log(error);
+            return [];
         }
     },
     getAll: async function () {

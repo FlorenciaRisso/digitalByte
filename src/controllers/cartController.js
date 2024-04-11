@@ -11,6 +11,11 @@ let cartController = {
             let carritoPendiente = await cartService.getCarritoPendiente(req.session.usuarioLog.id);
             if (carritoPendiente) {
                 productosCarrito = await cartService.getProductosCarrito(carritoPendiente.id);
+                productosCarrito.forEach(carrito => {
+                    let precioConDescuento = carrito.producto.Precio - (carrito.producto.Precio * (carrito.producto.Descuento / 100));
+                    carrito.producto.PrecioConDescuento = precioConDescuento;
+                    carrito.producto.SubtotalConDescuento = precioConDescuento * carrito.Cantidad;
+                });
             }
             let data = await productService.getAll();
             let maxMasBuscados = 10;
@@ -20,20 +25,27 @@ let cartController = {
             console.log(error);
         }
     },
+    cantidadItems: async function (req, res) {
+        try {
+            let cantidadItems = await cartService.cantidadItemsCarrito(req.session.usuarioLog.id);
+            res.json(cantidadItems);
+        } catch (error) {
+            console.log(error);
+        }
+    },
     agregarAlCarrito: async function (req, res) {
         try {
-            let idProducto = req.query.id;
+            let idProducto = parseInt(req.query.id);
+            let cantidad = parseInt(req.query.cant);
             let carritoPendiente = await cartService.getCarritoPendiente(req.session.usuarioLog.id);
             if (carritoPendiente !== null) {
-                console.log(1);
-                await cartService.addProductoAlCarrito(carritoPendiente.id, idProducto);
+                await cartService.addProductoAlCarrito(carritoPendiente.id, idProducto, cantidad);
             } else {
-                console.log(2);
                 carritoPendiente = await cartService.createCarrito(req.session.usuarioLog.id);
-                await cartService.addProductoAlCarrito(carritoPendiente.id, idProducto);
+                await cartService.addProductoAlCarrito(carritoPendiente.id, idProducto, cantidad);
             }
-            return res.redirect(req.get('referer'));
-        } catch (error){
+            return res.redirect(req.get('referer')+'?added=true');
+        } catch (error) {
             console.log(error);
             res.send(500).json({ error });
         }
@@ -41,12 +53,41 @@ let cartController = {
     actualizarCantidad: async function (req, res) {
         try {
             const { id, cantidad } = req.body;
-            console.log(id, cantidad);
             await cartService.updateCantidad(id, cantidad);
             res.status(200).json({ mensaje: 'Cantidad actualizada correctamente' });
         } catch (error) {
             console.error(error);
+            res.status(400).json({ error: error.message })
         }
+    },
+    eliminarDetalleCarrito: async function (req, res) {
+        try {
+            const id = req.query.id;
+            await cartService.delete(id);
+            res.status(200).json({ mensaje: 'Cantidad actualizada correctamente' });
+        } catch (error) {
+            console.error(error);
+        }
+    },
+    comprar: async function (req, res) { 
+        try { 
+            const userId = req.session.usuarioLog.id; 
+
+            const carritoPendiente = await cartService.getCarritoPendiente(userId); 
+
+            if (!carritoPendiente) { 
+                throw new Error('No hay un carrito pendiente para este usuario'); 
+            } 
+            await cartService.finalizarCompra(carritoPendiente.id); 
+
+            let carritoDetalles = await cartService.getCarritoyDetalle(userId)
+            console.log(carritoDetalles,11111)
+            
+            res.redirect('/productos/misCompras'); 
+        } catch (error) { 
+            console.error('Error al realizar la compra:', error); 
+            res.status(500).send('Error al realizar la compra'); 
+        } 
     }
 }
 

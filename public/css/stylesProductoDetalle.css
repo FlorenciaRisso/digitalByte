@@ -1,10 +1,3 @@
-* {
-    box-sizing: border-box;
-    font-family: 'Roboto Condensed', sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
 
 .green {
     background-color: rgb(53, 78, 53);
@@ -36,7 +29,13 @@
     text-align: center;
 }
 
-
+.card_sinStock{
+    padding: 5px;
+    background-color: rgb(131, 130, 130) !important;
+    border: 1px solid rgb(105, 104, 104) !important;
+    border-radius: 10px;
+    color: white;
+}
 .gama-colores {
     display: flex;
     flex-direction: row;
@@ -55,6 +54,15 @@
 }
 .oferta{
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+#cantidadProducto{
+    text-align: center;
+    border: 1px solid #1259c3;
+    border-radius: 10px;
+    width: 100%;
 }
 .p-off {
     font-size: 1.5rem;
@@ -71,7 +79,6 @@
 
 .detalle-producto>div {
     margin-bottom: 10px;
-    border-radius: 10px;
     padding: 5px;
 }
 
@@ -108,15 +115,13 @@
 }
 
 .detalle-producto {
-    width: 80%;
+    width: 100vw;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-    margin: 30px;
     background-color: aliceblue;
-    padding: 25px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border-radius: 10px;
+    position: relative;
 }
 
 .imagenes-producto {
@@ -162,16 +167,15 @@
 }
 
 .titulo-producto {
-    background-color: #aaabf5cb;
+    background-color: #cec9eb;
     border-radius: 0;
-    color: rgb(0, 0, 0);
 }
 
 .titulo-producto p {
-    border-radius: 0%;
+    font-size: x-large;
+    font: sans-serif;
     text-align: center;
     padding: 5px;
-
 }
 
 .descripcion-producto p {
@@ -182,9 +186,8 @@
 
 .descripcion-producto_titulo {
     display: flex;
-    background-color: #dcc0f3;
-    border-radius: 5px;
-    padding: 2px;
+    background-color: #d2ccf0;
+    border-bottom: #5c4c69;
 }
 
 .descripcion-producto_titulo i {
@@ -199,8 +202,7 @@ table {
 .caracteristicas-producto_titulo {
     display: flex;
     align-items: center;
-    background-color: #dcc0f3;
-    border-radius: 5px;
+    background-color: #d2ccf0;
     padding: 5px;
     margin-bottom: 5px;
 }
@@ -216,12 +218,10 @@ table {
     display: flex;
     flex-direction: column;
     align-items: left;
-    border-radius: 5px;
 }
 
 .caracteristicas-producto_table {
     padding: 5px;
-    border-radius: 10px;
 }
 
 .caracteristicas-producto_first_td {
@@ -319,14 +319,11 @@ table {
 
     .detalle-producto {
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-        margin: 30px;
-        background-color: aliceblue;
-        padding: 25px;
+        background-color: rgb(233, 227, 248);
         width: 40%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        border-radius: 10px;
     }
 
 
@@ -377,12 +374,11 @@ table {
         min-width: 30px;
     }
 
-    .detalle-producto {
-        padding: 25px;
-
-    }
 
     .precio>p{
         font-size: 1.5rem;
+    }
+    .detalle-producto>div {
+        margin-bottom: 10px;
     }
 }

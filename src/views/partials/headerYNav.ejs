@@ -5,15 +5,14 @@
         </div>
 
         <div class="bar-search">
-            <form action="/productos/search" method="POST" id="search-form" class="search-form">
+            <form action="/productos/search" method="GET" id="search-form" class="search-form">
                 <div class="search-container">
-                    <input type="text" name="busqueda" class="search-input" id="search-input"
-                        placeholder="Buscar productos...">
+                    <input type="text" name="busqueda" class="search-input" id="search-input" placeholder="Buscar productos...">
                     <button type="submit" class="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
             </form>
-
         </div>
+        
         <div class="user-info-responsive">
             <% if (usuarioLog) { %>
                 <a href="/usuarios/userProfile">
@@ -23,66 +22,58 @@
                         <%= usuarioLog.nombre %>/<%=usuarioLog.rol %>
                     </span>
                 </a>
-                <% if(usuarioLog && usuarioLog.rol==='Cliente' ){ %>
-                    <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
-                        class="fa-solid fa-right-from-bracket"></i></a></button>
-                <% } %>
-                <% } %>
+                <a href="/usuarios/cerrarSesion"><i
+                    class="fa-solid fa-right-from-bracket ml-2"></i></a>
+            <% } %>
+            
         </div>
         <div class="user-option">
             <% if(usuarioLog && usuarioLog.rol==='Administrador' ){ %>
                 <div class="user-option_div">
                     <button class="user-btn btn-listProd left-rounder" type="button"><a
+                            href="http://localhost:5173">Dashboard</a></button>
+                    <button class="user-btn btn-listProd " type="button"><a
                             href="/productos/lista">Productos</a></button>
                     <button class="user-btn btn-usuarios rigth-rounder" type="button"><a
                             href="/usuarios/lista">Usuarios</a></button>
-                    <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
-                                class="fa-solid fa-right-from-bracket"></i></a></button>
                 </div>
 
                 <%}else if(usuarioLog && usuarioLog.rol==='Vendedor' ){%>
                     <div class="user-option_div">
                         <button class="user-btn btn-carrito rounder" type="button"><a
                                 href="/productos/listaMisProductos">Mis Productos</a></button>
-                        <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
-                                    class="fa-solid fa-right-from-bracket"></i></a></button>
                     </div>
                     <%}else if(usuarioLog && usuarioLog.rol==='Cliente' ){%>
-                            <!-- <button class="user-btn btn-carrito rounder" type="button"><a
-                                        href="/carrito">Carrito</a> -->
-                                        <!-- <span class="cart-number">0</span></button> -->
-                            <!-- <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
-                                        class="fa-solid fa-right-from-bracket"></i></a></button> -->
-                        <%}else if(usuarioLog){%>
-                            <div class="user-option_div">
-                                <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
-                                            class="fa-solid fa-right-from-bracket"></i></a></button>
-                            </div>
+                        <div class="user-option_div">
+                            <button class="user-btn btn-carrito rounder" type="button">
+                                <a href="/carrito"><i class="fa-solid fa-cart-shopping"></i>Carrito</a>
+                            </button>
+                            <span class="cart-number" id="cart-number">0</span>
+                        </div>
 
-                            <% }else{ %>
-                                <div class="user-option_div">
-                                    <button class="user-btn btn-registro left-rounder" type="button"><a
-                                            href="/usuarios/registro">Registro</a></button>
-                                    <button class="user-btn btn-login rigth-rounder" type="button"><a
-                                            href="/usuarios/login">Login</a></button>
-                                </div>
-                                <% }%>
-                                    <div class="user-info">
-                                        <% if (usuarioLog) { %>
-                                            <a href="/usuarios/userProfile">
-                                                <img class="img-user"
-                                                    src="<%= usuarioLog.avatar ? usuarioLog.avatar  :'/img/default-image.png' %>"
-                                                    alt="Foto de perfil">
-                                                <span>
-                                                    <%= usuarioLog.nombre %>/<%=usuarioLog.rol %>
-                                                </span>
-                                            </a>
-                                            <% if(usuarioLog && usuarioLog.rol==='Cliente' ){ %>
-                                                <button class="btn-logout"><a href="/usuarios/cerrarSesion"><i
-                                                    class="fa-solid fa-right-from-bracket"></i></a></button>
-                                            <% } %>
-                                            <% } %>
-                                    </div>
+                    <% }else{ %>
+                        <div class="user-option_div">
+                            <button class="user-btn btn-registro left-rounder" type="button"><a
+                                    href="/usuarios/registro">Registro</a></button>
+                            <button class="user-btn btn-login rigth-rounder" type="button"><a
+                                    href="/usuarios/login">Login</a></button>
+                        </div>
+                    <% }%>
+                        <div class="user-info">
+                            <% if (usuarioLog) { %>
+                                    <a href="/usuarios/userProfile" class="div_perfil">
+                                        <img class="img-user"
+                                            src="<%= usuarioLog.avatar ? usuarioLog.avatar  :'/img/default-image.png' %>"
+                                            alt="Foto de perfil">
+                                        <span>
+                                            <%= usuarioLog.nombre %>/<%=usuarioLog.rol %>
+                                        </span>
+                                    </a>
+                                
+                                <a href="/usuarios/cerrarSesion"><i
+                                    class="fa-solid fa-right-from-bracket ml-2"></i></a>
+                            <% } %>
+                        </div>
         </div>
 
 </header>
@@ -99,6 +90,7 @@
     <ul id="lista-categorias" class="lista-secciones">
         <li><a href="/">Home</a></li>
         <li><a href="/productos">Todos</a></li>
+        <li><a href="/productos/ofertas">Ofertas</a></li>
         <li>
             <select id="categorias-dropdown" class="select-style">
                 <option value="" selected>Categorías</option>
@@ -107,23 +99,5 @@
         <li><a href="/quienes-somos">¿Quienes Somos?</a></li>
     </ul>
 </nav>
-
-<script>
-    fetch('/api/cat/list')
-        .then(response => response.json())
-        .then(categorias => {
-            const dropdown = document.getElementById('categorias-dropdown');
-            categorias.Categories.forEach(categoria => {
-                const option = document.createElement('option');
-                option.value = `/productos/categoria?cat=${categoria.id}`;
-                option.textContent = categoria.nombre;
-                dropdown.appendChild(option);
-            });
-        })
-        .catch(error => console.error('Error al obtener las categorías:', error));
-
-    document.getElementById('categorias-dropdown').addEventListener('change', function () {
-        const selectedCategory = this.value;
-        window.location.href = selectedCategory;
-    });
-</script>
+<script src="/js/categorias/listaCategorias.js"></script>
+<script src="/js/carrito/script.js"></script>

@@ -13,6 +13,17 @@
                         <% productos.forEach(producto=>{%>
                             <%- include ('../partials/cardArticulos',{producto:producto,funcion:funcion}) %>
                                 <%});%>
+                        <!-- Paginación -->
+                        <div class="paginacion">
+                            <% if (currentPage > 1) { %>
+                                <a href="?cat=<%=cat%>&page=1">Primera</a>
+                                <a href="?cat=<%=cat%>&page=<%= parseInt(currentPage) - 1 %>">Anterior</a>
+                            <% } %>
+                            <% if (currentPage < totalPages) { %>
+                                <a href="?cat=<%=cat%>&page=<%= parseInt(currentPage) + 1 %>">Siguiente</a>
+                                <a href="?cat=<%=cat%>&page=<%= totalPages %>">Última</a>
+                            <% } %>
+                        </div>
                     </div>
             </main>
             <%- include ('../partials/footer') %>

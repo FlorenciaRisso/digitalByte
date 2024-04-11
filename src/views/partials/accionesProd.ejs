@@ -1,7 +1,7 @@
 <div class="tarjeta-producto__buttons">
 
-    <div data-tooltip="$<%=funcion.getPrecioFormateado(producto.Precio)%>" class="button none">
-        <div class="button-wrapper"><a href="/">
+    <div data-tooltip="$<%=funcion.getPrecioFormateado(producto.Precio)%>" class="button">
+        <div class="button-wrapper"><a href="/carrito">
                 <div class="text">Agregar</div>
                 <span class="icon">
                     <svg viewBox="0 0 16 16" class="bi bi-cart2" fill="currentColor" height="16" width="16"
@@ -16,7 +16,7 @@
             </a>
         </div>
     </div>
-    <a href="/productos/detalle/<%=producto.ID_Producto %>"><button class="button-ver">
+    <a href="/productos/<%=producto.ID_Producto %>"><button class="button-ver">
         <span>Ver</span>
     </button></a>
 </div>
