@@ -83,7 +83,7 @@ let cartController = {
             let carritoDetalles = await cartService.getCarritoyDetalle(userId)
             console.log(carritoDetalles,11111)
             
-            res.render('productos/misCompras', {arrCompras:carritoDetalles}); 
+            res.redirect('/productos/misCompras'); 
         } catch (error) { 
             console.error('Error al realizar la compra:', error); 
             res.status(500).send('Error al realizar la compra'); 
