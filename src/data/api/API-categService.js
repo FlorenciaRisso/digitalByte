@@ -1,21 +1,43 @@
 const db = require('../../model/database/models');
-const Sequelize = require('sequelize');
 const ApiCategoriaService = {
 
     getAll: async function () {
         try {
-            return await db.Categorias.findAll();
+            const categorias = await db.Categorias.findAll({
+                include: [{association:'Productos'}],
+                atrributes:['ID_Producto','Nombre']
+            });
+
+            categorias.forEach(categoria => {
+                categoria.dataValues.numProductos = categoria.Productos.length;
+            });
+            return categorias;
         } catch (error) {
             console.log(error);
             return [];
         }
     },
-    getCount:async () => {
+    getCount: async () => {
         try {
-          const count = await db.Categorias.count();
-          return count;
+            const count = await db.Categorias.count();
+            return count;
         } catch (error) {
-          return[];
+            return [];
+        }
+    },
+    getBy: async function (id) {
+        try {
+            const categorias = await db.Categorias.findAll({
+                include: [{association:'Productos',include:[{association:'ImagenesProductos'}]},],where:{id:id}
+            });
+
+            categorias.forEach(categoria => {
+                categoria.dataValues.numProductos = categoria.Productos.length;
+            });
+            return categorias;
+        } catch (error) {
+            console.log(error);
+            return [];
         }
     },
 }
